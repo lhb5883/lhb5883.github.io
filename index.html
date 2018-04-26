@@ -1,21 +1,2047 @@
-<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Hexo</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Hexo</h1><a id="logo" href="/.">Hexo</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Start</i></a><a href="/archives/"><i class="fa fa-archive"> Archiv</i></a><a href="/about/"><i class="fa fa-user"> Über</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"><a href="/2018/04/26/test-my-site/">test_my_site</a></h1><div class="post-meta">2018-04-26</div><p class="readmore"><a href="/2018/04/26/test-my-site/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2018/04/26/hello-world/">Hello World</a></h1><div class="post-meta">2018-04-26</div><div class="post-content"><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p></div><p class="readmore"><a href="/2018/04/26/hello-world/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2014/03/04/e5-b7-b2-e6-90-ac-e5-ae-b6-e5-88-b0haobo-li/">已搬家到haobo.li</a></h1><div class="post-meta">2014-03-04</div><div class="post-content"><p>自从Wordpress.com被墙以后，blog基本上就长草了。现在搬到<a href="http://haobo.li" target="_blank" rel="noopener"> http://haobo.li </a>欢迎访问。</p>
-</div><p class="readmore"><a href="/2014/03/04/e5-b7-b2-e6-90-ac-e5-ae-b6-e5-88-b0haobo-li/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2013/09/29/e7-bb-997zip-e5-8e-8b-e7-bc-a9-e8-87-aa-e5-8a-a8-e5-a2-9e-e5-8a-a0-e6-97-b6-e9-97-b4-e6-88-b3/">给7Zip压缩自动增加时间戳</a></h1><div class="post-meta">2013-09-29</div><div class="post-content"><p>WinRAR压缩文件有一个很方便的选项是在文件名追加压缩时间,但是RAR是收费软件,价格不菲.使用7-Zip就没有这样的功能了么?</p>
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+
+
+  <title>Hexo</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/test-my-site/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/26/test-my-site/" itemprop="url">test_my_site</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T09:33:40+08:00">
+                2018-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/26/hello-world/" itemprop="url">Hello World</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T09:27:49+08:00">
+                2018-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/03/04/e5-b7-b2-e6-90-ac-e5-ae-b6-e5-88-b0haobo-li/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/03/04/e5-b7-b2-e6-90-ac-e5-ae-b6-e5-88-b0haobo-li/" itemprop="url">已搬家到haobo.li</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-03-04T14:00:24+08:00">
+                2014-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机与-Internet/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机与 Internet</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>自从Wordpress.com被墙以后，blog基本上就长草了。现在搬到<a href="http://haobo.li" target="_blank" rel="noopener"> http://haobo.li </a>欢迎访问。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2013/09/29/e7-bb-997zip-e5-8e-8b-e7-bc-a9-e8-87-aa-e5-8a-a8-e5-a2-9e-e5-8a-a0-e6-97-b6-e9-97-b4-e6-88-b3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/09/29/e7-bb-997zip-e5-8e-8b-e7-bc-a9-e8-87-aa-e5-8a-a8-e5-a2-9e-e5-8a-a0-e6-97-b6-e9-97-b4-e6-88-b3/" itemprop="url">给7Zip压缩自动增加时间戳</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-09-29T16:32:29+08:00">
+                2013-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机与-Internet/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机与 Internet</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>WinRAR压缩文件有一个很方便的选项是在文件名追加压缩时间,但是RAR是收费软件,价格不菲.使用7-Zip就没有这样的功能了么?</p>
 <p>其实只要自己动手也能丰衣足食,给7-Zip加上这个功能:</p>
 <p>首先在运行中输入</p>
 <ol>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:maroon;">shell</span>:<span style="color:maroon;">sendto</span><br>            </span></div></div><p class="readmore"><a href="/2013/09/29/e7-bb-997zip-e5-8e-8b-e7-bc-a9-e8-87-aa-e5-8a-a8-e5-a2-9e-e5-8a-a0-e6-97-b6-e9-97-b4-e6-88-b3/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2013/09/26/ni-e9-99-a2-e6-a0-a1-e5-a5-97-e4-bb-b6-e6-89-b9-e9-87-8f-e5-ae-89-e8-a3-85-e6-8a-80-e5-b7-a7-e4-b8-80-e5-88-99/">NI院校套件批量安装技巧一则</a></h1><div class="post-meta">2013-09-26</div><div class="post-content"><p><span style="color:black;font-family:宋体;font-size:10pt;">NI院校套件提供了一个很方便的自动安装功能:<br></span></p>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:maroon;">shell</span>:<span style="color:maroon;">sendto</span><br>            </span></div>
+
+</li>
+</ol>
+<p>打开自己的发送到文件夹.</p>
+<p>在文件夹新建一个文本文档,并贴入以下代码保存为ANSI编码</p>
 <ol>
-<li><span style="color:black;font-family:宋体;font-size:10pt;">可以自动决定安装顺序<br></span></li></div><p class="readmore"><a href="/2013/09/26/ni-e9-99-a2-e6-a0-a1-e5-a5-97-e4-bb-b6-e6-89-b9-e9-87-8f-e5-ae-89-e8-a3-85-e6-8a-80-e5-b7-a7-e4-b8-80-e5-88-99/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2012/11/23/labview-2012-e4-bd-bf-e7-94-a8-e5-bf-83-e5-be-97/">LabVIEW 2012 使用心得</a></h1><div class="post-meta">2012-11-23</div><div class="post-content"><p>LabVIEW 2012 自8月发布已有3月有余，总结了一些使用中发现的优缺点：</p>
+<li><div style="background:#f4f4f4;"><a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener"><span style="font-size:9pt;">set</span></a><span style="font-size:9pt;"> hh=%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~0,2%<br></span></div></li>
+<li><div style="background:#f4f4f4;"><a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=if&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener"><span style="font-size:9pt;">if</span></a><span style="font-size:9pt;"> %hh% LSS 10 (<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">set</a> hh=0%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~1,1%)<br></span></div></li>
+<li><div style="background:#f4f4f4;"><a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener"><span style="font-size:9pt;">set</span></a><span style="font-size:9pt;"> dst=%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">date</a>:~0,4%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">date</a>:~5,2%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">date</a>:~8,2%_%hh%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~3,2%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~6,2%<br></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">“<span style="color:darkred;">C:\Program Files\7-Zip\7z.exe</span>“ a %1_%dst%.zip %1<br></span></div>
+
+</li>
+</ol>
+<p>修改文件名为</p>
+<p>7zBackup.bat</p>
+<p>使用时选中需要压缩的文件或者目录,选择发送到7zBackup.bat即可。</p>
+<p>以上在Window 7 64bit，7-Zip 9.2 64bit下验证通过。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2013/09/26/ni-e9-99-a2-e6-a0-a1-e5-a5-97-e4-bb-b6-e6-89-b9-e9-87-8f-e5-ae-89-e8-a3-85-e6-8a-80-e5-b7-a7-e4-b8-80-e5-88-99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/09/26/ni-e9-99-a2-e6-a0-a1-e5-a5-97-e4-bb-b6-e6-89-b9-e9-87-8f-e5-ae-89-e8-a3-85-e6-8a-80-e5-b7-a7-e4-b8-80-e5-88-99/" itemprop="url">NI院校套件批量安装技巧一则</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-09-26T10:31:35+08:00">
+                2013-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LabVIEW/" itemprop="url" rel="index">
+                    <span itemprop="name">LabVIEW</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><span style="color:black;font-family:宋体;font-size:10pt;">NI院校套件提供了一个很方便的自动安装功能:<br></span></p>
+<ol>
+<li><span style="color:black;font-family:宋体;font-size:10pt;">可以自动决定安装顺序<br></span></li>
+<li><span style="color:black;font-family:宋体;font-size:10pt;">可以自动确定依赖关系<br></span></li>
+</ol>
+<p><span style="color:black;font-family:宋体;font-size:10pt;">不过美中不足的是安装Xilinx 10.1编译器的时候还需要手动安装,通过修改安装包,我们也可以自动安装Xilinx 10.1编译器<br></span></p>
+<p><span style="color:black;font-family:宋体;font-size:10pt;">复制或解压4张安装DVD，一张驱动DVD，并按照下图命名<br></span></p>
+<p><img src="http://lhb5883.files.wordpress.com/2013/09/092613_0241_ni1.png" alt=""><span style="color:black;font-size:10pt;"><br>        </span></p>
+<p><span style="color:black;font-size:10pt;"><span style="font-family:宋体;">下载</span>Xilinx 10<span style="font-family:宋体;">编译器，并解压至:</span><br>        </span></p>
+<p><span style="color:black;font-size:10pt;">\ASLFL13DVD2\Distributions\Xilinx 10<br></span></p>
+<p><span style="color:black;font-size:10pt;"><span style="font-family:宋体;">修改</span>\ASLFL13DVD1\nisuite.xml <span style="font-family:宋体;">第4072~4082行</span><br>        </span></p>
+<ol>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:blue;">&lt;<span style="color:maroon;">distribution</span><br>                    <span style="color:red;">id</span>=”XILINX10”&gt;</span><br>            </span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">inputRoot</span><br>                    <span style="color:red;">suiteVolume</span>=”5”&gt;</span>Windows\Xilinx 10\<span style="color:blue;">&lt;/<span style="color:maroon;">inputRoot<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span>9998<span style="color:blue;">&lt;/<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span>None<span style="color:blue;">&lt;/<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span>ADE<span style="color:blue;">&lt;/<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span>ASLControl<span style="color:blue;">&lt;/<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">name</span><br>                    <span style="color:red;">language</span>=”0009”&gt;</span>Xilinx Compilation Tools 10.1 (Requires Additional Xilinx Compilation Tools DVD)<span style="color:blue;">&lt;/<span style="color:maroon;">name<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">description</span><br>                    <span style="color:red;">language</span>=”0009”&gt;</span>You can install these tools locally or on a remote computer.\n\nUse these compilation tools to compile FPGA VIs on NI hardware containing Virtex-II FPGAs, such as the 781xR, 783xR, and cRIO-910x devices.\n\nLearn more about the FPGA on your NI hardware at ni.com.<span style="color:blue;">&lt;/<span style="color:maroon;">description<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span>NoDefault<span style="color:blue;">&lt;/<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span>NoInstall<span style="color:blue;">&lt;/<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span><br>                           </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="color:blue;font-size:9pt;">&lt;/<span style="color:maroon;">distribution<span style="color:blue;">&gt;</span><br>               </span></span></div>
+
+</li>
+</ol>
+<p><span style="color:black;font-family:宋体;font-size:10pt;">替换为<br></span></p>
+<ol>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:blue;">&lt;<span style="color:maroon;">distribution</span><br>                    <span style="color:red;">id</span>=”XILINX10”&gt;</span><br>            </span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">distId</span><br>                    <span style="color:red;">GUID</span>=”{C7B4CAC5-4001-475C-967D-DC65C097AA3B}”</span><br>                <span style="color:red;">languages</span>=<span style="color:blue;">“0009”</span><br>                <span style="color:red;">packageGUID</span>=<span style="color:blue;">“{1BECF03B-48B7-453F-AEB4-2570F837056B}”</span><br>                <span style="color:red;">version</span>=<span style="color:blue;">“10.13.0”/&gt;</span><br>            </span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">inputRoot</span><br>                    <span style="color:red;">suiteVolume</span>=”2”&gt;</span>Distributions\Xilinx 10\<span style="color:blue;">&lt;/<span style="color:maroon;">inputRoot<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span>9998<span style="color:blue;">&lt;/<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span>None<span style="color:blue;">&lt;/<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span>ADE<span style="color:blue;">&lt;/<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span>ASLControl<span style="color:blue;">&lt;/<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">name</span><br>                    <span style="color:red;">language</span>=”0009”&gt;</span>Xilinx Compilation Tools 10.1 (Requires Additional Xilinx Compilation Tools DVD)<span style="color:blue;">&lt;/<span style="color:maroon;">name<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">description</span><br>                    <span style="color:red;">language</span>=”0009”&gt;</span>You can install these tools locally or on a remote computer.\n\nUse these compilation tools to compile FPGA VIs on NI hardware containing Virtex-II FPGAs, such as the 781xR, 783xR, and cRIO-910x devices.\n\nLearn more about the FPGA on your NI hardware at ni.com.<span style="color:blue;">&lt;/<span style="color:maroon;">description<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span>NoCustomInstall<span style="color:blue;">&lt;/<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span><br>                           </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span>NoInstall<span style="color:blue;">&lt;/<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span><br>                           </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="color:blue;font-size:9pt;">&lt;/<span style="color:maroon;">distribution<span style="color:blue;">&gt;</span><br>               </span></span></div>
+
+</li>
+</ol>
+<p>今后安装LabVIEW FPGA时,就可以自动安装编译器了.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2012/11/23/labview-2012-e4-bd-bf-e7-94-a8-e5-bf-83-e5-be-97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2012/11/23/labview-2012-e4-bd-bf-e7-94-a8-e5-bf-83-e5-be-97/" itemprop="url">LabVIEW 2012 使用心得</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2012-11-23T17:42:25+08:00">
+                2012-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LabVIEW/" itemprop="url" rel="index">
+                    <span itemprop="name">LabVIEW</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>LabVIEW 2012 自8月发布已有3月有余，总结了一些使用中发现的优缺点：</p>
 <p>优点：</p>
 <ol>
-<li>新加的For循环条件自动索引很方便。2.  新项目向导选项很丰富，模板文档很详尽。3.  新加的Actor Frameworks增加了面向对象的通用架构。4.  可以从NI FTP下载院校系使用权套件的安装镜像，方便批量安装。  </li></div><p class="readmore"><a href="/2012/11/23/labview-2012-e4-bd-bf-e7-94-a8-e5-bf-83-e5-be-97/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2011/10/28/e5-8d-87-e7-ba-a7-e8-87-b3tortoisesvn-1-7-1/">升级至TortoiseSVN 1.7.1</a></h1><div class="post-meta">2011-10-28</div><div class="post-content"><p>在开源界SVN是一个非常有朝气的项目，这个可以从他的版本每两周一个小版本的升级的速度就看出来。</p>
+<li>新加的For循环条件自动索引很方便。2.  新项目向导选项很丰富，模板文档很详尽。3.  新加的Actor Frameworks增加了面向对象的通用架构。4.  可以从NI FTP下载院校系使用权套件的安装镜像，方便批量安装。  </li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>启动界面层级太多，找东西不方便。2.  项目向导响应有时候非常迟钝。3.  LabVIEW 2009的字体BUG重出江湖。4.  不打补丁会出现无法退出的情况。  </li>
+</ol>
+<p>点评：</p>
+<p>这一次LabVIEW更新增加的Actor Framework给LabVIEW提供基于类和对象的架构选择，不过LabVIEW面向对象带来的好处能否超过其成本还需要在实践中验证。</p>
+<p>PS：</p>
+<p>LabVIEW 字体BUG修正方案</p>
+<p>针对LabVIEW图标编辑器，可以考虑关闭系统ClearType（但是字体仍然不对），或者使用我以前写的字体图片</p>
+<p>针对LabVIEW环境，目前最治本的办法是将系统非unicode程序语言更换为英文，但是此时LabVIEW里面的中文会乱码，因此对于中国的LabVIEW使用者没有可行性。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2011/10/28/e5-8d-87-e7-ba-a7-e8-87-b3tortoisesvn-1-7-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2011/10/28/e5-8d-87-e7-ba-a7-e8-87-b3tortoisesvn-1-7-1/" itemprop="url">升级至TortoiseSVN 1.7.1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2011-10-28T10:43:37+08:00">
+                2011-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LabVIEW/" itemprop="url" rel="index">
+                    <span itemprop="name">LabVIEW</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在开源界SVN是一个非常有朝气的项目，这个可以从他的版本每两周一个小版本的升级的速度就看出来。</p>
 <p>虽然SVN 1.7出来也有一段时间了，不过一直没有太关注过，最近偶然看到SVN新版本的特性，有几项非常实用的功能和更新，所以果断更新到1.7.1。</p>
-<p>值得注目的新特性有：</p></div><p class="readmore"><a href="/2011/10/28/e5-8d-87-e7-ba-a7-e8-87-b3tortoisesvn-1-7-1/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2011/08/31/labview-2011-e9-85-8d-e5-a5-97-e9-a9-b1-e5-8a-a8-e4-b8-8b-e8-bd-bd-e5-9c-b0-e5-9d-80/">LabVIEW 2011配套驱动下载地址</a></h1><div class="post-meta">2011-08-31</div><div class="post-content"><p>NI的最新版本LabVIEW 2011已经发布了，配套的驱动也已经出现在NI的FTP。</p>
+<p>值得注目的新特性有：</p>
+<ol>
+<li>数据库整合至根目录（终于解决了目录更名错乱的问题！）</li>
+<li>深度支持Windows 7。新增Windows 7库整合，界面支持Windows 7 Aero特效。</li>
+<li><p>客户端和服务器均向下互兼容，1.7的客户端也可以配合1.6的服务器使用。<br>更新要注意的问题：</p>
+</li>
+<li><p>升级安装需要安装两次，第二次选择修复。</p>
+</li>
+<li><p>工作副本需要升级至新版本，并且无法降级。<br>建议升级流程：</p>
+</li>
+<li><p>提交所有工作。</p>
+</li>
+<li>升级SVN（注意要安装一次修复一次！）</li>
+<li>重新下载或者升级工作副本。<br><a href="http://lhb5883.files.wordpress.com/2011/10/image.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2011/10/image_thumb.png" alt="image" title="image"></a></li>
+</ol>
+<p><a href="https://decibel.ni.com/content/groups/large-labview-application-development/blog/2010/03/29/using-subversion-svn-with-labview" target="_blank" rel="noopener">https://decibel.ni.com/content/groups/large-labview-application-development/blog/2010/03/29/using-subversion-svn-with-labview</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2011/08/31/labview-2011-e9-85-8d-e5-a5-97-e9-a9-b1-e5-8a-a8-e4-b8-8b-e8-bd-bd-e5-9c-b0-e5-9d-80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2011/08/31/labview-2011-e9-85-8d-e5-a5-97-e9-a9-b1-e5-8a-a8-e4-b8-8b-e8-bd-bd-e5-9c-b0-e5-9d-80/" itemprop="url">LabVIEW 2011配套驱动下载地址</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2011-08-31T17:49:04+08:00">
+                2011-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LabVIEW/" itemprop="url" rel="index">
+                    <span itemprop="name">LabVIEW</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>NI的最新版本LabVIEW 2011已经发布了，配套的驱动也已经出现在NI的FTP。</p>
 <p>NI的驱动包目前分为两种：NI设备驱动和系统驱动集。</p>
 <p>区别是系统驱动集会有所有PXI板卡尤其是所有RF的板卡的驱动，</p>
-<p>而NI设备驱动只有常用的RFSA和RFSG驱动，不过NI设备驱动会有其他总线如USB-8451的驱动。</p></div><p class="readmore"><a href="/2011/08/31/labview-2011-e9-85-8d-e5-a5-97-e9-a9-b1-e5-8a-a8-e4-b8-8b-e8-bd-bd-e5-9c-b0-e5-9d-80/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2010/10/14/code-share-e5-a6-82-e4-bd-95-e7-94-a8labview-e5-8f-96-e5-be-97-e8-ae-a1-e7-ae-97-e6-9c-ba-e4-b8-bb-e9-a2-91/">[Code Share]如何用LabVIEW取得计算机主频</a></h1><div class="post-meta">2010-10-14</div><div class="post-content"><p>大部分Windows下程序都是使用计算机计时器计算CPU主频，（当然也可以跑个算法自己算）最基础的就是这个了：</p>
+<p>而NI设备驱动只有常用的RFSA和RFSG驱动，不过NI设备驱动会有其他总线如USB-8451的驱动。</p>
+<p>推荐下载一个系统驱动集+USB-8451这种组合，可以解决大部分NI板卡的驱动问题。</p>
+<p>NI Device Drivers 2011.08<br><a href="http://joule.ni.com/nidu/cds/view/p/id/2602/lang/zhs" target="_blank" rel="noopener">http://joule.ni.com/nidu/cds/view/p/id/2602/lang/zhs</a><br><a href="http://ftp.ni.com/support/softlib/driver_cd/aug_11/dcd_aug11.zip" target="_blank" rel="noopener">http://ftp.ni.com/support/softlib/driver_cd/aug_11/dcd_aug11.zip</a><br>系统驱动集 201108<br><a href="http://download.ni.com/support/fis/sds/2011.08/SDS-Aug11-1.zip" target="_blank" rel="noopener">http://download.ni.com/support/fis/sds/2011.08/SDS-Aug11-1.zip</a><br>NI-845x 2.0<br><a href="http://ftp.ni.com/support/softlib/embedded%20networks/I2C_SPI/ni-845x/2.0.0/NI-845x_200.exe" target="_blank" rel="noopener">http://ftp.ni.com/support/softlib/embedded%20networks/I2C_SPI/ni-845x/2.0.0/NI-845x_200.exe</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2010/10/14/code-share-e5-a6-82-e4-bd-95-e7-94-a8labview-e5-8f-96-e5-be-97-e8-ae-a1-e7-ae-97-e6-9c-ba-e4-b8-bb-e9-a2-91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2010/10/14/code-share-e5-a6-82-e4-bd-95-e7-94-a8labview-e5-8f-96-e5-be-97-e8-ae-a1-e7-ae-97-e6-9c-ba-e4-b8-bb-e9-a2-91/" itemprop="url">[Code Share]如何用LabVIEW取得计算机主频</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-10-14T11:23:06+08:00">
+                2010-10-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LabVIEW/" itemprop="url" rel="index">
+                    <span itemprop="name">LabVIEW</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>大部分Windows下程序都是使用计算机计时器计算CPU主频，（当然也可以跑个算法自己算）最基础的就是这个了：</p>
 <ul>
 <li><strong>使用Win32API取频率</strong>  </li>
 </ul>
-<p>好处是功能简单速度快，下面代码没做返回值处理，如果计算机没有高精度计数器（这个可能性比较小）有可能出不来频率，详细可以去看MSDN：</p></div><p class="readmore"><a href="/2010/10/14/code-share-e5-a6-82-e4-bd-95-e7-94-a8labview-e5-8f-96-e5-be-97-e8-ae-a1-e7-ae-97-e6-9c-ba-e4-b8-bb-e9-a2-91/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2010/10/11/e5-8d-9a-e5-ae-a2-e5-8d-87-e7-ba-a7-e8-87-b3wordpress/">博客升级至Wordpress</a></h1><div class="post-meta">2010-10-11</div><div class="post-content"><p>微软的网络战略总是变来变去，而功能更新总是极其缓慢，和其他网站竞争总是处于不利地位，终于MSN Space就要被砍掉重练，M$要玩SNS了。</p>
-<p>前前后后也用了不少blog，基本上没有什么太好的选择，国内的说倒就倒了，不倒的隐私也是个问题，国外的不是被墙就是速度不理想，终于趁着MS脑抽升级到Wordpress.com了。还好YO2原来玩过一段时间WP，上手还算简单。</p></div><p class="readmore"><a href="/2010/10/11/e5-8d-9a-e5-ae-a2-e5-8d-87-e7-ba-a7-e8-87-b3wordpress/">Mehr lesen</a></p></div><nav class="page-navigator"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Nächster</a></nav></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Kategorien</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机与-Internet/">计算机与 Internet</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/NET/" style="font-size: 15px;">.NET</a> <a href="/tags/LabVIEW-2009/" style="font-size: 15px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 15px;">LabVIEW 2010</a> <a href="/tags/Win32API/" style="font-size: 15px;">Win32API</a> <a href="/tags/WMI/" style="font-size: 15px;">WMI</a> <a href="/tags/CPU-Ferquency/" style="font-size: 15px;">CPU Ferquency</a> <a href="/tags/Microsoft/" style="font-size: 15px;">Microsoft</a> <a href="/tags/MSN-Windows-live/" style="font-size: 15px;">MSN.Windows live</a> <a href="/tags/Wordpress/" style="font-size: 15px;">Wordpress</a> <a href="/tags/DCD/" style="font-size: 15px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 15px;">Drivers</a> <a href="/tags/LabVIEW-2011/" style="font-size: 15px;">LabVIEW 2011</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Letzte</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/04/26/test-my-site/">test_my_site</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/26/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/03/04/e5-b7-b2-e6-90-ac-e5-ae-b6-e5-88-b0haobo-li/">已搬家到haobo.li</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/29/e7-bb-997zip-e5-8e-8b-e7-bc-a9-e8-87-aa-e5-8a-a8-e5-a2-9e-e5-8a-a0-e6-97-b6-e9-97-b4-e6-88-b3/">给7Zip压缩自动增加时间戳</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/26/ni-e9-99-a2-e6-a0-a1-e5-a5-97-e4-bb-b6-e6-89-b9-e9-87-8f-e5-ae-89-e8-a3-85-e6-8a-80-e5-b7-a7-e4-b8-80-e5-88-99/">NI院校套件批量安装技巧一则</a></li><li class="post-list-item"><a class="post-list-link" href="/2012/11/23/labview-2012-e4-bd-bf-e7-94-a8-e5-bf-83-e5-be-97/">LabVIEW 2012 使用心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2011/10/28/e5-8d-87-e7-ba-a7-e8-87-b3tortoisesvn-1-7-1/">升级至TortoiseSVN 1.7.1</a></li><li class="post-list-item"><a class="post-list-link" href="/2011/08/31/labview-2011-e9-85-8d-e5-a5-97-e9-a9-b1-e5-8a-a8-e4-b8-8b-e8-bd-bd-e5-9c-b0-e5-9d-80/">LabVIEW 2011配套驱动下载地址</a></li><li class="post-list-item"><a class="post-list-link" href="/2010/10/14/code-share-e5-a6-82-e4-bd-95-e7-94-a8labview-e5-8f-96-e5-be-97-e8-ae-a1-e7-ae-97-e6-9c-ba-e4-b8-bb-e9-a2-91/">[Code Share]如何用LabVIEW取得计算机主频</a></li><li class="post-list-item"><a class="post-list-link" href="/2010/10/11/e5-8d-9a-e5-ae-a2-e5-8d-87-e7-ba-a7-e8-87-b3wordpress/">博客升级至Wordpress</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Hexo.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<p>好处是功能简单速度快，下面代码没做返回值处理，如果计算机没有高精度计数器（这个可能性比较小）有可能出不来频率，详细可以去看MSDN：</p>
+<p><img src="http://lhb5883.files.wordpress.com/2010/10/winapi-queryperformancefrequency.png" alt="WINAPI QueryPerformanceFrequency" title="WINAPI QueryPerformanceFrequency"></p>
+<ul>
+<li><strong>.NET&#160; 利用WMI获取系统信息</strong>  </li>
+</ul>
+<p>这个接口是使用系统信息（C:\Windows\System32\msinfo32.exe）能拿到的信息更多，不过方法复杂，速度也慢。</p>
+<p>&#160;</p>
+<p><img src="http://lhb5883.files.wordpress.com/2010/10/system-management-managementobjectsearcher.png" alt="System.Management.ManagementObjectSearcher" title="System.Management.ManagementObjectSearcher"></p>
+<p>这两个算法都在Win7 32bit，LabVIEW2009SP1下测试通过。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2010/10/11/e5-8d-9a-e5-ae-a2-e5-8d-87-e7-ba-a7-e8-87-b3wordpress/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2010/10/11/e5-8d-9a-e5-ae-a2-e5-8d-87-e7-ba-a7-e8-87-b3wordpress/" itemprop="url">博客升级至Wordpress</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-10-11T17:08:02+08:00">
+                2010-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computers-and-Internet/" itemprop="url" rel="index">
+                    <span itemprop="name">Computers and Internet</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>微软的网络战略总是变来变去，而功能更新总是极其缓慢，和其他网站竞争总是处于不利地位，终于MSN Space就要被砍掉重练，M$要玩SNS了。</p>
+<p>前前后后也用了不少blog，基本上没有什么太好的选择，国内的说倒就倒了，不倒的隐私也是个问题，国外的不是被墙就是速度不理想，终于趁着MS脑抽升级到Wordpress.com了。还好YO2原来玩过一段时间WP，上手还算简单。</p>
+<p>看见这个帖子的大家可以测试一下留言，以前MSN的space留言经常被吃掉，希望这个能好一些。速度就不报什么希望了，只希望晚一点被墙吧。</p>
+<p>顺便骂一下Windows Live Messenger 2011的开发人员，每次升级干的两件事就是UI大变+功能缩水，不知道回头是不是要把聊天的功能也砍掉。</p>
+<p>记得8.5的时候有个共享文件夹的功能，局域网共享东西还是很给力的，结果2009的时候砍掉了。</p>
+<p>然后2009搜索联系人是可以搜索昵称中间的，比如ABC 搜索BC也能出来搜索AB也能出来，结果2011果断悲剧了。</p>
+<p>还有2009包括以前的所有版本双击主界面左上角是能滚到后台的，2011果断就关闭了。以前是阴魂不散，现在突然玩消失还真是谢谢啊！</p>
+<p><a href="http://lhb5883.files.wordpress.com/2010/10/image.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/10/image_thumb.png" alt="image" title="image"></a></p>
+<p>唯一长进的地方就是能排排坐吃果果了</p>
+<p><a href="http://lhb5883.files.wordpress.com/2010/10/image1.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/10/image_thumb1.png" alt="image" title="image"></a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+     
+     
+     
+     
+     <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+     
+         <script type="text/javascript">
+             function ShowGitment(){
+                 document.getElementById("gitment-display-button").style.display = "none";
+                 document.getElementById("gitment-container").style.display = "block";
+                 var gitment = new Gitment({
+                     id: document.location.href, 
+                     owner: 'lhb5883',
+                     repo: 'lhb5883.github.io',
+                     oauth: {
+                         client_id: '5473d4670bb678c93d94',
+                         client_secret: '619d8420f0cc6f9f141bd8792e8f3a355a9193ed',
+                     }});
+                 gitment.render('gitment-container');
+             }
+         </script>
+     
+ 
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

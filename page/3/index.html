@@ -1,1 +1,1975 @@
-<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Hexo</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Hexo</h1><a id="logo" href="/.">Hexo</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Start</i></a><a href="/archives/"><i class="fa fa-archive"> Archiv</i></a><a href="/about/"><i class="fa fa-user"> Über</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"><a href="/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-955-e6-96-87-e4-bb-b6-e8-af-bb-e5-8f-96/">流盘备忘录(5)-文件读取</a></h1><div class="post-meta">2009-12-02</div><div class="post-content"><div id="msgcns!866B8F96A2761BBE!1430" class="bvMsg"><br><br>我们存好数据并不是大功告成了，我们还需要从流盘数据文件恢复各通道信号才能再做各种分析。<br><br>其中最关键的核心问题就是存盘的文件格式和数据解析。<br><br>上一篇我们已经解析了一个数据块的构成，这一篇我们来看看到底如何用LabVIEW实现：<br><br><a href="http://lhb5883.files.wordpress.com/2009/12/labviewreadallchanneldata5b55d.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/labviewreadallchanneldata5b55d.png?w=300" alt="LabVIEW read all channel data" title="LabVIEW read all channel data"></a><br><br>这个在数据量较小时姑且还可以用一用，不过要想更灵活的解析出各个通道数据，还需要推导出采样在文件中的位置公式。<br><br>我们需要的参数有<br><br>1.  通道所在的板卡编号 BoardID（从0开始）  <li>通道在板卡上的编号 ChannelID（从0开始）  </li><li>采样点的编号 SampleNum  </li><li>一共有多少板卡 BoardNumber  </li><li>每板卡使用几个通道 ChannelNumber  </li><li>每个数据块每通道的采样点 SampleperChannel  </li><li>每个采样占用的字节 SampleByte<br><br>我们需要得出的参数：<br><br>1.  我们所需采样点在文件中的位置 SamplePosition<br><br>SamplePosition=<br><br>&#123;<br><br>(SampleNum/SampleperChannel)<em>SampleperChannel</em>BoardNumber<em>ChannelNumber 数据块偏移<br>+<br>BoardID</em>SampleperChannel<em>ChannelNumber 板卡偏移<br>+<br>(mod(SampleNum,SampleperChannel))</em>ChannelNumber 采样偏移<br>+<br>ChannelID 通道偏移<br><br>&#125;*SampleByte<br><br><img src="https://aftv2q.bay.livefilestore.com/y1m7Q8U7w8Oul572fCc-_Iku3gROg3G7UYbKwGiqI2yE0L4fjrmcVZuhmWS8I_kyuyLgPbV2QQcxkZd0Srka7RHfHzq8l7eACtuMnkkkKmK2Awa3r1Bo_W0HIEiuMGGpOB--GGNseEjOzcx6xRVSSLawA/image[5].png" alt="image" title="image"><br><br>另外要注意的是偏移量最好用U64，I32最多能寻址2GB，大于2GB就会溢出。<br><br>有了这个公式再配合设置偏移量，就可以很方便的取出每个通道的数据了。<br><br>其他要注意的是如果使用Win32API，那么读取数据的高低位是Windows格式的Little Endian而不是LabVIEW通常的Big Endian。<br><br><img src="https://aftv2q.bay.livefilestore.com/y1mIS2FZksrhqxtsgC3tXJ_mDvez4ehbPJQh2c4DopAAVhWZx9aFCtp5rWsN7AX-LTKlTQ_THRfpctxWDI8ybrE5bq3TmZA7DELe4rdb84tsO3lSinX9Q7dix3gBzcWOBZsNy1qAbfkMacqMZvik6bJ-A/image[3] 4EFCFDF4.png" alt="image" title="image"><br><br><a href="https://aftv2q.bay.livefilestore.com/y1m_jcU-aepq8aD9tZ4T2IdyzWPI43xpwNF3eQWd6zishWaHJyvXioh4tjQLDf882YIIUQszfI1azwrP1t1gec6R-lUwUOSyGE-3KzE_IBtQO2LP9tGCSpkOLg2J-zUNcXzJPuzEYtFrBIIfGPVlpoVmg/LabVIEW read all channel data[5].png" target="_blank" rel="noopener"></a><br>  </li></div></div><p class="readmore"><a href="/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-955-e6-96-87-e4-bb-b6-e8-af-bb-e5-8f-96/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-954-e5-ad-98-e7-9b-98api/">流盘备忘录(4)-存盘API</a></h1><div class="post-meta">2009-12-02</div><div class="post-content"><div id="msgcns!866B8F96A2761BBE!1426" class="bvMsg"><br><br>存盘接口<br><br>Windows写入文件有两种形式缓冲和非缓冲<br><br><a href="http://msdn.microsoft.com/en-us/library/aa365747(VS.85" target="_blank" rel="noopener">http://msdn.microsoft.com/en-us/library/aa365747(VS.85).aspx</a>.aspx)<br><br>缓冲模式是Windows自动分配缓冲区将数据分割到硬盘的每个簇大小以便写入，而非缓冲模式是有我们程序员进行缓冲区 的分配，可以任意指定大小。（这个任意并不是绝对的，必须要是硬盘簇的整数倍）<br><br>XP系统默认的缓冲区应该不是很大，在Copy文件时效率比Windows7要低一些，而在我们操作巨型的文件时至少要4MB以上的缓冲区才能发挥出最大效能。<br><br>如下图所示，block size越大数据流盘速度就相对越快，读盘反而是缓冲区较小时效率较高。不过这张图使用的是RAMDISK，数据只能供参考，使用硬盘时可以再行测试。<br><br><a href="https://aftv2q.bay.livefilestore.com/y1mat4peCvjmEMxPILOBL4FVkwlcJIh2zKzqf4tHnaYy-Cew0asruMV-q8nQPl_ycWqG4NnNlPfNpfRIBJ9IOQ0FtLE9DdHhvkrF-y1OrOnoaqSCiMQBTGsv6LV15isGY20RnyhK6l729eJo_2xqmZnBw/image25.png" target="_blank" rel="noopener"><img src="https://aftv2q.bay.livefilestore.com/y1mmJSZHqeg1_dNBpTc6Djg73HIE-DyBZiWejBXbE3B9Jg78ilPCO3f9Xmx9x4CMddw6Q-paX_XTIcQ2Y3E7yOi0lewNzyomXKE4vp9-n7JchgCiE17yaEMP8Ux_HMMH1CrCCuTNwtubzvN43O_65mUKA/image_thumb 763FDADC.png" alt="image" title="image"></a><br><br>在LabVIEW 2009里面支持非缓冲格式流盘的有TDMS，BINARY和Win32APIVIs三种<br><br><img src="https://aftv2q.bay.livefilestore.com/y1m4CV566wf7PJgi97WlOxgGH0Wo06tB9RxB7f_jJOr7OXVIePxxEWGB_1CTjM1sMQ-1TF7lxUUg7HOMqixnY_6dmjJASUsBc3AcILPmT_T6wrsnNMQmbcPL2zwdp9vechREimzqj5lR8v7ApbXeOu09Q/image[5] 0B448D74.png" alt="image" title="image"><br><br>LabVIEW 2009 TDMS<br><br><a href="http://lhb5883.files.wordpress.com/2009/12/tdms6.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/tdms6.png?w=300" alt="TDMS" title="TDMS"></a><br><br>Lab VIEW 2009 Binary<br><br><a href="http://lhb5883.files.wordpress.com/2009/12/labview20094.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/labview20094.png?w=300" alt="LabVIEW 2009" title="LabVIEW 2009"></a><br><br>Win32API<br><br><a href="http://lhb5883.files.wordpress.com/2009/12/win324.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/win324.png?w=300" alt="win32" title="win32"></a><br><br>这三种接口效率如何我们用RAMDISK分配一个内存盘以测试API本身的性能。<br><br><a href="http://lhb5883.files.wordpress.com/2009/12/image27.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/image27.png?w=300" alt="image" title="image"></a><br><br><a href="http://lhb5883.files.wordpress.com/2009/12/image29.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/image29.png?w=300" alt="image" title="image"></a><br><br><a href="http://lhb5883.files.wordpress.com/2009/12/image314f2cef3a.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/image314f2cef3a.png?w=300" alt="image" title="image"></a><br><br><a href="http://lhb5883.files.wordpress.com/2009/12/image33.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/image33.png?w=277" alt="image" title="image"></a><br><br>结果： TDMS 153.2MB/s LabVIEW2009 Bin 497MB/s Win32APIVIs 515.9MB/s<br><br>分析 因为三种API流盘的目标都是内存，数据量也相等，所以性能的差别应该是API本身造成的，观察CPU占用也可以看到TDMS最高，LabVIEW2009 bin和Win32基本持平，可见写入函数过于复杂也会影响存盘效率。<br>  </div></div><p class="readmore"><a href="/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-954-e5-ad-98-e7-9b-98api/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2009/11/26/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-953-e6-95-b0-e6-8d-ae-e6-a0-bc-e5-bc-8f/">流盘备忘录(3)-数据格式</a></h1><div class="post-meta">2009-11-26</div><div class="post-content"><div id="msgcns!866B8F96A2761BBE!1393" class="bvMsg"><br><br>数据保存格式注意事项<br><br>2D I32 数据换算.<br><br>以DAQmx读取为例，我们读取数据可以用以下三种格式：<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image11595a2be2.png?w=157" alt="image" title="image"><br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image1438466da1.png?w=177" alt="image" title="image"><br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image20.png?w=143" alt="image" title="image"><br><br>其中I16占用内存最小，每一个采样使用2Byte内存，DBL会占用8个Byte，在采集大量数据时使用RawData可以大量减少内存和CPU的使用。<br><br>binary data格式<br><br>二进制表示的是AD芯片转换的原始信息，如何换算为电压呢？<br><br>直接 Volt=bin data/(2^ADbits)*Range理论是可行的 ，但是实际上是不准确的，因为通道还有校准信息我们没有得到。<br><br>DAQmx提供了通道的标定信息，结合多项式函数就可以简单的得出实际电压。<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/convertdata_thumb.png?w=300" alt="convert data" title="convert data"><br><br>交织还是非交织;<br><br>对于RawData来说，单通道的结构比较简单就是一个数组，但是多通道时读回来的还是一个1D Array，如何找出每个通道所对应的数据呢？这就牵扯到交织和非交织了。<br> &gt; ### Raw Data<br>&gt;<br>&gt; Raw data is in the native format and <em>organization</em> of the device, read directly from the device or buffer without scaling or reordering. The native format of a device can be an 8-, 16-, or 32-bit integer, signed or unsigned.  <p>If you use a different integer size than the native format of the device, one integer can contain multiple samples or one sample can stretch across multiple integers. For example, if you use 32-bit integers, but the device uses 8-bit samples, one integer contains up to four samples. If you use 8-bit integers, but the device uses 16-bit samples, a sample might require two integers. This behavior varies from device to device. Refer to your device documentation for more information.  </p><p>NI-DAQmx does not separate raw data into channels. It returns data in an <a href="interleaving.html">interleaved or non-interleaved</a> 1D array, depending on the raw ordering of the device. Refer to your device documentation for more information.<br>&gt;<br>&gt; ### Interleaving<br>&gt;  </p><p>Interleaved samples prioritize samples before channels, such that the array lists the first sample from every channel in the task, then the second sample from every channel, up to the last sample from every channel.  </p><p>Channel 0—Sample 1  </p><p>Channel 1—Sample 1  </p><p>Channel 2—Sample 1  </p><p>Channel 0—Sample 2  </p><p>Channel 1—Sample 2  </p><p>Channel 2—Sample 2  </p><p>…  </p><p>Channel 0—Sample _N_  </p><p>Channel 1—Sample _N_  </p><p>Channel 2—Sample _N_  </p><p>Non-interleaved samples prioritize channels before samples, such that the array lists all samples from the first channel in the task, then all samples from the second channel, up to all samples from the last channel.  </p><p>Channel 0—Sample 1  </p><p>Channel 0—Sample 2  </p><p>…  </p><p>Channel 0—Sample _N_  </p><p>Channel 1—Sample 1  </p><p>Channel 1—Sample 2  </p><p>…  </p><p>Channel 1—Sample _N_  </p><p>Channel 2—Sample 1  </p><p>Channel 2—Sample 2  </p><p>…  </p><p>Channel 2—Sample _N_<br>&gt; </p><p></p><p></p><p></p><p></p><p></p><p></p><br><br>最简单的例子6124采集到的数据卡内通道是交织的，卡间又是非交织的，<br><br>一个使用两块6124每块使用2个通道连续采集每次采集3个点的数据应该如下：<br><br>Broad0CH0Sample1<br><br>Broad0CH1Sample1<br><br>Broad0CH0Sample2<br><br>Broad0CH1Sample2<br><br>Broad0CH0Sample3<br><br>Broad0CH1Sample3<br><br>Broad1CH0Sample1<br><br>Broad1CH1Sample1<br><br>Broad1CH0Sample2<br><br>Broad1CH1Sample2<br><br>Broad1CH0Sample3<br><br>Broad0CH1Sample3<br><br>Broad0CH0Sample4<br><br>Broad0CH1Sample4<br><br>Broad0CH0Sample5<br><br>Broad0CH1Sample5<br><br>Broad0CH0Sample6<br><br>Broad0CH1Sample6<br><br>Broad1CH0Sample4<br><br>Broad1CH1Sample4<br><br>Broad1CH0Sample5<br><br>Broad1CH1Sample5<br><br>Broad1CH0Sample6<br><br>Broad0CH1Sample6<br><br>抽象一下应该如下图，SampleBlock包含了所有通道这一次采集的N点<br><br>SampleBlock1<br><br>SampleBlock2<br><br>SampleBlock3<br><br>….<br><br>然后每个SampleBlock里面包含BroadSample<br><br>Broad0sample<br><br>Broad1sample<br><br>Broadsample包含着N次采样<br><br>Sample1<br><br>Sample2<br><br>Sample3<br><br>…<br><br>SampleN<br><br>每个Sample里含有这块板卡上的通道各一个点<br><br>CH1<br><br>CH2<br><br>CH3<br><br>CH4<br><br>所以一定要分析清楚数据结构才能正确解析出各通道数据<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/deinterleaving_thumb.png?w=300" alt="deInterleaving" title="deInterleaving"><br>  </div></div><p class="readmore"><a href="/2009/11/26/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-953-e6-95-b0-e6-8d-ae-e6-a0-bc-e5-bc-8f/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2009/11/26/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-952-e8-bd-af-e4-bb-b6-e9-80-89-e6-8b-a9/">流盘备忘录(2)-软件选择</a></h1><div class="post-meta">2009-11-26</div><div class="post-content"><div id="msgcns!866B8F96A2761BBE!1392" class="bvMsg"><br><br>对于流盘来说软件也是很重要的,其中会影响到我们流盘性能的有以下几点:<br><br>驱动是否高效<br><br>是否成功启用了DMA传输采集到的数据以减少系统资源占用。以NI的数据采集卡为例，传统DAQ不使用DMA和中断的方式采集数据其CPU占用率长时间飙升在100%，使用DAQmx默认使用DMA方式可以大大减小CPU的占用率。<br><br>软件架构是否合理<br><br>我们需要实现的三个主要任务：采集、处理、保存占用率合理分配，数据存储格式应该在保证精度的前提下减小内存占用。<br><br>存盘API性能<br><br>系统处理文件操作的API分配的缓冲区太小，在读写大文件上性能较低。<br><br>关键点：<br><br>1 驱动一定要支持DMA,减小CPU占用.提供RAWdata格式和转换公式,减小数据内存占用<br><br>2 能否合适的将负载分配到各个CPU上.支持并行和多线程<br><br>3 支持底层的无缓冲模式API,避免软件流盘速度瓶颈.<br><br>解决方案<br><br>1 使用NI DAQmx驱动和NI MI驱动，并启用DMA。<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image24cd46edb.png?w=185" alt="image" title="image"> <img src="http://lhb5883.files.wordpress.com/2009/11/image5b65d6a92a742.png?w=32" alt="image" title="image"><br><br>采集原始数据减小内存占用<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image852bb2442.png?w=77" alt="image" title="image"> <img src="http://lhb5883.files.wordpress.com/2009/11/image1157e9bf59.png?w=99" alt="image" title="image"> <img src="http://lhb5883.files.wordpress.com/2009/11/image5b35d1ff72f9c.png?w=52" alt="image" title="image"><br><br>2 使用LabVIEW或者其他多线程开发软件，启用并行循环和队列。<br><br> <img src="http://lhb5883.files.wordpress.com/2009/11/rfstreaming_thumb5b15d.png?w=300" alt="RF Streaming" title="RF Streaming"><br><br>3 使用Win32API，直接调用底层函数并分配较大的缓冲区<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image14135548b4.png?w=32" alt="image" title="image"><br> <p>C++<br><br>    BOOL WINAPI WriteFile(<br>      <strong>in         HANDLE <em>hFile</em>,</div><p class="readmore"><a href="/2009/11/26/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-952-e8-bd-af-e4-bb-b6-e9-80-89-e6-8b-a9/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2009/11/26/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-951-e6-b5-81-e7-9b-98-e6-a6-82-e8-a7-88/">流盘备忘录(1)-流盘概览</a></h1><div class="post-meta">2009-11-26</div><div class="post-content"><div id="msgcns!866B8F96A2761BBE!1391" class="bvMsg"><br><br>流盘概览<br><br>我们经常会看到一个总线速度比较的图表,可以看到在通常的情况下同一时代内总线最高速度是远远高于外总线的,不过对于硬盘来说,尽管应该也可以算是内总线上的设备,硬盘读写速度一直是一个令人无奈的瓶颈,远远落后于计算机技术和测控技术的发展速度.当我们的示波器数据量已经迈入GB/s的量级,硬盘的速度还是在MBS/s级徘徊.<br><br>造成这种现状的原因:<br><br>1.机械式硬盘本身的局限:<br><br>需要通过寻道等机械动作之后才能实现读写动作,如果使用SSD固态硬盘,单块硬盘速度可以提高到100MBSs以上,<br><br>传统硬盘通过组成Raid0阵列也可以提高写入速度，目前最高性能已经可以到G级。<br><br>2.总线接口:<br><br>SATA和IDE接口挂接到PCI总线上就要受到PCI总线133MS/s的限制,只有使用PCI-E的高带宽接口,才能适合大流量的数据读写，PCIe带宽最高4G。<br><br>目前PXIe的系统带宽在3~4G，板卡带宽最高1G。<br><br>3.计算机性能：<br><br>在处理大量数据时大数组的读写、转置、队列都会给CPU大量的压力，数据量的增大对内存大小也提出了更高的要求。<br><br>对于目前PXI平台比较成熟的方案就是使用PXI-E板卡+RAID流盘阵列这种架构.最高数据吞吐量在400M~600MB/s左右。<br>  </div></div><p class="readmore"><a href="/2009/11/26/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-951-e6-b5-81-e7-9b-98-e6-a6-82-e8-a7-88/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2009/11/24/pxi-e6-8e-a7-e5-88-b6-e5-99-a8-e7-b3-bb-e7-bb-9f-e5-a4-87-e4-bb-bd-e8-bd-af-e4-bb-b6-e9-80-89-e6-8b-a9/">PXI控制器系统备份软件选择</a></h1><div class="post-meta">2009-11-24</div><div class="post-content"><div id="msgcns!866B8F96A2761BBE!1389" class="bvMsg"><br><br>虽然NI的控制器质量非常稳定可靠，不过如果使用Windows而非RealTimeOS的话，系统备份恢复软件就是一个值得考虑的问题了。<br><br>为了找到一个好用的恢复软件给我们的8176上个保险，来来回回测试了多种备份软件。<br><br>系统备份与恢复软件厂商目前主要是Symantic赛门铁克和Acronis两大厂商。其中Symantic以GHOST系列强大的功能闻名，在收购了PowerQuest之后其实力不可小视。Acronis以True Image系列软件的方便易用与稳定可靠被NI作为系统默认的硬盘恢复方案。<br><br>我初步的目标是找到一个能在Windows7下备份和恢复整个分区的软件，取代我一直使用的DriveImage。不过该方法需要拆开控制器，所以要是能做成多启动这种方案也不错。<br><br>下表是一个简单的比较<br> <table border="0" cellspacing="0" cellpadding="0"> <tbody> <tr> <td width="165">控制器型号</td> <td width="174">Norton Save&amp;Restore/<br>Symantec Backup Exec System</td> <td width="107">双启动GHOST</td> <td width="138">光盘/U盘版GHOST</td> <td width="198"><br><br>Acronis True Image OEM<br></td> <td width="206">Acronis True Image 2010</td> <td width="246">Power Quest Drive Image 2002</td></tr> <tr> <td width="165">PXI-817X/818X（Intel8系列芯片组）</td> <td width="174">OK</td> <td width="107">OK</td> <td width="138">Fail</td> <td width="198">OK</td> <td width="206">不支持Windows2000</td> <td width="246">OK</td></tr> <tr> <td width="165">PXI-819X/810X/8130（Intel9系列芯片组/Nvidia N-Force）</td> <td width="174">OK</td> <td width="107">OK</td> <td width="138">OK</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">PXI-8108/8110（IntelG系列芯片组）</td> <td width="174">OK</td> <td width="107">未知</td> <td width="138">Fail</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">功能</td> <td width="174"> </td> <td width="107"> </td> <td width="138"> </td> <td width="198"> </td> <td width="206"> </td> <td width="246"> </td></tr> <tr> <td width="165">在Windows下备份和恢复分区（用于在PC机上恢复系统，适用于硬盘数据完全丢失无法启动等情况）</td> <td width="174">只能用于系统盘</td> <td width="107">/</td> <td width="138">/</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">在非windows下备份和恢复分区</td> <td width="174">无</td> <td width="107">OK</td> <td width="138">不适用老控制器</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">无</td></tr> <tr> <td width="165">操作系统支持</td> <td width="174">XP/VISTA</td> <td width="107">/</td> <td width="138">/</td> <td width="198">2000/XP</td> <td width="206">XP/VISTA/Windows7</td> <td width="246">2000/XP</td></tr></tbody></table><br><br>目前GHOST的二次封装而成的USB GHOST，光盘GHOST、一键GHOST等等版本极多，不过能兼容NI大部分控制器的GHOST版本并不多。而企业版GHOST套装使用和配置极其复杂，操作简单的Windows下备份和恢复的软件在系统崩溃后就没有什么用了。所以值得考虑的就是系统恢复光盘里自带的Acronis True Image OEM版，是一个简单可靠的一键恢复系统，不过一旦恢复就会使系统恢复到出厂状态。需自由备份和恢复就需要完整版的软件才行。<br><br>不过我们其实需要的功能往往也没有那么复杂，只需要能恢复系统到一个安装调试好所有软件的状态，那么这时候就可以用到下面这个小技巧了 。<br><br>1。正常安装Windows，注意不要选择安装F4一键恢复。<br><br>2。分区、安装软件、配置程序。。。<br><br>3。将系统恢复盘的CDROM:OSPXI_VXI$OEM$$1SYSPREP目录下的ACRONIS.XML，ACRONIS8199_ENABLE.BAT，ACRONISTRUEIMAGE_8199.MSI三个文件复制到c:Sysprep目录下<br><br>4。运行c:SysprepACRONIS8199_ENABLE.BAT，重启系统后就会自动备份操作系统，完成之后在系统启动时按F4就可以一键恢复了。<br>  </div></div><p class="readmore"><a href="/2009/11/24/pxi-e6-8e-a7-e5-88-b6-e5-99-a8-e7-b3-bb-e7-bb-9f-e5-a4-87-e4-bb-bd-e8-bd-af-e4-bb-b6-e9-80-89-e6-8b-a9/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2009/09/15/e5-85-b3-e4-ba-8e-e7-a4-ba-e6-b3-a2-e5-99-a8-e7-9a-84-e8-a7-a6-e5-8f-91-e7-81-b5-e6-95-8f-e5-ba-a6-ef-bc-88trigger-sensitivity-ef-bc-89/">关于示波器的触发灵敏度（Trigger Sensitivity）</a></h1><div class="post-meta">2009-09-15</div><div class="post-content"><div id="msgcns!866B8F96A2761BBE!1381" class="bvMsg"><br><br>示波器板卡有一项参数叫Edge Trigger Sensitivity<br><br><img src="http://lhb5883.files.wordpress.com/2009/09/image5b25d23274975.png?w=300" alt="NI PXI/PCI-5152 Specifications（P11）" title="NI PXI/PCI-5152 Specifications（P11）"><br><br>这一项指标翻译过来应该是触发敏感度，有什么意义呢？<br><br>当我们用示波器高速采集一个高频脉冲信号时，往往会混入很多噪声信号，如果没有触发敏感度，直接按边沿触发往往不能得到一个稳定的示波器图形。<br><br><img src="http://www.ed-china.com/ARTICLE_IMAGES/200801/20080101_TM_DT_TS_27F2.JPG" alt="图输入200mVpp锯齿波时的情况。" title="图输入200mVpp锯齿波时的情况。"><br><br>触发灵敏度就是用来滤除噪声对触发的影响，使之能够正确被有效信号而非噪声触发，获得稳定波形的一个参数。<br><br>TEK网站的定义如下：<br><br>###### Trigger Sensitivity<br><br>Trigger sensitivity is a critical attribute when capturing high-speed digital signals. An oscilloscope‘s trigger sensitivity determines its ability to react to specified edge trigger conditions over a range of frequencies. The specification takes the following form: power-line hum interference.<br><br><strong>Trigger System Sensitivity, Internal DC Coupled:</strong><br>0.35 div DC to 50 MHz, increasing to 1.5 div at 3 GHz<br>(guaranteed); 2.7 div at 4 GHz (typical)<br>(from TDS7404 DPO data sheet)<br><br>The oscilloscope will trigger on a signal of 0.35 divisions amplitude p-p in the range of frequencies from DC to 50 MHz. As the frequency goes beyond 50 MHz, the signal must be larger (higher in amplitude) to trigger the instrument. At 3 GHz, the signal must be at least 1.5 divisions in amplitude. Trigger sensitivity is specified with a sine wave input. <p>灵敏度<br>在捕获高速数字信号时，触发灵敏度是一个关键指标。示波器的触发灵敏度决定着在某个频率范围内示波器对规定边沿触发条件的反应能力。这一指标采用下述形式：电源线噪声干扰。<br>       触发系统灵敏度、内部DC耦合:<br>DC - 50 MHz, 0.35格；3 GHz时提高到1.5格(保障值); 4 GHz时2.7格 (典型值)(摘自TDS7404 DPO技术数据)<br>示波器将在DC到50 MHz 的频率范围内，在0.35格的p-p幅度上触发。在频率超过50MHz时，信号必须更大(幅度更高)，以触发仪器。在3 GHz时，信号的幅度必须在1.5格上。可以使用正弦波输入指定触发灵敏度。 </p><p>开头图中的指标就是说使用通道触发时灵敏度是满量程的10%，而使用外部触发时灵敏度是固定的0.5V峰峰值。小于灵敏度的毛刺都会被示波器忽略，不认为是触发。 </p><p>参考链接：<br><br><a href="http://www.ed-china.com/ART_8800024153_400013_500015_TS_f6dcb05a.HTM" target="_blank" rel="noopener">http://www.ed-china.com/ART_8800024153_400013_500015_TS_f6dcb05a.HTM</a><br><br><a href="http://www.tek.com/Measurement/scopes/selection/performance/trigger.html" target="_blank" rel="noopener">http://www.tek.com/Measurement/scopes/selection/performance/trigger.html</a><br><br>触发扫盲：<br><br><a href="http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf" title="http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf" target="_blank" rel="noopener">http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf</a><br>  </p></div></div><p class="readmore"><a href="/2009/09/15/e5-85-b3-e4-ba-8e-e7-a4-ba-e6-b3-a2-e5-99-a8-e7-9a-84-e8-a7-a6-e5-8f-91-e7-81-b5-e6-95-8f-e5-ba-a6-ef-bc-88trigger-sensitivity-ef-bc-89/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2009/09/14/code-share-e4-bd-bf-e7-94-a8-e5-91-bd-e4-bb-a4-e8-a1-8c-e6-89-93-e5-bc-80-e7-bd-91-e9-a1-b5/">[code share]使用命令行打开网页</a></h1><div class="post-meta">2009-09-14</div><div class="post-content"><div id="msgcns!866B8F96A2761BBE!1378" class="bvMsg"><img src="http://lhb5883.files.wordpress.com/2009/09/openwebpageuselabview5b25d.png?w=158" alt="Open Web Page use LabVIEW" title="Open Web Page use LabVIEW">or <img src="http://lhb5883.files.wordpress.com/2009/09/openwebpagewithcmd5b85d.png?w=243" alt="open web page with CMD" title="open web page with CMD"><br><br>如图，这样就可以调用系统默认浏览器打开网页。<br>  </div></div><p class="readmore"><a href="/2009/09/14/code-share-e4-bd-bf-e7-94-a8-e5-91-bd-e4-bb-a4-e8-a1-8c-e6-89-93-e5-bc-80-e7-bd-91-e9-a1-b5/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2009/08/31/certified-labview-developer-e8-ae-a4-e8-af-81-e5-b0-8f-e7-bb-93/">Certified LabVIEW Developer 认证小结</a></h1><div class="post-meta">2009-08-31</div><div class="post-content"><div id="msgcns!866B8F96A2761BBE!1370" class="bvMsg"><br><br>LabVIEW中级认证考试的主要目的就是考察受试者的LabVIEW编程水平,程序风格,文档注释三个方面.详细可以查看下面的文档<br><br><a href="ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf" title="ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf" target="_blank" rel="noopener">ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf</a><br><br>下面这个链接已经列举了一些注意事项,我再补充几条:<br><br><a href="http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry" title="http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry" target="_blank" rel="noopener">http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry</a><br><br>1. 善于利用LabVIEW自带的模板和VI,例如定时迅捷VI,读写电子表格文件VI,状态机模板,子VI模板几个都要熟练掌握.<br><br>2. 最好使用LabVIEW英文版开发环境.这样无论是模板还是控件名字都是默认英文,可以减小工作量.<br><br>3. 不要忘记在状态机模板里加上错误处理.<br><br>4. 写完程序一定要留调试和注释的时间.<br><br>5. 尽量将状态机Case结构里的代码封装为子VI.<br><br>6. 能用TypeDefine控件的尽量都用TypeDefine控件,方便程序维护.<br><br>7. 不需要用户交互的前面板控件最好隐藏掉.<br><br>细节:<br><br>1. 框图和前面板大小:根据考试要求最好限定为1024x768,要扩展尽量水平扩展.现在显示器以宽屏居多,方便观察整个程序.<br><br>2. LabVIEW配置,如果你到手的机器配置修改太多,例如字体等要改回来很麻烦.最简单的办法就是删除LabVIEW的INI文件.然后在工具-&gt;属性里取消前面板控件:显示为图标.<br><br>3. 状态机里面的等待函数一定要修改,设置为1是个不错的选择.<br><br>4. 使用Ctrl+鼠标拖拽扩展程序框图时一定要慎重,避免程序连线错位.<br>  </div></div><p class="readmore"><a href="/2009/08/31/certified-labview-developer-e8-ae-a4-e8-af-81-e5-b0-8f-e7-bb-93/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2009/08/21/labview-2009-e9-80-92-e5-bd-92-e7-a0-94-e7-a9-b6/">LabVIEW 2009递归研究</a></h1><div class="post-meta">2009-08-21</div><div class="post-content"><div id="msgcns!866B8F96A2761BBE!1369" class="bvMsg"><br><br><strong>Part I ： Handson</strong><br><br>各位安装LabVIEW2009的同学请跟我做以下动作:<br><br>1:打开LabVIEW 2009.<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mJf781TsQY2lMDPJPSS-Ciy9j5BqCKwwYq4up4HegzWdSPRRoK9XmPUSm0MhcjjsGdO3yBFl5o2ZUoHcAEFlDD9Idvou3kEx52H_zGgNN4Qq5OZzivi1JsoCTqmPU_J_g-6lkWGxiRub0O8NdLW8Kxw/image2 7AFEC386.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mVYx9-iHIRHcVhl1R903uSWy0-7PkCqDKWTjNmCB171fHEVJhJmm79IjSw8KMzvYCuM6Z5NBkVimPJR-mpTTYeg90perGOqBtBghB04N9a5TZxdGEpKA43q7B8oH0ZeBmT9DvaqRKUNied1mU6jx0Hg/image_thumb 63232C87.png" alt="image" title="image"></a><br><br>2:Ctrl+N<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mqUA4E2HIjdW9Gb3BZtx2IS9OvqufNm9ay5c3yoX7YyZtiExwtvNyKY6zO4IzSS5_hYD1H1mT82bnVU8GrzxlS_AzTvrzEsxkIBloXGJEeXVT03GQDPTy5-7VXeuYh0kU6fKN5Cf7WXnw8gIPYYITWQ/image8 2D5308B1.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1m0ogiAD6Jc2Cbxy3vpUAV6MrpE_K_Dabfar0aXUtgde7OEMLg1Ikyjmx3q6DM4dkzDU_ZVa6Vytc1aN8w4VtsYpBTtJfnyzax9NbFx2nJxlG1Xl3AxOMCDjiSzLGO49ZYdrJkMuRUh4NDF1juq0lLrw/image_thumb2 1A28A6A4.png" alt="image" title="image"></a><br><br>3:Ctrl+I,按下图配置<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mTJsXhwFua2feHrRTHHidlP8UL_niDiOlgDLqXBogknVvLwNzcQLlDPnAj9Nd9eU-slt_5e4mpgKoMsZAIswHRF6d9eH2x-0u7mCNVuzKSd2K4VyE5RYrizBHaxPc6H5YnRiUspCSTyHZolbOHjRpMw/image12.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mWhcbcuZQz7gwaAOLMDXl0lxrADAEmDyvRlECQD82oaX6EZrXUYRrfHsVXGO5GeLIRwcnLZvKAYu-BD54k0csbzWE7BjJ2JoQWhEkENXymMMwr49aIlhjK48h_aaq6c4M4AbE7BrVuzcnTQsPSm0VWg/image_thumb4 796A50DA.png" alt="image" title="image"></a><br><br>4:Ctrl+E,选择程序框图,将图标拖到程序框图<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mtg6ZXjelXoHmXA-xYApe6akbTKVKdtTBH_quMiSzKJndfpVbuYu7gLL-Sam_hY8rH9Icrm244_Qaw6dPLAScQj7ZbK8kxnE1jXgiKsLsGsYokS_LVM7UnagklPGUavrq6fYUsZCsgCP_K5VLYnHjqA/image16.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mcDpF6XgX1ChPJouSMEIE3qw8z_IizPqK5nXIwFlwPTl6ctx5Sw4BOgOf6XBGnJ66dpW_iJwhD3q6fWGya3VDTf5jr2lAylB_2U88qUcEnbUvEFn6OVw03NftdN2c39p1nxqkamVlrhq0EH9BIeRwEQ/image_thumb6 708CFF2E.png" alt="image" title="image"></a><br><br>5:Ctrl+R，然后稍等5分钟：<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1m1yQuFE2PPchn6j3vH06VfbQjUhxybHx40VJLiaJvTh8Ug5ceO30uH-JkY3AW8fKT9SRvDTHf1WBG8f5DHqPiznrj_6UOcC3v6znY_IXbenCqaFABGdCOxuYloaJmHHVJIGZuG2CU3DqB4aC0LdfK4A/image23.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mTROt_oCMYrqvSPJ04o_93I-BcT6v-wjgCSDCnM2r6e99wb8w2-XPcgd7vl2bYbHxGH8iHmbm6lA-3n86m8LBhbvZdsfTObYKgeBqQVIeSACqPrq_vyUkRFBWol7Q7nG1F97-kUeP9s4nd3XNOmDj-g/image_thumb9.png" alt="image" title="image"></a><br><br>恭喜你编写了第一个递归VI并且让他挂掉了。<br><br><strong> Part II ： Basic I</strong><br><br>好,我们来玩点实在的，先看看LabVIEW 的例程：<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mvWEYPjzRXVMmpiuO4xUqrOXFHdNFe0v_y1tVO63ZJGZWgSxL7H_y9eUjrF71FHSZPW7h5_NkO6Ncsz_VXhrbaIIVDLG6mFk6J8DKUHii9Hagg4fAAsx6O6huAsx2nLXGUVP7Pr2DTY6CDSwbboXFaw/image6.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mm8KaiiUP0iV4jeZuGcGwDgHYgJPz8icKzsio12LxgM3wMzboQT03e5_5hSjVTQid9D00wpjamNWPQrSvLu67so_5EEkB_loAoqARIAbEZnlypl43vNLYAwX-ejCOE3_3RK3Ts2sFerIEN5_5dA-O0g/image_thumb2[1].png" alt="image" title="image"></a><br><br><img src="http://lhb5883.files.wordpress.com/2009/08/demorecursion5.png?w=300" alt="Demo Recursion" title="Demo Recursion"><br><br><img src="http://lhb5883.files.wordpress.com/2009/08/recursion5.png?w=300" alt="Recursion" title="Recursion"><br><br>在LabVIEW以前的版本只有类才能使用递归，不过现在已经比较成熟，普通的VI也可以递归了。<br><br>注意事项正如图中注释，我就不多废话。<br><br><strong>Part III ： Basic I</strong><br><br>为了更详细的演示递归，我们请出教科书里的经典例程汉诺塔。<br><br>首先附赠一个汉诺塔小游戏：<br><br><img src="http://lhb5883.files.wordpress.com/2009/08/image5b105d.png?w=300" alt="image" title="image"><br><br><img src="http://lhb5883.files.wordpress.com/2009/08/hanoitower5b55d.png?w=300" alt="hanoi tower" title="hanoi tower"><br><br>附赠小游戏汉诺塔下载：<br>  <div style="display:inline;float:none;margin:0;padding:0;"><div><a href="https://f2gz7g.bay.livefilestore.com/y1merIkYDIpelIzeY2GYQAQKA_dg4i8FbfdK8GaKiGoTUnlLXvcUNsixVC_kF4eKje1hkTltCHlbr3URvf3IbJRprYA5K2m3ioq8YP-5kcvqgqDIuJh4SpxX6Gu2Y6io3-54vvTfhsDJz7IiAT174ZuLg/hanoi.tower.7z" target="_blank" rel="noopener">hanoi tower.7z</a></div></div>（LabVIEW2009）<br><br>  <div style="display:inline;float:none;margin:0;padding:0;"><pre style="background-color:#FFFFFF;white-space:pre-wrap;word-wrap:break-word;overflow:auto;"><span style="color:#000000;">#include </span><span style="color:#000000;">&lt;</span><span style="color:#000000;">stdio.h</span><span style="color:#000000;">&gt;</span><span style="color:#000000;"><br></span><span style="color:#0000FF;">void</span><span style="color:#000000;"> hano(</span><span style="color:#0000FF;">int</span><span style="color:#000000;"> n,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> a,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> b,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> c)<br>&#123;<br>    </span><span style="color:#0000FF;">if</span><span style="color:#000000;">(n</span><span style="color:#000000;">==</span><span style="color:#800080;">1</span><span style="color:#000000;">)<br>        printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">t将%d个盘片从%c移动到%cn</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,n,a,c);<br>    </span><span style="color:#0000FF;">else</span><span style="color:#000000;"> &#123;<br>        hano(n</span><span style="color:#000000;">-</span><span style="color:#800080;">1</span><span style="color:#000000;">,a,c,b);<br>        printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">t将第%d个盘片从%c移动到%cn</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,n,a,c);<br>        hano(n</span><span style="color:#000000;">-</span><span style="color:#800080;">1</span><span style="color:#000000;">,b,a,c);<br>    &#125;<br>&#125;<br>main()<br>&#123;<br>    </span><span style="color:#0000FF;">int</span><span style="color:#000000;"> n;<br>    printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">输入将要移动多少个盘子n:</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">);<br>    scanf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">%d</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,</span><span style="color:#000000;">&amp;</span><span style="color:#000000;">n);<br>    printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">递归结果：n</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">);<br>    hano(n,</span><span style="color:#800000;">‘</span><span style="color:#800000;">x</span><span style="color:#800000;">‘</span><span style="color:#000000;">,</span><span style="color:#800000;">‘</span><span style="color:#800000;">y</span><span style="color:#800000;">‘</span><span style="color:#000000;">,</span><span style="color:#800000;">‘</span><span style="color:#800000;">z</span><span style="color:#800000;">‘</span><span style="color:#000000;">);<br>&#125; </span></pre></div></div><p class="readmore"><a href="/2009/08/21/labview-2009-e9-80-92-e5-bd-92-e7-a0-94-e7-a9-b6/">Mehr lesen</a></p></div><nav class="page-navigator"><a class="extend prev" rel="prev" href="/page/2/">Vorheriger</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Nächster</a></nav></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Kategorien</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机与-Internet/">计算机与 Internet</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/NET/" style="font-size: 15px;">.NET</a> <a href="/tags/LabVIEW-2009/" style="font-size: 15px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 15px;">LabVIEW 2010</a> <a href="/tags/Win32API/" style="font-size: 15px;">Win32API</a> <a href="/tags/WMI/" style="font-size: 15px;">WMI</a> <a href="/tags/CPU-Ferquency/" style="font-size: 15px;">CPU Ferquency</a> <a href="/tags/Microsoft/" style="font-size: 15px;">Microsoft</a> <a href="/tags/MSN-Windows-live/" style="font-size: 15px;">MSN.Windows live</a> <a href="/tags/Wordpress/" style="font-size: 15px;">Wordpress</a> <a href="/tags/DCD/" style="font-size: 15px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 15px;">Drivers</a> <a href="/tags/LabVIEW-2011/" style="font-size: 15px;">LabVIEW 2011</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Letzte</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/04/26/test-my-site/">test_my_site</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/26/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/03/04/e5-b7-b2-e6-90-ac-e5-ae-b6-e5-88-b0haobo-li/">已搬家到haobo.li</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/29/e7-bb-997zip-e5-8e-8b-e7-bc-a9-e8-87-aa-e5-8a-a8-e5-a2-9e-e5-8a-a0-e6-97-b6-e9-97-b4-e6-88-b3/">给7Zip压缩自动增加时间戳</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/26/ni-e9-99-a2-e6-a0-a1-e5-a5-97-e4-bb-b6-e6-89-b9-e9-87-8f-e5-ae-89-e8-a3-85-e6-8a-80-e5-b7-a7-e4-b8-80-e5-88-99/">NI院校套件批量安装技巧一则</a></li><li class="post-list-item"><a class="post-list-link" href="/2012/11/23/labview-2012-e4-bd-bf-e7-94-a8-e5-bf-83-e5-be-97/">LabVIEW 2012 使用心得</a></li><li class="post-list-item"><a class="post-list-link" href="/2011/10/28/e5-8d-87-e7-ba-a7-e8-87-b3tortoisesvn-1-7-1/">升级至TortoiseSVN 1.7.1</a></li><li class="post-list-item"><a class="post-list-link" href="/2011/08/31/labview-2011-e9-85-8d-e5-a5-97-e9-a9-b1-e5-8a-a8-e4-b8-8b-e8-bd-bd-e5-9c-b0-e5-9d-80/">LabVIEW 2011配套驱动下载地址</a></li><li class="post-list-item"><a class="post-list-link" href="/2010/10/14/code-share-e5-a6-82-e4-bd-95-e7-94-a8labview-e5-8f-96-e5-be-97-e8-ae-a1-e7-ae-97-e6-9c-ba-e4-b8-bb-e9-a2-91/">[Code Share]如何用LabVIEW取得计算机主频</a></li><li class="post-list-item"><a class="post-list-link" href="/2010/10/11/e5-8d-9a-e5-ae-a2-e5-8d-87-e7-ba-a7-e8-87-b3wordpress/">博客升级至Wordpress</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Hexo.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/3/"/>
+
+
+
+
+
+  <title>Hexo</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-955-e6-96-87-e4-bb-b6-e8-af-bb-e5-8f-96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-955-e6-96-87-e4-bb-b6-e8-af-bb-e5-8f-96/" itemprop="url">流盘备忘录(5)-文件读取</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-12-02T08:48:04+08:00">
+                2009-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1430" class="bvMsg"><br><br>我们存好数据并不是大功告成了，我们还需要从流盘数据文件恢复各通道信号才能再做各种分析。<br><br>其中最关键的核心问题就是存盘的文件格式和数据解析。<br><br>上一篇我们已经解析了一个数据块的构成，这一篇我们来看看到底如何用LabVIEW实现：<br><br><a href="http://lhb5883.files.wordpress.com/2009/12/labviewreadallchanneldata5b55d.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/labviewreadallchanneldata5b55d.png?w=300" alt="LabVIEW read all channel data" title="LabVIEW read all channel data"></a><br><br>这个在数据量较小时姑且还可以用一用，不过要想更灵活的解析出各个通道数据，还需要推导出采样在文件中的位置公式。<br><br>我们需要的参数有<br><br>1.  通道所在的板卡编号 BoardID（从0开始）  <li>通道在板卡上的编号 ChannelID（从0开始）  </li><li>采样点的编号 SampleNum  </li><li>一共有多少板卡 BoardNumber  </li><li>每板卡使用几个通道 ChannelNumber  </li><li>每个数据块每通道的采样点 SampleperChannel  </li><li>每个采样占用的字节 SampleByte<br><br>我们需要得出的参数：<br><br>1.  我们所需采样点在文件中的位置 SamplePosition<br><br>SamplePosition=<br><br>&#123;<br><br>(SampleNum/SampleperChannel)<em>SampleperChannel</em>BoardNumber<em>ChannelNumber 数据块偏移<br>+<br>BoardID</em>SampleperChannel<em>ChannelNumber 板卡偏移<br>+<br>(mod(SampleNum,SampleperChannel))</em>ChannelNumber 采样偏移<br>+<br>ChannelID 通道偏移<br><br>&#125;*SampleByte<br><br><img src="https://aftv2q.bay.livefilestore.com/y1m7Q8U7w8Oul572fCc-_Iku3gROg3G7UYbKwGiqI2yE0L4fjrmcVZuhmWS8I_kyuyLgPbV2QQcxkZd0Srka7RHfHzq8l7eACtuMnkkkKmK2Awa3r1Bo_W0HIEiuMGGpOB--GGNseEjOzcx6xRVSSLawA/image[5].png" alt="image" title="image"><br><br>另外要注意的是偏移量最好用U64，I32最多能寻址2GB，大于2GB就会溢出。<br><br>有了这个公式再配合设置偏移量，就可以很方便的取出每个通道的数据了。<br><br>其他要注意的是如果使用Win32API，那么读取数据的高低位是Windows格式的Little Endian而不是LabVIEW通常的Big Endian。<br><br><img src="https://aftv2q.bay.livefilestore.com/y1mIS2FZksrhqxtsgC3tXJ_mDvez4ehbPJQh2c4DopAAVhWZx9aFCtp5rWsN7AX-LTKlTQ_THRfpctxWDI8ybrE5bq3TmZA7DELe4rdb84tsO3lSinX9Q7dix3gBzcWOBZsNy1qAbfkMacqMZvik6bJ-A/image[3] 4EFCFDF4.png" alt="image" title="image"><br><br><a href="https://aftv2q.bay.livefilestore.com/y1m_jcU-aepq8aD9tZ4T2IdyzWPI43xpwNF3eQWd6zishWaHJyvXioh4tjQLDf882YIIUQszfI1azwrP1t1gec6R-lUwUOSyGE-3KzE_IBtQO2LP9tGCSpkOLg2J-zUNcXzJPuzEYtFrBIIfGPVlpoVmg/LabVIEW read all channel data[5].png" target="_blank" rel="noopener"></a><br>  </li></div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-954-e5-ad-98-e7-9b-98api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-954-e5-ad-98-e7-9b-98api/" itemprop="url">流盘备忘录(4)-存盘API</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-12-02T07:36:29+08:00">
+                2009-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1426" class="bvMsg"><br><br>存盘接口<br><br>Windows写入文件有两种形式缓冲和非缓冲<br><br><a href="http://msdn.microsoft.com/en-us/library/aa365747(VS.85" target="_blank" rel="noopener">http://msdn.microsoft.com/en-us/library/aa365747(VS.85).aspx</a>.aspx)<br><br>缓冲模式是Windows自动分配缓冲区将数据分割到硬盘的每个簇大小以便写入，而非缓冲模式是有我们程序员进行缓冲区 的分配，可以任意指定大小。（这个任意并不是绝对的，必须要是硬盘簇的整数倍）<br><br>XP系统默认的缓冲区应该不是很大，在Copy文件时效率比Windows7要低一些，而在我们操作巨型的文件时至少要4MB以上的缓冲区才能发挥出最大效能。<br><br>如下图所示，block size越大数据流盘速度就相对越快，读盘反而是缓冲区较小时效率较高。不过这张图使用的是RAMDISK，数据只能供参考，使用硬盘时可以再行测试。<br><br><a href="https://aftv2q.bay.livefilestore.com/y1mat4peCvjmEMxPILOBL4FVkwlcJIh2zKzqf4tHnaYy-Cew0asruMV-q8nQPl_ycWqG4NnNlPfNpfRIBJ9IOQ0FtLE9DdHhvkrF-y1OrOnoaqSCiMQBTGsv6LV15isGY20RnyhK6l729eJo_2xqmZnBw/image25.png" target="_blank" rel="noopener"><img src="https://aftv2q.bay.livefilestore.com/y1mmJSZHqeg1_dNBpTc6Djg73HIE-DyBZiWejBXbE3B9Jg78ilPCO3f9Xmx9x4CMddw6Q-paX_XTIcQ2Y3E7yOi0lewNzyomXKE4vp9-n7JchgCiE17yaEMP8Ux_HMMH1CrCCuTNwtubzvN43O_65mUKA/image_thumb 763FDADC.png" alt="image" title="image"></a><br><br>在LabVIEW 2009里面支持非缓冲格式流盘的有TDMS，BINARY和Win32APIVIs三种<br><br><img src="https://aftv2q.bay.livefilestore.com/y1m4CV566wf7PJgi97WlOxgGH0Wo06tB9RxB7f_jJOr7OXVIePxxEWGB_1CTjM1sMQ-1TF7lxUUg7HOMqixnY_6dmjJASUsBc3AcILPmT_T6wrsnNMQmbcPL2zwdp9vechREimzqj5lR8v7ApbXeOu09Q/image[5] 0B448D74.png" alt="image" title="image"><br><br>LabVIEW 2009 TDMS<br><br><a href="http://lhb5883.files.wordpress.com/2009/12/tdms6.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/tdms6.png?w=300" alt="TDMS" title="TDMS"></a><br><br>Lab VIEW 2009 Binary<br><br><a href="http://lhb5883.files.wordpress.com/2009/12/labview20094.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/labview20094.png?w=300" alt="LabVIEW 2009" title="LabVIEW 2009"></a><br><br>Win32API<br><br><a href="http://lhb5883.files.wordpress.com/2009/12/win324.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/win324.png?w=300" alt="win32" title="win32"></a><br><br>这三种接口效率如何我们用RAMDISK分配一个内存盘以测试API本身的性能。<br><br><a href="http://lhb5883.files.wordpress.com/2009/12/image27.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/image27.png?w=300" alt="image" title="image"></a><br><br><a href="http://lhb5883.files.wordpress.com/2009/12/image29.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/image29.png?w=300" alt="image" title="image"></a><br><br><a href="http://lhb5883.files.wordpress.com/2009/12/image314f2cef3a.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/image314f2cef3a.png?w=300" alt="image" title="image"></a><br><br><a href="http://lhb5883.files.wordpress.com/2009/12/image33.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/image33.png?w=277" alt="image" title="image"></a><br><br>结果： TDMS 153.2MB/s LabVIEW2009 Bin 497MB/s Win32APIVIs 515.9MB/s<br><br>分析 因为三种API流盘的目标都是内存，数据量也相等，所以性能的差别应该是API本身造成的，观察CPU占用也可以看到TDMS最高，LabVIEW2009 bin和Win32基本持平，可见写入函数过于复杂也会影响存盘效率。<br>  </div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2009/11/26/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-953-e6-95-b0-e6-8d-ae-e6-a0-bc-e5-bc-8f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/11/26/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-953-e6-95-b0-e6-8d-ae-e6-a0-bc-e5-bc-8f/" itemprop="url">流盘备忘录(3)-数据格式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-11-26T08:00:17+08:00">
+                2009-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1393" class="bvMsg"><br><br>数据保存格式注意事项<br><br>2D I32 数据换算.<br><br>以DAQmx读取为例，我们读取数据可以用以下三种格式：<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image11595a2be2.png?w=157" alt="image" title="image"><br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image1438466da1.png?w=177" alt="image" title="image"><br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image20.png?w=143" alt="image" title="image"><br><br>其中I16占用内存最小，每一个采样使用2Byte内存，DBL会占用8个Byte，在采集大量数据时使用RawData可以大量减少内存和CPU的使用。<br><br>binary data格式<br><br>二进制表示的是AD芯片转换的原始信息，如何换算为电压呢？<br><br>直接 Volt=bin data/(2^ADbits)*Range理论是可行的 ，但是实际上是不准确的，因为通道还有校准信息我们没有得到。<br><br>DAQmx提供了通道的标定信息，结合多项式函数就可以简单的得出实际电压。<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/convertdata_thumb.png?w=300" alt="convert data" title="convert data"><br><br>交织还是非交织;<br><br>对于RawData来说，单通道的结构比较简单就是一个数组，但是多通道时读回来的还是一个1D Array，如何找出每个通道所对应的数据呢？这就牵扯到交织和非交织了。<br> &gt; ### Raw Data<br>&gt;<br>&gt; Raw data is in the native format and <em>organization</em> of the device, read directly from the device or buffer without scaling or reordering. The native format of a device can be an 8-, 16-, or 32-bit integer, signed or unsigned.  <p>If you use a different integer size than the native format of the device, one integer can contain multiple samples or one sample can stretch across multiple integers. For example, if you use 32-bit integers, but the device uses 8-bit samples, one integer contains up to four samples. If you use 8-bit integers, but the device uses 16-bit samples, a sample might require two integers. This behavior varies from device to device. Refer to your device documentation for more information.  </p><p>NI-DAQmx does not separate raw data into channels. It returns data in an <a href="interleaving.html">interleaved or non-interleaved</a> 1D array, depending on the raw ordering of the device. Refer to your device documentation for more information.<br>&gt;<br>&gt; ### Interleaving<br>&gt;  </p><p>Interleaved samples prioritize samples before channels, such that the array lists the first sample from every channel in the task, then the second sample from every channel, up to the last sample from every channel.  </p><p>Channel 0—Sample 1  </p><p>Channel 1—Sample 1  </p><p>Channel 2—Sample 1  </p><p>Channel 0—Sample 2  </p><p>Channel 1—Sample 2  </p><p>Channel 2—Sample 2  </p><p>…  </p><p>Channel 0—Sample _N_  </p><p>Channel 1—Sample _N_  </p><p>Channel 2—Sample _N_  </p><p>Non-interleaved samples prioritize channels before samples, such that the array lists all samples from the first channel in the task, then all samples from the second channel, up to all samples from the last channel.  </p><p>Channel 0—Sample 1  </p><p>Channel 0—Sample 2  </p><p>…  </p><p>Channel 0—Sample _N_  </p><p>Channel 1—Sample 1  </p><p>Channel 1—Sample 2  </p><p>…  </p><p>Channel 1—Sample _N_  </p><p>Channel 2—Sample 1  </p><p>Channel 2—Sample 2  </p><p>…  </p><p>Channel 2—Sample _N_<br>&gt; </p><p></p><p></p><p></p><p></p><p></p><p></p><br><br>最简单的例子6124采集到的数据卡内通道是交织的，卡间又是非交织的，<br><br>一个使用两块6124每块使用2个通道连续采集每次采集3个点的数据应该如下：<br><br>Broad0CH0Sample1<br><br>Broad0CH1Sample1<br><br>Broad0CH0Sample2<br><br>Broad0CH1Sample2<br><br>Broad0CH0Sample3<br><br>Broad0CH1Sample3<br><br>Broad1CH0Sample1<br><br>Broad1CH1Sample1<br><br>Broad1CH0Sample2<br><br>Broad1CH1Sample2<br><br>Broad1CH0Sample3<br><br>Broad0CH1Sample3<br><br>Broad0CH0Sample4<br><br>Broad0CH1Sample4<br><br>Broad0CH0Sample5<br><br>Broad0CH1Sample5<br><br>Broad0CH0Sample6<br><br>Broad0CH1Sample6<br><br>Broad1CH0Sample4<br><br>Broad1CH1Sample4<br><br>Broad1CH0Sample5<br><br>Broad1CH1Sample5<br><br>Broad1CH0Sample6<br><br>Broad0CH1Sample6<br><br>抽象一下应该如下图，SampleBlock包含了所有通道这一次采集的N点<br><br>SampleBlock1<br><br>SampleBlock2<br><br>SampleBlock3<br><br>….<br><br>然后每个SampleBlock里面包含BroadSample<br><br>Broad0sample<br><br>Broad1sample<br><br>Broadsample包含着N次采样<br><br>Sample1<br><br>Sample2<br><br>Sample3<br><br>…<br><br>SampleN<br><br>每个Sample里含有这块板卡上的通道各一个点<br><br>CH1<br><br>CH2<br><br>CH3<br><br>CH4<br><br>所以一定要分析清楚数据结构才能正确解析出各通道数据<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/deinterleaving_thumb.png?w=300" alt="deInterleaving" title="deInterleaving"><br>  </div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2009/11/26/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-952-e8-bd-af-e4-bb-b6-e9-80-89-e6-8b-a9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/11/26/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-952-e8-bd-af-e4-bb-b6-e9-80-89-e6-8b-a9/" itemprop="url">流盘备忘录(2)-软件选择</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-11-26T07:41:21+08:00">
+                2009-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1392" class="bvMsg"><br><br>对于流盘来说软件也是很重要的,其中会影响到我们流盘性能的有以下几点:<br><br>驱动是否高效<br><br>是否成功启用了DMA传输采集到的数据以减少系统资源占用。以NI的数据采集卡为例，传统DAQ不使用DMA和中断的方式采集数据其CPU占用率长时间飙升在100%，使用DAQmx默认使用DMA方式可以大大减小CPU的占用率。<br><br>软件架构是否合理<br><br>我们需要实现的三个主要任务：采集、处理、保存占用率合理分配，数据存储格式应该在保证精度的前提下减小内存占用。<br><br>存盘API性能<br><br>系统处理文件操作的API分配的缓冲区太小，在读写大文件上性能较低。<br><br>关键点：<br><br>1 驱动一定要支持DMA,减小CPU占用.提供RAWdata格式和转换公式,减小数据内存占用<br><br>2 能否合适的将负载分配到各个CPU上.支持并行和多线程<br><br>3 支持底层的无缓冲模式API,避免软件流盘速度瓶颈.<br><br>解决方案<br><br>1 使用NI DAQmx驱动和NI MI驱动，并启用DMA。<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image24cd46edb.png?w=185" alt="image" title="image"> <img src="http://lhb5883.files.wordpress.com/2009/11/image5b65d6a92a742.png?w=32" alt="image" title="image"><br><br>采集原始数据减小内存占用<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image852bb2442.png?w=77" alt="image" title="image"> <img src="http://lhb5883.files.wordpress.com/2009/11/image1157e9bf59.png?w=99" alt="image" title="image"> <img src="http://lhb5883.files.wordpress.com/2009/11/image5b35d1ff72f9c.png?w=52" alt="image" title="image"><br><br>2 使用LabVIEW或者其他多线程开发软件，启用并行循环和队列。<br><br> <img src="http://lhb5883.files.wordpress.com/2009/11/rfstreaming_thumb5b15d.png?w=300" alt="RF Streaming" title="RF Streaming"><br><br>3 使用Win32API，直接调用底层函数并分配较大的缓冲区<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image14135548b4.png?w=32" alt="image" title="image"><br> <p>C++<br><br>    BOOL WINAPI WriteFile(<br>      <strong>in         HANDLE <em>hFile</em>,
+      </strong>in         LPCVOID <em>lpBuffer</em>,<br>      <strong>in         DWORD <em>nNumberOfBytesToWrite</em>,
+      </strong>out_opt    LPDWORD <em>lpNumberOfBytesWritten</em>,<br>      __inout_opt  LPOVERLAPPED <em>lpOverlapped</em><br>    );<br>  </p></div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2009/11/26/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-951-e6-b5-81-e7-9b-98-e6-a6-82-e8-a7-88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/11/26/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-951-e6-b5-81-e7-9b-98-e6-a6-82-e8-a7-88/" itemprop="url">流盘备忘录(1)-流盘概览</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-11-26T07:25:57+08:00">
+                2009-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1391" class="bvMsg"><br><br>流盘概览<br><br>我们经常会看到一个总线速度比较的图表,可以看到在通常的情况下同一时代内总线最高速度是远远高于外总线的,不过对于硬盘来说,尽管应该也可以算是内总线上的设备,硬盘读写速度一直是一个令人无奈的瓶颈,远远落后于计算机技术和测控技术的发展速度.当我们的示波器数据量已经迈入GB/s的量级,硬盘的速度还是在MBS/s级徘徊.<br><br>造成这种现状的原因:<br><br>1.机械式硬盘本身的局限:<br><br>需要通过寻道等机械动作之后才能实现读写动作,如果使用SSD固态硬盘,单块硬盘速度可以提高到100MBSs以上,<br><br>传统硬盘通过组成Raid0阵列也可以提高写入速度，目前最高性能已经可以到G级。<br><br>2.总线接口:<br><br>SATA和IDE接口挂接到PCI总线上就要受到PCI总线133MS/s的限制,只有使用PCI-E的高带宽接口,才能适合大流量的数据读写，PCIe带宽最高4G。<br><br>目前PXIe的系统带宽在3~4G，板卡带宽最高1G。<br><br>3.计算机性能：<br><br>在处理大量数据时大数组的读写、转置、队列都会给CPU大量的压力，数据量的增大对内存大小也提出了更高的要求。<br><br>对于目前PXI平台比较成熟的方案就是使用PXI-E板卡+RAID流盘阵列这种架构.最高数据吞吐量在400M~600MB/s左右。<br>  </div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2009/11/24/pxi-e6-8e-a7-e5-88-b6-e5-99-a8-e7-b3-bb-e7-bb-9f-e5-a4-87-e4-bb-bd-e8-bd-af-e4-bb-b6-e9-80-89-e6-8b-a9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/11/24/pxi-e6-8e-a7-e5-88-b6-e5-99-a8-e7-b3-bb-e7-bb-9f-e5-a4-87-e4-bb-bd-e8-bd-af-e4-bb-b6-e9-80-89-e6-8b-a9/" itemprop="url">PXI控制器系统备份软件选择</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-11-24T07:52:30+08:00">
+                2009-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computers-and-Internet/" itemprop="url" rel="index">
+                    <span itemprop="name">Computers and Internet</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1389" class="bvMsg"><br><br>虽然NI的控制器质量非常稳定可靠，不过如果使用Windows而非RealTimeOS的话，系统备份恢复软件就是一个值得考虑的问题了。<br><br>为了找到一个好用的恢复软件给我们的8176上个保险，来来回回测试了多种备份软件。<br><br>系统备份与恢复软件厂商目前主要是Symantic赛门铁克和Acronis两大厂商。其中Symantic以GHOST系列强大的功能闻名，在收购了PowerQuest之后其实力不可小视。Acronis以True Image系列软件的方便易用与稳定可靠被NI作为系统默认的硬盘恢复方案。<br><br>我初步的目标是找到一个能在Windows7下备份和恢复整个分区的软件，取代我一直使用的DriveImage。不过该方法需要拆开控制器，所以要是能做成多启动这种方案也不错。<br><br>下表是一个简单的比较<br> <table border="0" cellspacing="0" cellpadding="0"> <tbody> <tr> <td width="165">控制器型号</td> <td width="174">Norton Save&amp;Restore/<br>Symantec Backup Exec System</td> <td width="107">双启动GHOST</td> <td width="138">光盘/U盘版GHOST</td> <td width="198"><br><br>Acronis True Image OEM<br></td> <td width="206">Acronis True Image 2010</td> <td width="246">Power Quest Drive Image 2002</td></tr> <tr> <td width="165">PXI-817X/818X（Intel8系列芯片组）</td> <td width="174">OK</td> <td width="107">OK</td> <td width="138">Fail</td> <td width="198">OK</td> <td width="206">不支持Windows2000</td> <td width="246">OK</td></tr> <tr> <td width="165">PXI-819X/810X/8130（Intel9系列芯片组/Nvidia N-Force）</td> <td width="174">OK</td> <td width="107">OK</td> <td width="138">OK</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">PXI-8108/8110（IntelG系列芯片组）</td> <td width="174">OK</td> <td width="107">未知</td> <td width="138">Fail</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">功能</td> <td width="174"> </td> <td width="107"> </td> <td width="138"> </td> <td width="198"> </td> <td width="206"> </td> <td width="246"> </td></tr> <tr> <td width="165">在Windows下备份和恢复分区（用于在PC机上恢复系统，适用于硬盘数据完全丢失无法启动等情况）</td> <td width="174">只能用于系统盘</td> <td width="107">/</td> <td width="138">/</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">在非windows下备份和恢复分区</td> <td width="174">无</td> <td width="107">OK</td> <td width="138">不适用老控制器</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">无</td></tr> <tr> <td width="165">操作系统支持</td> <td width="174">XP/VISTA</td> <td width="107">/</td> <td width="138">/</td> <td width="198">2000/XP</td> <td width="206">XP/VISTA/Windows7</td> <td width="246">2000/XP</td></tr></tbody></table><br><br>目前GHOST的二次封装而成的USB GHOST，光盘GHOST、一键GHOST等等版本极多，不过能兼容NI大部分控制器的GHOST版本并不多。而企业版GHOST套装使用和配置极其复杂，操作简单的Windows下备份和恢复的软件在系统崩溃后就没有什么用了。所以值得考虑的就是系统恢复光盘里自带的Acronis True Image OEM版，是一个简单可靠的一键恢复系统，不过一旦恢复就会使系统恢复到出厂状态。需自由备份和恢复就需要完整版的软件才行。<br><br>不过我们其实需要的功能往往也没有那么复杂，只需要能恢复系统到一个安装调试好所有软件的状态，那么这时候就可以用到下面这个小技巧了 。<br><br>1。正常安装Windows，注意不要选择安装F4一键恢复。<br><br>2。分区、安装软件、配置程序。。。<br><br>3。将系统恢复盘的CDROM:OSPXI_VXI$OEM$$1SYSPREP目录下的ACRONIS.XML，ACRONIS8199_ENABLE.BAT，ACRONISTRUEIMAGE_8199.MSI三个文件复制到c:Sysprep目录下<br><br>4。运行c:SysprepACRONIS8199_ENABLE.BAT，重启系统后就会自动备份操作系统，完成之后在系统启动时按F4就可以一键恢复了。<br>  </div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2009/09/15/e5-85-b3-e4-ba-8e-e7-a4-ba-e6-b3-a2-e5-99-a8-e7-9a-84-e8-a7-a6-e5-8f-91-e7-81-b5-e6-95-8f-e5-ba-a6-ef-bc-88trigger-sensitivity-ef-bc-89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/09/15/e5-85-b3-e4-ba-8e-e7-a4-ba-e6-b3-a2-e5-99-a8-e7-9a-84-e8-a7-a6-e5-8f-91-e7-81-b5-e6-95-8f-e5-ba-a6-ef-bc-88trigger-sensitivity-ef-bc-89/" itemprop="url">关于示波器的触发灵敏度（Trigger Sensitivity）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-09-15T06:19:01+08:00">
+                2009-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computers-and-Internet/" itemprop="url" rel="index">
+                    <span itemprop="name">Computers and Internet</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1381" class="bvMsg"><br><br>示波器板卡有一项参数叫Edge Trigger Sensitivity<br><br><img src="http://lhb5883.files.wordpress.com/2009/09/image5b25d23274975.png?w=300" alt="NI PXI/PCI-5152 Specifications（P11）" title="NI PXI/PCI-5152 Specifications（P11）"><br><br>这一项指标翻译过来应该是触发敏感度，有什么意义呢？<br><br>当我们用示波器高速采集一个高频脉冲信号时，往往会混入很多噪声信号，如果没有触发敏感度，直接按边沿触发往往不能得到一个稳定的示波器图形。<br><br><img src="http://www.ed-china.com/ARTICLE_IMAGES/200801/20080101_TM_DT_TS_27F2.JPG" alt="图输入200mVpp锯齿波时的情况。" title="图输入200mVpp锯齿波时的情况。"><br><br>触发灵敏度就是用来滤除噪声对触发的影响，使之能够正确被有效信号而非噪声触发，获得稳定波形的一个参数。<br><br>TEK网站的定义如下：<br><br>###### Trigger Sensitivity<br><br>Trigger sensitivity is a critical attribute when capturing high-speed digital signals. An oscilloscope‘s trigger sensitivity determines its ability to react to specified edge trigger conditions over a range of frequencies. The specification takes the following form: power-line hum interference.<br><br><strong>Trigger System Sensitivity, Internal DC Coupled:</strong><br>0.35 div DC to 50 MHz, increasing to 1.5 div at 3 GHz<br>(guaranteed); 2.7 div at 4 GHz (typical)<br>(from TDS7404 DPO data sheet)<br><br>The oscilloscope will trigger on a signal of 0.35 divisions amplitude p-p in the range of frequencies from DC to 50 MHz. As the frequency goes beyond 50 MHz, the signal must be larger (higher in amplitude) to trigger the instrument. At 3 GHz, the signal must be at least 1.5 divisions in amplitude. Trigger sensitivity is specified with a sine wave input. <p>灵敏度<br>在捕获高速数字信号时，触发灵敏度是一个关键指标。示波器的触发灵敏度决定着在某个频率范围内示波器对规定边沿触发条件的反应能力。这一指标采用下述形式：电源线噪声干扰。<br>       触发系统灵敏度、内部DC耦合:<br>DC - 50 MHz, 0.35格；3 GHz时提高到1.5格(保障值); 4 GHz时2.7格 (典型值)(摘自TDS7404 DPO技术数据)<br>示波器将在DC到50 MHz 的频率范围内，在0.35格的p-p幅度上触发。在频率超过50MHz时，信号必须更大(幅度更高)，以触发仪器。在3 GHz时，信号的幅度必须在1.5格上。可以使用正弦波输入指定触发灵敏度。 </p><p>开头图中的指标就是说使用通道触发时灵敏度是满量程的10%，而使用外部触发时灵敏度是固定的0.5V峰峰值。小于灵敏度的毛刺都会被示波器忽略，不认为是触发。 </p><p>参考链接：<br><br><a href="http://www.ed-china.com/ART_8800024153_400013_500015_TS_f6dcb05a.HTM" target="_blank" rel="noopener">http://www.ed-china.com/ART_8800024153_400013_500015_TS_f6dcb05a.HTM</a><br><br><a href="http://www.tek.com/Measurement/scopes/selection/performance/trigger.html" target="_blank" rel="noopener">http://www.tek.com/Measurement/scopes/selection/performance/trigger.html</a><br><br>触发扫盲：<br><br><a href="http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf" title="http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf" target="_blank" rel="noopener">http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf</a><br>  </p></div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2009/09/14/code-share-e4-bd-bf-e7-94-a8-e5-91-bd-e4-bb-a4-e8-a1-8c-e6-89-93-e5-bc-80-e7-bd-91-e9-a1-b5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/09/14/code-share-e4-bd-bf-e7-94-a8-e5-91-bd-e4-bb-a4-e8-a1-8c-e6-89-93-e5-bc-80-e7-bd-91-e9-a1-b5/" itemprop="url">[code share]使用命令行打开网页</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-09-14T10:32:00+08:00">
+                2009-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1378" class="bvMsg"><img src="http://lhb5883.files.wordpress.com/2009/09/openwebpageuselabview5b25d.png?w=158" alt="Open Web Page use LabVIEW" title="Open Web Page use LabVIEW">or <img src="http://lhb5883.files.wordpress.com/2009/09/openwebpagewithcmd5b85d.png?w=243" alt="open web page with CMD" title="open web page with CMD"><br><br>如图，这样就可以调用系统默认浏览器打开网页。<br>  </div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2009/08/31/certified-labview-developer-e8-ae-a4-e8-af-81-e5-b0-8f-e7-bb-93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/08/31/certified-labview-developer-e8-ae-a4-e8-af-81-e5-b0-8f-e7-bb-93/" itemprop="url">Certified LabVIEW Developer 认证小结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-08-31T03:30:36+08:00">
+                2009-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机与-Internet/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机与 Internet</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1370" class="bvMsg"><br><br>LabVIEW中级认证考试的主要目的就是考察受试者的LabVIEW编程水平,程序风格,文档注释三个方面.详细可以查看下面的文档<br><br><a href="ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf" title="ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf" target="_blank" rel="noopener">ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf</a><br><br>下面这个链接已经列举了一些注意事项,我再补充几条:<br><br><a href="http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry" title="http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry" target="_blank" rel="noopener">http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry</a><br><br>1. 善于利用LabVIEW自带的模板和VI,例如定时迅捷VI,读写电子表格文件VI,状态机模板,子VI模板几个都要熟练掌握.<br><br>2. 最好使用LabVIEW英文版开发环境.这样无论是模板还是控件名字都是默认英文,可以减小工作量.<br><br>3. 不要忘记在状态机模板里加上错误处理.<br><br>4. 写完程序一定要留调试和注释的时间.<br><br>5. 尽量将状态机Case结构里的代码封装为子VI.<br><br>6. 能用TypeDefine控件的尽量都用TypeDefine控件,方便程序维护.<br><br>7. 不需要用户交互的前面板控件最好隐藏掉.<br><br>细节:<br><br>1. 框图和前面板大小:根据考试要求最好限定为1024x768,要扩展尽量水平扩展.现在显示器以宽屏居多,方便观察整个程序.<br><br>2. LabVIEW配置,如果你到手的机器配置修改太多,例如字体等要改回来很麻烦.最简单的办法就是删除LabVIEW的INI文件.然后在工具-&gt;属性里取消前面板控件:显示为图标.<br><br>3. 状态机里面的等待函数一定要修改,设置为1是个不错的选择.<br><br>4. 使用Ctrl+鼠标拖拽扩展程序框图时一定要慎重,避免程序连线错位.<br>  </div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2009/08/21/labview-2009-e9-80-92-e5-bd-92-e7-a0-94-e7-a9-b6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/08/21/labview-2009-e9-80-92-e5-bd-92-e7-a0-94-e7-a9-b6/" itemprop="url">LabVIEW 2009递归研究</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-08-21T04:19:03+08:00">
+                2009-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1369" class="bvMsg"><br><br><strong>Part I ： Handson</strong><br><br>各位安装LabVIEW2009的同学请跟我做以下动作:<br><br>1:打开LabVIEW 2009.<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mJf781TsQY2lMDPJPSS-Ciy9j5BqCKwwYq4up4HegzWdSPRRoK9XmPUSm0MhcjjsGdO3yBFl5o2ZUoHcAEFlDD9Idvou3kEx52H_zGgNN4Qq5OZzivi1JsoCTqmPU_J_g-6lkWGxiRub0O8NdLW8Kxw/image2 7AFEC386.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mVYx9-iHIRHcVhl1R903uSWy0-7PkCqDKWTjNmCB171fHEVJhJmm79IjSw8KMzvYCuM6Z5NBkVimPJR-mpTTYeg90perGOqBtBghB04N9a5TZxdGEpKA43q7B8oH0ZeBmT9DvaqRKUNied1mU6jx0Hg/image_thumb 63232C87.png" alt="image" title="image"></a><br><br>2:Ctrl+N<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mqUA4E2HIjdW9Gb3BZtx2IS9OvqufNm9ay5c3yoX7YyZtiExwtvNyKY6zO4IzSS5_hYD1H1mT82bnVU8GrzxlS_AzTvrzEsxkIBloXGJEeXVT03GQDPTy5-7VXeuYh0kU6fKN5Cf7WXnw8gIPYYITWQ/image8 2D5308B1.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1m0ogiAD6Jc2Cbxy3vpUAV6MrpE_K_Dabfar0aXUtgde7OEMLg1Ikyjmx3q6DM4dkzDU_ZVa6Vytc1aN8w4VtsYpBTtJfnyzax9NbFx2nJxlG1Xl3AxOMCDjiSzLGO49ZYdrJkMuRUh4NDF1juq0lLrw/image_thumb2 1A28A6A4.png" alt="image" title="image"></a><br><br>3:Ctrl+I,按下图配置<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mTJsXhwFua2feHrRTHHidlP8UL_niDiOlgDLqXBogknVvLwNzcQLlDPnAj9Nd9eU-slt_5e4mpgKoMsZAIswHRF6d9eH2x-0u7mCNVuzKSd2K4VyE5RYrizBHaxPc6H5YnRiUspCSTyHZolbOHjRpMw/image12.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mWhcbcuZQz7gwaAOLMDXl0lxrADAEmDyvRlECQD82oaX6EZrXUYRrfHsVXGO5GeLIRwcnLZvKAYu-BD54k0csbzWE7BjJ2JoQWhEkENXymMMwr49aIlhjK48h_aaq6c4M4AbE7BrVuzcnTQsPSm0VWg/image_thumb4 796A50DA.png" alt="image" title="image"></a><br><br>4:Ctrl+E,选择程序框图,将图标拖到程序框图<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mtg6ZXjelXoHmXA-xYApe6akbTKVKdtTBH_quMiSzKJndfpVbuYu7gLL-Sam_hY8rH9Icrm244_Qaw6dPLAScQj7ZbK8kxnE1jXgiKsLsGsYokS_LVM7UnagklPGUavrq6fYUsZCsgCP_K5VLYnHjqA/image16.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mcDpF6XgX1ChPJouSMEIE3qw8z_IizPqK5nXIwFlwPTl6ctx5Sw4BOgOf6XBGnJ66dpW_iJwhD3q6fWGya3VDTf5jr2lAylB_2U88qUcEnbUvEFn6OVw03NftdN2c39p1nxqkamVlrhq0EH9BIeRwEQ/image_thumb6 708CFF2E.png" alt="image" title="image"></a><br><br>5:Ctrl+R，然后稍等5分钟：<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1m1yQuFE2PPchn6j3vH06VfbQjUhxybHx40VJLiaJvTh8Ug5ceO30uH-JkY3AW8fKT9SRvDTHf1WBG8f5DHqPiznrj_6UOcC3v6znY_IXbenCqaFABGdCOxuYloaJmHHVJIGZuG2CU3DqB4aC0LdfK4A/image23.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mTROt_oCMYrqvSPJ04o_93I-BcT6v-wjgCSDCnM2r6e99wb8w2-XPcgd7vl2bYbHxGH8iHmbm6lA-3n86m8LBhbvZdsfTObYKgeBqQVIeSACqPrq_vyUkRFBWol7Q7nG1F97-kUeP9s4nd3XNOmDj-g/image_thumb9.png" alt="image" title="image"></a><br><br>恭喜你编写了第一个递归VI并且让他挂掉了。<br><br><strong> Part II ： Basic I</strong><br><br>好,我们来玩点实在的，先看看LabVIEW 的例程：<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mvWEYPjzRXVMmpiuO4xUqrOXFHdNFe0v_y1tVO63ZJGZWgSxL7H_y9eUjrF71FHSZPW7h5_NkO6Ncsz_VXhrbaIIVDLG6mFk6J8DKUHii9Hagg4fAAsx6O6huAsx2nLXGUVP7Pr2DTY6CDSwbboXFaw/image6.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mm8KaiiUP0iV4jeZuGcGwDgHYgJPz8icKzsio12LxgM3wMzboQT03e5_5hSjVTQid9D00wpjamNWPQrSvLu67so_5EEkB_loAoqARIAbEZnlypl43vNLYAwX-ejCOE3_3RK3Ts2sFerIEN5_5dA-O0g/image_thumb2[1].png" alt="image" title="image"></a><br><br><img src="http://lhb5883.files.wordpress.com/2009/08/demorecursion5.png?w=300" alt="Demo Recursion" title="Demo Recursion"><br><br><img src="http://lhb5883.files.wordpress.com/2009/08/recursion5.png?w=300" alt="Recursion" title="Recursion"><br><br>在LabVIEW以前的版本只有类才能使用递归，不过现在已经比较成熟，普通的VI也可以递归了。<br><br>注意事项正如图中注释，我就不多废话。<br><br><strong>Part III ： Basic I</strong><br><br>为了更详细的演示递归，我们请出教科书里的经典例程汉诺塔。<br><br>首先附赠一个汉诺塔小游戏：<br><br><img src="http://lhb5883.files.wordpress.com/2009/08/image5b105d.png?w=300" alt="image" title="image"><br><br><img src="http://lhb5883.files.wordpress.com/2009/08/hanoitower5b55d.png?w=300" alt="hanoi tower" title="hanoi tower"><br><br>附赠小游戏汉诺塔下载：<br>  <div style="display:inline;float:none;margin:0;padding:0;"><div><a href="https://f2gz7g.bay.livefilestore.com/y1merIkYDIpelIzeY2GYQAQKA_dg4i8FbfdK8GaKiGoTUnlLXvcUNsixVC_kF4eKje1hkTltCHlbr3URvf3IbJRprYA5K2m3ioq8YP-5kcvqgqDIuJh4SpxX6Gu2Y6io3-54vvTfhsDJz7IiAT174ZuLg/hanoi.tower.7z" target="_blank" rel="noopener">hanoi tower.7z</a></div></div>（LabVIEW2009）<br><br>  <div style="display:inline;float:none;margin:0;padding:0;"><pre style="background-color:#FFFFFF;white-space:pre-wrap;word-wrap:break-word;overflow:auto;"><span style="color:#000000;">#include </span><span style="color:#000000;">&lt;</span><span style="color:#000000;">stdio.h</span><span style="color:#000000;">&gt;</span><span style="color:#000000;"><br></span><span style="color:#0000FF;">void</span><span style="color:#000000;"> hano(</span><span style="color:#0000FF;">int</span><span style="color:#000000;"> n,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> a,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> b,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> c)<br>&#123;<br>    </span><span style="color:#0000FF;">if</span><span style="color:#000000;">(n</span><span style="color:#000000;">==</span><span style="color:#800080;">1</span><span style="color:#000000;">)<br>        printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">t将%d个盘片从%c移动到%cn</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,n,a,c);<br>    </span><span style="color:#0000FF;">else</span><span style="color:#000000;"> &#123;<br>        hano(n</span><span style="color:#000000;">-</span><span style="color:#800080;">1</span><span style="color:#000000;">,a,c,b);<br>        printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">t将第%d个盘片从%c移动到%cn</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,n,a,c);<br>        hano(n</span><span style="color:#000000;">-</span><span style="color:#800080;">1</span><span style="color:#000000;">,b,a,c);<br>    &#125;<br>&#125;<br>main()<br>&#123;<br>    </span><span style="color:#0000FF;">int</span><span style="color:#000000;"> n;<br>    printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">输入将要移动多少个盘子n:</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">);<br>    scanf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">%d</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,</span><span style="color:#000000;">&amp;</span><span style="color:#000000;">n);<br>    printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">递归结果：n</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">);<br>    hano(n,</span><span style="color:#800000;">‘</span><span style="color:#800000;">x</span><span style="color:#800000;">‘</span><span style="color:#000000;">,</span><span style="color:#800000;">‘</span><span style="color:#800000;">y</span><span style="color:#800000;">‘</span><span style="color:#000000;">,</span><span style="color:#800000;">‘</span><span style="color:#800000;">z</span><span style="color:#800000;">‘</span><span style="color:#000000;">);<br>&#125; </span></pre></div>
+
+<p>然后我们来看看LabVIEW里面如何实现这个算法：</p>
+<p><img src="https://f2gz7g.bay.livefilestore.com/y1mprygHzelJggiWKEkuwsSFY4M5mNbiguBIY5D7W2O9OD5HWZEsrxZuv2G5dv0Xm0gKLPXG60Tm1TqkTvBTIdvpxXoYjKlQG6JepC8a0f9Q4pOsO7iWMu1mKv7QYUrD0oWkuV2bYUM7tVMWd4Y0Wtbnw/auto hanoi tower[2].png" alt="auto hanoi tower" title="auto hanoi tower"> </p>
+<p>主程序调用算法，然后演示步骤。</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/autohanoitowerrecursion5b25d.png?w=300" alt="auto hanoi tower recursion" title="auto hanoi tower recursion"> </p>
+<p>递归调用算法。</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/quitrecursion5b25d.png?w=300" alt="Quit Recursion" title="Quit Recursion"> </p>
+<p>当然不要忘记设置退出递归的条件。</p>
+<p>源代码下载</p>
+<div style="display:inline;float:none;margin:0;padding:0;"><div><a href="https://f2gz7g.bay.livefilestore.com/y1mzRAxsj5doJkMoW9WmdSPEQ3iq-X2OaTxJbPM4puKlPm79rh8T6O4U2h3pG8ZBzN8D6gzvsqrP-Sga8PVoRgSpxoLS5mprGxbuzJ3iO-ta5ZzyiZVb0tZ8eG5p_fnTbMme4M5-aBWVFHDog-XemQRKg/auto.hanoi.tower.demo.7z" target="_blank" rel="noopener">auto hanoi tower demo.7z</a></div></div>（LabVIEW2009）<br><br><strong>Part IV ： Advance I</strong><br><br>到底递归有什么用呢？我们来看一个实用一点的工具：VI图标提取器<br><br><img src="https://f2gz7g.bay.livefilestore.com/y1mthsEtKyirJ5UgEwqu1Pd_SHiauSyudG9LPT5gSFTKp2tj6WRPWmHr9vA2gFltVAbHriMUMAvKkkGATycCxvYG5XOLYLV3PVxcx6vxw_9xqv0B3IZsOa4bdHZnp9aCZerIg1khZ9lhQeoZnevNjoU-Q/image[13].png" alt="image" title="image"><br><br>主程序：<br><br><img src="http://lhb5883.files.wordpress.com/2009/08/outputviicon5b25d.png?w=203" alt="output vi icon" title="output vi icon"><br><br>递归代码<br><br><img src="http://lhb5883.files.wordpress.com/2009/08/enumviicon5b25d.png?w=300" alt="enum vi icon" title="enum vi icon"><br><br>源目录<br><br><img src="http://lhb5883.files.wordpress.com/2009/08/image5b195d37974858.png?w=300" alt="image" title="image"><br><br>输出目录<br><br><img src="http://lhb5883.files.wordpress.com/2009/08/image5b165d72d9c6a2.png?w=300" alt="image" title="image"><br><br><strong>Part V ： Advance II</strong><br><br>另外程序里附赠了一个利用LabVIEW自带的枚举函数写的同功能VI，大家可以看看，这个是可以枚举llb的。<br><br><img src="http://lhb5883.files.wordpress.com/2009/08/labviewrecusionpath5b25d.png?w=300" alt="labview recusion path" title="labview recusion path"><br><br><div style="display:inline;float:none;margin:0;padding:0;"><div><a href="https://f2gz7g.bay.livefilestore.com/y1mnRGuf_j3Gb5TpKVjOD5CxZ8UBELgZPqY3gZOVgWHl5DBflI0ZjbDuo1EUl-risW3uaQ7wgUlVRHJIDQ_ypyOhRQddP40jPnRG5uEJ1q_4sGMc7lSHn84388p379VGkZgLTFRvZ--1OjwUlAVXTMCtA/Recursion.VI..Icon.7z" target="_blank" rel="noopener">Recursion VI  Icon.7z</a></div></div>
+
+<p>最后总结一下递归要注意的事项：</p>
+<font color="#ff0000"><strong>1：真的有必要用递归么？</strong></font>
+
+<font color="#ff0000"><strong>2：你的程序能否正常退出递归？</strong></font>
+
+<font color="#ff0000"><strong>3：递归的过程是无法直接调试的，有没有好的办法保证VI按照我们的预期执行？</strong></font>
+
+<p>如果这三个问题都能保证，恭喜你，你可以使用递归来提高你程序的效率了。<br>  </p></div><p></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+     
+     
+     
+     
+     <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+     
+         <script type="text/javascript">
+             function ShowGitment(){
+                 document.getElementById("gitment-display-button").style.display = "none";
+                 document.getElementById("gitment-container").style.display = "block";
+                 var gitment = new Gitment({
+                     id: document.location.href, 
+                     owner: 'lhb5883',
+                     repo: 'lhb5883.github.io',
+                     oauth: {
+                         client_id: '5473d4670bb678c93d94',
+                         client_secret: '619d8420f0cc6f9f141bd8792e8f3a355a9193ed',
+                     }});
+                 gitment.render('gitment-container');
+             }
+         </script>
+     
+ 
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
