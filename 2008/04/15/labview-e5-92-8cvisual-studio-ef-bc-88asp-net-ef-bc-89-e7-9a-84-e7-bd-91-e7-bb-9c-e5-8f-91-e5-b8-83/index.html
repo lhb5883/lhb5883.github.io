@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>LabVIEW和Visual Studio（ASP.net）的网络发布 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我们还是用继续上一次的程序作例子：首先我们来看一下如何在LabVIEW中发布VI到WEB：首先在LabVIEW的选项里打开Web Server：我们然后在LabVIEW里打开网络发布工具：这一步选择VI的路径和发布的模式:这里就随意了选择保存位置 默认就可以了：大功告成！Visual studio(ASP.net)的发布前面已经介绍了，下面直接看结果：      浏览器 LabVIEW 8.5 A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LabVIEW和Visual Studio（ASP.net）的网络发布">
+<meta property="og:url" content="http://yoursite.com/2008/04/15/labview-e5-92-8cvisual-studio-ef-bc-88asp-net-ef-bc-89-e7-9a-84-e7-bd-91-e7-bb-9c-e5-8f-91-e5-b8-83/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="我们还是用继续上一次的程序作例子：首先我们来看一下如何在LabVIEW中发布VI到WEB：首先在LabVIEW的选项里打开Web Server：我们然后在LabVIEW里打开网络发布工具：这一步选择VI的路径和发布的模式:这里就随意了选择保存位置 默认就可以了：大功告成！Visual studio(ASP.net)的发布前面已经介绍了，下面直接看结果：      浏览器 LabVIEW 8.5 A">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpw__CMMSgi8xXAz2JIyCd2PQjFZ9QPVdo4tXVuEg0qqXBtaK94RpBF1IEnQZqtGo_6Mibp6m6bCD-aeDp2_vSaH?PARTNER=WRITER">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMzAI5L3JBsUrhGu8QCejxD89Ule-JLM1YeCtdDXz7L3XwP2aeE5ya5NBkFbZLsZYIBrtmC30LsuLmExrSR4nAf?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpw68nuPK7TEIardzdj_TvdyzC2BOLBTlcqT2czEE8POfsf8wv7-3vLAPqPpEsn2htTLoY80bcYrsFOK9o_LwhSB?PARTNER=WRITER">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMluv02iRJLzw1hGKGEDiFpr56U5c0KVnEQC21pI7b-mwu4kuaSU3_k0oAQpGwdx5d5sYUGgPkchdBKGCdQknaT?PARTNER=WRITER">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOR685TQ5YzU5pHhRaaa8k0TWRdP58kSbwaMlQJlJeXqKB_6osvhLqiKQMFdOs9j81ruyn620xmuP-h3db04L2I?PARTNER=WRITER">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNDWd-SRmZYvI5c_Wz-d0NthvV51pBsFYXTGE2_BFDkW33xTgTPEaI8tNUhG5WHVnsNNPUd0uoalDyBmGjPJ-8X?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpyYEos7DCy5-uPXAZoqxbUEzzD0G3qPyhNBOuATGV2ak_xHpR7eB6pKFTTwOrinMtDhVLtwuAY9CxVAOjSsYOTW?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxmL93qpBC0MBPnD7EAzaWwtwsmMPqjPNSF5GJzHIfyOC2bEexx4tJI6s7ERIr14AhekSGaAONrlariLtkeHCmE?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxLLikJ7aYjRmW4JqeDGh6xcEwq1qLdMeM-lW03wfSWdHCI41F5eofx4gGWINzxaN6EpUVSDHxc93vXUlx6vUXp?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpw2WPBkHnykC7JNt-e6YUfAGrhEkT5VpkT-tc2kgO97Qtig4gMLWoiF_lT5dKvnGhkWljlpjOJwviSdJc43QlVL?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxTHdzJESyV9fJn6QTmDAEDwWn7pFGO2BcCkwcXwNHEpKOhRKwDKTjzN-p2bgw58KY6W6lqH96Bbo2CmogrH-FA?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpx9AldkWOlz3wwHKDC0qD0Rg7IZINHfwtH8C-ExBXwVswttXKOO3YOpe46M_Y9jJkP2SqJxvNZmd583GsJK1SYq?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpzgLUtv9m4wNW7GgeQKLQR9frOkh4y9848wyPCA0JqylQdpuzF5lmLGkGAPPso91itDgCm5QIz82kY1x76VyH7o?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpx5bw-SQMgQfW4qJ9tV2akesBx49uD4-5OxXkLun1f3-WKGcHU_rzCsuVF64XkJh42RTwCIKmND6oJ3a32ZkR4t?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwPHHi1b9tTsKxx33JAd62Ci2WRkPGCv5B_g9aqk0WKn9S1TAKZGxe7hlZRG0fx6WNJ9aYDJ-WfEJcRH_eW0yRd?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpzh0q7jb35zGl2D3iQy1E4hHAc-UY3zQJqcSPh_kKggXlCePCJdBmlZ7vdZRzt0GSOuZ_cNha20UQlgtRoaJirY?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpyVgdxCW7y6jG_d8yzAkZzBnxCS-qHNCQmnB9LwF9H7JUry_bGnksrlT9a_MgfAElLnodIlF_A6PwkdggKFi1gk?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpw-HVKmA006E9BQAd7e98-vozCA4KaS39TVeIRykGY9m1Pb6UnKDo-KpYSCjR-KUyXi1PKNGG8_nm2EvogQ_Nnz?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxPCjiKlu7CnsRJXVAUDAqOPMve6gWrEXvlcHJNBgveEI2oAHOnfEMa-cDhA_NlayBdiKE0IiteLr1ZG3hbiw9n?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpz3ukH6AZH2gLmdnlCScjSUVa1AJ5P23i4JytzqBqAvzoNKRyWe7dxF6knz1Nu8uk6Y05ta_q0DmO9ggJp6LQNc?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpyPJCMOsRzfvBdZgVQ3ZWfnwei_P95Mxfk7bt2cEzgkRHZsmaXRGGC1YLDCxNj4z0LPYENOaMwyOnu2OC8ra4FV?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpzeXGCB09n60DB5nEBCMMfzw37KsDoulsV-TqkzEMFUPPugKxE3akGF6de4Qv6gYgwXVXU0dlMTV5aiNm62ZaFL?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwV1nRi_xLouCpxtfZq5yClz8ZbYtB6Vt6Se6f0ErQtiyivgyu9-QkRZlpIDX4Qo4VAst2s_NGMb5wD4pdUaOxx?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwr37v6Z__8Cyh7wU2EUbF5zgPmhN38wWPAa0VTV-UC9Jz03U8kl_1r_7wYl4vAmIiKgsClDj_5qlRPGTWwJUi8?PARTNER=WRITER">
+<meta property="og:updated_time" content="2018-04-26T02:20:32.034Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LabVIEW和Visual Studio（ASP.net）的网络发布">
+<meta name="twitter:description" content="我们还是用继续上一次的程序作例子：首先我们来看一下如何在LabVIEW中发布VI到WEB：首先在LabVIEW的选项里打开Web Server：我们然后在LabVIEW里打开网络发布工具：这一步选择VI的路径和发布的模式:这里就随意了选择保存位置 默认就可以了：大功告成！Visual studio(ASP.net)的发布前面已经介绍了，下面直接看结果：      浏览器 LabVIEW 8.5 A">
+<meta name="twitter:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpw__CMMSgi8xXAz2JIyCd2PQjFZ9QPVdo4tXVuEg0qqXBtaK94RpBF1IEnQZqtGo_6Mibp6m6bCD-aeDp2_vSaH?PARTNER=WRITER">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-labview-e5-92-8cvisual-studio-ef-bc-88asp-net-ef-bc-89-e7-9a-84-e7-bd-91-e7-bb-9c-e5-8f-91-e5-b8-83" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/04/15/labview-e5-92-8cvisual-studio-ef-bc-88asp-net-ef-bc-89-e7-9a-84-e7-bd-91-e7-bb-9c-e5-8f-91-e5-b8-83/" class="article-date">
+  <time datetime="2008-04-15T02:44:57.000Z" itemprop="datePublished">2008-04-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LabVIEW和Visual Studio（ASP.net）的网络发布
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!842" class="bvMsg"><br><br>我们还是用继续上<a href="http://lhb5883.spaces.live.com/blog/cns!866B8F96A2761BBE!793.entry" target="_blank" rel="noopener">一次的程序</a>作例子：<br><br>首先我们来看一下如何在LabVIEW中发布VI到WEB：<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr9Uge_-zbiiGzBNDigCY9IQN5HPhmA8Sq03-oTVLjivEvSR-Kq4cg-ws7BLVsV-xfmVRd5C9FZw2w?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpw__CMMSgi8xXAz2JIyCd2PQjFZ9QPVdo4tXVuEg0qqXBtaK94RpBF1IEnQZqtGo_6Mibp6m6bCD-aeDp2_vSaH?PARTNER=WRITER" alt="image"></a><br><br>首先在LabVIEW的选项里打开Web Server：<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMW-rlPEr6RkFiHe8p5XtUbZHTZ1Xj1SkO369wJLFDWiyOvPJKlJ8YeCxSGgr3hO-oGZ3vD1v46RvZoYgX46RdE?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMzAI5L3JBsUrhGu8QCejxD89Ule-JLM1YeCtdDXz7L3XwP2aeE5ya5NBkFbZLsZYIBrtmC30LsuLmExrSR4nAf?PARTNER=WRITER" alt="image"></a><br><br>我们然后在LabVIEW里打开网络发布工具：<br><br><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpzRSFtGQY3Zba1Y_GTqyviNyF8k82c0WT2BSTcfvzbupyxVDaEN8aDOuCbtTfQdK_9QRwsMx29hJ5NLXbQXV19Q?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpw68nuPK7TEIardzdj_TvdyzC2BOLBTlcqT2czEE8POfsf8wv7-3vLAPqPpEsn2htTLoY80bcYrsFOK9o_LwhSB?PARTNER=WRITER" alt="image"></a><br><br>这一步选择VI的路径和发布的模式:<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMGHBMSsuNJ9ft8_p1SATOVGhYGoKpbB1KazqoHv0p5FfAUXJ7F1Nz0Zh7UvmE3AGw9WeQopHrEQ48rbt_TZ4fz?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMluv02iRJLzw1hGKGEDiFpr56U5c0KVnEQC21pI7b-mwu4kuaSU3_k0oAQpGwdx5d5sYUGgPkchdBKGCdQknaT?PARTNER=WRITER" alt="image"></a><br><br>这里就随意了<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM-lBlEGEUJiCo7vFTrbFIpPu5B0f2RW7gLoj5_-YSj9mP6Uu6iRYupbZgTGXvX2qjLPq7j2I1-IjqRwSrH4Tyj?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOR685TQ5YzU5pHhRaaa8k0TWRdP58kSbwaMlQJlJeXqKB_6osvhLqiKQMFdOs9j81ruyn620xmuP-h3db04L2I?PARTNER=WRITER" alt="image"></a><br><br>选择保存位置 默认就可以了：<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN1y_6-r6G8Yb-E8U3qP7SmtHUMBqEI7KtyldtEffUHjnb6Nix81Ot9Ylp7y_nDjcJP__prOFGzc2sZk_pdF2pZ?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNDWd-SRmZYvI5c_Wz-d0NthvV51pBsFYXTGE2_BFDkW33xTgTPEaI8tNUhG5WHVnsNNPUd0uoalDyBmGjPJ-8X?PARTNER=WRITER" alt="image"></a><br><br>大功告成！<br><br>Visual studio(ASP.net)的发布<a href="http://lhb5883.spaces.live.com/blog/cns!866B8F96A2761BBE!793.entry" target="_blank" rel="noopener"><strong>前面</strong></a>已经介绍了，下面直接看结果：<br> <table cellspacing="0" cellpadding="2" width="400" border="1"> <tbody> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">浏览器</td> <td valign="top" width="100">LabVIEW 8.5</td> <td valign="top" width="100">ASP.net 2.0</td></tr> <tr> <td valign="top" width="100">Safari3.1</td> <td valign="top" width="100"><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpzOovlA0Jhde32NrkvOsC2Q4lynGVmxlJ08dpNUL2_UzOKEIdvMwqFkYVHa5ZdjLW4wf_fzdjsSTX30Pbh4TO2F?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyYEos7DCy5-uPXAZoqxbUEzzD0G3qPyhNBOuATGV2ak_xHpR7eB6pKFTTwOrinMtDhVLtwuAY9CxVAOjSsYOTW?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpw_uCy9MDpW4Q4AfFNJPFXfy4M3zlTaP9DOh8s1hJdH1J0_vSp_05q13RR-9SxBrtx5kqqvlV2I8K8qLZ2T2lp9?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxmL93qpBC0MBPnD7EAzaWwtwsmMPqjPNSF5GJzHIfyOC2bEexx4tJI6s7ERIr14AhekSGaAONrlariLtkeHCmE?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpwH6HnFBb7bolo5VB3mDUpt5Afx9N4PfLvzoHJ8PsFT6QhE4N2bL9EcFGUXcMdTUdy3eaBV26U-OMsamPg0MOkG?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxLLikJ7aYjRmW4JqeDGh6xcEwq1qLdMeM-lW03wfSWdHCI41F5eofx4gGWINzxaN6EpUVSDHxc93vXUlx6vUXp?PARTNER=WRITER" alt="image"></a></td></tr> <tr> <td valign="top" width="100">IE7</td> <td valign="top" width="100"><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpydmUlpNGjSMTWnYSMd0FIM0yy6HsG2vrxv9Otc2vcMQuY6_gp_hb44nndxYS6o1UJ9aVjAJA86yeTb-ufEvbRA?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpw2WPBkHnykC7JNt-e6YUfAGrhEkT5VpkT-tc2kgO97Qtig4gMLWoiF_lT5dKvnGhkWljlpjOJwviSdJc43QlVL?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpwukNcvn20CT4cprLUxEyDuJYdzEOoSa8Yl0UErmxh3CPJi_Bdkc3uXM3lLz5powSgqbBKzc9b2ySzQsqicLDCb?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxTHdzJESyV9fJn6QTmDAEDwWn7pFGO2BcCkwcXwNHEpKOhRKwDKTjzN-p2bgw58KY6W6lqH96Bbo2CmogrH-FA?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpycwmL7IHwAY76BdYNt3LBZOOeg4VgEm_EsLl4fM1fS5PK2XVnn1zVoofKENtskQ7_7l0mSV_Xk-05iOE1neLmf?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpx9AldkWOlz3wwHKDC0qD0Rg7IZINHfwtH8C-ExBXwVswttXKOO3YOpe46M_Y9jJkP2SqJxvNZmd583GsJK1SYq?PARTNER=WRITER" alt="image"></a> </td></tr> <tr> <td valign="top" width="100">IE8beta1</td> <td valign="top" width="100"><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpzu6tz-OmQn3jfTo4AmhKgGtkONP1oWmYtPxsI0BYlX0Ks7WR_jxIucXPXIML-KgybNMcWVvcw5QY_0Y-jFzZam?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzgLUtv9m4wNW7GgeQKLQR9frOkh4y9848wyPCA0JqylQdpuzF5lmLGkGAPPso91itDgCm5QIz82kY1x76VyH7o?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMwUwywxPHKN1YJDnf3yeDH0zGqtISsxe4q5UQL0Ofmg0yV51SUS5d3El8c3RtB1rQHt_Y4Eu8wV54pjS4lcxaw?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpx5bw-SQMgQfW4qJ9tV2akesBx49uD4-5OxXkLun1f3-WKGcHU_rzCsuVF64XkJh42RTwCIKmND6oJ3a32ZkR4t?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPDkfd6Nd3R689vUTAegioJt1cQyuOItIWt8qZgIdjepEXfRIR-O5r-pmzZ5NAGObhWD415DKGRNLZQ5B4Cj8wA?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwPHHi1b9tTsKxx33JAd62Ci2WRkPGCv5B_g9aqk0WKn9S1TAKZGxe7hlZRG0fx6WNJ9aYDJ-WfEJcRH_eW0yRd?PARTNER=WRITER" alt="image"></a> </td></tr> <tr> <td valign="top" width="100">火狐2</td> <td valign="top" width="100"><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpxO68zqyvDW-0iHxNbvy6m00ifdUgt_AAvI_8UmiwMDQYpl-bYll_Y6zjlKBp4mWTWKRa0MV2Y4_PXvSA2zjYgj?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzh0q7jb35zGl2D3iQy1E4hHAc-UY3zQJqcSPh_kKggXlCePCJdBmlZ7vdZRzt0GSOuZ_cNha20UQlgtRoaJirY?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNrNnfpTiBBqQTu4jbULOAP2H6WdObpC2w3uAF-9rE2x_-MxYRoJ2_rUzVsy-tlR5xGw30nz-uYLxsb4U3npC9k?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyVgdxCW7y6jG_d8yzAkZzBnxCS-qHNCQmnB9LwF9H7JUry_bGnksrlT9a_MgfAElLnodIlF_A6PwkdggKFi1gk?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMKciqOx8s4PCuW0Ppom71IX-a50iN7InOAXmxabKjjmCoIRrhO0H11i3tqC-H4RYtPv4S06YZ6VHp4tlSwFvQF?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpw-HVKmA006E9BQAd7e98-vozCA4KaS39TVeIRykGY9m1Pb6UnKDo-KpYSCjR-KUyXi1PKNGG8_nm2EvogQ_Nnz?PARTNER=WRITER" alt="image"></a> </td></tr> <tr> <td valign="top" width="100">火狐3beta5</td> <td valign="top" width="100"><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpzKiTy3H32Q-7l56GUkm-VUp21mH5YgQlmfRKLpAdiN4-iMxwmkqYHqho0JOlvUb1n47ZhRhZqWlswudSdsLBMv?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxPCjiKlu7CnsRJXVAUDAqOPMve6gWrEXvlcHJNBgveEI2oAHOnfEMa-cDhA_NlayBdiKE0IiteLr1ZG3hbiw9n?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNfIcNk_LknRDYTgjyH74A4eOdw7yMmzrCe4UxXqh1BPkB7rGUqUXCi3PB8_z44WbW1lNlrw8He7q8MVshk5CBa?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpz3ukH6AZH2gLmdnlCScjSUVa1AJ5P23i4JytzqBqAvzoNKRyWe7dxF6knz1Nu8uk6Y05ta_q0DmO9ggJp6LQNc?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN6RQznmxS-rQuFvyQ4xVolZ2kK1l7igkOJyvNCT74L8VhS3_d4Fb3JjLOKlWIRhOc5fwIJTSiZLgX6djgiwmOK?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyPJCMOsRzfvBdZgVQ3ZWfnwei_P95Mxfk7bt2cEzgkRHZsmaXRGGC1YLDCxNj4z0LPYENOaMwyOnu2OC8ra4FV?PARTNER=WRITER" alt="image"></a> </td></tr></tbody></table><br><br>下面是LabVIEW 发布应用程序的几点注意事项：<br><br><strong>1 被发布VI最好设成可重入，以便多用户同时访问，否则同时只有一个用户能控制和操作程序。</strong><br><br><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpwJ8a1PX2f9OGt7wh9TsGSAKCrki68f8a4GhA5lhZFd5eCOe5_Vv2ENn33Z5EFiOJczzQsgCMpsnQ_MmlqgzBDC?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzeXGCB09n60DB5nEBCMMfzw37KsDoulsV-TqkzEMFUPPugKxE3akGF6de4Qv6gYgwXVXU0dlMTV5aiNm62ZaFL?PARTNER=WRITER" alt="image"></a> <a href="http://by2.storage.msn.com/y1p8NjIsGi7lpydEO9ucGTV9q9iZ993aZ9nKrPvODKvWAXQmJfgeZ_asRs7toguILPxLCyzu1gZpVZx-sRTF4hFOd933Za99Muc?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwV1nRi_xLouCpxtfZq5yClz8ZbYtB6Vt6Se6f0ErQtiyivgyu9-QkRZlpIDX4Qo4VAst2s_NGMb5wD4pdUaOxx?PARTNER=WRITER" alt="image"></a><br><br><strong>2 客户端需要LabVIEW Runtime Engine，并且浏览器需要支持LabVIEW控件才可以。</strong><br> <div><pre><span>&lt;!</span><span>DOCTYPE</span> <span>HTML</span> <span>PUBLIC</span> <span>&quot;-//W3C//DTD HTML 3.2 Draft//EN&quot;</span><span>&gt;</span></pre><pre><span>&lt;</span><span>HTML</span><span>&gt;</span></pre><pre><span>&lt;</span><span>HEAD</span><span>&gt;</span></pre><pre><span>&lt;</span><span>TITLE</span><span>&gt;</span>Title of Web Page<span>&lt;/</span><span>TITLE</span><span>&gt;</span></pre><pre><span>&lt;/</span><span>HEAD</span><span>&gt;</span></pre><pre><span>&lt;</span><span>BODY</span> <span>&gt;</span></pre><pre><span>&lt;</span><span>H1</span><span>&gt;</span>Title of Web Page<span>&lt;/</span><span>H1</span><span>&gt;</span></pre><pre>Text that is going to be displayed before the VI panel image.<span>&lt;</span><span>P</span><span>&gt;</span></pre><pre><span>&lt;</span><span>TABLE</span> <span>BORDER</span> = <span>1</span> <span>BORDERCOLOR</span> = #<span>000000</span><span>&gt;&lt;</span><span>TR</span><span>&gt;&lt;</span><span>TD</span><span>&gt;</span></pre><pre><span>&lt;</span><span>OBJECT</span> <span>ID</span><span>=&quot;LabVIEWControl&quot;</span> <span>CLASSID</span><span>=&quot;CLSID:A40B0AD4-B50E-4E58-8A1D-8544233807AF&quot;</span> <span>WIDTH</span>=<span>914</span> <span>HEIGHT</span>=<span>667</span> <span>CODEBASE</span><span>=&quot;<a href="ftp://ftp.ni.com/support/labview/runtime/windows/8.5/LVRunTimeEng.exe" target="_blank" rel="noopener">ftp://ftp.ni.com/support/labview/runtime/windows/8.5/LVRunTimeEng.exe</a>&quot;</span><span>&gt;</span></pre><pre><span>&lt;</span><span>PARAM</span> <span>name</span><span>=&quot;LVFPPVINAME&quot;</span> <span>value</span><span>=&quot;FAQ_DB.lvproj/My Computer/main_v1.0.0.vi&quot;</span><span>&gt;</span></pre><pre><span>&lt;</span><span>PARAM</span> <span>name</span><span>=&quot;REQCTRL&quot;</span> <span>value</span>=<span>true</span><span>&gt;</span></pre><pre><span>&lt;</span><span>EMBED</span> <span>SRC</span><span>=&quot;.LV_FrontPanelProtocol.rpvi85&quot;</span> <span>LVFPPVINAME</span><span>=&quot;FAQ_DB.lvproj/My Computer/main_v1.0.0.vi&quot;</span> <span>REQCTRL</span>=<span>true</span> <span>TYPE</span><span>=&quot;application/x-labviewrpvi85&quot;</span> <span>WIDTH</span>=<span>914</span> <span>HEIGHT</span>=<span>667</span>  <span>PLUGINSPAGE</span><span>=&quot;<a href="http://digital.ni.com/express.nsf/bycode/exck2m" target="_blank" rel="noopener">http://digital.ni.com/express.nsf/bycode/exck2m</a>&quot;</span><span>&gt;</span></pre><pre><span>&lt;/</span><span>EMBED</span><span>&gt;</span></pre><pre><span>&lt;/</span><span>OBJECT</span><span>&gt;</span></pre><pre><span>&lt;/</span><span>TD</span><span>&gt;&lt;/</span><span>TR</span><span>&gt;&lt;/</span><span>TABLE</span><span>&gt;</span></pre><pre><span>&lt;</span><span>P</span><span>&gt;</span></pre><pre>Text that is going to be displayed after the VI panel image.</pre><pre><span>&lt;/</span><span>BODY</span><span>&gt;</span></pre><pre><span>&lt;/</span><span>HTML</span><span>&gt;</span></pre></div>
+
+<p> <a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhP6awthTcHcLjagVSfAfChVDXgUqleWmDnMna9wUx1lzen33ogZxWTU1zKTfHctp58Fl5NsSNHmWXtkZdpLTVgp?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwr37v6Z__8Cyh7wU2EUbF5zgPmhN38wWPAa0VTV-UC9Jz03U8kl_1r_7wYl4vAmIiKgsClDj_5qlRPGTWwJUi8?PARTNER=WRITER" alt="image"></a> </p>
+<p><strong>3 不要忘记打开80端口，否则无法从其它机器访问。</strong></p>
+<p><strong>4 要保证被运行VI在服务器端载入到内存。</strong></p>
+<font color="#ff0000">小结：</font>
+
+<font color="#ff0000">在程序/网站的发布上，我们可以看到LabVIEW的在服务器端配置的易用性远远超过ASP.net，</font>
+
+<font color="#ff0000">但是在客户端需要LabVIEW运行引擎和浏览器对LabVIEW WEB控件的支持，</font>
+
+<font color="#ff0000">而ASP。net配置虽然复杂，但是客户端只需要浏览器即可。</font>
+
+<p><font color="#ff0000"><strong>总体来说LabVIEW的WEB发布更适合工业控制领域，ASP.net则是开发专业网站使用的工具。</strong></font><br></p></div><p></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2008/04/15/labview-e5-92-8cvisual-studio-ef-bc-88asp-net-ef-bc-89-e7-9a-84-e7-bd-91-e7-bb-9c-e5-8f-91-e5-b8-83/" data-id="cjgfwikj8002o10cg8zrdx9mb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2008/04/17/crio-e6-91-a7-e6-ae-8b-e8-ae-b0-ef-bc-88-e4-b8-8b-ef-bc-89-e2-80-94-e2-80-94fpga-e7-af-87/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          cRIO摧残记（下）——FPGA篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2008/04/14/labview-e5-92-8cvisual-studio-e7-9a-84-e6-95-b0-e6-8d-ae-e5-ba-93-e8-81-94-e6-8e-a5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LabVIEW和Visual Studio的数据库联接</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机与-Internet/">计算机与 Internet</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/26/test-my-site/">test_my_site</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/26/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/04/e5-b7-b2-e6-90-ac-e5-ae-b6-e5-88-b0haobo-li/">已搬家到haobo.li</a>
+          </li>
+        
+          <li>
+            <a href="/2013/09/29/e7-bb-997zip-e5-8e-8b-e7-bc-a9-e8-87-aa-e5-8a-a8-e5-a2-9e-e5-8a-a0-e6-97-b6-e9-97-b4-e6-88-b3/">给7Zip压缩自动增加时间戳</a>
+          </li>
+        
+          <li>
+            <a href="/2013/09/26/ni-e9-99-a2-e6-a0-a1-e5-a5-97-e4-bb-b6-e6-89-b9-e9-87-8f-e5-ae-89-e8-a3-85-e6-8a-80-e5-b7-a7-e4-b8-80-e5-88-99/">NI院校套件批量安装技巧一则</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>LabVIEW 图标编辑器与自注释 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在LabVIEW里面，图标是VI很重要的一个元素。好的图标可以作为自注释的一部分减少我们做文档的工作量。LabVIEW默认的VI图标我们不能从中得出任何信息；文本型的图标就可以提供更多的信息；文本和图像混合的图标很直观，又能提供一定的信息量；好的图像型图标甚至可以指示出各条连线的功能；因此，给自己的VI画一个好的图标是很有必要的，不过很多人可能会嫌麻烦，不愿意做这个工作。现在好了，LabVIEW开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LabVIEW 图标编辑器与自注释">
+<meta property="og:url" content="http://yoursite.com/2008/01/31/labview-e5-9b-be-e6-a0-87-e7-bc-96-e8-be-91-e5-99-a8-e4-b8-8e-e8-87-aa-e6-b3-a8-e9-87-8a/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在LabVIEW里面，图标是VI很重要的一个元素。好的图标可以作为自注释的一部分减少我们做文档的工作量。LabVIEW默认的VI图标我们不能从中得出任何信息；文本型的图标就可以提供更多的信息；文本和图像混合的图标很直观，又能提供一定的信息量；好的图像型图标甚至可以指示出各条连线的功能；因此，给自己的VI画一个好的图标是很有必要的，不过很多人可能会嫌麻烦，不愿意做这个工作。现在好了，LabVIEW开">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://by1.storage.msn.com/y1p8NjIsGi7lpwzdTCQRa1mwZVc7Nia6D0-SUhBi_3Xzy57cXdoFAZXiQga20Lh5clk_LR583ijsU9x_B09bBoHZT9eHddezDHd?PARTNER=WRITER">
+<meta property="og:image" content="http://by1.storage.msn.com/y1p8NjIsGi7lpwoc4PkQwCJNpLMChINu_wXEoh9czjp4gjgIiSQg5LFDqb-DnB2sD_ld42MN9ngmm4MrckEgf6G1Nic4dQ4A6oX?PARTNER=WRITER">
+<meta property="og:image" content="http://by1.storage.msn.com/y1p8NjIsGi7lpyh_Ls0FjRb3ba47ePQBtGd_aSUVR_2aZjuPJhxchnTCotY9ND55Ws75r164oh_o0KPfQEzHBQ63gRgCYqN5UjG?PARTNER=WRITER">
+<meta property="og:image" content="http://by1.storage.msn.com/y1p8NjIsGi7lpzVrTiHWQ48c6xtBDZ-j8xChwgWdNuMs7u54fG--YTKiFvtbWFn1lIHgOl0-LSEVqTSxHO4CoaCdXXuZNfRyUZi?PARTNER=WRITER">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNV63j-XoXplCa7dTunyaAx1bBUn6-qlT0Wi_zqQbr_PJIy8yIPPxt2eOCHOqvtb2_EYioJeV5QcqOZ7698Q74M?PARTNER=WRITER">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPW6kWc8U5E4AX3PPWwWHND7xQhuMKBLT08uKgGhE0Ot0aE1cYQkkY-e7vQhmqolMr1XZDRf058yXxLtiFGcX3v?PARTNER=WRITER">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMlkvlvIdNz6I6Q9v11J-3iGN9qEbGFgm_VSIWqTRkCeHCX3Q_7mYo7bC1J4jSs1XADvR1L8WnvhZY-WEMshsXa?PARTNER=WRITER">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMj2lT7QfmQtWtt9qt8scK680vODPDXihxT0N9OASBRGCrdX0QYrSWAsH117iJQfAuzcWwB44uqpDOjrk8MgMwj?PARTNER=WRITER">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMIDrzHNUfYOA-ovjEhckCh0mpmxptYaGHcC2ELbH2ZS7yVzBqMCwQFP6t1-B_LWsJoQJ5lJQapEFDRloPhvKiJ?PARTNER=WRITER">
+<meta property="og:updated_time" content="2018-04-26T02:20:32.034Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LabVIEW 图标编辑器与自注释">
+<meta name="twitter:description" content="在LabVIEW里面，图标是VI很重要的一个元素。好的图标可以作为自注释的一部分减少我们做文档的工作量。LabVIEW默认的VI图标我们不能从中得出任何信息；文本型的图标就可以提供更多的信息；文本和图像混合的图标很直观，又能提供一定的信息量；好的图像型图标甚至可以指示出各条连线的功能；因此，给自己的VI画一个好的图标是很有必要的，不过很多人可能会嫌麻烦，不愿意做这个工作。现在好了，LabVIEW开">
+<meta name="twitter:image" content="http://by1.storage.msn.com/y1p8NjIsGi7lpwzdTCQRa1mwZVc7Nia6D0-SUhBi_3Xzy57cXdoFAZXiQga20Lh5clk_LR583ijsU9x_B09bBoHZT9eHddezDHd?PARTNER=WRITER">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-labview-e5-9b-be-e6-a0-87-e7-bc-96-e8-be-91-e5-99-a8-e4-b8-8e-e8-87-aa-e6-b3-a8-e9-87-8a" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/01/31/labview-e5-9b-be-e6-a0-87-e7-bc-96-e8-be-91-e5-99-a8-e4-b8-8e-e8-87-aa-e6-b3-a8-e9-87-8a/" class="article-date">
+  <time datetime="2008-01-31T03:03:37.000Z" itemprop="datePublished">2008-01-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LabVIEW 图标编辑器与自注释
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!507" class="bvMsg"><br><br>在LabVIEW里面，图标是VI很重要的一个元素。好的图标可以作为自注释的一部分减少我们做文档的工作量。<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr9GYlfdshgGFXIzNPeaDy9c6h62PwdsH-ZBmWwaUdJkXFT0at_aiU4i951-QjwOyeG3R1brC4PeYQ?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpwzdTCQRa1mwZVc7Nia6D0-SUhBi_3Xzy57cXdoFAZXiQga20Lh5clk_LR583ijsU9x_B09bBoHZT9eHddezDHd?PARTNER=WRITER" alt="image"></a><br><br>LabVIEW默认的VI图标我们不能从中得出任何信息；<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMCboMk8PopYrYVJwwzbebnNhJjy8v_RPIeIyOUBgw4RQcQYa0c80d4ziJ69PxN5P_i3CgJuT3YlkZ4KdbsinWg?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpwoc4PkQwCJNpLMChINu_wXEoh9czjp4gjgIiSQg5LFDqb-DnB2sD_ld42MN9ngmm4MrckEgf6G1Nic4dQ4A6oX?PARTNER=WRITER" alt="image"></a><br><br>文本型的图标就可以提供更多的信息；<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNBRSxLyBkANW3QMbrpI9bxbA5ac1bMnyH0Nd5vmPHV30lr0A9DeMt9i_wX1Mdxy-6-cE82vegtpy5QqAqWndw_?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpyh_Ls0FjRb3ba47ePQBtGd_aSUVR_2aZjuPJhxchnTCotY9ND55Ws75r164oh_o0KPfQEzHBQ63gRgCYqN5UjG?PARTNER=WRITER" alt="image"></a><br><br>文本和图像混合的图标很直观，又能提供一定的信息量；<br><br><a href="http://by1.storage.msn.com/y1p8NjIsGi7lpzwrNIslz-NgyQ4AlfcHd77d_p2geUdXWLajEzAsW81U8szdpcdPU3K_tWAMrI7oRW_ehj0U14tYeUZvV57cyw3?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpzVrTiHWQ48c6xtBDZ-j8xChwgWdNuMs7u54fG--YTKiFvtbWFn1lIHgOl0-LSEVqTSxHO4CoaCdXXuZNfRyUZi?PARTNER=WRITER" alt="image"></a><br><br>好的图像型图标甚至可以指示出各条连线的功能；<br><br>因此，给自己的VI画一个好的图标是很有必要的，不过很多人可能会嫌麻烦，不愿意做这个工作。<br><br>现在好了，LabVIEW开发者社区提供了一个高级图标编辑器：<br><br><a href="http://community.ni.com/examples/customized-labview-icon-editor" title="http://community.ni.com/examples/customized-labview-icon-editor" target="_blank" rel="noopener">http://community.ni.com/examples/customized-labview-icon-editor</a><br><br>具有以下功能<br><br>The following features are provided by the icon editor: <p><em>Open source <p>**</p></em>Draw easily an icon with heading and three body lines<strong> <p><em>Save icon styles <p></p></em>Take a template from the library by double clicking on it </p><p><em>Drag &amp; Drop templates <p></p></em>Save icon templates (template tab: save the icon as 32x32px; tool tab/selection tool: save the selected area) </p><p><em>Add/Delete templates <p></p></em>Flip templates (left CTRL key) </p><p><em>Rotate templates (Space) <p></p></em>50 undo steps </p><p><em>Paint - Tools: Rectangle, Rounded Rectangle, Circle, Line, Fill, Selection, Text, Rubber, Pen and Dropper <p></p></em>Many colors </p><p><em>Different line profiles <p></p></em>Easy to handle </p><p>*etc. etc. etc. </p><p>比较有用的就是可以快速生成文本型图标，还有可以通过拖动生成图像型图标。 </p><p>总之一句话就是提供了更方便更强大的功能。<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMBLEJ9ebk5qIYCdt6dv-UKx05lNXHaPthdfEpxrZ6JfbJVeVwCnnTp2alfmnTPjCdxnO8jtZZVk3BwUnaO-lX0?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNV63j-XoXplCa7dTunyaAx1bBUn6-qlT0Wi_zqQbr_PJIy8yIPPxt2eOCHOqvtb2_EYioJeV5QcqOZ7698Q74M?PARTNER=WRITER" alt="image"></a><br><br>clear icon可以清空图标<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhO0cbKgAQvP6U-KSTpLc2QhypUJafzg0qLwQemv6rPjmx-FLld8Pp0ogvLk-6IK1fJ49X4BDRP6HrVfvBoLS9ti?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPW6kWc8U5E4AX3PPWwWHND7xQhuMKBLT08uKgGhE0Ot0aE1cYQkkY-e7vQhmqolMr1XZDRf058yXxLtiFGcX3v?PARTNER=WRITER" alt="image"></a><br><br>draw icon可以按配置信息生成文本型图标<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMXc3wqSwOfPvbp6JIUiA8rcJboFZUVUVlUVv2ZaazV8tlfsBHHnCTvlk4SDtDTd4SykRNEYjOaTNQ31E69QwQl?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMlkvlvIdNz6I6Q9v11J-3iGN9qEbGFgm_VSIWqTRkCeHCX3Q_7mYo7bC1J4jSs1XADvR1L8WnvhZY-WEMshsXa?PARTNER=WRITER" alt="image"></a><br><br>这一页可以拖图标上去<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN0S594Oha-EcTy00UjPUSUHoeWg1kD0a-UhXjV-JwyDo14FLQxr7nw5ut9mqoM_FPcKJd3lmoYJf70YX1g5NwJ?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMj2lT7QfmQtWtt9qt8scK680vODPDXihxT0N9OASBRGCrdX0QYrSWAsH117iJQfAuzcWwB44uqpDOjrk8MgMwj?PARTNER=WRITER" alt="image"></a><br><br>这一页和传统的画图工具类似<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhO6R00G3TNaLa3BzBADm3SCxAwCMk3r5l_vsQi5Xqmx0f-31_RqN7giT2xumGLzsoitPDGUfn_3XW6-Au2A5ecV?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMIDrzHNUfYOA-ovjEhckCh0mpmxptYaGHcC2ELbH2ZS7yVzBqMCwQFP6t1-B_LWsJoQJ5lJQapEFDRloPhvKiJ?PARTNER=WRITER" alt="image"></a><br><br>完成之后按submit提交。<br><br>总之是个很方便的工具。
+
+</p></strong><font color="#ff0000">下面是注意事项：</font><strong>
+
+</strong>Known issues:*<em> 
+
+</em>   Using the selection tool in LV 8.2.0 might cause a crash of LabVIEWWorkaround: Recreate all Timed Loop related stuff<br><br>*   Starting the Icon Editor by VI-Properties - General - Icon Editor freezes LabVIEWWorkaround: Start it by double clicking on the icon or by right clicking on the icon -&gt; &quot;Edit Icon…&quot; </p><p>另外卸载要按照手册提示的步骤来。<br><br>最后是下载地址：<br><br> <dt>Download Code:  <dd><a href="http://community.ni.com/examples/customized-labview-icon-editor/iconeditor.zip" target="_blank" rel="noopener">LabVIEW Icon Editor</a> (3.2 MB)</dd> <p>包含FOR 8.2和8.5的版本<br><br>分流地址：<br><br><a href="http://cid-866b8f96a2761bbe.skydrive.live.com/self.aspx/Public/IconEditor.zip" title="http://cid-866b8f96a2761bbe.skydrive.live.com/self.aspx/Public/IconEditor.zip" target="_blank" rel="noopener">http://cid-866b8f96a2761bbe.skydrive.live.com/self.aspx/Public/IconEditor.zip</a><br></p></dt></p><p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2008/01/31/labview-e5-9b-be-e6-a0-87-e7-bc-96-e8-be-91-e5-99-a8-e4-b8-8e-e8-87-aa-e6-b3-a8-e9-87-8a/" data-id="cjgfwikj9002q10cguyskfhsu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2008/02/15/labview-e6-88-aa-e5-9b-be-e6-8a-80-e5-b7-a7-e6-88-aa-e5-8f-96-e5-85-a8-e9-83-a8-e7-a8-8b-e5-ba-8f-e6-a1-86-e5-9b-be/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LabVIEW截图技巧-截取全部程序框图
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2008/01/31/labview-8-5-e5-b7-a5-e7-a8-8b-e7-ae-a1-e7-90-86-e5-99-a8-e5-86-b2-e7-aa-81-e8-a7-a3-e5-86-b3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LabVIEW 8.5工程管理器-冲突解决</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机与-Internet/">计算机与 Internet</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/26/test-my-site/">test_my_site</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/26/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/04/e5-b7-b2-e6-90-ac-e5-ae-b6-e5-88-b0haobo-li/">已搬家到haobo.li</a>
+          </li>
+        
+          <li>
+            <a href="/2013/09/29/e7-bb-997zip-e5-8e-8b-e7-bc-a9-e8-87-aa-e5-8a-a8-e5-a2-9e-e5-8a-a0-e6-97-b6-e9-97-b4-e6-88-b3/">给7Zip压缩自动增加时间戳</a>
+          </li>
+        
+          <li>
+            <a href="/2013/09/26/ni-e9-99-a2-e6-a0-a1-e5-a5-97-e4-bb-b6-e6-89-b9-e9-87-8f-e5-ae-89-e8-a3-85-e6-8a-80-e5-b7-a7-e4-b8-80-e5-88-99/">NI院校套件批量安装技巧一则</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
