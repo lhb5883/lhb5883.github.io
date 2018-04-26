@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="1. 在LabVIEW 8.6下安装图标编辑器报错的解决 下载的安装包直接运行会提示以下错误    重启后打开图标编辑器闪过新界面后还是原来的编辑器。  以下是解决方案:MASScompile整个目录    再次安装即可正常使用  2. 批量获取新图标 1)浏览到合适网页,选择另存全部网页.     这时候我们就有了大量的新图标,不过透明的部分在不支持alpha通道的软件(LabVIEW、画图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LabVIEW 图标编辑器相关技巧两则">
+<meta property="og:url" content="http://haobo.li/2009/02/20/archived-labview-2-icon-editor-tips/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="1. 在LabVIEW 8.6下安装图标编辑器报错的解决 下载的安装包直接运行会提示以下错误    重启后打开图标编辑器闪过新界面后还是原来的编辑器。  以下是解决方案:MASScompile整个目录    再次安装即可正常使用  2. 批量获取新图标 1)浏览到合适网页,选择另存全部网页.     这时候我们就有了大量的新图标,不过透明的部分在不支持alpha通道的软件(LabVIEW、画图">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0025b35d33af2eae.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0045b35d74381fef.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0065b35d383d116a.jpg?w=298">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0085b35d1a8cb9db.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0105b35d115f2119.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0125b35d2af550c5.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0145b35d75ad4bc2.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0165b35d.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0185b35d2db9ce26.jpg?w=185">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0205b35d5cb212f5.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0225b35d.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0245b35d.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0265b35d.jpg?w=201">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0285b35d.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0305b35d.jpg?w=273">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b45d.jpg?w=224">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0345b35d.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0365b35d.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0385b35d.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b15d5b25d.jpg?w=224">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0405b35d.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0425b35d.jpg?w=273">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0445b35d.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0465b35d.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0485b35d.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0505b35d.jpg?w=222">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0545b35d.jpg?w=228">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0525b35d.jpg?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/02/image5b25d.png?w=300">
+<meta property="og:updated_time" content="2018-04-26T02:20:32.033Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LabVIEW 图标编辑器相关技巧两则">
+<meta name="twitter:description" content="1. 在LabVIEW 8.6下安装图标编辑器报错的解决 下载的安装包直接运行会提示以下错误    重启后打开图标编辑器闪过新界面后还是原来的编辑器。  以下是解决方案:MASScompile整个目录    再次安装即可正常使用  2. 批量获取新图标 1)浏览到合适网页,选择另存全部网页.     这时候我们就有了大量的新图标,不过透明的部分在不支持alpha通道的软件(LabVIEW、画图">
+<meta name="twitter:image" content="http://lhb5883.files.wordpress.com/2009/02/clip_image0025b35d33af2eae.jpg?w=300">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://haobo.li/2009/02/20/archived-labview-2-icon-editor-tips/"/>
+
+
+
+
+
+  <title>LabVIEW 图标编辑器相关技巧两则 | haobo.li</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">haobo.li</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Measurement Tips</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/02/20/archived-labview-2-icon-editor-tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LabVIEW 图标编辑器相关技巧两则</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-02-20T09:09:07+08:00">
+                2009-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="msgcns!866B8F96A2761BBE!1263" class="bvMsg"><br><br>  <p><strong>1. 在LabVIEW 8.6下安装图标编辑器报错的解决</strong> </p><p>下载的安装包直接运行会提示以下错误 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0025b35d33af2eae.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0025b35d33af2eae.jpg?w=300" alt="clip_image002" title="clip_image002"></a> </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0045b35d74381fef.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0045b35d74381fef.jpg?w=300" alt="clip_image004" title="clip_image004"></a> </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0065b35d383d116a.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0065b35d383d116a.jpg?w=298" alt="clip_image006" title="clip_image006"></a> </p><p>重启后打开图标编辑器闪过新界面后还是原来的编辑器。 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0085b35d1a8cb9db.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0085b35d1a8cb9db.jpg?w=300" alt="clip_image008" title="clip_image008"></a> </p><p>以下是解决方案:MASScompile整个目录 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0105b35d115f2119.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0105b35d115f2119.jpg?w=300" alt="clip_image010" title="clip_image010"></a> </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0125b35d2af550c5.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0125b35d2af550c5.jpg?w=300" alt="clip_image012" title="clip_image012"></a> </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0145b35d75ad4bc2.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0145b35d75ad4bc2.jpg?w=300" alt="clip_image014" title="clip_image014"></a> </p><p>再次安装即可正常使用 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0165b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0165b35d.jpg?w=300" alt="clip_image016" title="clip_image016"></a> </p><p><strong>2. 批量获取新图标</strong> </p><p>1)浏览到合适网页,选择另存全部网页. </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0185b35d2db9ce26.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0185b35d2db9ce26.jpg?w=185" alt="clip_image018" title="clip_image018"></a> </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0205b35d5cb212f5.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0205b35d5cb212f5.jpg?w=300" alt="clip_image020" title="clip_image020"></a> </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0225b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0225b35d.jpg?w=300" alt="clip_image022" title="clip_image022"></a> </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0245b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0245b35d.jpg?w=300" alt="clip_image024" title="clip_image024"></a> </p><p>这时候我们就有了大量的新图标,不过透明的部分在不支持alpha通道的软件(LabVIEW、画图等)里会显示黑块。 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0265b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0265b35d.jpg?w=201" alt="clip_image026" title="clip_image026"></a> </p><p>2)此时合该祭出PS </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0285b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0285b35d.jpg?w=300" alt="clip_image028" title="clip_image028"></a> </p><p>我们以PS化之 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0305b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0305b35d.jpg?w=273" alt="clip_image030" title="clip_image030"></a> </p><p>3)打开一个图标，打开动作面板，我们新建一个动作 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b45d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b45d.jpg?w=224" alt="clip_image032" title="clip_image032"></a> </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0345b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0345b35d.jpg?w=300" alt="clip_image034" title="clip_image034"></a> </p><p>然后另存为PNG </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0365b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0365b35d.jpg?w=300" alt="clip_image036" title="clip_image036"></a> </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0385b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0385b35d.jpg?w=300" alt="clip_image038" title="clip_image038"></a> </p><p>[<img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b15d5b25d.jpg?w=224" alt="clip_image032[1]" title="clip_image032[1]">](<a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b15d5b25d.jpg" target="_blank" rel="noopener">http://lhb5883.files.wordpress.com/2009/02/clip_image0325b15d5b25d.jpg</a>) </p><p>关闭GIF文件后结束动作录制。 </p><p>使用文件菜单下批处理，配置好输入输出目录静待PS发威。 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0405b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0405b35d.jpg?w=300" alt="clip_image040" title="clip_image040"></a> </p><p>4)然后我们打开PNG，再建一个转换背景的动作 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0425b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0425b35d.jpg?w=273" alt="clip_image042" title="clip_image042"></a> </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0445b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0445b35d.jpg?w=300" alt="clip_image044" title="clip_image044"></a> </p><p>首先更改颜色到RGB模式 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0465b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0465b35d.jpg?w=300" alt="clip_image046" title="clip_image046"></a> </p><p>然后添加背景 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0485b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0485b35d.jpg?w=300" alt="clip_image048" title="clip_image048"></a> </p><p>最后保存关闭，结束录制 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0505b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0505b35d.jpg?w=222" alt="clip_image050" title="clip_image050"></a> </p><p>再批处理一次 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0545b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0545b35d.jpg?w=228" alt="clip_image054" title="clip_image054"></a> </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0525b35d.jpg" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0525b35d.jpg?w=300" alt="clip_image052" title="clip_image052"></a> </p><p>5)最后复制到相应路径下即可使用 </p><p><a href="http://lhb5883.files.wordpress.com/2009/02/image5b25d.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b25d.png?w=300" alt="image" title="image"></a> <a href="http://lhb5883.files.wordpress.com/2009/02/clip_image0545b35d.jpg" target="_blank" rel="noopener"></a><br></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2009/02/19/archived-labview-regex/" rel="next" title="LabVIEW 正则表达式应用">
+                <i class="fa fa-chevron-left"></i> LabVIEW 正则表达式应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2009/03/24/archived-we-do-the-3rd-power-of-x-right1/" rel="prev" title="WE DO The 3rd Power of X RIGHT(1)">
+                WE DO The 3rd Power of X RIGHT(1) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+     
+       <div onclick="ShowGitment()" id="gitment-display-button">Show comments from Gitment</div>
+       <div id="gitment-container" style="display:none"></div>
+     
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="haobo.li" />
+          <p class="site-author-name" itemprop="name">haobo.li</p>
+           
+              <p class="site-description motion-element" itemprop="description">A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haobo.li</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+     
+     
+     
+     
+     <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+     
+         <script type="text/javascript">
+             function ShowGitment(){
+                 document.getElementById("gitment-display-button").style.display = "none";
+                 document.getElementById("gitment-container").style.display = "block";
+                 var gitment = new Gitment({
+                     id: document.location.href, 
+                     owner: 'lhb5883',
+                     repo: 'lhb5883.github.io',
+                     oauth: {
+                         client_id: '5473d4670bb678c93d94',
+                         client_secret: '619d8420f0cc6f9f141bd8792e8f3a355a9193ed',
+                     }});
+                 gitment.render('gitment-container');
+             }
+         </script>
+     
+ 
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2008/04/14/labview-e5-92-8cvisual-studio-e7-9a-84-e6-95-b0-e6-8d-ae-e5-ba-93-e8-81-94-e6-8e-a5/">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2008/03/20/archived-crio-teardown-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haobo.li">
@@ -282,289 +282,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/04/14/labview-e5-92-8cvisual-studio-e7-9a-84-e6-95-b0-e6-8d-ae-e5-ba-93-e8-81-94-e6-8e-a5/" itemprop="url">LabVIEW和Visual Studio的数据库联接</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-04-14T09:37:00+08:00">
-                2008-04-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
-                    <span itemprop="name">Uncategorized</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <div id="msgcns!866B8F96A2761BBE!793" class="bvMsg"><br><br>最近在研究Visual Studio的数据库连接，正好我们的<a href="http://stormywolf.spaces.live.com/" target="_blank" rel="noopener">SW</a>同学写了一个基于LabVIEW的数据库程序就被我厚颜无耻拿来学术研究了：<br><br><strong>首先我们先看看界面：</strong><br><br>这个是他写的LabVIEW程序：<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr-rsHPZ9qsTUYK3Bcfks73Qb-WYzW354oRm-XMtpVsxGmC3jCw4Um3GXhqAb4elqN4pWU8B71QfYA?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxiV4koJ1Eq2sXTsE11i8ZJRGewFQiztnfPfw7JTG7xKWusFKmn5ACWO2coVgECx6-XO7SojRS0ODKwQT0VB993?PARTNER=WRITER" alt="image"></a><br><br>开发环境：LabVIEW 8.2/8.5<br><br>需要LabVIEW 8.5（or Runtime）、Database Connection Tools支持<br><br>本人的高仿山寨版：<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMIzc7sPe8YXm9aDYKhVikAkKl9dITc27FKJuvzj0tWGWiVwhWDBDRXWi-3VeagVuk3rTPuOFZMJjPI026dOmYo?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpykb7c7LqXMZWwBs8ne29EIZa1q2StZAc1xotbRR4vvMv1Twk5RevgZYHJXq6wsMOXmXAXoCsseGA9YU5ClGaOg?PARTNER=WRITER" alt="image"></a><br><br>开发环境：Visual Studio 2008/2005<br><br>需要IIS5.1（及以上），.net framework 2.0支持<br><br>浏览器支持：Internet Explorer 7.0/8.0 beta1，Firefox 2.0/3.0 beta 5，Safari 3.1<br><br><strong>然后我们再看看程序：</strong><br><br><font color="#ff0000">数据库的连接</font>：<br><br><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpyZF-5Nvn7HzrSLf1LEZNS-EngM075lS6O4kfEC4VgI6hH_t6tCWGVQt5c6II-xt-2UdznDlkF7zPGmDjDw4lV4?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzgWo2X06OKTBGkcMlUp15FLlFL0l1Apd9AaN3XZHq5N4ikj1bdVyhxOj1jZkaVht-6xurvYrk_Dgt6TlDovXZF?PARTNER=WRITER" alt="image"></a><br><br>LabVIEW可以通过DSN连接，也可以通过其他方式。<br><br><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpySP0QEmndfxyDA35Sv2iBH41BNwzTHPtdi2bXgdwh3owYRiUBU2Mn8530yjx65FqLw-oPrCCo6a-gNasAwxBbu?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwMFOCxgwtxx6bBOcpYEoA7hdMFUf4F37dBlkSPuDhZcRrTLdJ1X788FzQV7ZBu4g__wgFRJOOJjN_z-E5aPp_C?PARTNER=WRITER" alt="image"></a><br><br>Visual Studio也是类似的：<br> &gt; String connStr = @&quot;Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db1.mdb;User Id=admin;Password=;&quot;;<br>&gt; OleDbConnection conn = new OleDbConnection(connStr)<br><br>我使用了连接字符串来连接数据库。 <p><font color="#ff0000">数据库搜索</font>都是用SQL来查询： </p><p>LabVIEW： </p><p><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpwgzO27HK24yQ_j6KkpOiMpB-Fee8wXEVrfu_TKBTsnwuprNTQLWJ1dPGrkKgV0tm9E8nA0B3Jiq5P9fVQb8CWl?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwC28qRpaOuAskfy86qKEv88Iz6e4J1KaSvCR0OMEN_U4jfdZXcgDfBGbbmwYAyewzC7RpOMaeOumuOcXJQdM1D?PARTNER=WRITER" alt="image"></a>  </p><p>Visual Studio： </p><p>select ID,Problem,Answer,keyw from (select <em> from [Communication Buses] union select </em> from [DAQmx/DAQ] union select <em> from [Instrument Drivers] union select </em> from [LabVIEW] union select <em> from [LabWindows/CVI] union select </em> from [Modular Instruments] union select <em> from [other softwares] union select </em> from [others] union select <em> from [PAC] union select </em> from [Platform] union select * from [Vision and Motion]) as muti where Problem like ‘%6251%’ or KeyW like ‘%6251%’ </p><p>数据的解析与显示： </p><p><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpzUh9RxmHUHlQsQVcZzokKTEOJENxAtuTybqdFW_lN_eXFOpyymoTIgjGZLDZHtSX7LgypP49oYuQ3Tt6599pxJ?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpymnd9lEnht_-dZMjiQaZzHcZGqxkoVmYibVqP1yDyQwE3vWP5USjdIlG8YcDRmr5AxHSPEq_QFW8WK4fd8FetE?PARTNER=WRITER" alt="image"></a>  </p><p><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPjn1n4pr3OoZpHmo82MeLqchHxscFj-DG4V4bQB04gKU2jt1ckYcFtXpurELrpEslP4PbWbwvtHFZ4vkLxzoBN?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwdjKgkdEOuUJwK9ScRs89anH-BRU9Ar4lcqK88oqJpXMWfepmojz27i54jPWTXDcgHBpb4uvxWC64VKvDXFoNM?PARTNER=WRITER" alt="image"></a>  </p><p>OleDbDataAdapter sda = new OleDbDataAdapter(SQLQueryString, conn);<br>DataSet ds = new DataSet();<br>sda.Fill(ds);<br>GridView1.DataSource = ds.Tables[0].DefaultView;<br>GridView1.DataBind(); </p><p><a href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr8zGIRo3qg_bYE6ilLd57GsOmq299QvsIR_ZD86qVDK_QjBa_fnh6tMVue00UudhdWlozNI_TY68A?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGFzf7nu6U_SeaBmQsqJZNNI9rOqaDSe1wyUJlk5D4NBNNbYWaLZtDBJrcRJBIv4vI?PARTNER=WRITER" alt="image"></a>  </p><p>小结：可以看到LabVIEW和Visual Studio都提供了很方便的数据库连接接口，使用的方法也比较类似。 </p><p>区别就是LabVIEW编程可以很方便的利用状态机，而使用C#就要利用事件，这个并没有优劣之分，主要看个人习惯。 </p><p>因此这次的对比证明了LabVIEW和Visual Studio相比数据库的开发能力差不多，关键还是在开发者的开发习惯。 </p><p>  </p><p>=========================以下是纯洁的分割线================================ </p><p><strong><font color="#ff0000">如何在XP下配置IIS和ASP。net 2.0 </font></strong> </p><p><font color="#000000">1：安装IIS：</font> </p><p><a href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr85tot0mo1Q95NcyIQgle5vrAwAbzCiaClOX9MRQTkEgsOBSHME-4MDWKsaX3u0OwVIBC2GaHDJqw?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxVDZ7BNPfyTAO1g1Cd9RgNPSK5K75wJ5y7kxWWxSSCLbxgVIZk_-7zXd6dmegGr7gVfOt162jIx-CvI2N_S4f1?PARTNER=WRITER" alt="image"></a>  </p><p><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpzFV87Q5V6h-zClFZXrg085n7WkeRGjB6Rbp5FjVBnGClBcA33bL-4_WMIm0EmHGbm0GurVC8Q4TBfV_Hfvit_0?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzfYzTugeeG0B8_MgWgd81J8wbSM6x5_qkFxRXVJIjBHICmcTrZb6WI_DdM6NF6AxUloeu743yltKZWQ44XjfOu?PARTNER=WRITER" alt="image"></a>  </p><p>基本上一路下一步即可，提示插入XP光盘就插进去。 </p><p>2安装。net framework2.0： </p><p>下载链接： </p><p><a href="http://www.microsoft.com/downloads/details.aspx?displaylang=zh-cn&amp;FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5" title="http://www.microsoft.com/downloads/details.aspx?displaylang=zh-cn&amp;FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5" target="_blank" rel="noopener">http://www.microsoft.com/downloads/details.aspx?displaylang=zh-cn&amp;FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5</a> </p><p><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpwMF7nrOK3OdGYuKbUrxH-5tp-aU4EFJmHLyyrRtSAl-X6072fFQWGhLJM59YGziPqd4gevupLTeG6UgNiySlNv?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzezCn7VvzX937E6uGTHNCCn_LPBvwdHjKE7Bvw3mlp-LIX9etCAAKEbIeBTskKLYHhtCp74z8pnZ3yccKntw5_?PARTNER=WRITER" alt="image"></a>  </p><p>这个也是一路下一步。 </p><p>3 配置IIS和ASP。net </p><p><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOuK3E8vElf524vNo7L96Al-WHY4RhiG9WizlpoiWpOyc9qarMj9ZC95_2qZYGvkqxyt_s9FtWTgwAe6Xfk3szT?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwghfT7qH13uHr4hJbZ_655Jg2G15ZEc8KURrfwHYeZYdmcCRFlBDD7s0AqOcbI4zWouWMG5sIHpkgvvVugTrTU?PARTNER=WRITER" alt="clip_image002"></a> </p><p>首先配置主目录： </p><p>[<img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwRH0R9u5SFZsznI6HY7VrMu4CnxbfbZUqkKz_Vv1_7rGNcGd503LPWp0hLpgDMW3sdB1bls2CrzBfiyutdAFWR?PARTNER=WRITER" alt="clip_image002[4]](http://by2.storage.msn.com/y1p8NjIsGi7lpzE49wFDunldELaHobS9AA8NpHyr3o5EiCmvonORqb9rABwbwEMuP6YUqsqHZUi_gucJ_KrwtCXh_2zpVTjIX9v?PARTNER=WRITER)"> </p><p>然后配置ASP。net： </p><p>[<img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzM00JBJt8m05zZ7sl2ZfOiaNJHTLA0VW6f7iT470mg_ocCdJ8yePjelb2CD3e4ebyN0iFyEOLjjm-Mjr-T-O-W?PARTNER=WRITER" alt="clip_image002[6]](http://by2.storage.msn.com/y1p8NjIsGi7lpw_XdK8DNb80wjofB6CUcWgv_sMPmDjA_7ZX7gfint7B0QccppCB3ZLYQbIezbXhGA_ILXQLJ0Q9aIKM373bXsy?PARTNER=WRITER)"> </p><p>然后回到主目录这一页配置ASPX关联： </p><p>[<a href="http://by2.storage.msn.com/y1p8NjIsGi7lpwRH0R9u5SFZsznI6HY7VrMu4CnxbfbZUqkKz_Vv1_7rGNcGd503LPWp0hLpgDMW3sdB1bls2CrzBfiyutdAFWR?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpweO_Raw-S1yo9VgHKVd_SioObI6tTYA3y2xpA8B7kQuJX2zHMnr08ix4UBIKAEYdYaA7_1IrL7fIHsaCG_w4h4?PARTNER=WRITER" alt="clip_image002[4]](http://by2.storage.msn.com/y1p8NjIsGi7lpzE49wFDunldELaHobS9AA8NpHyr3o5EiCmvonORqb9rABwbwEMuP6YUqsqHZUi_gucJ_KrwtCXh_2zpVTjIX9v?PARTNER=WRITER)"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzGegUvTnzx2dQYxBCW4ErigqgaDDQ9dv1rpxqs_O02hyn9GDRexvconsuaQ7mzIVkUtyvnJv3V9aUcx0ExaJ95?PARTNER=WRITER" alt="clip_image002[8]"></a> </p><p>再添加主页： </p><p>[<img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwNJF49vYCiIU7cH9xRpOSjbzeV4EP_4mooK8FtWNsgD3_xA2sm8S1W8D_0g2Emi-Sv-_uQmXPoGmLFVDYkZRKY?PARTNER=WRITER" alt="clip_image002[10]](http://by2.storage.msn.com/y1p8NjIsGi7lpyZc-ZNW65n0r860o7lZQfre1DfPBYwNZWJENpjBZqIrRM_TDC_OSql8z0C2uDvWiBT8tL_9hlngperkcFSfBp5?PARTNER=WRITER)"> </p><p>4 授权IIS用户： </p><p>在C:WINDOWSMicrosoft.NETFrameworkv2.0.50727&gt;aspnet_regiis.exe运行GA参数 </p><p>-ga &lt;user&gt; 为指定的用户或用户组授予权限，使其可以访问 IIS 元数据库和 ASP.NET 使用的其他目录 </p><p>[<img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhODm2fi_rdmcFZkSzcnQWLsdb5SeV58nSGgVR-MbX-jzRuijok9CvRIoevikOZtnNNWNV29hDzmpDtUDezu41P3?PARTNER=WRITER" alt="clip_image002[12]](http://by2.storage.msn.com/y1p8NjIsGi7lpzp4LiFzVzKER5Zv3jwhZPvAzyNPPvRvdmTE-1qg0lEGdoIy_yck_mDAzPMiLMYy5OlA-x0xscHeYeSBN4cJHdi?PARTNER=WRITER)"> </p><p>目标是IWAM打头的那个用户。 </p><p>[<img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyu9-FSxAqCM2LvhSnRNT_OWuNYVRLZz692d2LCUl7T6JmPH4O0L0qofybqBLDl1a--TQ-99JLIFXoqcCWj-_Wm?PARTNER=WRITER" alt="clip_image002[14]](http://by2.storage.msn.com/y1p8NjIsGi7lpzXj267jt-WJLoaH2SAOcmnGpFZ4KTLXMV2H0L72MMNmDEcbjrI7RBw0xNy4ca384MKEWZHLqal_X48hjvSSoh4?PARTNER=WRITER)"> </p><p>5 最后打开防火墙80端口 </p><p><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpwPYuPipdQ8EVRSsCHkgBrSrp1RbKIh8ixycGqIApiVrEyO6L-PIisT35K5yIUXilXVgWz5SNS8BuOT6CGozOkr?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxKxTzM1rQvwZOymZp8EiAJsZfz1SYB6cSY1Qyk3Y1DvS7QhwBUiNeoqNmBRjX_VFBl3u83TvlED31WpXyDBReS?PARTNER=WRITER" alt="image"></a>  </p><p>6 大功告成！ </p><p><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMxe0WHtcOrzvtgtOB5-puP3GdnPRvP8460OHHV3VLDoBDPlYdsRbItrJ-2k4xmOYgsGXqIxabk3iTH15hc5jdX?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwbEbbVmOX-ZoUDQQzV4Mvl19SK07HseVzkfOolMnHOCp8xh8PfKYQwpVlUUcEd7mQS6fSj4EWl5EUnf0igHpGn?PARTNER=WRITER" alt="image"></a><br></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p></div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2008/04/08/crio-e6-91-a7-e6-ae-8b-e8-ae-b0-ef-bc-88-e4-b8-ad-ef-bc-89-e2-80-94-e2-80-94realtime-e7-af-87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/04/08/crio-e6-91-a7-e6-ae-8b-e8-ae-b0-ef-bc-88-e4-b8-ad-ef-bc-89-e2-80-94-e2-80-94realtime-e7-af-87/" itemprop="url">cRIO摧残记（中）——RealTime篇</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-04-08T11:13:22+08:00">
-                2008-04-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
-                    <span itemprop="name">Uncategorized</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <div id="msgcns!866B8F96A2761BBE!751" class="bvMsg"><br><br>上次我们提到cRIO是由RT控制器、FPGA、模块三部分构成的，今天我们要研究的是cRIO的RT控制器的定时精度。<br><br>在LabVIEW的RT例程里面专门有一个benchmark程序，可以用来测试代码的执行时间。<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr-1y4meOuwAT2PdIaBVzeqAhZZIl4Se-oWsO6Wo3ImpemAS0dTZHaK8QHxdDhf2npniS8dH-X5oHQ?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM1bRQ2Yn6fZwa_wtmNQsnBZDLygUIyYAvrSxBy6VSympC5KhNA9pIoAV1wXkd92WZMrptQoVIgO21XY12e6mwj?PARTNER=WRITER" alt="image"></a><br><br>今天我们要测试的是RT的wait函数：<br><br><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpyfcCWmMOlLCQ9SOzeX1g1fttzRuey7W4tvnerY6PiRYaAgCOGQ-6EX3vxuuLYOY1rNjJVANnQPzitbJnrtaK-h?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxIAxqp-1KTfCEOVMfgm9opFQ_VPkg-8pT8auEqqpewRNh9pY3GPmqX96wQMaUAkp-Iov0sCBXJ8a346UZuvKFG?PARTNER=WRITER" alt="image"></a><br><br>Wait函数有三种定时单位可以选择：<br><br><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpxDq3PvOetL-QLdCmPU-Sn_uXxfFytATTilMdHKkyjPg6LoY5ryVza7_mGCTRoLEng4wB6teMmFXfDUuY0-52PF?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpy-CA3WeV1N4Ktwc7tRyMgO0CO36qkW63w8S-Wh82Ee9G8UnZfAcxLQM6iQM9qBQdKDXuCoOd8mDRrH3teKVmkH?PARTNER=WRITER" alt="image"></a><br><br>mSec毫秒：这个和一般非Rt的程序里面等待函数用法是一样的<br><br>uSec微秒：顾名思义，以微秒为单位定时<br><br>Ticks时钟：这个比较诡异，根据下面的实验是以纳秒为单位定时。<br><br>下面就是实验的截图，点击可以看大图，图中横轴代表定时的时间，纵轴代表测得的延时时间：<br> <table cellspacing="0" cellpadding="2" width="400" border="1"> <tbody> <tr> <td valign="top" width="100">Ticks方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100">100</td> <td valign="top" width="100">1000</td> <td valign="top" width="100">2000</td> <td valign="top" width="100">2500</td></tr> <tr> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNdYPoQF__zVl9jVlpAGB0xvstaxYtjhFsuu66s10ugT7ZzM2Na_N7tfG9JBH2K-OK-M0BCStsW7UKlawIW1fiW?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxEZVVq6Ms4vkymeJA9gbZzDYg-8OQRqUUXDnJ1JU2aANlV6Qe9XqAj0lKocDElQiP4QAi3K2qoFMmn9afYr834?PARTNER=WRITER" alt="tick 100ns"></a></td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN_lAhLLVXxX8tTnz4Aug1QyJumYzVBWBTB2If5Y1DWYLeTGqmnS1Y-BkgRFIGLGVKnf09JOQCm6FGnQm5HlmAS?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzltceUdA8pVKhqcDNEKO3ReUlrjoA870Vw46Mue8R5Dtl4t00v7VNaLZAv34n04rndSSGVanWJeNs2zAAT3HC3?PARTNER=WRITER" alt="tick 1000ns"></a> </td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMkenl1eYt-wG9wegJDUW56QNA3BM1UY3S8Z-zWz3RVZQ6Ole7EzQFCvuL_2AtmcjLNZcJv_o3Ft6nEBLv_TqUI?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzD0Gpwjvz6Q6QmbkyqzJpFM3wXwwZC_moCditymrPUyUrJW-g_fb0_CFfL7J9O_VtOhZnEB8IJIti6ZnBhf5fs?PARTNER=WRITER" alt="tick 2000ns"></a> </td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOjKZQJYG09JmkNRVDv4gkXNyn-VMxcIT6V9C1xWJQnxvUNqCJ0ycSAYPippKIs-9I_YbBigu5TfRSqL3LbsuOP?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwOrjGOm1aDOb7RQP6PFoKM0mEDH4Cr54L6_LtMpEtPp7Br_f1C53aJsTPij-EGB-n4L9KKQcUj0ZJY5Y1ovqQm?PARTNER=WRITER" alt="tick 2500ns"></a> </td></tr> <tr> <td valign="top" width="100">uSec方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">1us</td> <td valign="top" width="100">2us</td> <td valign="top" width="100">3us</td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN0SSHjgkBl6p_fL8lYcmBggZBEvVbZHthF7_mr8kSWAPHqrU34MaxSliInIn2bmCJfFBF9C9GCP2o36TganMZx?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwxA_7glJKlosjtAkGvsxZbTU4srQ1kwHlsHxC-kHdicLqAOn7W1jYA6TV5wZj-2pXitvr-4XP5LtImgzNmuEW5?PARTNER=WRITER" alt="uSec 1us"> </a></td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM4dQCbUJxgeITDyr31Wu-NllXSeATleh-znVAjqvwyv1SMlSu-VfN298yUSLRZMVA7EmWs7IrvNQP63lVk-dDj?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpx82eOyflJuKsCNnjH2WPaC5V0OGDNrSPQPV2uAUx4htz_hZbHyBGBgKdQ0vF9OYUCkQo2uE-otaL-1wdBn2bnN?PARTNER=WRITER" alt="uSec 2us"></a></td> <td valign="top" width="100"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxrGzTWBj4XAkDz2VlibjLAgzFYiH2R51i0-vF0qclEsHXfE2TllzS2pl0WKDU3dXa0oFln9ljANaWQ0hxcEnTW?PARTNER=WRITER" alt="uSec 3us"></td></tr></tbody></table><br><br>可以得出的几个结论：<br><br>1 Ticks的计时单位是纳秒<br><br>2 cRIO的定时间隔在20us下是不准确的，在20us以上基本上可以认为是线性的。<br> <table cellspacing="0" cellpadding="2" width="402" border="1"> <tbody> <tr> <td valign="top" width="100">Ticks方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100">100</td> <td valign="top" width="100">1000</td> <td valign="top" width="100">2000</td> <td valign="top" width="100">2500</td></tr> <tr> <td valign="top" width="100">21000ns之后可以认为是线性的</td> <td valign="top" width="100">22000ns</td> <td valign="top" width="100">22000ns</td> <td valign="top" width="100">20000ns</td></tr> <tr> <td valign="top" width="100">uSec方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">1us</td> <td valign="top" width="100">2us</td> <td valign="top" width="100">3us</td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">22us</td> <td valign="top" width="100">16us</td> <td valign="top" width="100">18us</td></tr></tbody></table><br><br>3 这一点是个人的猜想，仅供参考：20us以上的定时也不是完全线形的，有可能是因为cRIO的RT时钟间隔造成的，<br></div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2008/03/20/crio-e6-91-a7-e6-ae-8b-e8-ae-b0-ef-bc-88-e4-b8-8a-ef-bc-89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/03/20/crio-e6-91-a7-e6-ae-8b-e8-ae-b0-ef-bc-88-e4-b8-8a-ef-bc-89/" itemprop="url">cRIO摧残记（上）</a></h1>
+                <a class="post-title-link" href="/2008/03/20/archived-crio-teardown-01/" itemprop="url">cRIO摧残记（上）</a></h1>
         
 
         <div class="post-meta">
@@ -686,7 +404,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2008/03/07/ctrlcctrlv-e5-bd-92-e6-9d-a5-ef-bc-8c-e5-bf-ab-e6-8d-b7-e9-94-ae-e4-b8-87-e5-b2-81-ef-bc-81/">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2008/03/07/archived-ctrlcctrlv-in-labview-icon-editor/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haobo.li">
@@ -705,7 +423,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/03/07/ctrlcctrlv-e5-bd-92-e6-9d-a5-ef-bc-8c-e5-bf-ab-e6-8d-b7-e9-94-ae-e4-b8-87-e5-b2-81-ef-bc-81/" itemprop="url">Ctrl+C~Ctrl+V归来，快捷键万岁！</a></h1>
+                <a class="post-title-link" href="/2008/03/07/archived-ctrlcctrlv-in-labview-icon-editor/" itemprop="url">Ctrl+C~Ctrl+V归来，快捷键万岁！</a></h1>
         
 
         <div class="post-meta">
@@ -827,7 +545,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2008/03/05/ni-7332-e6-90-8f-e6-96-97-e8-ae-b0/">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2008/03/05/archived-ni-7332-tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haobo.li">
@@ -846,7 +564,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2008/03/05/ni-7332-e6-90-8f-e6-96-97-e8-ae-b0/" itemprop="url">NI 7332 搏斗记</a></h1>
+                <a class="post-title-link" href="/2008/03/05/archived-ni-7332-tips/" itemprop="url">NI 7332 搏斗记</a></h1>
         
 
         <div class="post-meta">
@@ -955,6 +673,294 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2008/02/15/archived-labview-print-screen-tips-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/02/15/archived-labview-print-screen-tips-02/" itemprop="url">LabVIEW截图技巧-截取全部程序框图</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-02-15T09:30:20+08:00">
+                2008-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!529" class="bvMsg"><br><br>截截截……打截！<br><br>今天我们要截的是LabVIEW的程序框图（众人：切！~BS！这谁不会啊？）<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr89UQ9XnjhfWQrpyX-S4uu-y-TwDK5UqFvsdh0CwudZfB4ow2qMiuU0aKdftNO0WvLmZkPg-0E3nA?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpx0tbuFNRa5izEsTXwYfJr_UJhsjUZ_9etzpNNtEXTr4FavT4sV2qGtQmQiPpKHYBjBbt7IMLBV5T3Up4h47T24?PARTNER=WRITER" alt="image"></a><br><br>PrintScreen键很好使，但是还要开画图板，像我们这种注重效率的专业人士（众人围殴中）要截图，当然另有高招<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMCxmunTTzUe0EW5HXgJL22BWFe2ZuIFOIu9EqY5DrO4ZklXUz-iwdbq6pareXRW4PR8PTV6rHanynf9kSsEYhn?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpy8TDna0aZE7lvD1ly1bnzOopPJWnMBkltjfQA6Cj4dWHjigkztkBF0Z5GFYs6FButiZuoZ6kLmPpHpoOS4XDoV?PARTNER=WRITER" alt="image"></a><br><br>首先截个全图<br><br><a href="http://by1.storage.msn.com/y1p8NjIsGi7lpzr0aSuPWbb7T6Prgevraf1L1cnAmyO17ydQVD_uS24yXW4urLplK_ioF1QtpiB6Mc24pM3P6h460Pf-2F_6oSO?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpzBHHW2JKKlJ4ABilODwoY8FWvL96gXmrDjW_DnnVdddZuZGaiPyo_yww0EyPzle1i4DE9mPM1sr9vQVLgUb38m?PARTNER=WRITER" alt="image"></a><br><br>截个部分<br><br><a href="http://by1.storage.msn.com/y1p8NjIsGi7lpxmBfoGUkEJE8B9ff5hzbl5xB__zc2-vbt5hcVOJNiv6V7t5ttNAjDDrAbakQwwR_nAZu1x7F5uiAR58FamgZIp?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpzbjHUjqkM26oqBBEwnvCbz5Cxv9UzIaKgL50xhSpJwv1_1ltEoHs374jyI-_xnAHGQGWzvl3zKEJAM9cqftTOH?PARTNER=WRITER" alt="image"></a><br><br>然后截个VI<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPeGgNkl99HQcN83JRF-6j8wNHDuVs1B3NMC6xaf9eNnFyvE9sz-THds-6yP9keQ28gTMTI9-B8Mv47SmmWaY3R?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpxbATezjQK2rak8xDF2NeK2HMpWI5qCcLV4V9Iz1UFNOXrJZ9hRETu7Lb46cFWNhuzJ7N8__Tjlo9WyhRrflqbT?PARTNER=WRITER" alt="image"></a><br><br>前面板<br><br><a href="http://by1.storage.msn.com/y1p8NjIsGi7lpxvxqxlwDvUuSsa1d6Ctb02mVJm4BtCriQvMEMgpReLMNxea0jG7QIwjVoX8fFpRU0ObDYJwLtYis69WkjQz7T2?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpyPeMf4fUbVx7scxbKd6NCthQ4-NOMQsflpQKGS4_QWKwB41QbWqJredBVVRX6cgRF1dyDMh3c7AvYhdHttbvML?PARTNER=WRITER" alt="image"></a><br><br>按钮们<br><br>想知道怎么截么？一般人我不告诉他！（众人继续围殴中）<br><br> =========================我是无辜的分割线===========================<br><br>Win + R<br>打开“运行”对话框。<br><br><a href="http://by1.storage.msn.com/y1p8NjIsGi7lpzE3h5nhGJ4NuTIqE7bWsSl0MW-q5ROlwttW2DfV3-ud3-07rtIwQqrg07QTP11bPDDKYbolndrJZmKUs5BE0mH?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpxcV-ya8tR7M9hoRi0NctznYXngklFjoqosV5r45q46pircV4zW-8vwu3mw8RoVMLCf5_MhQFkRRI_7Auy-zF1C?PARTNER=WRITER" alt="image"></a><br><br>呵呵，猜到没有？ <p><a href="http://by1.storage.msn.com/y1p8NjIsGi7lpx4BerpwohX-k6IpJoDa7FSe86VB_p0V82072q3CoeVBcaVVW2WLlLnO3M7pitBYc__PFDiQ58M3qk4cTJQW90S?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPul0aiskH4H5dyKisHYNzudivKyNo3LI9jkYLfjAerHc0duogFfNKaTm0kxmcRpbRJPIBbnj-SiqQChyq5AljX?PARTNER=WRITER" alt="image"></a>  </p><p><strong><font color="#ff0000">秘诀就是Ctrl+C和Ctr+V</font></strong> </p><p><strong><font color="#ff0000">在LabVIEW里面复制代码之后，到其他程序（例如OFFICE）里面粘贴，</font></strong> </p><p><strong><font color="#ff0000">因为其他程序不认识LabVIEW的框图代码，所以会把贴进来的对象当作图片处理。</font></strong> </p><p>以后做演示PPT、Word注释文档轻松多了吧！再也不用开着画图裁裁减减了！<br></p></div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2008/01/31/archived-labview-icon-editor-and-self-comment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2008/01/31/archived-labview-icon-editor-and-self-comment/" itemprop="url">LabVIEW 图标编辑器与自注释</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-01-31T11:03:37+08:00">
+                2008-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!507" class="bvMsg"><br><br>在LabVIEW里面，图标是VI很重要的一个元素。好的图标可以作为自注释的一部分减少我们做文档的工作量。<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr9GYlfdshgGFXIzNPeaDy9c6h62PwdsH-ZBmWwaUdJkXFT0at_aiU4i951-QjwOyeG3R1brC4PeYQ?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpwzdTCQRa1mwZVc7Nia6D0-SUhBi_3Xzy57cXdoFAZXiQga20Lh5clk_LR583ijsU9x_B09bBoHZT9eHddezDHd?PARTNER=WRITER" alt="image"></a><br><br>LabVIEW默认的VI图标我们不能从中得出任何信息；<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMCboMk8PopYrYVJwwzbebnNhJjy8v_RPIeIyOUBgw4RQcQYa0c80d4ziJ69PxN5P_i3CgJuT3YlkZ4KdbsinWg?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpwoc4PkQwCJNpLMChINu_wXEoh9czjp4gjgIiSQg5LFDqb-DnB2sD_ld42MN9ngmm4MrckEgf6G1Nic4dQ4A6oX?PARTNER=WRITER" alt="image"></a><br><br>文本型的图标就可以提供更多的信息；<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNBRSxLyBkANW3QMbrpI9bxbA5ac1bMnyH0Nd5vmPHV30lr0A9DeMt9i_wX1Mdxy-6-cE82vegtpy5QqAqWndw_?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpyh_Ls0FjRb3ba47ePQBtGd_aSUVR_2aZjuPJhxchnTCotY9ND55Ws75r164oh_o0KPfQEzHBQ63gRgCYqN5UjG?PARTNER=WRITER" alt="image"></a><br><br>文本和图像混合的图标很直观，又能提供一定的信息量；<br><br><a href="http://by1.storage.msn.com/y1p8NjIsGi7lpzwrNIslz-NgyQ4AlfcHd77d_p2geUdXWLajEzAsW81U8szdpcdPU3K_tWAMrI7oRW_ehj0U14tYeUZvV57cyw3?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpzVrTiHWQ48c6xtBDZ-j8xChwgWdNuMs7u54fG--YTKiFvtbWFn1lIHgOl0-LSEVqTSxHO4CoaCdXXuZNfRyUZi?PARTNER=WRITER" alt="image"></a><br><br>好的图像型图标甚至可以指示出各条连线的功能；<br><br>因此，给自己的VI画一个好的图标是很有必要的，不过很多人可能会嫌麻烦，不愿意做这个工作。<br><br>现在好了，LabVIEW开发者社区提供了一个高级图标编辑器：<br><br><a href="http://community.ni.com/examples/customized-labview-icon-editor" title="http://community.ni.com/examples/customized-labview-icon-editor" target="_blank" rel="noopener">http://community.ni.com/examples/customized-labview-icon-editor</a><br><br>具有以下功能<br><br>The following features are provided by the icon editor: <p><em>Open source <p>**</p></em>Draw easily an icon with heading and three body lines<strong> <p><em>Save icon styles <p></p></em>Take a template from the library by double clicking on it </p><p><em>Drag &amp; Drop templates <p></p></em>Save icon templates (template tab: save the icon as 32x32px; tool tab/selection tool: save the selected area) </p><p><em>Add/Delete templates <p></p></em>Flip templates (left CTRL key) </p><p><em>Rotate templates (Space) <p></p></em>50 undo steps </p><p><em>Paint - Tools: Rectangle, Rounded Rectangle, Circle, Line, Fill, Selection, Text, Rubber, Pen and Dropper <p></p></em>Many colors </p><p><em>Different line profiles <p></p></em>Easy to handle </p><p>*etc. etc. etc. </p><p>比较有用的就是可以快速生成文本型图标，还有可以通过拖动生成图像型图标。 </p><p>总之一句话就是提供了更方便更强大的功能。<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMBLEJ9ebk5qIYCdt6dv-UKx05lNXHaPthdfEpxrZ6JfbJVeVwCnnTp2alfmnTPjCdxnO8jtZZVk3BwUnaO-lX0?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNV63j-XoXplCa7dTunyaAx1bBUn6-qlT0Wi_zqQbr_PJIy8yIPPxt2eOCHOqvtb2_EYioJeV5QcqOZ7698Q74M?PARTNER=WRITER" alt="image"></a><br><br>clear icon可以清空图标<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhO0cbKgAQvP6U-KSTpLc2QhypUJafzg0qLwQemv6rPjmx-FLld8Pp0ogvLk-6IK1fJ49X4BDRP6HrVfvBoLS9ti?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPW6kWc8U5E4AX3PPWwWHND7xQhuMKBLT08uKgGhE0Ot0aE1cYQkkY-e7vQhmqolMr1XZDRf058yXxLtiFGcX3v?PARTNER=WRITER" alt="image"></a><br><br>draw icon可以按配置信息生成文本型图标<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMXc3wqSwOfPvbp6JIUiA8rcJboFZUVUVlUVv2ZaazV8tlfsBHHnCTvlk4SDtDTd4SykRNEYjOaTNQ31E69QwQl?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMlkvlvIdNz6I6Q9v11J-3iGN9qEbGFgm_VSIWqTRkCeHCX3Q_7mYo7bC1J4jSs1XADvR1L8WnvhZY-WEMshsXa?PARTNER=WRITER" alt="image"></a><br><br>这一页可以拖图标上去<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN0S594Oha-EcTy00UjPUSUHoeWg1kD0a-UhXjV-JwyDo14FLQxr7nw5ut9mqoM_FPcKJd3lmoYJf70YX1g5NwJ?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMj2lT7QfmQtWtt9qt8scK680vODPDXihxT0N9OASBRGCrdX0QYrSWAsH117iJQfAuzcWwB44uqpDOjrk8MgMwj?PARTNER=WRITER" alt="image"></a><br><br>这一页和传统的画图工具类似<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhO6R00G3TNaLa3BzBADm3SCxAwCMk3r5l_vsQi5Xqmx0f-31_RqN7giT2xumGLzsoitPDGUfn_3XW6-Au2A5ecV?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMIDrzHNUfYOA-ovjEhckCh0mpmxptYaGHcC2ELbH2ZS7yVzBqMCwQFP6t1-B_LWsJoQJ5lJQapEFDRloPhvKiJ?PARTNER=WRITER" alt="image"></a><br><br>完成之后按submit提交。<br><br>总之是个很方便的工具。
+
+</p></strong><font color="#ff0000">下面是注意事项：</font><strong>
+
+</strong>Known issues:*<em> 
+
+</em>   Using the selection tool in LV 8.2.0 might cause a crash of LabVIEWWorkaround: Recreate all Timed Loop related stuff<br><br>*   Starting the Icon Editor by VI-Properties - General - Icon Editor freezes LabVIEWWorkaround: Start it by double clicking on the icon or by right clicking on the icon -&gt; &quot;Edit Icon…&quot; </p><p>另外卸载要按照手册提示的步骤来。<br><br>最后是下载地址：<br><br> <dt>Download Code:  <dd><a href="http://community.ni.com/examples/customized-labview-icon-editor/iconeditor.zip" target="_blank" rel="noopener">LabVIEW Icon Editor</a> (3.2 MB)</dd> <p>包含FOR 8.2和8.5的版本<br><br>分流地址：<br><br><a href="http://cid-866b8f96a2761bbe.skydrive.live.com/self.aspx/Public/IconEditor.zip" title="http://cid-866b8f96a2761bbe.skydrive.live.com/self.aspx/Public/IconEditor.zip" target="_blank" rel="noopener">http://cid-866b8f96a2761bbe.skydrive.live.com/self.aspx/Public/IconEditor.zip</a><br></p></dt></p><p></p></div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1006,7 +1012,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

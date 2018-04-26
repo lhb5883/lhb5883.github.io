@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="上次我们提到cRIO是由RT控制器、FPGA、模块三部分构成的，今天我们要研究的是cRIO的RT控制器的定时精度。在LabVIEW的RT例程里面专门有一个benchmark程序，可以用来测试代码的执行时间。今天我们要测试的是RT的wait函数：Wait函数有三种定时单位可以选择：mSec毫秒：这个和一般非Rt的程序里面等待函数用法是一样的uSec微秒：顾名思义，以微秒为单位定时Ticks时钟：这个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cRIO摧残记（中）——RealTime篇">
+<meta property="og:url" content="http://haobo.li/2008/04/08/archived-crio-teardown-02/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="上次我们提到cRIO是由RT控制器、FPGA、模块三部分构成的，今天我们要研究的是cRIO的RT控制器的定时精度。在LabVIEW的RT例程里面专门有一个benchmark程序，可以用来测试代码的执行时间。今天我们要测试的是RT的wait函数：Wait函数有三种定时单位可以选择：mSec毫秒：这个和一般非Rt的程序里面等待函数用法是一样的uSec微秒：顾名思义，以微秒为单位定时Ticks时钟：这个">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM1bRQ2Yn6fZwa_wtmNQsnBZDLygUIyYAvrSxBy6VSympC5KhNA9pIoAV1wXkd92WZMrptQoVIgO21XY12e6mwj?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxIAxqp-1KTfCEOVMfgm9opFQ_VPkg-8pT8auEqqpewRNh9pY3GPmqX96wQMaUAkp-Iov0sCBXJ8a346UZuvKFG?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpy-CA3WeV1N4Ktwc7tRyMgO0CO36qkW63w8S-Wh82Ee9G8UnZfAcxLQM6iQM9qBQdKDXuCoOd8mDRrH3teKVmkH?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxEZVVq6Ms4vkymeJA9gbZzDYg-8OQRqUUXDnJ1JU2aANlV6Qe9XqAj0lKocDElQiP4QAi3K2qoFMmn9afYr834?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpzltceUdA8pVKhqcDNEKO3ReUlrjoA870Vw46Mue8R5Dtl4t00v7VNaLZAv34n04rndSSGVanWJeNs2zAAT3HC3?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpzD0Gpwjvz6Q6QmbkyqzJpFM3wXwwZC_moCditymrPUyUrJW-g_fb0_CFfL7J9O_VtOhZnEB8IJIti6ZnBhf5fs?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwOrjGOm1aDOb7RQP6PFoKM0mEDH4Cr54L6_LtMpEtPp7Br_f1C53aJsTPij-EGB-n4L9KKQcUj0ZJY5Y1ovqQm?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwxA_7glJKlosjtAkGvsxZbTU4srQ1kwHlsHxC-kHdicLqAOn7W1jYA6TV5wZj-2pXitvr-4XP5LtImgzNmuEW5?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpx82eOyflJuKsCNnjH2WPaC5V0OGDNrSPQPV2uAUx4htz_hZbHyBGBgKdQ0vF9OYUCkQo2uE-otaL-1wdBn2bnN?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxrGzTWBj4XAkDz2VlibjLAgzFYiH2R51i0-vF0qclEsHXfE2TllzS2pl0WKDU3dXa0oFln9ljANaWQ0hxcEnTW?PARTNER=WRITER">
+<meta property="og:updated_time" content="2018-04-26T02:20:32.034Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cRIO摧残记（中）——RealTime篇">
+<meta name="twitter:description" content="上次我们提到cRIO是由RT控制器、FPGA、模块三部分构成的，今天我们要研究的是cRIO的RT控制器的定时精度。在LabVIEW的RT例程里面专门有一个benchmark程序，可以用来测试代码的执行时间。今天我们要测试的是RT的wait函数：Wait函数有三种定时单位可以选择：mSec毫秒：这个和一般非Rt的程序里面等待函数用法是一样的uSec微秒：顾名思义，以微秒为单位定时Ticks时钟：这个">
+<meta name="twitter:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM1bRQ2Yn6fZwa_wtmNQsnBZDLygUIyYAvrSxBy6VSympC5KhNA9pIoAV1wXkd92WZMrptQoVIgO21XY12e6mwj?PARTNER=WRITER">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://haobo.li/2008/04/08/archived-crio-teardown-02/"/>
+
+
+
+
+
+  <title>cRIO摧残记（中）——RealTime篇 | haobo.li</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">haobo.li</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Measurement Tips</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2008/04/08/archived-crio-teardown-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">cRIO摧残记（中）——RealTime篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-04-08T11:13:22+08:00">
+                2008-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="msgcns!866B8F96A2761BBE!751" class="bvMsg"><br><br>上次我们提到cRIO是由RT控制器、FPGA、模块三部分构成的，今天我们要研究的是cRIO的RT控制器的定时精度。<br><br>在LabVIEW的RT例程里面专门有一个benchmark程序，可以用来测试代码的执行时间。<br><br><a href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr-1y4meOuwAT2PdIaBVzeqAhZZIl4Se-oWsO6Wo3ImpemAS0dTZHaK8QHxdDhf2npniS8dH-X5oHQ?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM1bRQ2Yn6fZwa_wtmNQsnBZDLygUIyYAvrSxBy6VSympC5KhNA9pIoAV1wXkd92WZMrptQoVIgO21XY12e6mwj?PARTNER=WRITER" alt="image"></a><br><br>今天我们要测试的是RT的wait函数：<br><br><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpyfcCWmMOlLCQ9SOzeX1g1fttzRuey7W4tvnerY6PiRYaAgCOGQ-6EX3vxuuLYOY1rNjJVANnQPzitbJnrtaK-h?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxIAxqp-1KTfCEOVMfgm9opFQ_VPkg-8pT8auEqqpewRNh9pY3GPmqX96wQMaUAkp-Iov0sCBXJ8a346UZuvKFG?PARTNER=WRITER" alt="image"></a><br><br>Wait函数有三种定时单位可以选择：<br><br><a href="http://by2.storage.msn.com/y1p8NjIsGi7lpxDq3PvOetL-QLdCmPU-Sn_uXxfFytATTilMdHKkyjPg6LoY5ryVza7_mGCTRoLEng4wB6teMmFXfDUuY0-52PF?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpy-CA3WeV1N4Ktwc7tRyMgO0CO36qkW63w8S-Wh82Ee9G8UnZfAcxLQM6iQM9qBQdKDXuCoOd8mDRrH3teKVmkH?PARTNER=WRITER" alt="image"></a><br><br>mSec毫秒：这个和一般非Rt的程序里面等待函数用法是一样的<br><br>uSec微秒：顾名思义，以微秒为单位定时<br><br>Ticks时钟：这个比较诡异，根据下面的实验是以纳秒为单位定时。<br><br>下面就是实验的截图，点击可以看大图，图中横轴代表定时的时间，纵轴代表测得的延时时间：<br> <table cellspacing="0" cellpadding="2" width="400" border="1"> <tbody> <tr> <td valign="top" width="100">Ticks方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100">100</td> <td valign="top" width="100">1000</td> <td valign="top" width="100">2000</td> <td valign="top" width="100">2500</td></tr> <tr> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNdYPoQF__zVl9jVlpAGB0xvstaxYtjhFsuu66s10ugT7ZzM2Na_N7tfG9JBH2K-OK-M0BCStsW7UKlawIW1fiW?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxEZVVq6Ms4vkymeJA9gbZzDYg-8OQRqUUXDnJ1JU2aANlV6Qe9XqAj0lKocDElQiP4QAi3K2qoFMmn9afYr834?PARTNER=WRITER" alt="tick 100ns"></a></td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN_lAhLLVXxX8tTnz4Aug1QyJumYzVBWBTB2If5Y1DWYLeTGqmnS1Y-BkgRFIGLGVKnf09JOQCm6FGnQm5HlmAS?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzltceUdA8pVKhqcDNEKO3ReUlrjoA870Vw46Mue8R5Dtl4t00v7VNaLZAv34n04rndSSGVanWJeNs2zAAT3HC3?PARTNER=WRITER" alt="tick 1000ns"></a> </td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMkenl1eYt-wG9wegJDUW56QNA3BM1UY3S8Z-zWz3RVZQ6Ole7EzQFCvuL_2AtmcjLNZcJv_o3Ft6nEBLv_TqUI?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzD0Gpwjvz6Q6QmbkyqzJpFM3wXwwZC_moCditymrPUyUrJW-g_fb0_CFfL7J9O_VtOhZnEB8IJIti6ZnBhf5fs?PARTNER=WRITER" alt="tick 2000ns"></a> </td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOjKZQJYG09JmkNRVDv4gkXNyn-VMxcIT6V9C1xWJQnxvUNqCJ0ycSAYPippKIs-9I_YbBigu5TfRSqL3LbsuOP?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwOrjGOm1aDOb7RQP6PFoKM0mEDH4Cr54L6_LtMpEtPp7Br_f1C53aJsTPij-EGB-n4L9KKQcUj0ZJY5Y1ovqQm?PARTNER=WRITER" alt="tick 2500ns"></a> </td></tr> <tr> <td valign="top" width="100">uSec方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">1us</td> <td valign="top" width="100">2us</td> <td valign="top" width="100">3us</td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN0SSHjgkBl6p_fL8lYcmBggZBEvVbZHthF7_mr8kSWAPHqrU34MaxSliInIn2bmCJfFBF9C9GCP2o36TganMZx?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwxA_7glJKlosjtAkGvsxZbTU4srQ1kwHlsHxC-kHdicLqAOn7W1jYA6TV5wZj-2pXitvr-4XP5LtImgzNmuEW5?PARTNER=WRITER" alt="uSec 1us"> </a></td> <td valign="top" width="100"><a href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM4dQCbUJxgeITDyr31Wu-NllXSeATleh-znVAjqvwyv1SMlSu-VfN298yUSLRZMVA7EmWs7IrvNQP63lVk-dDj?PARTNER=WRITER" target="_blank" rel="noopener"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpx82eOyflJuKsCNnjH2WPaC5V0OGDNrSPQPV2uAUx4htz_hZbHyBGBgKdQ0vF9OYUCkQo2uE-otaL-1wdBn2bnN?PARTNER=WRITER" alt="uSec 2us"></a></td> <td valign="top" width="100"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxrGzTWBj4XAkDz2VlibjLAgzFYiH2R51i0-vF0qclEsHXfE2TllzS2pl0WKDU3dXa0oFln9ljANaWQ0hxcEnTW?PARTNER=WRITER" alt="uSec 3us"></td></tr></tbody></table><br><br>可以得出的几个结论：<br><br>1 Ticks的计时单位是纳秒<br><br>2 cRIO的定时间隔在20us下是不准确的，在20us以上基本上可以认为是线性的。<br> <table cellspacing="0" cellpadding="2" width="402" border="1"> <tbody> <tr> <td valign="top" width="100">Ticks方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100">100</td> <td valign="top" width="100">1000</td> <td valign="top" width="100">2000</td> <td valign="top" width="100">2500</td></tr> <tr> <td valign="top" width="100">21000ns之后可以认为是线性的</td> <td valign="top" width="100">22000ns</td> <td valign="top" width="100">22000ns</td> <td valign="top" width="100">20000ns</td></tr> <tr> <td valign="top" width="100">uSec方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">1us</td> <td valign="top" width="100">2us</td> <td valign="top" width="100">3us</td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">22us</td> <td valign="top" width="100">16us</td> <td valign="top" width="100">18us</td></tr></tbody></table><br><br>3 这一点是个人的猜想，仅供参考：20us以上的定时也不是完全线形的，有可能是因为cRIO的RT时钟间隔造成的，<br></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2008/03/20/archived-crio-teardown-01/" rel="next" title="cRIO摧残记（上）">
+                <i class="fa fa-chevron-left"></i> cRIO摧残记（上）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2008/04/14/archived-labview-visual-studio-database/" rel="prev" title="LabVIEW和Visual Studio的数据库联接">
+                LabVIEW和Visual Studio的数据库联接 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+     
+       <div onclick="ShowGitment()" id="gitment-display-button">Show comments from Gitment</div>
+       <div id="gitment-container" style="display:none"></div>
+     
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="haobo.li" />
+          <p class="site-author-name" itemprop="name">haobo.li</p>
+           
+              <p class="site-description motion-element" itemprop="description">A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haobo.li</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+     
+     
+     
+     
+     <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+     
+         <script type="text/javascript">
+             function ShowGitment(){
+                 document.getElementById("gitment-display-button").style.display = "none";
+                 document.getElementById("gitment-container").style.display = "block";
+                 var gitment = new Gitment({
+                     id: document.location.href, 
+                     owner: 'lhb5883',
+                     repo: 'lhb5883.github.io',
+                     oauth: {
+                         client_id: '5473d4670bb678c93d94',
+                         client_secret: '619d8420f0cc6f9f141bd8792e8f3a355a9193ed',
+                     }});
+                 gitment.render('gitment-container');
+             }
+         </script>
+     
+ 
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

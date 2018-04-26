@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2013/09/26/ni-e9-99-a2-e6-a0-a1-e5-a5-97-e4-bb-b6-e6-89-b9-e9-87-8f-e5-ae-89-e8-a3-85-e6-8a-80-e5-b7-a7-e4-b8-80-e5-88-99/">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2011/10/28/archived-news-tortoisesvn-1-7-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haobo.li">
@@ -282,348 +282,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2013/09/26/ni-e9-99-a2-e6-a0-a1-e5-a5-97-e4-bb-b6-e6-89-b9-e9-87-8f-e5-ae-89-e8-a3-85-e6-8a-80-e5-b7-a7-e4-b8-80-e5-88-99/" itemprop="url">NI院校套件批量安装技巧一则</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-09-26T10:31:35+08:00">
-                2013-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LabVIEW/" itemprop="url" rel="index">
-                    <span itemprop="name">LabVIEW</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><span style="color:black;font-family:宋体;font-size:10pt;">NI院校套件提供了一个很方便的自动安装功能:<br></span></p>
-<ol>
-<li><span style="color:black;font-family:宋体;font-size:10pt;">可以自动决定安装顺序<br></span></li>
-<li><span style="color:black;font-family:宋体;font-size:10pt;">可以自动确定依赖关系<br></span></li>
-</ol>
-<p><span style="color:black;font-family:宋体;font-size:10pt;">不过美中不足的是安装Xilinx 10.1编译器的时候还需要手动安装,通过修改安装包,我们也可以自动安装Xilinx 10.1编译器<br></span></p>
-<p><span style="color:black;font-family:宋体;font-size:10pt;">复制或解压4张安装DVD，一张驱动DVD，并按照下图命名<br></span></p>
-<p><img src="http://lhb5883.files.wordpress.com/2013/09/092613_0241_ni1.png" alt=""><span style="color:black;font-size:10pt;"><br>        </span></p>
-<p><span style="color:black;font-size:10pt;"><span style="font-family:宋体;">下载</span>Xilinx 10<span style="font-family:宋体;">编译器，并解压至:</span><br>        </span></p>
-<p><span style="color:black;font-size:10pt;">\ASLFL13DVD2\Distributions\Xilinx 10<br></span></p>
-<p><span style="color:black;font-size:10pt;"><span style="font-family:宋体;">修改</span>\ASLFL13DVD1\nisuite.xml <span style="font-family:宋体;">第4072~4082行</span><br>        </span></p>
-<ol>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:blue;">&lt;<span style="color:maroon;">distribution</span><br>                    <span style="color:red;">id</span>=”XILINX10”&gt;</span><br>            </span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">inputRoot</span><br>                    <span style="color:red;">suiteVolume</span>=”5”&gt;</span>Windows\Xilinx 10\<span style="color:blue;">&lt;/<span style="color:maroon;">inputRoot<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span>9998<span style="color:blue;">&lt;/<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span>None<span style="color:blue;">&lt;/<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span>ADE<span style="color:blue;">&lt;/<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span>ASLControl<span style="color:blue;">&lt;/<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">name</span><br>                    <span style="color:red;">language</span>=”0009”&gt;</span>Xilinx Compilation Tools 10.1 (Requires Additional Xilinx Compilation Tools DVD)<span style="color:blue;">&lt;/<span style="color:maroon;">name<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">description</span><br>                    <span style="color:red;">language</span>=”0009”&gt;</span>You can install these tools locally or on a remote computer.\n\nUse these compilation tools to compile FPGA VIs on NI hardware containing Virtex-II FPGAs, such as the 781xR, 783xR, and cRIO-910x devices.\n\nLearn more about the FPGA on your NI hardware at ni.com.<span style="color:blue;">&lt;/<span style="color:maroon;">description<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span>NoDefault<span style="color:blue;">&lt;/<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span>NoInstall<span style="color:blue;">&lt;/<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span><br>                           </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="color:blue;font-size:9pt;">&lt;/<span style="color:maroon;">distribution<span style="color:blue;">&gt;</span><br>               </span></span></div>
-
-</li>
-</ol>
-<p><span style="color:black;font-family:宋体;font-size:10pt;">替换为<br></span></p>
-<ol>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:blue;">&lt;<span style="color:maroon;">distribution</span><br>                    <span style="color:red;">id</span>=”XILINX10”&gt;</span><br>            </span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">distId</span><br>                    <span style="color:red;">GUID</span>=”{C7B4CAC5-4001-475C-967D-DC65C097AA3B}”</span><br>                <span style="color:red;">languages</span>=<span style="color:blue;">“0009”</span><br>                <span style="color:red;">packageGUID</span>=<span style="color:blue;">“{1BECF03B-48B7-453F-AEB4-2570F837056B}”</span><br>                <span style="color:red;">version</span>=<span style="color:blue;">“10.13.0”/&gt;</span><br>            </span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">inputRoot</span><br>                    <span style="color:red;">suiteVolume</span>=”2”&gt;</span>Distributions\Xilinx 10\<span style="color:blue;">&lt;/<span style="color:maroon;">inputRoot<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span>9998<span style="color:blue;">&lt;/<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span>None<span style="color:blue;">&lt;/<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span>ADE<span style="color:blue;">&lt;/<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span>ASLControl<span style="color:blue;">&lt;/<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">name</span><br>                    <span style="color:red;">language</span>=”0009”&gt;</span>Xilinx Compilation Tools 10.1 (Requires Additional Xilinx Compilation Tools DVD)<span style="color:blue;">&lt;/<span style="color:maroon;">name<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">description</span><br>                    <span style="color:red;">language</span>=”0009”&gt;</span>You can install these tools locally or on a remote computer.\n\nUse these compilation tools to compile FPGA VIs on NI hardware containing Virtex-II FPGAs, such as the 781xR, 783xR, and cRIO-910x devices.\n\nLearn more about the FPGA on your NI hardware at ni.com.<span style="color:blue;">&lt;/<span style="color:maroon;">description<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span>NoCustomInstall<span style="color:blue;">&lt;/<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span><br>                           </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span>NoInstall<span style="color:blue;">&lt;/<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span><br>                           </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="color:blue;font-size:9pt;">&lt;/<span style="color:maroon;">distribution<span style="color:blue;">&gt;</span><br>               </span></span></div>
-
-</li>
-</ol>
-<p>今后安装LabVIEW FPGA时,就可以自动安装编译器了.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2012/11/23/labview-2012-e4-bd-bf-e7-94-a8-e5-bf-83-e5-be-97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2012/11/23/labview-2012-e4-bd-bf-e7-94-a8-e5-bf-83-e5-be-97/" itemprop="url">LabVIEW 2012 使用心得</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2012-11-23T17:42:25+08:00">
-                2012-11-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LabVIEW/" itemprop="url" rel="index">
-                    <span itemprop="name">LabVIEW</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>LabVIEW 2012 自8月发布已有3月有余，总结了一些使用中发现的优缺点：</p>
-<p>优点：</p>
-<ol>
-<li>新加的For循环条件自动索引很方便。2.  新项目向导选项很丰富，模板文档很详尽。3.  新加的Actor Frameworks增加了面向对象的通用架构。4.  可以从NI FTP下载院校系使用权套件的安装镜像，方便批量安装。  </li>
-</ol>
-<p>缺点：</p>
-<ol>
-<li>启动界面层级太多，找东西不方便。2.  项目向导响应有时候非常迟钝。3.  LabVIEW 2009的字体BUG重出江湖。4.  不打补丁会出现无法退出的情况。  </li>
-</ol>
-<p>点评：</p>
-<p>这一次LabVIEW更新增加的Actor Framework给LabVIEW提供基于类和对象的架构选择，不过LabVIEW面向对象带来的好处能否超过其成本还需要在实践中验证。</p>
-<p>PS：</p>
-<p>LabVIEW 字体BUG修正方案</p>
-<p>针对LabVIEW图标编辑器，可以考虑关闭系统ClearType（但是字体仍然不对），或者使用我以前写的字体图片</p>
-<p>针对LabVIEW环境，目前最治本的办法是将系统非unicode程序语言更换为英文，但是此时LabVIEW里面的中文会乱码，因此对于中国的LabVIEW使用者没有可行性。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2011/10/28/e5-8d-87-e7-ba-a7-e8-87-b3tortoisesvn-1-7-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2011/10/28/e5-8d-87-e7-ba-a7-e8-87-b3tortoisesvn-1-7-1/" itemprop="url">升级至TortoiseSVN 1.7.1</a></h1>
+                <a class="post-title-link" href="/2011/10/28/archived-news-tortoisesvn-1-7-1/" itemprop="url">升级至TortoiseSVN 1.7.1</a></h1>
         
 
         <div class="post-meta">
@@ -763,7 +422,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2011/08/31/labview-2011-e9-85-8d-e5-a5-97-e9-a9-b1-e5-8a-a8-e4-b8-8b-e8-bd-bd-e5-9c-b0-e5-9d-80/">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2011/08/31/archived-labview-2011-drivers/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haobo.li">
@@ -782,7 +441,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2011/08/31/labview-2011-e9-85-8d-e5-a5-97-e9-a9-b1-e5-8a-a8-e4-b8-8b-e8-bd-bd-e5-9c-b0-e5-9d-80/" itemprop="url">LabVIEW 2011配套驱动下载地址</a></h1>
+                <a class="post-title-link" href="/2011/08/31/archived-labview-2011-drivers/" itemprop="url">LabVIEW 2011配套驱动下载地址</a></h1>
         
 
         <div class="post-meta">
@@ -910,7 +569,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2010/10/14/code-share-e5-a6-82-e4-bd-95-e7-94-a8labview-e5-8f-96-e5-be-97-e8-ae-a1-e7-ae-97-e6-9c-ba-e4-b8-bb-e9-a2-91/">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2010/10/14/archived-code-share-get-cpu-freq/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haobo.li">
@@ -929,7 +588,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2010/10/14/code-share-e5-a6-82-e4-bd-95-e7-94-a8labview-e5-8f-96-e5-be-97-e8-ae-a1-e7-ae-97-e6-9c-ba-e4-b8-bb-e9-a2-91/" itemprop="url">[Code Share]如何用LabVIEW取得计算机主频</a></h1>
+                <a class="post-title-link" href="/2010/10/14/archived-code-share-get-cpu-freq/" itemprop="url">[Code Share]如何用LabVIEW取得计算机主频</a></h1>
         
 
         <div class="post-meta">
@@ -1051,6 +710,298 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2010/10/11/archived-blog-to-wordpress/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2010/10/11/archived-blog-to-wordpress/" itemprop="url">博客升级至Wordpress</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-10-11T17:08:02+08:00">
+                2010-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computers-and-Internet/" itemprop="url" rel="index">
+                    <span itemprop="name">Computers and Internet</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>微软的网络战略总是变来变去，而功能更新总是极其缓慢，和其他网站竞争总是处于不利地位，终于MSN Space就要被砍掉重练，M$要玩SNS了。</p>
+<p>前前后后也用了不少blog，基本上没有什么太好的选择，国内的说倒就倒了，不倒的隐私也是个问题，国外的不是被墙就是速度不理想，终于趁着MS脑抽升级到Wordpress.com了。还好YO2原来玩过一段时间WP，上手还算简单。</p>
+<p>看见这个帖子的大家可以测试一下留言，以前MSN的space留言经常被吃掉，希望这个能好一些。速度就不报什么希望了，只希望晚一点被墙吧。</p>
+<p>顺便骂一下Windows Live Messenger 2011的开发人员，每次升级干的两件事就是UI大变+功能缩水，不知道回头是不是要把聊天的功能也砍掉。</p>
+<p>记得8.5的时候有个共享文件夹的功能，局域网共享东西还是很给力的，结果2009的时候砍掉了。</p>
+<p>然后2009搜索联系人是可以搜索昵称中间的，比如ABC 搜索BC也能出来搜索AB也能出来，结果2011果断悲剧了。</p>
+<p>还有2009包括以前的所有版本双击主界面左上角是能滚到后台的，2011果断就关闭了。以前是阴魂不散，现在突然玩消失还真是谢谢啊！</p>
+<p><a href="http://lhb5883.files.wordpress.com/2010/10/image.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/10/image_thumb.png" alt="image" title="image"></a></p>
+<p>唯一长进的地方就是能排排坐吃果果了</p>
+<p><a href="http://lhb5883.files.wordpress.com/2010/10/image1.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/10/image_thumb1.png" alt="image" title="image"></a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2010/09/02/archived-labview-2010-icon-editor-tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2010/09/02/archived-labview-2010-icon-editor-tips/" itemprop="url">LabVIEW 2010图标编辑器与库技巧一则</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-09-02T01:21:08+08:00">
+                2010-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LabVIEW/" itemprop="url" rel="index">
+                    <span itemprop="name">LabVIEW</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1592" class="bvMsg"><br><br>LabVIEW 2009时一个很方便的改进是图表编辑器支持图层,2010版本里又大幅强化了不少:<br><br>例如支持图层的复制粘贴,自定义图表模板和图例.<br><br><a href="http://lhb5883.files.wordpress.com/2010/09/image5b25d1547d36d.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/09/image5b25d1547d36d.png?w=300" alt="image" title="image"></a><br><br>对于库(包含LabVIEW Class, X Control)等来说一个很方便的特性是可以批量修改库中VI(包含自定义控件)的模板<br><br>通过这一点我们可以简化图标设计的工作:<br><br><a href="http://lhb5883.files.wordpress.com/2010/09/image5b55d7c1b91c0.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/09/image5b55d7c1b91c0.png?w=300" alt="image" title="image"></a><br><br>1.首先设计库图标模板:<br><br>在库上右键,选择属性,点击编辑图标<br><br><a href="http://lhb5883.files.wordpress.com/2010/09/image5b85d419b7831.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/09/image5b85d419b7831.png?w=300" alt="image" title="image"></a><br><br>a)首先选择库模板<br><br><a href="http://lhb5883.files.wordpress.com/2010/09/image5b115d5b4326c9.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/09/image5b115d5b4326c9.png?w=300" alt="image" title="image"></a><br><br>b)填充颜色<br><br><a href="http://lhb5883.files.wordpress.com/2010/09/image141df56dac.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/09/image141df56dac.png?w=300" alt="image" title="image"></a><br><br>C)编辑文字<br><br><a href="http://lhb5883.files.wordpress.com/2010/09/image17.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/09/image17.png?w=300" alt="image" title="image"></a><br><br>点击OK返回库属性,再点击OK提交图标,LabVIEW提示是否应用至库中其他VI,选择YES<br><br><a href="http://lhb5883.files.wordpress.com/2010/09/image202fed776d.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/09/image202fed776d.png?w=300" alt="image" title="image"></a><br><br>2 编辑VI图标:<br><br>此时库中VI图标包含如下图层<br><br><a href="http://lhb5883.files.wordpress.com/2010/09/image2374953c08.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/09/image2374953c08.png?w=300" alt="image" title="image"></a><br><br>a)首先我们隐藏掉图标编号<br><br><a href="http://lhb5883.files.wordpress.com/2010/09/image266993fb27.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/09/image266993fb27.png?w=300" alt="image" title="image"></a><br><br>b）然后选择合适的图标<br><br><a href="http://lhb5883.files.wordpress.com/2010/09/image290ea50997.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/09/image290ea50997.png?w=300" alt="image" title="image"></a><br><br>C）填写说明文字<br><br><a href="http://lhb5883.files.wordpress.com/2010/09/image32.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/09/image32.png?w=300" alt="image" title="image"></a><br><br>这样一个图文并茂，风格统一的Icon就轻松完成了，可以看到利用LabVIEW2010的图层功能，加上良好的程序架构，优美的代码就在我们手中。<br><br><a href="http://lhb5883.files.wordpress.com/2010/09/image38.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/09/image38.png?w=32" alt="image" title="image"></a><a href="http://lhb5883.files.wordpress.com/2010/09/image351e974c55.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/09/image351e974c55.png?w=32" alt="image" title="image"></a><br>  </div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1102,7 +1053,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
