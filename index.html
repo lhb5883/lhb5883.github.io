@@ -263,6 +263,133 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2018/04/26/Errors-occurred-when-open-NI-DMM-Soft-Pannel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/26/Errors-occurred-when-open-NI-DMM-Soft-Pannel/" itemprop="url">Errors occurred when open NI DMM Soft Pannel</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T16:33:39+08:00">
+                2018-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="NI-DMM-软面板出错的解决办法"><a href="#NI-DMM-软面板出错的解决办法" class="headerlink" title="NI-DMM 软面板出错的解决办法"></a>NI-DMM 软面板出错的解决办法</h1><p>安装完NI-DMM之后有时打开软面板会提示</p>
+<p>ERROR:One or more elements of the application could not be found.  Please re-install ni-DMM</p>
+<p><img src="D:\Code\Github\lhb5883.github.io\blog\source\_posts\Errors-occurred-when-open-NI-DMM-Soft-Pannel.assets/clip_image001.png" alt="计算机生成了可选文字:NI-DMM Soft Front Panel ERROR: One or more elements of the applicaton could not be found. Please run the NI-DMM installer again to fix this problem "></p>
+<p>这个可能有以下几种常见原因 </p>
+<h2 id="第一-NI软件安装时没有使用默认目录-测试至少NI-DMM-16-0存在此问题"><a href="#第一-NI软件安装时没有使用默认目录-测试至少NI-DMM-16-0存在此问题" class="headerlink" title="第一:NI软件安装时没有使用默认目录,测试至少NI-DMM 16.0存在此问题."></a>第一:NI软件安装时没有使用默认目录,测试至少NI-DMM 16.0存在此问题.</h2><h2 id="第二-NI-DMM-17-5存在Bug-随机性的打不开软面板-重启后偶尔正常"><a href="#第二-NI-DMM-17-5存在Bug-随机性的打不开软面板-重启后偶尔正常" class="headerlink" title="第二:NI-DMM 17.5存在Bug,随机性的打不开软面板,重启后偶尔正常."></a>第二:NI-DMM 17.5存在Bug,随机性的打不开软面板,重启后偶尔正常.</h2><h2 id="第三-DAQmx组件错乱-之前遇到过类似的报错-NI论坛上也是这种错误"><a href="#第三-DAQmx组件错乱-之前遇到过类似的报错-NI论坛上也是这种错误" class="headerlink" title="第三:DAQmx组件错乱,之前遇到过类似的报错,NI论坛上也是这种错误."></a>第三:DAQmx组件错乱,之前遇到过类似的报错,NI论坛上也是这种错误.</h2><p>NI-DMM依赖对应版本的DAQmx,比如是安装了低版本ELVISmx导致DAQmx组件版本不匹配,</p>
+<p>解决办法是在添加删除程序里选择添加删除NI软件,把低版本的DAQmx组件删除即可.</p>
+<p><a href="https://forums.ni.com/t5/PXI/DMM-SFT-returns-error-message-says-to-re-install/td-p/470375" target="_blank" rel="noopener">https://forums.ni.com/t5/PXI/DMM-SFT-returns-error-message-says-to-re-install/td-p/470375</a></p>
+<p>或者最彻底的办法是到 控制面板-添加删除程序-NI软件-删除所有组件.然后安装NI-DMM及内部包含的DAQmx,或者安装NI DeviceDriver Set里面的成套驱动.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://haobo.li/2018/04/26/test-my-site/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1603,157 +1730,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2010/10/11/e5-8d-9a-e5-ae-a2-e5-8d-87-e7-ba-a7-e8-87-b3wordpress/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2010/10/11/e5-8d-9a-e5-ae-a2-e5-8d-87-e7-ba-a7-e8-87-b3wordpress/" itemprop="url">博客升级至Wordpress</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-10-11T17:08:02+08:00">
-                2010-10-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computers-and-Internet/" itemprop="url" rel="index">
-                    <span itemprop="name">Computers and Internet</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>微软的网络战略总是变来变去，而功能更新总是极其缓慢，和其他网站竞争总是处于不利地位，终于MSN Space就要被砍掉重练，M$要玩SNS了。</p>
-<p>前前后后也用了不少blog，基本上没有什么太好的选择，国内的说倒就倒了，不倒的隐私也是个问题，国外的不是被墙就是速度不理想，终于趁着MS脑抽升级到Wordpress.com了。还好YO2原来玩过一段时间WP，上手还算简单。</p>
-<p>看见这个帖子的大家可以测试一下留言，以前MSN的space留言经常被吃掉，希望这个能好一些。速度就不报什么希望了，只希望晚一点被墙吧。</p>
-<p>顺便骂一下Windows Live Messenger 2011的开发人员，每次升级干的两件事就是UI大变+功能缩水，不知道回头是不是要把聊天的功能也砍掉。</p>
-<p>记得8.5的时候有个共享文件夹的功能，局域网共享东西还是很给力的，结果2009的时候砍掉了。</p>
-<p>然后2009搜索联系人是可以搜索昵称中间的，比如ABC 搜索BC也能出来搜索AB也能出来，结果2011果断悲剧了。</p>
-<p>还有2009包括以前的所有版本双击主界面左上角是能滚到后台的，2011果断就关闭了。以前是阴魂不散，现在突然玩消失还真是谢谢啊！</p>
-<p><a href="http://lhb5883.files.wordpress.com/2010/10/image.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/10/image_thumb.png" alt="image" title="image"></a></p>
-<p>唯一长进的地方就是能排排坐吃果果了</p>
-<p><a href="http://lhb5883.files.wordpress.com/2010/10/image1.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2010/10/image_thumb1.png" alt="image" title="image"></a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1805,7 +1781,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
