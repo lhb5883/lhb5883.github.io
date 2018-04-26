@@ -97,8 +97,8 @@
 <meta name="description" content="上次我们提到cRIO是由RT控制器、FPGA、模块三部分构成的，今天我们要研究的是cRIO的RT控制器的定时精度。在LabVIEW的RT例程里面专门有一个benchmark程序，可以用来测试代码的执行时间。今天我们要测试的是RT的wait函数：Wait函数有三种定时单位可以选择：mSec毫秒：这个和一般非Rt的程序里面等待函数用法是一样的uSec微秒：顾名思义，以微秒为单位定时Ticks时钟：这个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cRIO摧残记（中）——RealTime篇">
-<meta property="og:url" content="http://yoursite.com/2008/04/08/crio-e6-91-a7-e6-ae-8b-e8-ae-b0-ef-bc-88-e4-b8-ad-ef-bc-89-e2-80-94-e2-80-94realtime-e7-af-87/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="http://haobo.li/2008/04/08/crio-e6-91-a7-e6-ae-8b-e8-ae-b0-ef-bc-88-e4-b8-ad-ef-bc-89-e2-80-94-e2-80-94realtime-e7-af-87/index.html">
+<meta property="og:site_name" content="haobo.li">
 <meta property="og:description" content="上次我们提到cRIO是由RT控制器、FPGA、模块三部分构成的，今天我们要研究的是cRIO的RT控制器的定时精度。在LabVIEW的RT例程里面专门有一个benchmark程序，可以用来测试代码的执行时间。今天我们要测试的是RT的wait函数：Wait函数有三种定时单位可以选择：mSec毫秒：这个和一般非Rt的程序里面等待函数用法是一样的uSec微秒：顾名思义，以微秒为单位定时Ticks时钟：这个">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM1bRQ2Yn6fZwa_wtmNQsnBZDLygUIyYAvrSxBy6VSympC5KhNA9pIoAV1wXkd92WZMrptQoVIgO21XY12e6mwj?PARTNER=WRITER">
@@ -144,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2008/04/08/crio-e6-91-a7-e6-ae-8b-e8-ae-b0-ef-bc-88-e4-b8-ad-ef-bc-89-e2-80-94-e2-80-94realtime-e7-af-87/"/>
+  <link rel="canonical" href="http://haobo.li/2008/04/08/crio-e6-91-a7-e6-ae-8b-e8-ae-b0-ef-bc-88-e4-b8-ad-ef-bc-89-e2-80-94-e2-80-94realtime-e7-af-87/"/>
 
 
 
 
 
-  <title>cRIO摧残记（中）——RealTime篇 | Hexo</title>
+  <title>cRIO摧残记（中）——RealTime篇 | haobo.li</title>
   
 
 
@@ -186,12 +186,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">haobo.li</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">Measurement Gossip</p>
       
   </div>
 
@@ -273,16 +273,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2008/04/08/crio-e6-91-a7-e6-ae-8b-e8-ae-b0-ef-bc-88-e4-b8-ad-ef-bc-89-e2-80-94-e2-80-94realtime-e7-af-87/">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2008/04/08/crio-e6-91-a7-e6-ae-8b-e8-ae-b0-ef-bc-88-e4-b8-ad-ef-bc-89-e2-80-94-e2-80-94realtime-e7-af-87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="haobo.li">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="haobo.li">
     </span>
 
     
@@ -461,10 +461,10 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
-               alt="John Doe" />
-          <p class="site-author-name" itemprop="name">John Doe</p>
+               alt="haobo.li" />
+          <p class="site-author-name" itemprop="name">haobo.li</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -540,7 +540,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">haobo.li</span>
 </div>
 
 

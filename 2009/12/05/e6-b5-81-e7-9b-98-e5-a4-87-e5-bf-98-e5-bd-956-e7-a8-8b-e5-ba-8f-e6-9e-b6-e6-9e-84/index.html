@@ -97,8 +97,8 @@
 <meta name="description" content="并行执行采集和保存大量数据对计算机内存和CPU占用率都很高，如果使用单循环顺序结构很容易将CPU超载,所以我们有必要使用数据队列。NI的RF流盘例程：一个比较合理的架构是使用采集-送入队列 同时并行取出队列-流盘，可以较为充分的利用双核CPU。完成之后再提取数据进行处理。对于使用DAQmx 9.0和LabVIEW2009平台，我们还有一个更优秀的选择：使用DAQmx TDMS2.0集成流盘这个AP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="流盘备忘录(6)-程序架构">
-<meta property="og:url" content="http://yoursite.com/2009/12/05/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-956-e7-a8-8b-e5-ba-8f-e6-9e-b6-e6-9e-84/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="http://haobo.li/2009/12/05/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-956-e7-a8-8b-e5-ba-8f-e6-9e-b6-e6-9e-84/index.html">
+<meta property="og:site_name" content="haobo.li">
 <meta property="og:description" content="并行执行采集和保存大量数据对计算机内存和CPU占用率都很高，如果使用单循环顺序结构很容易将CPU超载,所以我们有必要使用数据队列。NI的RF流盘例程：一个比较合理的架构是使用采集-送入队列 同时并行取出队列-流盘，可以较为充分的利用双核CPU。完成之后再提取数据进行处理。对于使用DAQmx 9.0和LabVIEW2009平台，我们还有一个更优秀的选择：使用DAQmx TDMS2.0集成流盘这个AP">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/12/rfstreaming4.png?w=300">
@@ -137,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2009/12/05/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-956-e7-a8-8b-e5-ba-8f-e6-9e-b6-e6-9e-84/"/>
+  <link rel="canonical" href="http://haobo.li/2009/12/05/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-956-e7-a8-8b-e5-ba-8f-e6-9e-b6-e6-9e-84/"/>
 
 
 
 
 
-  <title>流盘备忘录(6)-程序架构 | Hexo</title>
+  <title>流盘备忘录(6)-程序架构 | haobo.li</title>
   
 
 
@@ -179,12 +179,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">haobo.li</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">Measurement Gossip</p>
       
   </div>
 
@@ -266,16 +266,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2009/12/05/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-956-e7-a8-8b-e5-ba-8f-e6-9e-b6-e6-9e-84/">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/12/05/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-956-e7-a8-8b-e5-ba-8f-e6-9e-b6-e6-9e-84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="haobo.li">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="haobo.li">
     </span>
 
     
@@ -454,10 +454,10 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
-               alt="John Doe" />
-          <p class="site-author-name" itemprop="name">John Doe</p>
+               alt="haobo.li" />
+          <p class="site-author-name" itemprop="name">haobo.li</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -533,7 +533,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">haobo.li</span>
 </div>
 
 

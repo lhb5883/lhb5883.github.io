@@ -97,8 +97,8 @@
 <meta name="description" content="Timed loop是LabVIEW 7引入的一个新VI，目的是为了提供具有确定性周期的定时方法。在LabVIEW 8里面又增加了Timed Sequence VI使我们编程更加灵活。不过随之而来也给我们使用造成困扰。      从上面两个图可以看出来Timed Loop和Timed Sequence的参数非常的多，很容易把人搞糊涂。所以就介绍一下主要的几个参数：周期，优先级，处理器分配。##">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LabVIEW 8.5的Timed Loop优先级及双核处理器支持">
-<meta property="og:url" content="http://yoursite.com/2008/07/03/labview-8-5-e7-9a-84timed-loop-e4-bc-98-e5-85-88-e7-ba-a7-e5-8f-8a-e5-8f-8c-e6-a0-b8-e5-a4-84-e7-90-86-e5-99-a8-e6-94-af-e6-8c-81/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="http://haobo.li/2008/07/03/labview-8-5-e7-9a-84timed-loop-e4-bc-98-e5-85-88-e7-ba-a7-e5-8f-8a-e5-8f-8c-e6-a0-b8-e5-a4-84-e7-90-86-e5-99-a8-e6-94-af-e6-8c-81/index.html">
+<meta property="og:site_name" content="haobo.li">
 <meta property="og:description" content="Timed loop是LabVIEW 7引入的一个新VI，目的是为了提供具有确定性周期的定时方法。在LabVIEW 8里面又增加了Timed Sequence VI使我们编程更加灵活。不过随之而来也给我们使用造成困扰。      从上面两个图可以看出来Timed Loop和Timed Sequence的参数非常的多，很容易把人搞糊涂。所以就介绍一下主要的几个参数：周期，优先级，处理器分配。##">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://byfiles.storage.msn.com/y1pzfbXjzr4iBFHPkvd0Xh2BDqOCyCkRDKZXgEWQ2WrZe1XVJvEsCrcoffOxVdf6ySd?PARTNER=WRITER">
@@ -158,13 +158,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2008/07/03/labview-8-5-e7-9a-84timed-loop-e4-bc-98-e5-85-88-e7-ba-a7-e5-8f-8a-e5-8f-8c-e6-a0-b8-e5-a4-84-e7-90-86-e5-99-a8-e6-94-af-e6-8c-81/"/>
+  <link rel="canonical" href="http://haobo.li/2008/07/03/labview-8-5-e7-9a-84timed-loop-e4-bc-98-e5-85-88-e7-ba-a7-e5-8f-8a-e5-8f-8c-e6-a0-b8-e5-a4-84-e7-90-86-e5-99-a8-e6-94-af-e6-8c-81/"/>
 
 
 
 
 
-  <title>LabVIEW 8.5的Timed Loop优先级及双核处理器支持 | Hexo</title>
+  <title>LabVIEW 8.5的Timed Loop优先级及双核处理器支持 | haobo.li</title>
   
 
 
@@ -200,12 +200,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">haobo.li</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">Measurement Gossip</p>
       
   </div>
 
@@ -287,16 +287,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2008/07/03/labview-8-5-e7-9a-84timed-loop-e4-bc-98-e5-85-88-e7-ba-a7-e5-8f-8a-e5-8f-8c-e6-a0-b8-e5-a4-84-e7-90-86-e5-99-a8-e6-94-af-e6-8c-81/">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2008/07/03/labview-8-5-e7-9a-84timed-loop-e4-bc-98-e5-85-88-e7-ba-a7-e5-8f-8a-e5-8f-8c-e6-a0-b8-e5-a4-84-e7-90-86-e5-99-a8-e6-94-af-e6-8c-81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="haobo.li">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="haobo.li">
     </span>
 
     
@@ -477,10 +477,10 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
-               alt="John Doe" />
-          <p class="site-author-name" itemprop="name">John Doe</p>
+               alt="haobo.li" />
+          <p class="site-author-name" itemprop="name">haobo.li</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -556,7 +556,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">haobo.li</span>
 </div>
 
 

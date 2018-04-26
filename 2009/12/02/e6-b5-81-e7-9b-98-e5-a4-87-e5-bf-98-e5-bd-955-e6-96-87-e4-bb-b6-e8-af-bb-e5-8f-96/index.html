@@ -97,8 +97,8 @@
 <meta name="description" content="我们存好数据并不是大功告成了，我们还需要从流盘数据文件恢复各通道信号才能再做各种分析。其中最关键的核心问题就是存盘的文件格式和数据解析。上一篇我们已经解析了一个数据块的构成，这一篇我们来看看到底如何用LabVIEW实现：这个在数据量较小时姑且还可以用一用，不过要想更灵活的解析出各个通道数据，还需要推导出采样在文件中的位置公式。我们需要的参数有1.  通道所在的板卡编号 BoardID（从0开始）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="流盘备忘录(5)-文件读取">
-<meta property="og:url" content="http://yoursite.com/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-955-e6-96-87-e4-bb-b6-e8-af-bb-e5-8f-96/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="http://haobo.li/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-955-e6-96-87-e4-bb-b6-e8-af-bb-e5-8f-96/index.html">
+<meta property="og:site_name" content="haobo.li">
 <meta property="og:description" content="我们存好数据并不是大功告成了，我们还需要从流盘数据文件恢复各通道信号才能再做各种分析。其中最关键的核心问题就是存盘的文件格式和数据解析。上一篇我们已经解析了一个数据块的构成，这一篇我们来看看到底如何用LabVIEW实现：这个在数据量较小时姑且还可以用一用，不过要想更灵活的解析出各个通道数据，还需要推导出采样在文件中的位置公式。我们需要的参数有1.  通道所在的板卡编号 BoardID（从0开始）">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/12/labviewreadallchanneldata5b55d.png?w=300">
@@ -137,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-955-e6-96-87-e4-bb-b6-e8-af-bb-e5-8f-96/"/>
+  <link rel="canonical" href="http://haobo.li/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-955-e6-96-87-e4-bb-b6-e8-af-bb-e5-8f-96/"/>
 
 
 
 
 
-  <title>流盘备忘录(5)-文件读取 | Hexo</title>
+  <title>流盘备忘录(5)-文件读取 | haobo.li</title>
   
 
 
@@ -179,12 +179,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">haobo.li</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">Measurement Gossip</p>
       
   </div>
 
@@ -266,16 +266,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-955-e6-96-87-e4-bb-b6-e8-af-bb-e5-8f-96/">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/12/02/e6-b5-81-e7-9b-98-e5-a4-87-e5-bf-98-e5-bd-955-e6-96-87-e4-bb-b6-e8-af-bb-e5-8f-96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="haobo.li">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="haobo.li">
     </span>
 
     
@@ -454,10 +454,10 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
-               alt="John Doe" />
-          <p class="site-author-name" itemprop="name">John Doe</p>
+               alt="haobo.li" />
+          <p class="site-author-name" itemprop="name">haobo.li</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -533,7 +533,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">haobo.li</span>
 </div>
 
 
