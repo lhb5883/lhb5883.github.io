@@ -263,6 +263,147 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/12/02/archived-stream-to-disk-guide-05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/12/02/archived-stream-to-disk-guide-05/" itemprop="url">流盘备忘录(5)-文件读取</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-12-02T08:48:04+08:00">
+                2009-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1430" class="bvMsg"><br><br>我们存好数据并不是大功告成了，我们还需要从流盘数据文件恢复各通道信号才能再做各种分析。<br><br>其中最关键的核心问题就是存盘的文件格式和数据解析。<br><br>上一篇我们已经解析了一个数据块的构成，这一篇我们来看看到底如何用LabVIEW实现：<br><br><a href="http://lhb5883.files.wordpress.com/2009/12/labviewreadallchanneldata5b55d.png" target="_blank" rel="noopener"><img src="http://lhb5883.files.wordpress.com/2009/12/labviewreadallchanneldata5b55d.png?w=300" alt="LabVIEW read all channel data" title="LabVIEW read all channel data"></a><br><br>这个在数据量较小时姑且还可以用一用，不过要想更灵活的解析出各个通道数据，还需要推导出采样在文件中的位置公式。<br><br>我们需要的参数有<br><br>1.  通道所在的板卡编号 BoardID（从0开始）  <li>通道在板卡上的编号 ChannelID（从0开始）  </li><li>采样点的编号 SampleNum  </li><li>一共有多少板卡 BoardNumber  </li><li>每板卡使用几个通道 ChannelNumber  </li><li>每个数据块每通道的采样点 SampleperChannel  </li><li>每个采样占用的字节 SampleByte<br><br>我们需要得出的参数：<br><br>1.  我们所需采样点在文件中的位置 SamplePosition<br><br>SamplePosition=<br><br>&#123;<br><br>(SampleNum/SampleperChannel)<em>SampleperChannel</em>BoardNumber<em>ChannelNumber 数据块偏移<br>+<br>BoardID</em>SampleperChannel<em>ChannelNumber 板卡偏移<br>+<br>(mod(SampleNum,SampleperChannel))</em>ChannelNumber 采样偏移<br>+<br>ChannelID 通道偏移<br><br>&#125;*SampleByte<br><br><img src="https://aftv2q.bay.livefilestore.com/y1m7Q8U7w8Oul572fCc-_Iku3gROg3G7UYbKwGiqI2yE0L4fjrmcVZuhmWS8I_kyuyLgPbV2QQcxkZd0Srka7RHfHzq8l7eACtuMnkkkKmK2Awa3r1Bo_W0HIEiuMGGpOB--GGNseEjOzcx6xRVSSLawA/image[5].png" alt="image" title="image"><br><br>另外要注意的是偏移量最好用U64，I32最多能寻址2GB，大于2GB就会溢出。<br><br>有了这个公式再配合设置偏移量，就可以很方便的取出每个通道的数据了。<br><br>其他要注意的是如果使用Win32API，那么读取数据的高低位是Windows格式的Little Endian而不是LabVIEW通常的Big Endian。<br><br><img src="https://aftv2q.bay.livefilestore.com/y1mIS2FZksrhqxtsgC3tXJ_mDvez4ehbPJQh2c4DopAAVhWZx9aFCtp5rWsN7AX-LTKlTQ_THRfpctxWDI8ybrE5bq3TmZA7DELe4rdb84tsO3lSinX9Q7dix3gBzcWOBZsNy1qAbfkMacqMZvik6bJ-A/image[3] 4EFCFDF4.png" alt="image" title="image"><br><br><a href="https://aftv2q.bay.livefilestore.com/y1m_jcU-aepq8aD9tZ4T2IdyzWPI43xpwNF3eQWd6zishWaHJyvXioh4tjQLDf882YIIUQszfI1azwrP1t1gec6R-lUwUOSyGE-3KzE_IBtQO2LP9tGCSpkOLg2J-zUNcXzJPuzEYtFrBIIfGPVlpoVmg/LabVIEW read all channel data[5].png" target="_blank" rel="noopener"></a><br>  </li></div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/12/02/archived-stream-to-disk-guide-04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -816,147 +957,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/11/24/archived-pxi-os-restore/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2009/11/24/archived-pxi-os-restore/" itemprop="url">PXI控制器系统备份软件选择</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-11-24T07:52:30+08:00">
-                2009-11-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computers-and-Internet/" itemprop="url" rel="index">
-                    <span itemprop="name">Computers and Internet</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <div id="msgcns!866B8F96A2761BBE!1389" class="bvMsg"><br><br>虽然NI的控制器质量非常稳定可靠，不过如果使用Windows而非RealTimeOS的话，系统备份恢复软件就是一个值得考虑的问题了。<br><br>为了找到一个好用的恢复软件给我们的8176上个保险，来来回回测试了多种备份软件。<br><br>系统备份与恢复软件厂商目前主要是Symantic赛门铁克和Acronis两大厂商。其中Symantic以GHOST系列强大的功能闻名，在收购了PowerQuest之后其实力不可小视。Acronis以True Image系列软件的方便易用与稳定可靠被NI作为系统默认的硬盘恢复方案。<br><br>我初步的目标是找到一个能在Windows7下备份和恢复整个分区的软件，取代我一直使用的DriveImage。不过该方法需要拆开控制器，所以要是能做成多启动这种方案也不错。<br><br>下表是一个简单的比较<br> <table border="0" cellspacing="0" cellpadding="0"> <tbody> <tr> <td width="165">控制器型号</td> <td width="174">Norton Save&amp;Restore/<br>Symantec Backup Exec System</td> <td width="107">双启动GHOST</td> <td width="138">光盘/U盘版GHOST</td> <td width="198"><br><br>Acronis True Image OEM<br></td> <td width="206">Acronis True Image 2010</td> <td width="246">Power Quest Drive Image 2002</td></tr> <tr> <td width="165">PXI-817X/818X（Intel8系列芯片组）</td> <td width="174">OK</td> <td width="107">OK</td> <td width="138">Fail</td> <td width="198">OK</td> <td width="206">不支持Windows2000</td> <td width="246">OK</td></tr> <tr> <td width="165">PXI-819X/810X/8130（Intel9系列芯片组/Nvidia N-Force）</td> <td width="174">OK</td> <td width="107">OK</td> <td width="138">OK</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">PXI-8108/8110（IntelG系列芯片组）</td> <td width="174">OK</td> <td width="107">未知</td> <td width="138">Fail</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">功能</td> <td width="174"> </td> <td width="107"> </td> <td width="138"> </td> <td width="198"> </td> <td width="206"> </td> <td width="246"> </td></tr> <tr> <td width="165">在Windows下备份和恢复分区（用于在PC机上恢复系统，适用于硬盘数据完全丢失无法启动等情况）</td> <td width="174">只能用于系统盘</td> <td width="107">/</td> <td width="138">/</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">在非windows下备份和恢复分区</td> <td width="174">无</td> <td width="107">OK</td> <td width="138">不适用老控制器</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">无</td></tr> <tr> <td width="165">操作系统支持</td> <td width="174">XP/VISTA</td> <td width="107">/</td> <td width="138">/</td> <td width="198">2000/XP</td> <td width="206">XP/VISTA/Windows7</td> <td width="246">2000/XP</td></tr></tbody></table><br><br>目前GHOST的二次封装而成的USB GHOST，光盘GHOST、一键GHOST等等版本极多，不过能兼容NI大部分控制器的GHOST版本并不多。而企业版GHOST套装使用和配置极其复杂，操作简单的Windows下备份和恢复的软件在系统崩溃后就没有什么用了。所以值得考虑的就是系统恢复光盘里自带的Acronis True Image OEM版，是一个简单可靠的一键恢复系统，不过一旦恢复就会使系统恢复到出厂状态。需自由备份和恢复就需要完整版的软件才行。<br><br>不过我们其实需要的功能往往也没有那么复杂，只需要能恢复系统到一个安装调试好所有软件的状态，那么这时候就可以用到下面这个小技巧了 。<br><br>1。正常安装Windows，注意不要选择安装F4一键恢复。<br><br>2。分区、安装软件、配置程序。。。<br><br>3。将系统恢复盘的CDROM:OSPXI_VXI$OEM$$1SYSPREP目录下的ACRONIS.XML，ACRONIS8199_ENABLE.BAT，ACRONISTRUEIMAGE_8199.MSI三个文件复制到c:Sysprep目录下<br><br>4。运行c:SysprepACRONIS8199_ENABLE.BAT，重启系统后就会自动备份操作系统，完成之后在系统启动时按F4就可以一键恢复了。<br>  </div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1008,7 +1008,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">53</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
