@@ -282,7 +282,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/17/20180917-use-labview-with-git/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/09/17/20180917-use-labview-with-git/" itemprop="url">配置LabVIEW和TortoiseGit工作</a></h1>
         
 
         <div class="post-meta">
@@ -334,15 +334,13 @@
       
         
           
-            <p>title: 配置LabVIEW和TortoiseGit工作<br>date: 2018-09-17 10:35:22</p>
-<p>首先安装git for windows和TortoiseGit,都使用默认安装即可.</p>
+            <h1 id="配置LabVIEW和TortoiseGit工作"><a href="#配置LabVIEW和TortoiseGit工作" class="headerlink" title="配置LabVIEW和TortoiseGit工作"></a>配置LabVIEW和TortoiseGit工作</h1><p>首先安装git for windows和TortoiseGit,都使用默认安装即可.</p>
 <p>主要的工作量是在于设置TortoiseGitMerge和TortoiseGitDiff</p>
 <p><img src="./20180917-use-labview-with-git\1537152789409.png" alt="Config git with labview"></p>
 <p><a href="https://ispring-cloud-45.ispringcloud.com/acc/kc75hpYxMDM3NA/s/10374-N2ZHD-doaJL-kBQpK" target="_blank" rel="noopener">https://ispring-cloud-45.ispringcloud.com/acc/kc75hpYxMDM3NA/s/10374-N2ZHD-doaJL-kBQpK</a></p>
 <p><a href="https://forums.ni.com/t5/Example-Program-Drafts/Source-Code-Control-Using-TortoiseSVN-Subversion-with-LabVIEW/ta-p/3510829" target="_blank" rel="noopener">https://forums.ni.com/t5/Example-Program-Drafts/Source-Code-Control-Using-TortoiseSVN-Subversion-with-LabVIEW/ta-p/3510829</a></p>
-<p>Configuring TortoiseGit for Graphical Diff<br>​    1. Right-click in Windows Explorer to expose the TortoiseGit options<br>​    2. Mouse-over ‘TortoiseGit&gt;&gt; Settings’<br>​    3. In the list of settings on the left, select ‘Diff Viewer’,On the right side of the dialog, select ‘Advanced’<br>​    4. When the ‘Advanced diff settings’ dialog appears, select ‘Add’<br>​    5. In the dialog that appears, type .vi as the extension<br>​    6. Where it prompts you for the path to the external program, type the following: “C:\Program Files\National Instruments\Shared\LabVIEW Compare\LVCompare.exe” %mine %base -nobdcosm -nobdpos<br>​    7. Repeat this operation for the file-type .ctl<br>Configuring TortoiseGit for Graphical Merge<br>​    1. Right-click in Windows Explorer to expose the TortoiseGit options<br>​    2. Mouse-over ‘TortoiseGit&gt;&gt; Settings’<br>​    3. In the list of settings on the left, select ‘Merge Tool’ under ‘Diff Viewer’<br>​    4. On the right side of the dialog, select ‘Advanced’<br>​    5. When the ‘Advanced merge settings’ dialog appears, select ‘Add’<br>​    6. In the dialog that appears, type .vi as the extension<br>​    7. Where it prompts you for the path to the external program, type the following: “C:\Program Files\National Instruments\Shared\LabVIEW Merge\LVMerge.exe” %base %mine %theirs %merged</p>
-<pre><code>8. Repeat this operation for the file-type .ctl
-</code></pre>
+<p>Configuring TortoiseGit for Graphical Diff<br>​    1. Right-click in Windows Explorer to expose the TortoiseGit options<br>​    2. Mouse-over ‘TortoiseGit&gt;&gt; Settings’<br>​    3. In the list of settings on the left, select ‘Diff Viewer’,On the right side of the dialog, select ‘Advanced’<br>​    4. When the ‘Advanced diff settings’ dialog appears, select ‘Add’<br>​    5. In the dialog that appears, type .vi as the extension<br>​    6. Where it prompts you for the path to the external program, type the following: “C:\Program Files\National Instruments\Shared\LabVIEW Compare\LVCompare.exe” %mine %base -nobdcosm -nobdpos<br>​    7. Repeat this operation for the file-type .ctl<br>Configuring TortoiseGit for Graphical Merge<br>​    1. Right-click in Windows Explorer to expose the TortoiseGit options<br>​    2. Mouse-over ‘TortoiseGit&gt;&gt; Settings’<br>​    3. In the list of settings on the left, select ‘Merge Tool’ under ‘Diff Viewer’<br>​    4. On the right side of the dialog, select ‘Advanced’<br>​    5. When the ‘Advanced merge settings’ dialog appears, select ‘Add’<br>​    6. In the dialog that appears, type .vi as the extension<br>​    7. Where it prompts you for the path to the external program, type the following: “C:\Program Files\National Instruments\Shared\LabVIEW Merge\LVMerge.exe” %base %mine %theirs %merged<br>​    8. Repeat this operation for the file-type .ctl</p>
+
           
         
       
