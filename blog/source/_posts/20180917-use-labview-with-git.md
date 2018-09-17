@@ -1,6 +1,12 @@
+---
 
 title: 配置LabVIEW和TortoiseGit工作
 date: 2018-09-17 10:35:22
+
+---
+
+# 配置LabVIEW和TortoiseGit工作
+
 
 
 首先安装git for windows和TortoiseGit,都使用默认安装即可.
@@ -31,6 +37,5 @@ Configuring TortoiseGit for Graphical Merge
 ​	5. When the 'Advanced merge settings' dialog appears, select 'Add'
 ​	6. In the dialog that appears, type .vi as the extension
 ​	7. Where it prompts you for the path to the external program, type the following: "C:\Program Files\National Instruments\Shared\LabVIEW Merge\LVMerge.exe" %base %mine %theirs %merged
-
-	8. Repeat this operation for the file-type .ctl
+​	8. Repeat this operation for the file-type .ctl
 
