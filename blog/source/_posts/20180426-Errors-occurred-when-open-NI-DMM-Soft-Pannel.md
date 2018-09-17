@@ -11,7 +11,9 @@ tags:
 
 ERROR:One or more elements of the application could not be found.  Please re-install ni-DMM installer again to fix this problem
 
-![计算机生成了可选文字:NI-DMM Soft Front Panel ERROR: One or more elements of the applicaton could not be found. Please run the NI-DMM installer again to fix this problem ](.\clip_image001.png)
+![NI-DMM Soft Front Panel ERROR: One or more elements of the applicaton could not be found. Please run the NI-DMM installer again to fix this problem ](.\20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel\clip_image001.png)
+
+
 
 这个可能有以下几种常见原因 
 
