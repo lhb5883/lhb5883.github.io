@@ -263,6 +263,147 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/11/26/archived-stream-to-disk-guide-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/11/26/archived-stream-to-disk-guide-01/" itemprop="url">流盘备忘录(1)-流盘概览</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-11-26T07:25:57+08:00">
+                2009-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1391" class="bvMsg"><br><br>流盘概览<br><br>我们经常会看到一个总线速度比较的图表,可以看到在通常的情况下同一时代内总线最高速度是远远高于外总线的,不过对于硬盘来说,尽管应该也可以算是内总线上的设备,硬盘读写速度一直是一个令人无奈的瓶颈,远远落后于计算机技术和测控技术的发展速度.当我们的示波器数据量已经迈入GB/s的量级,硬盘的速度还是在MBS/s级徘徊.<br><br>造成这种现状的原因:<br><br>1.机械式硬盘本身的局限:<br><br>需要通过寻道等机械动作之后才能实现读写动作,如果使用SSD固态硬盘,单块硬盘速度可以提高到100MBSs以上,<br><br>传统硬盘通过组成Raid0阵列也可以提高写入速度，目前最高性能已经可以到G级。<br><br>2.总线接口:<br><br>SATA和IDE接口挂接到PCI总线上就要受到PCI总线133MS/s的限制,只有使用PCI-E的高带宽接口,才能适合大流量的数据读写，PCIe带宽最高4G。<br><br>目前PXIe的系统带宽在3~4G，板卡带宽最高1G。<br><br>3.计算机性能：<br><br>在处理大量数据时大数组的读写、转置、队列都会给CPU大量的压力，数据量的增大对内存大小也提出了更高的要求。<br><br>对于目前PXI平台比较成熟的方案就是使用PXI-E板卡+RAID流盘阵列这种架构.最高数据吞吐量在400M~600MB/s左右。<br>  </div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/11/24/archived-pxi-os-restore/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -814,167 +955,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/08/21/archived-labview-2009-recusion/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2009/08/21/archived-labview-2009-recusion/" itemprop="url">LabVIEW 2009递归研究</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-08-21T04:19:03+08:00">
-                2009-08-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
-                    <span itemprop="name">Uncategorized</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <div id="msgcns!866B8F96A2761BBE!1369" class="bvMsg"><br><br><strong>Part I ： Handson</strong><br><br>各位安装LabVIEW2009的同学请跟我做以下动作:<br><br>1:打开LabVIEW 2009.<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mJf781TsQY2lMDPJPSS-Ciy9j5BqCKwwYq4up4HegzWdSPRRoK9XmPUSm0MhcjjsGdO3yBFl5o2ZUoHcAEFlDD9Idvou3kEx52H_zGgNN4Qq5OZzivi1JsoCTqmPU_J_g-6lkWGxiRub0O8NdLW8Kxw/image2 7AFEC386.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mVYx9-iHIRHcVhl1R903uSWy0-7PkCqDKWTjNmCB171fHEVJhJmm79IjSw8KMzvYCuM6Z5NBkVimPJR-mpTTYeg90perGOqBtBghB04N9a5TZxdGEpKA43q7B8oH0ZeBmT9DvaqRKUNied1mU6jx0Hg/image_thumb 63232C87.png" alt="image" title="image"></a><br><br>2:Ctrl+N<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mqUA4E2HIjdW9Gb3BZtx2IS9OvqufNm9ay5c3yoX7YyZtiExwtvNyKY6zO4IzSS5_hYD1H1mT82bnVU8GrzxlS_AzTvrzEsxkIBloXGJEeXVT03GQDPTy5-7VXeuYh0kU6fKN5Cf7WXnw8gIPYYITWQ/image8 2D5308B1.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1m0ogiAD6Jc2Cbxy3vpUAV6MrpE_K_Dabfar0aXUtgde7OEMLg1Ikyjmx3q6DM4dkzDU_ZVa6Vytc1aN8w4VtsYpBTtJfnyzax9NbFx2nJxlG1Xl3AxOMCDjiSzLGO49ZYdrJkMuRUh4NDF1juq0lLrw/image_thumb2 1A28A6A4.png" alt="image" title="image"></a><br><br>3:Ctrl+I,按下图配置<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mTJsXhwFua2feHrRTHHidlP8UL_niDiOlgDLqXBogknVvLwNzcQLlDPnAj9Nd9eU-slt_5e4mpgKoMsZAIswHRF6d9eH2x-0u7mCNVuzKSd2K4VyE5RYrizBHaxPc6H5YnRiUspCSTyHZolbOHjRpMw/image12.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mWhcbcuZQz7gwaAOLMDXl0lxrADAEmDyvRlECQD82oaX6EZrXUYRrfHsVXGO5GeLIRwcnLZvKAYu-BD54k0csbzWE7BjJ2JoQWhEkENXymMMwr49aIlhjK48h_aaq6c4M4AbE7BrVuzcnTQsPSm0VWg/image_thumb4 796A50DA.png" alt="image" title="image"></a><br><br>4:Ctrl+E,选择程序框图,将图标拖到程序框图<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mtg6ZXjelXoHmXA-xYApe6akbTKVKdtTBH_quMiSzKJndfpVbuYu7gLL-Sam_hY8rH9Icrm244_Qaw6dPLAScQj7ZbK8kxnE1jXgiKsLsGsYokS_LVM7UnagklPGUavrq6fYUsZCsgCP_K5VLYnHjqA/image16.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mcDpF6XgX1ChPJouSMEIE3qw8z_IizPqK5nXIwFlwPTl6ctx5Sw4BOgOf6XBGnJ66dpW_iJwhD3q6fWGya3VDTf5jr2lAylB_2U88qUcEnbUvEFn6OVw03NftdN2c39p1nxqkamVlrhq0EH9BIeRwEQ/image_thumb6 708CFF2E.png" alt="image" title="image"></a><br><br>5:Ctrl+R，然后稍等5分钟：<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1m1yQuFE2PPchn6j3vH06VfbQjUhxybHx40VJLiaJvTh8Ug5ceO30uH-JkY3AW8fKT9SRvDTHf1WBG8f5DHqPiznrj_6UOcC3v6znY_IXbenCqaFABGdCOxuYloaJmHHVJIGZuG2CU3DqB4aC0LdfK4A/image23.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mTROt_oCMYrqvSPJ04o_93I-BcT6v-wjgCSDCnM2r6e99wb8w2-XPcgd7vl2bYbHxGH8iHmbm6lA-3n86m8LBhbvZdsfTObYKgeBqQVIeSACqPrq_vyUkRFBWol7Q7nG1F97-kUeP9s4nd3XNOmDj-g/image_thumb9.png" alt="image" title="image"></a><br><br>恭喜你编写了第一个递归VI并且让他挂掉了。<br><br><strong> Part II ： Basic I</strong><br><br>好,我们来玩点实在的，先看看LabVIEW 的例程：<br><br><a href="https://f2gz7g.bay.livefilestore.com/y1mvWEYPjzRXVMmpiuO4xUqrOXFHdNFe0v_y1tVO63ZJGZWgSxL7H_y9eUjrF71FHSZPW7h5_NkO6Ncsz_VXhrbaIIVDLG6mFk6J8DKUHii9Hagg4fAAsx6O6huAsx2nLXGUVP7Pr2DTY6CDSwbboXFaw/image6.png" target="_blank" rel="noopener"><img src="https://f2gz7g.bay.livefilestore.com/y1mm8KaiiUP0iV4jeZuGcGwDgHYgJPz8icKzsio12LxgM3wMzboQT03e5_5hSjVTQid9D00wpjamNWPQrSvLu67so_5EEkB_loAoqARIAbEZnlypl43vNLYAwX-ejCOE3_3RK3Ts2sFerIEN5_5dA-O0g/image_thumb2[1].png" alt="image" title="image"></a><br><br><img src="http://lhb5883.files.wordpress.com/2009/08/demorecursion5.png?w=300" alt="Demo Recursion" title="Demo Recursion"><br><br><img src="http://lhb5883.files.wordpress.com/2009/08/recursion5.png?w=300" alt="Recursion" title="Recursion"><br><br>在LabVIEW以前的版本只有类才能使用递归，不过现在已经比较成熟，普通的VI也可以递归了。<br><br>注意事项正如图中注释，我就不多废话。<br><br><strong>Part III ： Basic I</strong><br><br>为了更详细的演示递归，我们请出教科书里的经典例程汉诺塔。<br><br>首先附赠一个汉诺塔小游戏：<br><br><img src="http://lhb5883.files.wordpress.com/2009/08/image5b105d.png?w=300" alt="image" title="image"><br><br><img src="http://lhb5883.files.wordpress.com/2009/08/hanoitower5b55d.png?w=300" alt="hanoi tower" title="hanoi tower"><br><br>附赠小游戏汉诺塔下载：<br>  <div style="display:inline;float:none;margin:0;padding:0;"><div><a href="https://f2gz7g.bay.livefilestore.com/y1merIkYDIpelIzeY2GYQAQKA_dg4i8FbfdK8GaKiGoTUnlLXvcUNsixVC_kF4eKje1hkTltCHlbr3URvf3IbJRprYA5K2m3ioq8YP-5kcvqgqDIuJh4SpxX6Gu2Y6io3-54vvTfhsDJz7IiAT174ZuLg/hanoi.tower.7z" target="_blank" rel="noopener">hanoi tower.7z</a></div></div>（LabVIEW2009）<br><br>  <div style="display:inline;float:none;margin:0;padding:0;"><pre style="background-color:#FFFFFF;white-space:pre-wrap;word-wrap:break-word;overflow:auto;"><span style="color:#000000;">#include </span><span style="color:#000000;">&lt;</span><span style="color:#000000;">stdio.h</span><span style="color:#000000;">&gt;</span><span style="color:#000000;"><br></span><span style="color:#0000FF;">void</span><span style="color:#000000;"> hano(</span><span style="color:#0000FF;">int</span><span style="color:#000000;"> n,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> a,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> b,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> c)<br>&#123;<br>    </span><span style="color:#0000FF;">if</span><span style="color:#000000;">(n</span><span style="color:#000000;">==</span><span style="color:#800080;">1</span><span style="color:#000000;">)<br>        printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">t将%d个盘片从%c移动到%cn</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,n,a,c);<br>    </span><span style="color:#0000FF;">else</span><span style="color:#000000;"> &#123;<br>        hano(n</span><span style="color:#000000;">-</span><span style="color:#800080;">1</span><span style="color:#000000;">,a,c,b);<br>        printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">t将第%d个盘片从%c移动到%cn</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,n,a,c);<br>        hano(n</span><span style="color:#000000;">-</span><span style="color:#800080;">1</span><span style="color:#000000;">,b,a,c);<br>    &#125;<br>&#125;<br>main()<br>&#123;<br>    </span><span style="color:#0000FF;">int</span><span style="color:#000000;"> n;<br>    printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">输入将要移动多少个盘子n:</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">);<br>    scanf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">%d</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,</span><span style="color:#000000;">&amp;</span><span style="color:#000000;">n);<br>    printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">递归结果：n</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">);<br>    hano(n,</span><span style="color:#800000;">‘</span><span style="color:#800000;">x</span><span style="color:#800000;">‘</span><span style="color:#000000;">,</span><span style="color:#800000;">‘</span><span style="color:#800000;">y</span><span style="color:#800000;">‘</span><span style="color:#000000;">,</span><span style="color:#800000;">‘</span><span style="color:#800000;">z</span><span style="color:#800000;">‘</span><span style="color:#000000;">);<br>&#125; </span></pre></div>
-
-<p>然后我们来看看LabVIEW里面如何实现这个算法：</p>
-<p><img src="https://f2gz7g.bay.livefilestore.com/y1mprygHzelJggiWKEkuwsSFY4M5mNbiguBIY5D7W2O9OD5HWZEsrxZuv2G5dv0Xm0gKLPXG60Tm1TqkTvBTIdvpxXoYjKlQG6JepC8a0f9Q4pOsO7iWMu1mKv7QYUrD0oWkuV2bYUM7tVMWd4Y0Wtbnw/auto hanoi tower[2].png" alt="auto hanoi tower" title="auto hanoi tower"> </p>
-<p>主程序调用算法，然后演示步骤。</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/08/autohanoitowerrecursion5b25d.png?w=300" alt="auto hanoi tower recursion" title="auto hanoi tower recursion"> </p>
-<p>递归调用算法。</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/08/quitrecursion5b25d.png?w=300" alt="Quit Recursion" title="Quit Recursion"> </p>
-<p>当然不要忘记设置退出递归的条件。</p>
-<p>源代码下载</p>
-<div style="display:inline;float:none;margin:0;padding:0;"><div><a href="https://f2gz7g.bay.livefilestore.com/y1mzRAxsj5doJkMoW9WmdSPEQ3iq-X2OaTxJbPM4puKlPm79rh8T6O4U2h3pG8ZBzN8D6gzvsqrP-Sga8PVoRgSpxoLS5mprGxbuzJ3iO-ta5ZzyiZVb0tZ8eG5p_fnTbMme4M5-aBWVFHDog-XemQRKg/auto.hanoi.tower.demo.7z" target="_blank" rel="noopener">auto hanoi tower demo.7z</a></div></div>（LabVIEW2009）<br><br><strong>Part IV ： Advance I</strong><br><br>到底递归有什么用呢？我们来看一个实用一点的工具：VI图标提取器<br><br><img src="https://f2gz7g.bay.livefilestore.com/y1mthsEtKyirJ5UgEwqu1Pd_SHiauSyudG9LPT5gSFTKp2tj6WRPWmHr9vA2gFltVAbHriMUMAvKkkGATycCxvYG5XOLYLV3PVxcx6vxw_9xqv0B3IZsOa4bdHZnp9aCZerIg1khZ9lhQeoZnevNjoU-Q/image[13].png" alt="image" title="image"><br><br>主程序：<br><br><img src="http://lhb5883.files.wordpress.com/2009/08/outputviicon5b25d.png?w=203" alt="output vi icon" title="output vi icon"><br><br>递归代码<br><br><img src="http://lhb5883.files.wordpress.com/2009/08/enumviicon5b25d.png?w=300" alt="enum vi icon" title="enum vi icon"><br><br>源目录<br><br><img src="http://lhb5883.files.wordpress.com/2009/08/image5b195d37974858.png?w=300" alt="image" title="image"><br><br>输出目录<br><br><img src="http://lhb5883.files.wordpress.com/2009/08/image5b165d72d9c6a2.png?w=300" alt="image" title="image"><br><br><strong>Part V ： Advance II</strong><br><br>另外程序里附赠了一个利用LabVIEW自带的枚举函数写的同功能VI，大家可以看看，这个是可以枚举llb的。<br><br><img src="http://lhb5883.files.wordpress.com/2009/08/labviewrecusionpath5b25d.png?w=300" alt="labview recusion path" title="labview recusion path"><br><br><div style="display:inline;float:none;margin:0;padding:0;"><div><a href="https://f2gz7g.bay.livefilestore.com/y1mnRGuf_j3Gb5TpKVjOD5CxZ8UBELgZPqY3gZOVgWHl5DBflI0ZjbDuo1EUl-risW3uaQ7wgUlVRHJIDQ_ypyOhRQddP40jPnRG5uEJ1q_4sGMc7lSHn84388p379VGkZgLTFRvZ--1OjwUlAVXTMCtA/Recursion.VI..Icon.7z" target="_blank" rel="noopener">Recursion VI  Icon.7z</a></div></div>
-
-<p>最后总结一下递归要注意的事项：</p>
-<font color="#ff0000"><strong>1：真的有必要用递归么？</strong></font>
-
-<font color="#ff0000"><strong>2：你的程序能否正常退出递归？</strong></font>
-
-<font color="#ff0000"><strong>3：递归的过程是无法直接调试的，有没有好的办法保证VI按照我们的预期执行？</strong></font>
-
-<p>如果这三个问题都能保证，恭喜你，你可以使用递归来提高你程序的效率了。<br>  </p></div><p></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1026,7 +1006,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
