@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="LabVIEW," />
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="WinRAR压缩文件有一个很方便的选项是在文件名追加压缩时间,但是RAR是收费软件,价格不菲.使用7-Zip就没有这样的功能了么? 其实只要自己动手也能丰衣足食,给7-Zip加上这个功能: 首先在运行中输入  shell:sendto                打开自己的发送到文件夹. 在文件夹新建一个文本文档,并贴入以下代码保存为ANSI编码  set hh=%time:~0,2% if %">
+<meta name="description" content="LabVIEW FPGA Vivado 编译器最小内存要求记得刚开始用LabVIEW FPGA的时候还是在XP下，当时编译时爆内存不足简直是家常便饭。不过在大内存普及的今天我们来看一下到底多少内存足够编译器使用。 Xilinx FPGA Chips for National Instruments RIO Devices From http://www.ni.com/product-documen">
+<meta name="keywords" content="LabVIEW">
 <meta property="og:type" content="article">
-<meta property="og:title" content="给7Zip压缩自动增加时间戳">
-<meta property="og:url" content="http://haobo.li/2013/09/29/archived-tips-7zip-add-time-stamp/index.html">
+<meta property="og:title" content="20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler">
+<meta property="og:url" content="http://haobo.li/2019/10/17/20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler/index.html">
 <meta property="og:site_name" content="haobo.li">
-<meta property="og:description" content="WinRAR压缩文件有一个很方便的选项是在文件名追加压缩时间,但是RAR是收费软件,价格不菲.使用7-Zip就没有这样的功能了么? 其实只要自己动手也能丰衣足食,给7-Zip加上这个功能: 首先在运行中输入  shell:sendto                打开自己的发送到文件夹. 在文件夹新建一个文本文档,并贴入以下代码保存为ANSI编码  set hh=%time:~0,2% if %">
+<meta property="og:description" content="LabVIEW FPGA Vivado 编译器最小内存要求记得刚开始用LabVIEW FPGA的时候还是在XP下，当时编译时爆内存不足简直是家常便饭。不过在大内存普及的今天我们来看一下到底多少内存足够编译器使用。 Xilinx FPGA Chips for National Instruments RIO Devices From http://www.ni.com/product-documen">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-26T02:20:32.034Z">
+<meta property="og:updated_time" content="2019-10-17T05:00:07.729Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="给7Zip压缩自动增加时间戳">
-<meta name="twitter:description" content="WinRAR压缩文件有一个很方便的选项是在文件名追加压缩时间,但是RAR是收费软件,价格不菲.使用7-Zip就没有这样的功能了么? 其实只要自己动手也能丰衣足食,给7-Zip加上这个功能: 首先在运行中输入  shell:sendto                打开自己的发送到文件夹. 在文件夹新建一个文本文档,并贴入以下代码保存为ANSI编码  set hh=%time:~0,2% if %">
+<meta name="twitter:title" content="20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler">
+<meta name="twitter:description" content="LabVIEW FPGA Vivado 编译器最小内存要求记得刚开始用LabVIEW FPGA的时候还是在XP下，当时编译时爆内存不足简直是家常便饭。不过在大内存普及的今天我们来看一下到底多少内存足够编译器使用。 Xilinx FPGA Chips for National Instruments RIO Devices From http://www.ni.com/product-documen">
 
 
 
@@ -133,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://haobo.li/2013/09/29/archived-tips-7zip-add-time-stamp/"/>
+  <link rel="canonical" href="http://haobo.li/2019/10/17/20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler/"/>
 
 
 
 
 
-  <title>给7Zip压缩自动增加时间戳 | haobo.li</title>
+  <title>20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler | haobo.li</title>
   
 
 
@@ -262,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2013/09/29/archived-tips-7zip-add-time-stamp/">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2019/10/17/20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haobo.li">
@@ -279,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">给7Zip压缩自动增加时间戳</h1>
+          <h1 class="post-title" itemprop="name headline">20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler</h1>
         
 
         <div class="post-meta">
@@ -291,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-09-29T16:32:29+08:00">
-                2013-09-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-17T11:06:42+08:00">
+                2019-10-17
               </time>
             
 
@@ -301,28 +302,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机与-Internet/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机与 Internet</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -351,28 +330,101 @@
       
 
       
-        <p>WinRAR压缩文件有一个很方便的选项是在文件名追加压缩时间,但是RAR是收费软件,价格不菲.使用7-Zip就没有这样的功能了么?</p>
-<p>其实只要自己动手也能丰衣足食,给7-Zip加上这个功能:</p>
-<p>首先在运行中输入</p>
-<ol>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:maroon;">shell</span>:<span style="color:maroon;">sendto</span><br>            </span></div>
-
-</li>
-</ol>
-<p>打开自己的发送到文件夹.</p>
-<p>在文件夹新建一个文本文档,并贴入以下代码保存为ANSI编码</p>
-<ol>
-<li><div style="background:#f4f4f4;"><a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener"><span style="font-size:9pt;">set</span></a><span style="font-size:9pt;"> hh=%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~0,2%<br></span></div></li>
-<li><div style="background:#f4f4f4;"><a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=if&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener"><span style="font-size:9pt;">if</span></a><span style="font-size:9pt;"> %hh% LSS 10 (<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">set</a> hh=0%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~1,1%)<br></span></div></li>
-<li><div style="background:#f4f4f4;"><a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener"><span style="font-size:9pt;">set</span></a><span style="font-size:9pt;"> dst=%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">date</a>:~0,4%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">date</a>:~5,2%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">date</a>:~8,2%_%hh%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~3,2%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~6,2%<br></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">“<span style="color:darkred;">C:\Program Files\7-Zip\7z.exe</span>“ a %1_%dst%.zip %1<br></span></div>
-
-</li>
-</ol>
-<p>修改文件名为</p>
-<p>7zBackup.bat</p>
-<p>使用时选中需要压缩的文件或者目录,选择发送到7zBackup.bat即可。</p>
-<p>以上在Window 7 64bit，7-Zip 9.2 64bit下验证通过。</p>
+        <h1 id="LabVIEW-FPGA-Vivado-编译器最小内存要求"><a href="#LabVIEW-FPGA-Vivado-编译器最小内存要求" class="headerlink" title="LabVIEW FPGA Vivado 编译器最小内存要求"></a>LabVIEW FPGA Vivado 编译器最小内存要求</h1><p>记得刚开始用LabVIEW FPGA的时候还是在XP下，当时编译时爆内存不足简直是家常便饭。不过在大内存普及的今天我们来看一下到底多少内存足够编译器使用。</p>
+<p>Xilinx FPGA Chips for National Instruments RIO Devices</p>
+<p>From <a href="http://www.ni.com/product-documentation/54514/en/?OpenDocument" target="_blank" rel="noopener">http://www.ni.com/product-documentation/54514/en/?OpenDocument</a> </p>
+<p>Minimum System Memory Recommendations for the Vivado Design Suite</p>
+<p>From <a href="https://www.xilinx.com/products/design-tools/vivado/memory.html" target="_blank" rel="noopener">https://www.xilinx.com/products/design-tools/vivado/memory.html</a> </p>
+<p>Memory Recommendations Using the ISE® Design Suite 14</p>
+<p>From <a href="https://www.xilinx.com/products/design-tools/ise-design-suite/memory.html" target="_blank" rel="noopener">https://www.xilinx.com/products/design-tools/ise-design-suite/memory.html</a> </p>
+<p>整理出来的内存占用，单位GiB</p>
+<table>
+<thead>
+<tr>
+<th>FPGA系列</th>
+<th>典型NI产品型号</th>
+<th>芯片型号</th>
+<th>编译器</th>
+<th>最小内存</th>
+<th>最大内存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Virtex-5</td>
+<td>PXI-7954R</td>
+<td>LX110</td>
+<td>ISE</td>
+<td>2.1</td>
+<td>2.9</td>
+</tr>
+<tr>
+<td>Virtex-6</td>
+<td>PXIe-5646R</td>
+<td>LX240T</td>
+<td>ISE</td>
+<td>3.7</td>
+<td>6.5</td>
+</tr>
+<tr>
+<td>Virtex-7</td>
+<td>PXIe-5840R</td>
+<td>VX690T</td>
+<td>Vivado</td>
+<td>5</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Spartan 3</td>
+<td>sbRIO 9642</td>
+<td>XC3S2000</td>
+<td>ISE</td>
+<td>1.03</td>
+<td>1.52</td>
+</tr>
+<tr>
+<td>Spartan 6</td>
+<td>cRIO-9082</td>
+<td>LX 150</td>
+<td>ISE</td>
+<td>2.2</td>
+<td>3.7</td>
+</tr>
+<tr>
+<td>Zynq-7000</td>
+<td>sbRIO-9607</td>
+<td>XC7Z020</td>
+<td>Vivado</td>
+<td>1.3</td>
+<td>1.9</td>
+</tr>
+<tr>
+<td>Kintex-7</td>
+<td>PXIe-6592R</td>
+<td>XC7K410T</td>
+<td>Vivado</td>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Kintex Ultrascale</td>
+<td>PXIe-7915</td>
+<td>KU060</td>
+<td>Vivado</td>
+<td>7</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Artix-7</td>
+<td>cRIO-9058</td>
+<td>XC7A100T</td>
+<td>Vivado</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>可以看到编译LabVIEW FPGA基本上有个16G内存就差不多了，除非要同时编译多个bitfile可能需要更大的内存。而Xilinx的Virtex UltraScale XCVU440峰值需要48G内存，这就只有上专业工作站才能满足了，或者考虑在Linux服务器上部署编译服务。</p>
 
       
     </div>
@@ -388,6 +440,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/LabVIEW/" rel="tag"># LabVIEW</a>
+          
+        </div>
+      
 
       
       
@@ -397,8 +455,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013/09/26/archived-ni-asl-install-tips/" rel="next" title="NI院校套件批量安装技巧一则">
-                <i class="fa fa-chevron-left"></i> NI院校套件批量安装技巧一则
+              <a href="/2019/06/18/20190618-labview-2019-released/" rel="next" title="20190618-labview-2019-released">
+                <i class="fa fa-chevron-left"></i> 20190618-labview-2019-released
               </a>
             
           </div>
@@ -406,10 +464,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014/03/04/archived-move-blog-haobo-li/" rel="prev" title="已搬家到haobo.li">
-                已搬家到haobo.li <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -467,8 +521,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -530,6 +593,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LabVIEW-FPGA-Vivado-编译器最小内存要求"><span class="nav-number">1.</span> <span class="nav-text">LabVIEW FPGA Vivado 编译器最小内存要求</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
