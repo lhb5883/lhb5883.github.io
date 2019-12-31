@@ -263,6 +263,137 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2019/01/03/20190103-labview-2018-call-python-return-error-1671/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/03/20190103-labview-2018-call-python-return-error-1671/" itemprop="url">20190103-labview-2018-call-python-return-error-1671</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-03T14:12:54+08:00">
+                2019-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="LabVIEW调用Python返回数组时报错1671"><a href="#LabVIEW调用Python返回数组时报错1671" class="headerlink" title="LabVIEW调用Python返回数组时报错1671"></a>LabVIEW调用Python返回数组时报错1671</h1><p>最近在测试用LabVIEW和Python实现算法时的可替换性,正好LabVIEW 2018可以调用Python代码就方便了不少,可以直接替换比对.但是发现调Python时返回单个值的时候正常,返回一个数组时报错.</p>
+<p>Error 1671 occurred at Python Node in PythonNode_PyIntegral.vi</p>
+<p>Possible reason(s):</p>
+<p>LabVIEW: (Hex 0x687) There was an error in executing the specified function.</p>
+<p>Python returned the following error: <class 'systemerror'=""></class></p>
+<p>..\Objects\listobject.c:186: bad argument to internal function</p>
+<p>查了一下LabVIEW帮助,返回值应该是支持数组才对的啊?</p>
+<p>仔细研究了一下发现了一条附注:</p>
+<p>Calling Conventions</p>
+<p>This node converts integers and strings to the corresponding data types in Python, converts arrays to lists, and converts clusters to tuples.</p>
+<p>输入参数的时候有类型转换,那么是不是返回值的时候没有转换?</p>
+<p>在python里打印了一下返回值的type,是np.ndarray,于是手动转换成list,果然就可以正常工作了.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://haobo.li/2018/09/17/20180917-use-labview-with-git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -776,169 +907,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2013/09/29/archived-tips-7zip-add-time-stamp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/09/29/archived-tips-7zip-add-time-stamp/" itemprop="url">给7Zip压缩自动增加时间戳</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-09-29T16:32:29+08:00">
-                2013-09-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机与-Internet/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机与 Internet</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>WinRAR压缩文件有一个很方便的选项是在文件名追加压缩时间,但是RAR是收费软件,价格不菲.使用7-Zip就没有这样的功能了么?</p>
-<p>其实只要自己动手也能丰衣足食,给7-Zip加上这个功能:</p>
-<p>首先在运行中输入</p>
-<ol>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:maroon;">shell</span>:<span style="color:maroon;">sendto</span><br>            </span></div>
-
-</li>
-</ol>
-<p>打开自己的发送到文件夹.</p>
-<p>在文件夹新建一个文本文档,并贴入以下代码保存为ANSI编码</p>
-<ol>
-<li><div style="background:#f4f4f4;"><a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener"><span style="font-size:9pt;">set</span></a><span style="font-size:9pt;"> hh=%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~0,2%<br></span></div></li>
-<li><div style="background:#f4f4f4;"><a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=if&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener"><span style="font-size:9pt;">if</span></a><span style="font-size:9pt;"> %hh% LSS 10 (<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">set</a> hh=0%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~1,1%)<br></span></div></li>
-<li><div style="background:#f4f4f4;"><a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener"><span style="font-size:9pt;">set</span></a><span style="font-size:9pt;"> dst=%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">date</a>:~0,4%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">date</a>:~5,2%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">date</a>:~8,2%_%hh%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~3,2%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~6,2%<br></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">“<span style="color:darkred;">C:\Program Files\7-Zip\7z.exe</span>“ a %1_%dst%.zip %1<br></span></div>
-
-</li>
-</ol>
-<p>修改文件名为</p>
-<p>7zBackup.bat</p>
-<p>使用时选中需要压缩的文件或者目录,选择发送到7zBackup.bat即可。</p>
-<p>以上在Window 7 64bit，7-Zip 9.2 64bit下验证通过。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -990,7 +958,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-count">60</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
