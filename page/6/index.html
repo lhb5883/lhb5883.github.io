@@ -263,6 +263,147 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/12/05/archived-stream-to-disk-guide-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/12/05/archived-stream-to-disk-guide-06/" itemprop="url">流盘备忘录(6)-程序架构</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-12-05T10:00:37+08:00">
+                2009-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1437" class="bvMsg"><br><br>并行执行<br><br>采集和保存大量数据对计算机内存和CPU占用率都很高，如果使用单循环顺序结构很容易将CPU超载,所以我们有必要使用数据队列。<br><br>NI的RF流盘例程：<br><br><img src="http://lhb5883.files.wordpress.com/2009/12/rfstreaming4.png?w=300" alt="RF Streaming" title="RF Streaming"><br><br>一个比较合理的架构是使用采集-送入队列 同时并行取出队列-流盘，可以较为充分的利用双核CPU。<br><br>完成之后再提取数据进行处理。<br><br>对于使用DAQmx 9.0和LabVIEW2009平台，我们还有一个更优秀的选择：使用DAQmx TDMS2.0集成流盘<br><br><img src="http://lhb5883.files.wordpress.com/2009/12/tdmsstreaming2.png?w=300" alt="TDMS Streaming" title="TDMS Streaming"><br><br>这个API的好处是效率更高编程更简单，而且占用系统资源更少，直接由DAQ DMA到硬盘。而且最高速度可达1.8GBS/s<br><br>需要注意这个VI在Log模式效率最高，但是还需要读取数据做其他处理的话要选Log and Read。<br><br><img src="http://lhb5883.files.wordpress.com/2009/12/image200b3dd1c.png?w=90" alt="image" title="image"><br><br>存好的文件就是标准的TDMS2.0文件。<br>  </div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/12/02/archived-stream-to-disk-guide-05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -816,147 +957,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/11/26/archived-stream-to-disk-guide-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2009/11/26/archived-stream-to-disk-guide-01/" itemprop="url">流盘备忘录(1)-流盘概览</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-11-26T07:25:57+08:00">
-                2009-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
-                    <span itemprop="name">Uncategorized</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <div id="msgcns!866B8F96A2761BBE!1391" class="bvMsg"><br><br>流盘概览<br><br>我们经常会看到一个总线速度比较的图表,可以看到在通常的情况下同一时代内总线最高速度是远远高于外总线的,不过对于硬盘来说,尽管应该也可以算是内总线上的设备,硬盘读写速度一直是一个令人无奈的瓶颈,远远落后于计算机技术和测控技术的发展速度.当我们的示波器数据量已经迈入GB/s的量级,硬盘的速度还是在MBS/s级徘徊.<br><br>造成这种现状的原因:<br><br>1.机械式硬盘本身的局限:<br><br>需要通过寻道等机械动作之后才能实现读写动作,如果使用SSD固态硬盘,单块硬盘速度可以提高到100MBSs以上,<br><br>传统硬盘通过组成Raid0阵列也可以提高写入速度，目前最高性能已经可以到G级。<br><br>2.总线接口:<br><br>SATA和IDE接口挂接到PCI总线上就要受到PCI总线133MS/s的限制,只有使用PCI-E的高带宽接口,才能适合大流量的数据读写，PCIe带宽最高4G。<br><br>目前PXIe的系统带宽在3~4G，板卡带宽最高1G。<br><br>3.计算机性能：<br><br>在处理大量数据时大数组的读写、转置、队列都会给CPU大量的压力，数据量的增大对内存大小也提出了更高的要求。<br><br>对于目前PXI平台比较成熟的方案就是使用PXI-E板卡+RAID流盘阵列这种架构.最高数据吞吐量在400M~600MB/s左右。<br>  </div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1008,7 +1008,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
