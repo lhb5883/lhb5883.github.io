@@ -5,11 +5,11 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -39,7 +39,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -73,21 +73,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
 
 
 
@@ -132,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://haobo.li/"/>
+  <link rel="canonical" href="http://haobo.li/">
 
 
 
@@ -174,7 +174,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">haobo.li</span>
         <span class="logo-line-after"><i></i></span>
@@ -204,7 +204,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
           </a>
@@ -214,7 +214,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
           </a>
@@ -224,7 +224,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             Tags
           </a>
@@ -263,11 +263,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2020/04/22/20200422-Network-Trouble-Shooting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/22/20200422-Network-Trouble-Shooting/" itemprop="url">20200422-Network-Trouble-Shooting</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-22T15:18:29+08:00">
+                2020-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="网络排故记录"><a href="#网络排故记录" class="headerlink" title="网络排故记录"></a>网络排故记录</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>自疫情以来发现网络情况很不稳定，发现虚拟专网时有链接不上的情况。</p>
+<h2 id="网络拓扑"><a href="#网络拓扑" class="headerlink" title="网络拓扑"></a>网络拓扑</h2><p>上海 WAN1 联通光纤固定IP+ WAN2 电信PPPOE </p>
+<p>通过飞塔防火墙软件定义网络宽带合一访问外网</p>
+<p>飞塔防火墙在 WAN1 提供IPSEC隧道，WAN2提供SSL虚拟专网服务</p>
+<p>西安 WAN1 联通专线固定IP+WAN2 电信PPPOE</p>
+<p>通过飞塔防火墙软件定义网络宽带合一访问外网</p>
+<p>飞塔防火墙在WAN1 拨号到IPSEC隧道以访问上海的内网资源</p>
+<h2 id="故障现象1"><a href="#故障现象1" class="headerlink" title="故障现象1"></a>故障现象1</h2><p>西安WAN1的IPSEC隧道失败，但可以用客户端SSL虚拟专网访问。</p>
+<h3 id="故障确认："><a href="#故障确认：" class="headerlink" title="故障确认："></a>故障确认：</h3><p>使用TraceRT发现上海WAN1的固定IP无法Ping通，</p>
+<h3 id="故障原因："><a href="#故障原因：" class="headerlink" title="故障原因："></a>故障原因：</h3><p>是联通网络问题。</p>
+<h2 id="故障现象2"><a href="#故障现象2" class="headerlink" title="故障现象2"></a>故障现象2</h2><p>IPSEC隧道正常，使用客户端SSL虚拟专网无法访问。客户端在忽略证书错误后就无法再连接上。</p>
+<h3 id="故障确认：-1"><a href="#故障确认：-1" class="headerlink" title="故障确认："></a>故障确认：</h3><p>使用Web界面可以用账号密码正常登录，确认网络通讯正常，账号密码正常。</p>
+<p>更换机器也可以正常连接。卸载当前版本飞塔客户端重装无效，但更换版本后可以正常工作，如从5.6升级到6.2，或者从6.2降级到5.6都可以。</p>
+<h3 id="故障原因：-1"><a href="#故障原因：-1" class="headerlink" title="故障原因："></a>故障原因：</h3><p>怀疑是注册表或者配置文件出错。</p>
+<h2 id="故障现象3"><a href="#故障现象3" class="headerlink" title="故障现象3"></a>故障现象3</h2><p>IPSEC隧道失败，客户端拨SSL虚拟专网失败。</p>
+<h3 id="故障确认：-2"><a href="#故障确认：-2" class="headerlink" title="故障确认："></a>故障确认：</h3><p>Web界面无法打开，确认网络不通。</p>
+<h3 id="故障原因：-2"><a href="#故障原因：-2" class="headerlink" title="故障原因："></a>故障原因：</h3><p>上海端电信PPPOE拨号失败。</p>
+<h2 id="故障现象4"><a href="#故障现象4" class="headerlink" title="故障现象4"></a>故障现象4</h2><p>IPSEC连接失败，客户端SSL虚拟专网随机性断开。</p>
+<h3 id="故障确认：-3"><a href="#故障确认：-3" class="headerlink" title="故障确认："></a>故障确认：</h3><p>飞塔CPU占用100%，经过测试，只要下载速度超过10MB/s，防火墙就没有响应。查询手册，UDP包最大速率1.5Gbps，防火墙策略 5000 SSL虚拟专网吞吐量 30Mbps，IPS吞吐量只有200Mbps也就是20MB/s但实际上测试只要到10MB/s的下载速度，CPU就已经100%了。</p>
+<h3 id="故障原因：-3"><a href="#故障原因：-3" class="headerlink" title="故障原因："></a>故障原因：</h3><p>防火墙IPS性能不足</p>
+<p> 查了一下，防火墙IPS指的是防火墙的处理能力</p>
+<p>Most vendors talk of firewall throughput even when they are advertising UTMs (Unified Threat Management Systems). There’s a fundamental difference between a firewall and a UTM. A firewall merely does stateful inspection of the traffic whereas a UTM proactively stops attacks even on allowed ports because it contains the all important IPS (Intrusion Prevention System). This means that even if traffic is allowed to certain services, that traffic is continuously examined to detect malicious attacks. In other words, the IPS stops hacker attacks even on open ports.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://haobo.li/2019/12/31/20191231-how-to-work-around-some-bugs-in-2019/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -409,7 +550,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -542,7 +683,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -868,7 +1009,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -1065,182 +1206,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2019/06/18/20190618-labview-2019-released/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/18/20190618-labview-2019-released/" itemprop="url">20190618-labview-2019-released</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-18T12:20:27+08:00">
-                2019-06-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="LabVIEW-2019-已经发布"><a href="#LabVIEW-2019-已经发布" class="headerlink" title="LabVIEW 2019 已经发布"></a>LabVIEW 2019 已经发布</h1><p>LabVIEW 2019其实在五月的NI Week就已经发布了,不过国内CDN(似乎是什么百度云加速)一直没有完成同步,导致下载不了完整的离线包.目前经过我测试至少LabVIEW 2019已经可以成功下载.</p>
-<ol>
-<li>这次最大的改变就是完全使用NI Package格式进行发布,这样可以减小重复的组件占用的控件,像32bit的LabVIEW镜像只有26G.LabVIEW NXG 3.1也已经发布,不过还没办法成功下载离线包,如果着急下载的话,可以下64bit的软件平台安装包(SPB),里面包含了NXG,CVI,Measurement Studio,TESTSTAND等NI大部分软件.</li>
-<li>SPB 2019      Sping和之前SPB不同的地方是把32和64bit软件分开了,因为NI 2021年就要停止32bit操作系统支持以及Win7和Win Server 2008 R2支持.</li>
-<li>另外一个改变就是很多不是很常用的工具包已经移动到了VIPM里面.</li>
-</ol>
-<p>在下载页面点击下载离线安装包就可以下载ISO格式的安装镜像</p>
-<p>NI Software Platform Bundle (SPB) Spring 2019 64bit</p>
-<p><a href="http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305933" target="_blank" rel="noopener">http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305933</a></p>
-<p>Offline Installer</p>
-<p>LabVIEW 2019 and Drivers</p>
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Checksum</strong></th>
-<th><strong>File Size</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2019</td>
-<td><strong>(MD5)</strong> 2c792f957b6bcf5262654bea41842970   <strong>(SHA256)</strong> 1f156d7465eb64d218639f2bd7847bd02a5338ee1f0981f22205688b9e5f9f8d</td>
-<td>35.49 GB</td>
-</tr>
-</tbody>
-</table>
-<p>From &lt;<a href="http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305933" target="_blank" rel="noopener">http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305933</a>&gt; </p>
-<p>NI Software Platform Bundle (SPB) Spring 2019 32bit</p>
-<p><a href="http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305508" target="_blank" rel="noopener">http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305508</a></p>
-<p>Offline Installer</p>
-<p>LabVIEW 2019 and Drivers</p>
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Checksum</strong></th>
-<th><strong>File Size</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2019</td>
-<td><strong>(MD5)</strong> d40c6366a441750ec1ed4a304a09f241   <strong>(SHA256)</strong> 1e268f3ee660acc8b9a4efd8e91f9d187f1f446780025d0743fcc8daa76100b5</td>
-<td>26.01 GB</td>
-</tr>
-</tbody>
-</table>
-<p>From &lt;<a href="http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305508" target="_blank" rel="noopener">http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305508</a>&gt; </p>
-<p>参考链接</p>
-<p> <strong>NI Software Platform Bundle (SPB) Spring 2019 Readme</strong></p>
-<p> From &lt;<a href="http://www.ni.com/pdf/manuals/377942a.html" target="_blank" rel="noopener">http://www.ni.com/pdf/manuals/377942a.html</a>&gt; </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1274,9 +1244,7 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="haobo.li" />
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="haobo.li">
           <p class="site-author-name" itemprop="name">haobo.li</p>
            
               <p class="site-description motion-element" itemprop="description">A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on</p>
@@ -1287,7 +1255,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1309,7 +1277,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -1348,10 +1316,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

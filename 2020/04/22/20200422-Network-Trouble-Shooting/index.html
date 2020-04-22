@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="network,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="网络排故记录前言自疫情以来发现网络情况很不稳定，发现虚拟专网时有链接不上的情况。 网络拓扑上海 WAN1 联通光纤固定IP+ WAN2 电信PPPOE  通过飞塔防火墙软件定义网络宽带合一访问外网 飞塔防火墙在 WAN1 提供IPSEC隧道，WAN2提供SSL虚拟专网服务 西安 WAN1 联通专线固定IP+WAN2 电信PPPOE 通过飞塔防火墙软件定义网络宽带合一访问外网 飞塔防火墙在WAN1">
+<meta name="keywords" content="network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20200422-Network-Trouble-Shooting">
+<meta property="og:url" content="http://haobo.li/2020/04/22/20200422-Network-Trouble-Shooting/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="网络排故记录前言自疫情以来发现网络情况很不稳定，发现虚拟专网时有链接不上的情况。 网络拓扑上海 WAN1 联通光纤固定IP+ WAN2 电信PPPOE  通过飞塔防火墙软件定义网络宽带合一访问外网 飞塔防火墙在 WAN1 提供IPSEC隧道，WAN2提供SSL虚拟专网服务 西安 WAN1 联通专线固定IP+WAN2 电信PPPOE 通过飞塔防火墙软件定义网络宽带合一访问外网 飞塔防火墙在WAN1">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-04-22T07:39:50.815Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="20200422-Network-Trouble-Shooting">
+<meta name="twitter:description" content="网络排故记录前言自疫情以来发现网络情况很不稳定，发现虚拟专网时有链接不上的情况。 网络拓扑上海 WAN1 联通光纤固定IP+ WAN2 电信PPPOE  通过飞塔防火墙软件定义网络宽带合一访问外网 飞塔防火墙在 WAN1 提供IPSEC隧道，WAN2提供SSL虚拟专网服务 西安 WAN1 联通专线固定IP+WAN2 电信PPPOE 通过飞塔防火墙软件定义网络宽带合一访问外网 飞塔防火墙在WAN1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://haobo.li/2020/04/22/20200422-Network-Trouble-Shooting/">
+
+
+
+
+
+  <title>20200422-Network-Trouble-Shooting | haobo.li</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">haobo.li</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Measurement Tips</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2020/04/22/20200422-Network-Trouble-Shooting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">20200422-Network-Trouble-Shooting</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-22T15:18:29+08:00">
+                2020-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="网络排故记录"><a href="#网络排故记录" class="headerlink" title="网络排故记录"></a>网络排故记录</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>自疫情以来发现网络情况很不稳定，发现虚拟专网时有链接不上的情况。</p>
+<h2 id="网络拓扑"><a href="#网络拓扑" class="headerlink" title="网络拓扑"></a>网络拓扑</h2><p>上海 WAN1 联通光纤固定IP+ WAN2 电信PPPOE </p>
+<p>通过飞塔防火墙软件定义网络宽带合一访问外网</p>
+<p>飞塔防火墙在 WAN1 提供IPSEC隧道，WAN2提供SSL虚拟专网服务</p>
+<p>西安 WAN1 联通专线固定IP+WAN2 电信PPPOE</p>
+<p>通过飞塔防火墙软件定义网络宽带合一访问外网</p>
+<p>飞塔防火墙在WAN1 拨号到IPSEC隧道以访问上海的内网资源</p>
+<h2 id="故障现象1"><a href="#故障现象1" class="headerlink" title="故障现象1"></a>故障现象1</h2><p>西安WAN1的IPSEC隧道失败，但可以用客户端SSL虚拟专网访问。</p>
+<h3 id="故障确认："><a href="#故障确认：" class="headerlink" title="故障确认："></a>故障确认：</h3><p>使用TraceRT发现上海WAN1的固定IP无法Ping通，</p>
+<h3 id="故障原因："><a href="#故障原因：" class="headerlink" title="故障原因："></a>故障原因：</h3><p>是联通网络问题。</p>
+<h2 id="故障现象2"><a href="#故障现象2" class="headerlink" title="故障现象2"></a>故障现象2</h2><p>IPSEC隧道正常，使用客户端SSL虚拟专网无法访问。客户端在忽略证书错误后就无法再连接上。</p>
+<h3 id="故障确认：-1"><a href="#故障确认：-1" class="headerlink" title="故障确认："></a>故障确认：</h3><p>使用Web界面可以用账号密码正常登录，确认网络通讯正常，账号密码正常。</p>
+<p>更换机器也可以正常连接。卸载当前版本飞塔客户端重装无效，但更换版本后可以正常工作，如从5.6升级到6.2，或者从6.2降级到5.6都可以。</p>
+<h3 id="故障原因：-1"><a href="#故障原因：-1" class="headerlink" title="故障原因："></a>故障原因：</h3><p>怀疑是注册表或者配置文件出错。</p>
+<h2 id="故障现象3"><a href="#故障现象3" class="headerlink" title="故障现象3"></a>故障现象3</h2><p>IPSEC隧道失败，客户端拨SSL虚拟专网失败。</p>
+<h3 id="故障确认：-2"><a href="#故障确认：-2" class="headerlink" title="故障确认："></a>故障确认：</h3><p>Web界面无法打开，确认网络不通。</p>
+<h3 id="故障原因：-2"><a href="#故障原因：-2" class="headerlink" title="故障原因："></a>故障原因：</h3><p>上海端电信PPPOE拨号失败。</p>
+<h2 id="故障现象4"><a href="#故障现象4" class="headerlink" title="故障现象4"></a>故障现象4</h2><p>IPSEC连接失败，客户端SSL虚拟专网随机性断开。</p>
+<h3 id="故障确认：-3"><a href="#故障确认：-3" class="headerlink" title="故障确认："></a>故障确认：</h3><p>飞塔CPU占用100%，经过测试，只要下载速度超过10MB/s，防火墙就没有响应。查询手册，UDP包最大速率1.5Gbps，防火墙策略 5000 SSL虚拟专网吞吐量 30Mbps，IPS吞吐量只有200Mbps也就是20MB/s但实际上测试只要到10MB/s的下载速度，CPU就已经100%了。</p>
+<h3 id="故障原因：-3"><a href="#故障原因：-3" class="headerlink" title="故障原因："></a>故障原因：</h3><p>防火墙IPS性能不足</p>
+<p> 查了一下，防火墙IPS指的是防火墙的处理能力</p>
+<p>Most vendors talk of firewall throughput even when they are advertising UTMs (Unified Threat Management Systems). There’s a fundamental difference between a firewall and a UTM. A firewall merely does stateful inspection of the traffic whereas a UTM proactively stops attacks even on allowed ports because it contains the all important IPS (Intrusion Prevention System). This means that even if traffic is allowed to certain services, that traffic is continuously examined to detect malicious attacks. In other words, the IPS stops hacker attacks even on open ports.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/network/" rel="tag"># network</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/31/20191231-how-to-work-around-some-bugs-in-2019/" rel="next" title="20191231-how-to-work-around-some-bugs-in-2019">
+                <i class="fa fa-chevron-left"></i> 20191231-how-to-work-around-some-bugs-in-2019
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+     
+       <div onclick="ShowGitment()" id="gitment-display-button">Show comments from Gitment</div>
+       <div id="gitment-container" style="display:none"></div>
+     
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="haobo.li">
+          <p class="site-author-name" itemprop="name">haobo.li</p>
+           
+              <p class="site-description motion-element" itemprop="description">A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络排故记录"><span class="nav-number">1.</span> <span class="nav-text">网络排故记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络拓扑"><span class="nav-number">1.2.</span> <span class="nav-text">网络拓扑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#故障现象1"><span class="nav-number">1.3.</span> <span class="nav-text">故障现象1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#故障确认："><span class="nav-number">1.3.1.</span> <span class="nav-text">故障确认：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#故障原因："><span class="nav-number">1.3.2.</span> <span class="nav-text">故障原因：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#故障现象2"><span class="nav-number">1.4.</span> <span class="nav-text">故障现象2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#故障确认：-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">故障确认：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#故障原因：-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">故障原因：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#故障现象3"><span class="nav-number">1.5.</span> <span class="nav-text">故障现象3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#故障确认：-2"><span class="nav-number">1.5.1.</span> <span class="nav-text">故障确认：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#故障原因：-2"><span class="nav-number">1.5.2.</span> <span class="nav-text">故障原因：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#故障现象4"><span class="nav-number">1.6.</span> <span class="nav-text">故障现象4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#故障确认：-3"><span class="nav-number">1.6.1.</span> <span class="nav-text">故障确认：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#故障原因：-3"><span class="nav-number">1.6.2.</span> <span class="nav-text">故障原因：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haobo.li</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+     
+     
+     
+     
+     <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+     
+         <script type="text/javascript">
+             function ShowGitment(){
+                 document.getElementById("gitment-display-button").style.display = "none";
+                 document.getElementById("gitment-container").style.display = "block";
+                 var gitment = new Gitment({
+                     id: document.location.href, 
+                     owner: 'lhb5883',
+                     repo: 'lhb5883.github.io',
+                     oauth: {
+                         client_id: '5473d4670bb678c93d94',
+                         client_secret: '619d8420f0cc6f9f141bd8792e8f3a355a9193ed',
+                     }});
+                 gitment.render('gitment-container');
+             }
+         </script>
+     
+ 
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
