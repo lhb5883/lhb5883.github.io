@@ -263,6 +263,147 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/09/15/archived-scope-trigger-sensitivity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/09/15/archived-scope-trigger-sensitivity/" itemprop="url">关于示波器的触发灵敏度（Trigger Sensitivity）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-09-15T06:19:01+08:00">
+                2009-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computers-and-Internet/" itemprop="url" rel="index">
+                    <span itemprop="name">Computers and Internet</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1381" class="bvMsg"><br><br>示波器板卡有一项参数叫Edge Trigger Sensitivity<br><br><img src="http://lhb5883.files.wordpress.com/2009/09/image5b25d23274975.png?w=300" alt="NI PXI/PCI-5152 Specifications（P11）" title="NI PXI/PCI-5152 Specifications（P11）"><br><br>这一项指标翻译过来应该是触发敏感度，有什么意义呢？<br><br>当我们用示波器高速采集一个高频脉冲信号时，往往会混入很多噪声信号，如果没有触发敏感度，直接按边沿触发往往不能得到一个稳定的示波器图形。<br><br><img src="http://www.ed-china.com/ARTICLE_IMAGES/200801/20080101_TM_DT_TS_27F2.JPG" alt="图输入200mVpp锯齿波时的情况。" title="图输入200mVpp锯齿波时的情况。"><br><br>触发灵敏度就是用来滤除噪声对触发的影响，使之能够正确被有效信号而非噪声触发，获得稳定波形的一个参数。<br><br>TEK网站的定义如下：<br><br>###### Trigger Sensitivity<br><br>Trigger sensitivity is a critical attribute when capturing high-speed digital signals. An oscilloscope‘s trigger sensitivity determines its ability to react to specified edge trigger conditions over a range of frequencies. The specification takes the following form: power-line hum interference.<br><br><strong>Trigger System Sensitivity, Internal DC Coupled:</strong><br>0.35 div DC to 50 MHz, increasing to 1.5 div at 3 GHz<br>(guaranteed); 2.7 div at 4 GHz (typical)<br>(from TDS7404 DPO data sheet)<br><br>The oscilloscope will trigger on a signal of 0.35 divisions amplitude p-p in the range of frequencies from DC to 50 MHz. As the frequency goes beyond 50 MHz, the signal must be larger (higher in amplitude) to trigger the instrument. At 3 GHz, the signal must be at least 1.5 divisions in amplitude. Trigger sensitivity is specified with a sine wave input. <p>灵敏度<br>在捕获高速数字信号时，触发灵敏度是一个关键指标。示波器的触发灵敏度决定着在某个频率范围内示波器对规定边沿触发条件的反应能力。这一指标采用下述形式：电源线噪声干扰。<br>       触发系统灵敏度、内部DC耦合:<br>DC - 50 MHz, 0.35格；3 GHz时提高到1.5格(保障值); 4 GHz时2.7格 (典型值)(摘自TDS7404 DPO技术数据)<br>示波器将在DC到50 MHz 的频率范围内，在0.35格的p-p幅度上触发。在频率超过50MHz时，信号必须更大(幅度更高)，以触发仪器。在3 GHz时，信号的幅度必须在1.5格上。可以使用正弦波输入指定触发灵敏度。 </p><p>开头图中的指标就是说使用通道触发时灵敏度是满量程的10%，而使用外部触发时灵敏度是固定的0.5V峰峰值。小于灵敏度的毛刺都会被示波器忽略，不认为是触发。 </p><p>参考链接：<br><br><a href="http://www.ed-china.com/ART_8800024153_400013_500015_TS_f6dcb05a.HTM" target="_blank" rel="noopener">http://www.ed-china.com/ART_8800024153_400013_500015_TS_f6dcb05a.HTM</a><br><br><a href="http://www.tek.com/Measurement/scopes/selection/performance/trigger.html" target="_blank" rel="noopener">http://www.tek.com/Measurement/scopes/selection/performance/trigger.html</a><br><br>触发扫盲：<br><br><a href="http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf" title="http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf" target="_blank" rel="noopener">http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf</a><br>  </p></div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/09/14/archived-code-share-cmd-open-webpage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -834,147 +975,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/07/30/archived-ni-drivers-download/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2009/07/30/archived-ni-drivers-download/" itemprop="url">NI 驱动下载一览表</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-07-30T03:29:00+08:00">
-                2009-07-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
-                    <span itemprop="name">Uncategorized</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <div id="msgcns!866B8F96A2761BBE!1325" class="bvMsg"><br><br>### <strong><font color="#ff0000">第一项 NI Device Driver CD，现在可能叫Device Driver DVD更好一些。</font></strong><br><br>目前最新版2009年8月驱动下载地址：<br><br><a href="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-1.exe" title="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-1.exe" target="_blank" rel="noopener">ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-1.exe</a><br><br><a href="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2a.exe" title="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2a.exe" target="_blank" rel="noopener">ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2a.exe</a><br><br><a href="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2b.exe" title="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2b.exe" target="_blank" rel="noopener">ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2b.exe</a><br><br>三个包下载完毕以后依次解压即可。<br><br>通用下载地址（包含所有版本）：<br><br><a href="ftp://ftp.ni.com/support/drivercd/" title="ftp://ftp.ni.com/support/drivercd/" target="_blank" rel="noopener">ftp://ftp.ni.com/support/drivercd/</a><br><br>### <strong><font color="#ff0000">第二项 高精度温度记录仪驱动，NI 435x系列驱动。</font></strong><br><br>目前最新版 NI 435x 2.5.2下载地址：<br><br><a href="ftp://ftp.ni.com/support/NI-435x/2.5.2/NI435X252.zip" title="ftp://ftp.ni.com/support/NI-435x/2.5.2/NI435X252.zip" target="_blank" rel="noopener">ftp://ftp.ni.com/support/NI-435x/2.5.2/NI435X252.zip</a><br><br>通用下载地址：<br><br><a href="ftp://ftp.ni.com/support/NI-435x/" title="ftp://ftp.ni.com/support/NI-435x/" target="_blank" rel="noopener">ftp://ftp.ni.com/support/NI-435x/</a><br><br>### <strong><font color="#ff0000">第三项 NI同步板卡驱动，NI 665x系列板卡驱动。</font></strong><br><br>目前最新版 NI Sync 3.1下载地址：<br><br><a href="ftp://ftp.ni.com/support/softlib/Timing_Sync/3.1/NISync310.zip" title="http://ftp.ni.com/support/softlib/Timing_Sync/3.1/NISync310.zip" target="_blank" rel="noopener">ftp://ftp.ni.com/support/softlib/Timing_Sync/3.1/NISync310.zip</a><br><br>介绍页面：<br><br><a href="http://joule.ni.com/nidu/cds/view/p/id/1367/lang/zhs" title="http://joule.ni.com/nidu/cds/view/p/id/1367/lang/zhs" target="_blank" rel="noopener">http://joule.ni.com/nidu/cds/view/p/id/1367/lang/zhs</a><br><br>Readme：<br><br><a href="http://ftp.ni.com/support/softlib/Timing_Sync/3.1/readme.htm" title="http://ftp.ni.com/support/softlib/Timing_Sync/3.1/readme.htm" target="_blank" rel="noopener">http://ftp.ni.com/support/softlib/Timing_Sync/3.1/readme.htm</a><br><br>所有版本下载地址：<br><br><a href="ftp://ftp.ni.com/support/softlib/Timing_Sync/" title="ftp://ftp.ni.com/support/softlib/Timing_Sync/" target="_blank" rel="noopener">ftp://ftp.ni.com/support/softlib/Timing_Sync/</a><br><br>### <strong><font color="#ff0000">第四项 NI低噪音放大器驱动，对应NI 5690板卡。</font></strong><br><br>最新1.0.6下载地址：<br><br><a href="ftp://ftp.ni.com/support/softlib/RF/NI-5690/1.0.6/NI5690106.ZIP" title="ftp://ftp.ni.com/support/softlib/RF/NI-5690/1.0.6/NI5690106.ZIP" target="_blank" rel="noopener">ftp://ftp.ni.com/support/softlib/RF/NI-5690/1.0.6/NI5690106.ZIP</a><br><br>所有版本下载地址：<br><br><a href="ftp://ftp.ni.com/support/softlib/RF/NI-5690/" title="ftp://ftp.ni.com/support/softlib/RF/NI-5690/" target="_blank" rel="noopener">ftp://ftp.ni.com/support/softlib/RF/NI-5690/</a><br><br>### <strong><font color="#ff0000">第五项 NI中频收发器驱动，对应NI 564x系列板卡。</font></strong><br><br>最新1.3下载地址<br><br><a href="http://ftp.ni.com/support/softlib/RF/NI-5640R/1.3/NI5640R130.zip" title="http://ftp.ni.com/support/softlib/RF/NI-5640R/1.3/NI5640R130.zip" target="_blank" rel="noopener">http://ftp.ni.com/support/softlib/RF/NI-5640R/1.3/NI5640R130.zip</a><br><br>所有版本下载地址：<br><br><a href="ftp://ftp.ni.com/support/softlib/RF/NI-5640R/" title="ftp://ftp.ni.com/support/softlib/RF/NI-5640R/" target="_blank" rel="noopener">ftp://ftp.ni.com/support/softlib/RF/NI-5640R/</a><br><br>### <strong><font color="#ff0000">第六项 PXI控制器驱动：</font></strong><br><br>Trigger Bus,Watchdog driver(8130 for Vista/Server2008/7/Server2008R2 64bit/32bit)<br><br><a href="ftp://ftp.ni.com/support/pxi/pxie-8130/PXIe-8130 Peripherals (VISTA" target="_blank" rel="noopener">ftp://ftp.ni.com/support/pxi/pxie-8130/PXIe-8130%20Peripherals%20(VISTA).zip</a>.zip)<br><br>其他：<br><br><a href="ftp://ftp.ni.com/support/pxi/" title="ftp://ftp.ni.com/support/pxi/" target="_blank" rel="noopener">ftp://ftp.ni.com/support/pxi/</a><br><br>### <strong><font color="#ff0000">第七项 流盘驱动：</font></strong><br><br><a href="http://digital.ni.com/public.nsf/allkb/5D08C51AF3C748BD86257560000F7E44" title="http://digital.ni.com/public.nsf/allkb/5D08C51AF3C748BD86257560000F7E44" target="_blank" rel="noopener">http://digital.ni.com/public.nsf/allkb/5D08C51AF3C748BD86257560000F7E44</a><br><br>8264<br><br><a href="http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDK/$FILE/HDD-8264_Version_2.20.0.32_XP.zip" title="http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDK/$FILE/HDD-8264_Version_2.20.0.32_XP.zip" target="_blank" rel="noopener">http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDK/$FILE/HDD-8264_Version_2.20.0.32_XP.zip</a><br><br><a href="http://www.lsi.com/storage_home/products_home/internal_raid/megaraid_sas/megaraid_sas_84016e/index.html?locale=EN&amp;remote=1" title="http://www.lsi.com/storage_home/products_home/internal_raid/megaraid_sas/megaraid_sas_84016e/index.html?locale=EN&amp;remote=1" target="_blank" rel="noopener">http://www.lsi.com/storage_home/products_home/internal_raid/megaraid_sas/megaraid_sas_84016e/index.html?locale=EN&amp;remote=1</a><br><br>8263<br><br><a href="http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDF/$FILE/HDD-8263_Version_v2.2_XP.zip" title="http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDF/$FILE/HDD-8263_Version_v2.2_XP.zip" target="_blank" rel="noopener">http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDF/$FILE/HDD-8263_Version_v2.2_XP.zip</a><br><br><a href="http://www.highpoint-tech.com/USA/bios_rr2310.htm" title="http://www.highpoint-tech.com/USA/bios_rr2310.htm" target="_blank" rel="noopener">http://www.highpoint-tech.com/USA/bios_rr2310.htm</a><br>  </div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1024,7 +1024,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

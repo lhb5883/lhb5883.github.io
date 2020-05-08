@@ -263,6 +263,220 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2019/10/17/20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/17/20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler/" itemprop="url">20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-17T11:06:42+08:00">
+                2019-10-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="LabVIEW-FPGA-Vivado-编译器最小内存要求"><a href="#LabVIEW-FPGA-Vivado-编译器最小内存要求" class="headerlink" title="LabVIEW FPGA Vivado 编译器最小内存要求"></a>LabVIEW FPGA Vivado 编译器最小内存要求</h1><p>记得刚开始用LabVIEW FPGA的时候还是在XP下，当时编译时爆内存不足简直是家常便饭。不过在大内存普及的今天我们来看一下到底多少内存足够编译器使用。</p>
+<p>Xilinx FPGA Chips for National Instruments RIO Devices</p>
+<p>From <a href="http://www.ni.com/product-documentation/54514/en/?OpenDocument" target="_blank" rel="noopener">http://www.ni.com/product-documentation/54514/en/?OpenDocument</a> </p>
+<p>Minimum System Memory Recommendations for the Vivado Design Suite</p>
+<p>From <a href="https://www.xilinx.com/products/design-tools/vivado/memory.html" target="_blank" rel="noopener">https://www.xilinx.com/products/design-tools/vivado/memory.html</a> </p>
+<p>Memory Recommendations Using the ISE® Design Suite 14</p>
+<p>From <a href="https://www.xilinx.com/products/design-tools/ise-design-suite/memory.html" target="_blank" rel="noopener">https://www.xilinx.com/products/design-tools/ise-design-suite/memory.html</a> </p>
+<p>整理出来的内存占用，单位GiB</p>
+<table>
+<thead>
+<tr>
+<th>FPGA系列</th>
+<th>典型NI产品型号</th>
+<th>芯片型号</th>
+<th>编译器</th>
+<th>最小内存</th>
+<th>最大内存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Virtex-5</td>
+<td>PXI-7954R</td>
+<td>LX110</td>
+<td>ISE</td>
+<td>2.1</td>
+<td>2.9</td>
+</tr>
+<tr>
+<td>Virtex-6</td>
+<td>PXIe-5646R</td>
+<td>LX240T</td>
+<td>ISE</td>
+<td>3.7</td>
+<td>6.5</td>
+</tr>
+<tr>
+<td>Virtex-7</td>
+<td>PXIe-5840R</td>
+<td>VX690T</td>
+<td>Vivado</td>
+<td>5</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Spartan 3</td>
+<td>sbRIO 9642</td>
+<td>XC3S2000</td>
+<td>ISE</td>
+<td>1.03</td>
+<td>1.52</td>
+</tr>
+<tr>
+<td>Spartan 6</td>
+<td>cRIO-9082</td>
+<td>LX 150</td>
+<td>ISE</td>
+<td>2.2</td>
+<td>3.7</td>
+</tr>
+<tr>
+<td>Zynq-7000</td>
+<td>sbRIO-9607</td>
+<td>XC7Z020</td>
+<td>Vivado</td>
+<td>1.3</td>
+<td>1.9</td>
+</tr>
+<tr>
+<td>Kintex-7</td>
+<td>PXIe-6592R</td>
+<td>XC7K410T</td>
+<td>Vivado</td>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Kintex Ultrascale</td>
+<td>PXIe-7915</td>
+<td>KU060</td>
+<td>Vivado</td>
+<td>7</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Artix-7</td>
+<td>cRIO-9058</td>
+<td>XC7A100T</td>
+<td>Vivado</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>可以看到编译LabVIEW FPGA基本上有个16G内存就差不多了，除非要同时编译多个bitfile可能需要更大的内存。而Xilinx的Virtex UltraScale XCVU440峰值需要48G内存，这就只有上专业工作站才能满足了，或者考虑在Linux服务器上部署编译服务。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://haobo.li/2019/06/18/20190618-labview-2019-released/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -809,133 +1023,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2018/04/26/20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/26/20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel/" itemprop="url">Errors occurred when open NI DMM Soft Pannel</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T16:33:39+08:00">
-                2018-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="NI-DMM-软面板出错的解决办法"><a href="#NI-DMM-软面板出错的解决办法" class="headerlink" title="NI-DMM 软面板出错的解决办法"></a>NI-DMM 软面板出错的解决办法</h1><p>安装完NI-DMM之后有时打开软面板会提示</p>
-<p>ERROR:One or more elements of the application could not be found.  Please re-install ni-DMM installer again to fix this problem</p>
-<p><img src=".\20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel\clip_image001.png" alt="NI-DMM Soft Front Panel ERROR: One or more elements of the applicaton could not be found. Please run the NI-DMM installer again to fix this problem "></p>
-<p>这个可能有以下几种常见原因 </p>
-<h2 id="第一-NI软件安装时没有使用默认目录-测试至少NI-DMM-16-0存在此问题"><a href="#第一-NI软件安装时没有使用默认目录-测试至少NI-DMM-16-0存在此问题" class="headerlink" title="第一:NI软件安装时没有使用默认目录,测试至少NI-DMM 16.0存在此问题."></a>第一:NI软件安装时没有使用默认目录,测试至少NI-DMM 16.0存在此问题.</h2><h2 id="第二-NI-DMM-17-5存在Bug-随机性的打不开软面板-重启后偶尔正常"><a href="#第二-NI-DMM-17-5存在Bug-随机性的打不开软面板-重启后偶尔正常" class="headerlink" title="第二:NI-DMM 17.5存在Bug,随机性的打不开软面板,重启后偶尔正常."></a>第二:NI-DMM 17.5存在Bug,随机性的打不开软面板,重启后偶尔正常.</h2><h2 id="第三-DAQmx组件错乱-之前遇到过类似的报错-NI论坛上也是这种错误"><a href="#第三-DAQmx组件错乱-之前遇到过类似的报错-NI论坛上也是这种错误" class="headerlink" title="第三:DAQmx组件错乱,之前遇到过类似的报错,NI论坛上也是这种错误."></a>第三:DAQmx组件错乱,之前遇到过类似的报错,NI论坛上也是这种错误.</h2><p>NI-DMM依赖对应版本的DAQmx,比如是安装了低版本ELVISmx导致DAQmx组件版本不匹配,</p>
-<p>解决办法是在添加删除程序里选择添加删除NI软件,把低版本的DAQmx组件删除即可.</p>
-<p><a href="https://forums.ni.com/t5/PXI/DMM-SFT-returns-error-message-says-to-re-install/td-p/470375" target="_blank" rel="noopener">https://forums.ni.com/t5/PXI/DMM-SFT-returns-error-message-says-to-re-install/td-p/470375</a></p>
-<p>或者最彻底的办法是到 控制面板-添加删除程序-NI软件-删除所有组件.然后安装NI-DMM及内部包含的DAQmx,或者安装NI DeviceDriver Set里面的成套驱动.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -985,7 +1072,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
