@@ -263,6 +263,131 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2018/09/17/20180917-use-labview-with-git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/17/20180917-use-labview-with-git/" itemprop="url">配置LabVIEW和TortoiseGit工作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-17T10:35:22+08:00">
+                2018-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="配置LabVIEW和TortoiseGit工作"><a href="#配置LabVIEW和TortoiseGit工作" class="headerlink" title="配置LabVIEW和TortoiseGit工作"></a>配置LabVIEW和TortoiseGit工作</h1><p>首先安装git for windows和TortoiseGit,都使用默认安装即可.</p>
+<p>主要的工作量是在于设置TortoiseGitMerge和TortoiseGitDiff</p>
+<p><img src="./20180917-use-labview-with-git\1537152789409.png" alt="Config git with labview"></p>
+<p><a href="https://ispring-cloud-45.ispringcloud.com/acc/kc75hpYxMDM3NA/s/10374-N2ZHD-doaJL-kBQpK" target="_blank" rel="noopener">https://ispring-cloud-45.ispringcloud.com/acc/kc75hpYxMDM3NA/s/10374-N2ZHD-doaJL-kBQpK</a></p>
+<p><a href="https://forums.ni.com/t5/Example-Program-Drafts/Source-Code-Control-Using-TortoiseSVN-Subversion-with-LabVIEW/ta-p/3510829" target="_blank" rel="noopener">https://forums.ni.com/t5/Example-Program-Drafts/Source-Code-Control-Using-TortoiseSVN-Subversion-with-LabVIEW/ta-p/3510829</a></p>
+<p>Configuring TortoiseGit for Graphical Diff<br>​    1. Right-click in Windows Explorer to expose the TortoiseGit options<br>​    2. Mouse-over ‘TortoiseGit&gt;&gt; Settings’<br>​    3. In the list of settings on the left, select ‘Diff Viewer’,On the right side of the dialog, select ‘Advanced’<br>​    4. When the ‘Advanced diff settings’ dialog appears, select ‘Add’<br>​    5. In the dialog that appears, type .vi as the extension<br>​    6. Where it prompts you for the path to the external program, type the following: “C:\Program Files\National Instruments\Shared\LabVIEW Compare\LVCompare.exe” %mine %base -nobdcosm -nobdpos<br>​    7. Repeat this operation for the file-type .ctl<br>Configuring TortoiseGit for Graphical Merge<br>​    1. Right-click in Windows Explorer to expose the TortoiseGit options<br>​    2. Mouse-over ‘TortoiseGit&gt;&gt; Settings’<br>​    3. In the list of settings on the left, select ‘Merge Tool’ under ‘Diff Viewer’<br>​    4. On the right side of the dialog, select ‘Advanced’<br>​    5. When the ‘Advanced merge settings’ dialog appears, select ‘Add’<br>​    6. In the dialog that appears, type .vi as the extension<br>​    7. Where it prompts you for the path to the external program, type the following: “C:\Program Files\National Instruments\Shared\LabVIEW Merge\LVMerge.exe” %base %mine %theirs %merged<br>​    8. Repeat this operation for the file-type .ctl</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://haobo.li/2018/05/25/20180525-LabVIEW2018-released/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -814,191 +939,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2013/09/26/archived-ni-asl-install-tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/09/26/archived-ni-asl-install-tips/" itemprop="url">NI院校套件批量安装技巧一则</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-09-26T10:31:35+08:00">
-                2013-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LabVIEW/" itemprop="url" rel="index">
-                    <span itemprop="name">LabVIEW</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><span style="color:black;font-family:宋体;font-size:10pt;">NI院校套件提供了一个很方便的自动安装功能:<br></span></p>
-<ol>
-<li><span style="color:black;font-family:宋体;font-size:10pt;">可以自动决定安装顺序<br></span></li>
-<li><span style="color:black;font-family:宋体;font-size:10pt;">可以自动确定依赖关系<br></span></li>
-</ol>
-<p><span style="color:black;font-family:宋体;font-size:10pt;">不过美中不足的是安装Xilinx 10.1编译器的时候还需要手动安装,通过修改安装包,我们也可以自动安装Xilinx 10.1编译器<br></span></p>
-<p><span style="color:black;font-family:宋体;font-size:10pt;">复制或解压4张安装DVD，一张驱动DVD，并按照下图命名<br></span></p>
-<p><img src="http://lhb5883.files.wordpress.com/2013/09/092613_0241_ni1.png" alt><span style="color:black;font-size:10pt;"><br>        </span></p>
-<p><span style="color:black;font-size:10pt;"><span style="font-family:宋体;">下载</span>Xilinx 10<span style="font-family:宋体;">编译器，并解压至:</span><br>        </span></p>
-<p><span style="color:black;font-size:10pt;">\ASLFL13DVD2\Distributions\Xilinx 10<br></span></p>
-<p><span style="color:black;font-size:10pt;"><span style="font-family:宋体;">修改</span>\ASLFL13DVD1\nisuite.xml <span style="font-family:宋体;">第4072~4082行</span><br>        </span></p>
-<ol>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:blue;">&lt;<span style="color:maroon;">distribution</span><br>                    <span style="color:red;">id</span>=”XILINX10”&gt;</span><br>            </span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">inputRoot</span><br>                    <span style="color:red;">suiteVolume</span>=”5”&gt;</span>Windows\Xilinx 10\<span style="color:blue;">&lt;/<span style="color:maroon;">inputRoot<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span>9998<span style="color:blue;">&lt;/<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span>None<span style="color:blue;">&lt;/<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span>ADE<span style="color:blue;">&lt;/<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span>ASLControl<span style="color:blue;">&lt;/<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">name</span><br>                    <span style="color:red;">language</span>=”0009”&gt;</span>Xilinx Compilation Tools 10.1 (Requires Additional Xilinx Compilation Tools DVD)<span style="color:blue;">&lt;/<span style="color:maroon;">name<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">description</span><br>                    <span style="color:red;">language</span>=”0009”&gt;</span>You can install these tools locally or on a remote computer.\n\nUse these compilation tools to compile FPGA VIs on NI hardware containing Virtex-II FPGAs, such as the 781xR, 783xR, and cRIO-910x devices.\n\nLearn more about the FPGA on your NI hardware at ni.com.<span style="color:blue;">&lt;/<span style="color:maroon;">description<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span>NoDefault<span style="color:blue;">&lt;/<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span>NoInstall<span style="color:blue;">&lt;/<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span><br>                           </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="color:blue;font-size:9pt;">&lt;/<span style="color:maroon;">distribution<span style="color:blue;">&gt;</span><br>               </span></span></div>
-
-</li>
-</ol>
-<p><span style="color:black;font-family:宋体;font-size:10pt;">替换为<br></span></p>
-<ol>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:blue;">&lt;<span style="color:maroon;">distribution</span><br>                    <span style="color:red;">id</span>=”XILINX10”&gt;</span><br>            </span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">distId</span><br>                    <span style="color:red;">GUID</span>=”{C7B4CAC5-4001-475C-967D-DC65C097AA3B}”</span><br>                <span style="color:red;">languages</span>=<span style="color:blue;">“0009”</span><br>                <span style="color:red;">packageGUID</span>=<span style="color:blue;">“{1BECF03B-48B7-453F-AEB4-2570F837056B}”</span><br>                <span style="color:red;">version</span>=<span style="color:blue;">“10.13.0”/&gt;</span><br>            </span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">inputRoot</span><br>                    <span style="color:red;">suiteVolume</span>=”2”&gt;</span>Distributions\Xilinx 10\<span style="color:blue;">&lt;/<span style="color:maroon;">inputRoot<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span>9998<span style="color:blue;">&lt;/<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span>None<span style="color:blue;">&lt;/<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span>ADE<span style="color:blue;">&lt;/<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span>ASLControl<span style="color:blue;">&lt;/<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span><br>                            </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">name</span><br>                    <span style="color:red;">language</span>=”0009”&gt;</span>Xilinx Compilation Tools 10.1 (Requires Additional Xilinx Compilation Tools DVD)<span style="color:blue;">&lt;/<span style="color:maroon;">name<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">description</span><br>                    <span style="color:red;">language</span>=”0009”&gt;</span>You can install these tools locally or on a remote computer.\n\nUse these compilation tools to compile FPGA VIs on NI hardware containing Virtex-II FPGAs, such as the 781xR, 783xR, and cRIO-910x devices.\n\nLearn more about the FPGA on your NI hardware at ni.com.<span style="color:blue;">&lt;/<span style="color:maroon;">description<span style="color:blue;">&gt;</span><br>                    </span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span>NoCustomInstall<span style="color:blue;">&lt;/<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span><br>                           </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span>NoInstall<span style="color:blue;">&lt;/<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span><br>                           </span></span></span></span></span></div></li>
-<li><div style="background:#f4f4f4;"><span style="color:blue;font-size:9pt;">&lt;/<span style="color:maroon;">distribution<span style="color:blue;">&gt;</span><br>               </span></span></div>
-
-</li>
-</ol>
-<p>今后安装LabVIEW FPGA时,就可以自动安装编译器了.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1048,7 +988,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1112,7 +1052,7 @@
         <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

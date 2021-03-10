@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="LabVIEW 2020 SP1已经发布往年12月就应该放出的LabVIEW SP1下载，今年推迟到了一月发布，另外和往年不同的是Sp1的版本号没有按照去年的规律设置为20.5，而是一个比较特殊的20.6，并且应NI换绿油油logo的设计，更换了LabVIEW图标的底色，logo由过去的黑（32bit）白（64bit）变成了橙（32bit）黄（64bit），其他基本上没有功能性的更新，主要就是bu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20210310-labview-2020-sp1-released">
+<meta property="og:url" content="http://haobo.li/2021/03/10/20210310-labview-2020-sp1-released/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="LabVIEW 2020 SP1已经发布往年12月就应该放出的LabVIEW SP1下载，今年推迟到了一月发布，另外和往年不同的是Sp1的版本号没有按照去年的规律设置为20.5，而是一个比较特殊的20.6，并且应NI换绿油油logo的设计，更换了LabVIEW图标的底色，logo由过去的黑（32bit）白（64bit）变成了橙（32bit）黄（64bit），其他基本上没有功能性的更新，主要就是bu">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2021-03-10T05:33:52.536Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="20210310-labview-2020-sp1-released">
+<meta name="twitter:description" content="LabVIEW 2020 SP1已经发布往年12月就应该放出的LabVIEW SP1下载，今年推迟到了一月发布，另外和往年不同的是Sp1的版本号没有按照去年的规律设置为20.5，而是一个比较特殊的20.6，并且应NI换绿油油logo的设计，更换了LabVIEW图标的底色，logo由过去的黑（32bit）白（64bit）变成了橙（32bit）黄（64bit），其他基本上没有功能性的更新，主要就是bu">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://haobo.li/2021/03/10/20210310-labview-2020-sp1-released/">
+
+
+
+
+
+  <title>20210310-labview-2020-sp1-released | haobo.li</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">haobo.li</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Measurement Tips</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2021/03/10/20210310-labview-2020-sp1-released/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">20210310-labview-2020-sp1-released</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-10T13:26:10+08:00">
+                2021-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="LabVIEW-2020-SP1已经发布"><a href="#LabVIEW-2020-SP1已经发布" class="headerlink" title="LabVIEW 2020 SP1已经发布"></a>LabVIEW 2020 SP1已经发布</h1><p>往年12月就应该放出的LabVIEW SP1下载，今年推迟到了一月发布，另外和往年不同的是Sp1的版本号没有按照去年的规律设置为20.5，而是一个比较特殊的20.6，并且应NI换绿油油logo的设计，更换了LabVIEW图标的底色，logo由过去的黑（32bit）白（64bit）变成了橙（32bit）黄（64bit），其他基本上没有功能性的更新，主要就是bug修复，所以推荐使用2020的LabVIEW的开发者更新，并且可以开始在生产环境中正式使用了。</p>
+<p>下面是NI网站的下载地址，点右下角“Individual Offline Installers”可以下载离线包，其中64bit的软件平台包中有末代LabVIEW NXG 5.1的安装包，感兴趣的可以试试；</p>
+<h3 id="NI软件平台包离线下载"><a href="#NI软件平台包离线下载" class="headerlink" title="NI软件平台包离线下载"></a>NI软件平台包离线下载</h3><p>Software Platform Bundle Fall 2020</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fall 2020</td>
+<td>(MD5) fe20c8fa64013061e61ae487942d03e7  (SHA256) 3987ceba907b54e45538660ef472cdc1e1e55f6c775f3eb661efe7761d8a7909</td>
+<td>45.43 GB</td>
+</tr>
+</tbody>
+</table>
+<p> From <a href="https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#369492" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#369492</a></p>
+<p> Software Platform Bundle Fall 2020 x64</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fall 2020</td>
+<td>(MD5) 55c975548cab4e66efc54aee3ec60152  (SHA256) 5c8b18dd45608773c42572877596bcd6a000d207ff82efb62bca715fd17e8d9f</td>
+<td>54.56 GB</td>
+</tr>
+</tbody>
+</table>
+<p> From <a href="https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#369501" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#369501</a></p>
+<p>单独LabVIEW下载</p>
+<p>LabVIEW 2020 SP1</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020 SP1</td>
+<td>(MD5) a230da382d16e850020adeabb4651b00  (SHA256) a1984d351275cbb1c8f9b688d2b794e1f36801fad473002e12207da661bdef98</td>
+<td>1.86 GB</td>
+</tr>
+</tbody>
+</table>
+<p> From <a href="https://www.ni.com/en-us/support/downloads/software-products/download.labview.html#369636" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/software-products/download.labview.html#369636</a></p>
+<p>LabVIEW 2020 SP1 x64</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020 SP1</td>
+<td>(MD5) 0c214fe669cb87d0889ec408aad15676  (SHA256) d1b21c6d0b159f7a746c5c358c5d1e3d0d820142b40e1f598eb007b3e3072b03</td>
+<td>1.9 GB</td>
+</tr>
+</tbody>
+</table>
+<p> From <a href="https://www.ni.com/en-us/support/downloads/software-products/download.labview.html#369637" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/software-products/download.labview.html#369637</a></p>
+<p>更新过了的驱动下载</p>
+<p>NI CompactRIO 20.5 and Drivers</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20.5.0</td>
+<td>(MD5) c8801393e9f3e8350b9e290cdd538740  (SHA256) 6c52774c788fb5a14a1ea02cadc9a3da564ae4e633b9df6a8f28f70a232c3f44</td>
+<td>6.81 GB</td>
+</tr>
+</tbody>
+</table>
+<p> From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-compactrio.html#356497" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-compactrio.html#356497</a></p>
+<p>FlexRIO 20.6</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20.6.0</td>
+<td>(MD5) 9b6696acb1a1c249dc710bd6fe115926  (SHA256) 72b41d91a6581fca1022545311354aa239efa4bc66db15f4eb0fb101a49c3e1d</td>
+<td>10.54 GB</td>
+</tr>
+</tbody>
+</table>
+<p> From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.flexrio.html#367069" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.flexrio.html#367069</a></p>
+<p>PXI Platform Services 20.5</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20.5.0</td>
+<td>(MD5) d70a77593a2f01799d4a3e7e902b82fb  (SHA256) 23184b747d672f5793de247a04982b60370e205cf725fa04ded18f1056361be3</td>
+<td>1.47 GB</td>
+</tr>
+</tbody>
+</table>
+<p> From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.pxi-platform-services.html#356491" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.pxi-platform-services.html#356491</a></p>
+<p>NI-DAQmx 20.1</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20.1.0</td>
+<td>(MD5) 4df9c9a038624c4e71b6a64db3041217  (SHA256) 26da8c5821e76882a6a937782750ee6e148b06da22351e05386df254fd8c9632</td>
+<td>3.28 GB</td>
+</tr>
+</tbody>
+</table>
+<p> From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-daqmx.html#348669" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-daqmx.html#348669</a></p>
+<p> NI-DCPower 20.6</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20.6.0</td>
+<td>(MD5) 4a3e91db4b9b7c01de23cfeb4d3545bd  (SHA256) 353abbc3bcf0bcf5524431f15e6f0871aac77e2968311bc6a247c4b8bb76437d</td>
+<td>3.16 GB</td>
+</tr>
+</tbody>
+</table>
+<p> From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-dcpower.html#367331" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-dcpower.html#367331</a></p>
+<p> Vision Acquisition Software 20.6</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20.6.0</td>
+<td>(MD5) bde8a461170d5fab7e3afab82169e5a6  (SHA256) d27bc438b8d650ca5cc3c85bd0d0074bada19b1df2ed2a4bff0c07be9630ab96</td>
+<td>4.19 GB</td>
+</tr>
+</tbody>
+</table>
+<p> From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.vision-acquisition-software.html#367318" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.vision-acquisition-software.html#367318</a></p>
+<p> NI-Sync 20.1</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20.1.0</td>
+<td>(MD5) b395d1c2b243499c3a0e6229d89fda5a  (SHA256) a280d0137328bd048f3c191de60bb1d0c4164da81c3f4b0598e1afdaf5b6d2b2</td>
+<td>2.37 GB</td>
+</tr>
+</tbody>
+</table>
+<p> From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-sync.html#348668" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-sync.html#348668</a></p>
+<p>NI-XNET 20.5</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20.5.0</td>
+<td>(MD5) 04e131ad4f640d6a2d1e4748fb007881  (SHA256) 7ce254ffd18d0a47c093504971b27483ce769516dd71fa1c772e5341b9bccf6a</td>
+<td>2.16 GB</td>
+</tr>
+</tbody>
+</table>
+<p> From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-xnet.html#354220" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-xnet.html#354220</a></p>
+<p> LabVIEW 2019 ELVIS III Toolkit 2019 SP2</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019 SP2</td>
+<td>(MD5) d87bd8a4fd84c72cf27c919296a7c3d2  (SHA256) ed41e7e55dd016097756036d7a761a37b75d07d1d8babc84ee694ef82e215c95</td>
+<td>2.53 GB</td>
+</tr>
+</tbody>
+</table>
+<p> From <a href="https://www.ni.com/en-us/support/downloads/software-products/download.labview-elvis-iii-toolkit.html#333216" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/software-products/download.labview-elvis-iii-toolkit.html#333216</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/29/20200729-labview-2020-summary/" rel="next" title="20200729-labview-2020-summary">
+                <i class="fa fa-chevron-left"></i> 20200729-labview-2020-summary
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+     
+       <div onclick="ShowGitment()" id="gitment-display-button">Show comments from Gitment</div>
+       <div id="gitment-container" style="display:none"></div>
+     
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="haobo.li">
+          <p class="site-author-name" itemprop="name">haobo.li</p>
+           
+              <p class="site-description motion-element" itemprop="description">A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LabVIEW-2020-SP1已经发布"><span class="nav-number">1.</span> <span class="nav-text">LabVIEW 2020 SP1已经发布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NI软件平台包离线下载"><span class="nav-number">1.0.1.</span> <span class="nav-text">NI软件平台包离线下载</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haobo.li</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+     
+     
+     
+     
+     <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+     
+         <script type="text/javascript">
+             function ShowGitment(){
+                 document.getElementById("gitment-display-button").style.display = "none";
+                 document.getElementById("gitment-container").style.display = "block";
+                 var gitment = new Gitment({
+                     id: document.location.href, 
+                     owner: 'lhb5883',
+                     repo: 'lhb5883.github.io',
+                     oauth: {
+                         client_id: '5473d4670bb678c93d94',
+                         client_secret: '619d8420f0cc6f9f141bd8792e8f3a355a9193ed',
+                     }});
+                 gitment.render('gitment-container');
+             }
+         </script>
+     
+ 
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
