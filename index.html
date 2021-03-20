@@ -263,6 +263,145 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2021/03/20/20210320-notes-to-call-labview-dll-in-python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/03/20/20210320-notes-to-call-labview-dll-in-python/" itemprop="url">20210320-notes-to-call-labview-dll-in-python</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-20T17:02:29+08:00">
+                2021-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Python调用LabVIEW动态链接库"><a href="#Python调用LabVIEW动态链接库" class="headerlink" title="Python调用LabVIEW动态链接库"></a>Python调用LabVIEW动态链接库</h1><p>Python调用LabVIEW动态链接库其实和调用一般Windows链接库类似，但是也有一些额外要注意的事项。</p>
+<ol>
+<li><p>32bit和64bit问题</p>
+</li>
+<li><p>ctypes封装问题</p>
+</li>
+<li><p>LabVIEW runtime依赖问题</p>
+</li>
+</ol>
+<h3 id="32bit和64bit问题"><a href="#32bit和64bit问题" class="headerlink" title="32bit和64bit问题"></a>32bit和64bit问题</h3><p>Python调用DLL出错最常见的就是bitness不一致，64bit Python调用32bit LabVIEW DLL会爆出以下错误</p>
+<blockquote>
+<p>OSError: [WinError 193] %1 is not a valid Win32 application</p>
+</blockquote>
+<p>Python基本上现在都是64bit的了，但是LabVIEW现在还是32bit居多，因为虽然NI自己大部分工具包和驱动虽然已经支持64bit的LabVIEW了，但是很多第三方工具还只支持32bitLabVIEW。</p>
+<p>究其根本原因，还是Windows下 64bi t进程只能调用 64bit DLL，IE11以及Office能支持32bit旧插件全靠黑科技多进程64bit进程混合32bit进程调用，Chrome的32bit版也是靠多进程跨过32bitOS的2G内存限制，不过很多没有那么多开发人手的公司选择了放弃32bit只支持64bit，例如Adobe的Photoshop以及Mathworks的Matlab，很早就64bit化并放弃32bit支持，NI的LabVIEW其实很早就开发了64bit版本，但是因为有很多硬件支持并且有很多代码是已经编译的32bit dll，因此一直还在维护32bit的LabVIEW，并且32bit的LabVIEW还是大部分人的主力版本，所以这个问题是绝大部分LabVIEW开发人员都会遇到的第一个问题。解决问题的方法就是LabVIEW和Python都用32bit版本，或者都用64bit版本，如果没有特殊情况比如必须用的某个工具包是32bit的，那么建议用64bit版，内存使用可以比较充裕。</p>
+<h3 id="ctypes封装问题"><a href="#ctypes封装问题" class="headerlink" title="ctypes封装问题"></a>ctypes封装问题</h3><p>python和LabVIEW一样有一个类似Call library Node的调用DLL的库，名字叫ctypes，这个库和CLN一样，只能调用c接口的DLL，并且要指定是ANSI C还是WinAPI C（这个主要是决定调用方清理内存还是被调方清理内存）一般来说，只要这个选对了，至少dll就能在Python中加载了，但是调用就还要看函数参数了。</p>
+<p>CLN节点在定义的时候就要设置函数原型，只能每个参数的数据类型，这一点决定了LabVIEW中如果有复杂的动态长度的动态类型，就可能无法正确分配内存和调用，而ctypes的好处是这个构建过程是编程控制的，可以动态创建数据结构，非要对比的话，类似于之前LabVIEW有一个CIN（C Inline Node）c内嵌节点，可以直接嵌入C语言源码由LabVIEW编译执行，但是因为容易崩溃，后来的LabVIEW新版本取消了这个功能。</p>
+<p>理论上因为LabVIEW打包的Dll一般数据类型比较确定，所以只要注意簇或者数组结构的配置应该没有什么问题。</p>
+<h3 id="LabVIEW-runtime依赖问题"><a href="#LabVIEW-runtime依赖问题" class="headerlink" title="LabVIEW runtime依赖问题"></a>LabVIEW runtime依赖问题</h3><p>其实和用Visual Studio开发的VC DLL需要依赖C runtime一样，LabVIEW打包的Dll也是需要LabVIEW对应Runtime Engine的，并且如果调用了其他dll或者dot net需要把C Runtime，dll，dot net都要打包。</p>
+<p>尤其要注意路径关系，有些库写死了计算相对路径的方式，所以源代码调通之后，打包dll之后一定也要调通确认。打包安装包之后也最好在新机器/虚拟机上部署一遍，确保没有遗漏依赖项。另外在调试过程中也可以借助Dependency Walker确认依赖关系。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://haobo.li/2021/03/10/20210310-labview-2020-sp1-released/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -696,7 +835,7 @@
 2. feeds（目录下包含子目录如ni-488.2，再下一层有Packages文件）
 3. Pool（包含了实际的nipkg安装包）
 </code></pre><p>Packages文件是纯文本的，里面包含了Pool目录下的nipkg文件的一些信息。</p>
-<p>Architecture: windows_all<br>CompatibilityVersion: 0<br>Conflicts: ni-package-manager<br>Description: Package for displaying the IVI Foundation Inc. License Agreement<br>DisplayName: IVI Foundation Inc. License Agreement<br>DisplayVersion: 20.0.0<br>EulaTitle: IVI<br>Filename: ../../pool/eula-ivi_20.0.0.49153-0+f1_windows_all.nipkg<br>Homepage: <a href="http://www.ni.com" target="_blank" rel="noopener">http://www.ni.com</a><br>MD5Sum: abdd1d7965acc3749f5d80adec7bac5b<br>MD5sum: abdd1d7965acc3749f5d80adec7bac5b<br>Maintainer: National Instruments <a href="mailto:&#x73;&#117;&#112;&#x70;&#111;&#114;&#x74;&#x40;&#x6e;&#x69;&#x2e;&#x63;&#111;&#x6d;" target="_blank" rel="noopener">&#x73;&#117;&#112;&#x70;&#111;&#114;&#x74;&#x40;&#x6e;&#x69;&#x2e;&#x63;&#111;&#x6d;</a><br>OsSupport: WINDOWS_7_SP1_32BIT WINDOWS_7_SP1_64BIT WINDOWS_81_32BIT WINDOWS_81_64BIT WINDOWS_10_32BIT WINDOWS_10_64BIT WINDOWS_EMBEDDED_STANDARD_7_SP1 WINDOWS_SERVER_2008_R2_SP1_64BIT WINDOWS_SERVER_2012_R2_64BIT<br>Package: eula-ivi<br>Plugin: eula<br>Priority: standard<br>Section: Infrastructure<br>Size: 3944<br>UserVisible: no<br>Version: 20.0.0.49153-0+f1</p>
+<p>Architecture: windows_all<br>CompatibilityVersion: 0<br>Conflicts: ni-package-manager<br>Description: Package for displaying the IVI Foundation Inc. License Agreement<br>DisplayName: IVI Foundation Inc. License Agreement<br>DisplayVersion: 20.0.0<br>EulaTitle: IVI<br>Filename: ../../pool/eula-ivi_20.0.0.49153-0+f1_windows_all.nipkg<br>Homepage: <a href="http://www.ni.com" target="_blank" rel="noopener">http://www.ni.com</a><br>MD5Sum: abdd1d7965acc3749f5d80adec7bac5b<br>MD5sum: abdd1d7965acc3749f5d80adec7bac5b<br>Maintainer: National Instruments <a href="mailto:&#115;&#x75;&#x70;&#112;&#111;&#114;&#x74;&#64;&#x6e;&#105;&#46;&#99;&#x6f;&#109;" target="_blank" rel="noopener">&#115;&#x75;&#x70;&#112;&#111;&#114;&#x74;&#64;&#x6e;&#105;&#46;&#99;&#x6f;&#109;</a><br>OsSupport: WINDOWS_7_SP1_32BIT WINDOWS_7_SP1_64BIT WINDOWS_81_32BIT WINDOWS_81_64BIT WINDOWS_10_32BIT WINDOWS_10_64BIT WINDOWS_EMBEDDED_STANDARD_7_SP1 WINDOWS_SERVER_2008_R2_SP1_64BIT WINDOWS_SERVER_2012_R2_64BIT<br>Package: eula-ivi<br>Plugin: eula<br>Priority: standard<br>Section: Infrastructure<br>Size: 3944<br>UserVisible: no<br>Version: 20.0.0.49153-0+f1</p>
 <p>里面比较重要的是Filename和MD5Sum两个字段，可以用来确认nipkg文件是否已经损坏。<br>为了修复安装包，需要根据这个配置文件把损坏的nipkg文件找出来，然后替换成好的。<br>目前看来只要是文件名一致的nipkg文件并且没有损坏，hash应该是一致的，所以可以用其他完好安装包里的nipkg文件进行替换。<br>经过我实验，Pool里面将损坏的nipkg文件替换为正常的nipkg文件，安装包就可以正常安装使用。</p>
 <p>PS:<br>另外在C:\Program Files\National Instruments\NI Package Manager下有一个nipkg.exe可以创建离线安装包，可惜的是不支持校验和修复已经下载好的安装包,希望NI以后可以加上对应的功能。</p>
 <h2 id="NI-驱动下载-2020-05"><a href="#NI-驱动下载-2020-05" class="headerlink" title="NI 驱动下载 2020.05"></a>NI 驱动下载 2020.05</h2><p>Peripheral Drivers for Controllers<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.peripheral-drivers-for-controllers.html" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.peripheral-drivers-for-controllers.html</a><br>NI CompactRIO<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-compactrio.html#311624" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-compactrio.html#311624</a><br>NI-ELVISmx<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-elvismx.html#305452" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-elvismx.html#305452</a><br>FlexRIO<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.flexrio.html" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.flexrio.html</a><br>PXI Platform Services<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.pxi-platform-services.html#313433" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.pxi-platform-services.html#313433</a><br>NI R Series Multifunction RIO<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-r-series-multifunction-rio.html" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-r-series-multifunction-rio.html</a><br>NI-488.2<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-488-2.html#305442" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-488-2.html#305442</a><br>NI-DAQmx<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-daqmx.html#311818" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-daqmx.html#311818</a><br>NI-DCPower<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-dcpower.html" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-dcpower.html</a><br>NI-DMM<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-dmm.html" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-dmm.html</a><br>NI-FGEN<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-fgen.html#305449" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-fgen.html#305449</a><br>NI-HSDIO<br>From <a href="http://www.ni.com/en-us/support/downloads/drivers/download.ni-hsdio.html" target="_blank" rel="noopener">http://www.ni.com/en-us/support/downloads/drivers/download.ni-hsdio.html</a><br>Vision Acquisition Software<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.vision-acquisition-software.html#305518" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.vision-acquisition-software.html#305518</a><br>NI-Industrial Communications for Ethernet/IP<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-ethernet-ip.html#305843" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-ethernet-ip.html#305843</a><br>NI-Industrial Communications for EtherCAT<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-ethercat.html#311691" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-ethercat.html#311691</a><br>NI-Industrial Communications for CANopen<br>From <a href="http://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-canopen.html#311611" target="_blank" rel="noopener">http://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-canopen.html#311611</a><br>NI-Industrial Communications for IEC 61850<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-iec-61850.html" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-iec-61850.html</a><br>NI-Industrial Communications for DeviceNet<br>From <a href="http://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-devicenet.html#311812" target="_blank" rel="noopener">http://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-devicenet.html#311812</a><br>NI-Industrial Communications for DNP3<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-dnp3.html" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-dnp3.html</a><br>NI-SCOPE<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-scope.html#305863" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-scope.html#305863</a><br>NI-Serial<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-serial.html#305457" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-serial.html#305457</a><br>NI-SWITCH<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-switch.html" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-switch.html</a><br>NI-Sync<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-sync.html#311813" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-sync.html#311813</a><br>NI-XNET<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-xnet.html#311817" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-xnet.html#311817</a><br>NI-VISA<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-visa.html#305862" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-visa.html#305862</a><br>Industrial Controller Device Drivers<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.industrial-controller-device-drivers.html" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.industrial-controller-device-drivers.html</a><br>NI-VirtualBench Application and Driver<br>From <a href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-virtualbench-application-and-driver.html" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/drivers/download.ni-virtualbench-application-and-driver.html</a><br>LabVIEW ELVIS III Toolkit<br>From <a href="https://www.ni.com/en-us/support/downloads/software-products/download.labview-elvis-iii-toolkit.html" target="_blank" rel="noopener">https://www.ni.com/en-us/support/downloads/software-products/download.labview-elvis-iii-toolkit.html</a> </p>
@@ -1214,148 +1353,6 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2019/12/31/20191231-how-to-work-around-some-bugs-in-2019/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/31/20191231-how-to-work-around-some-bugs-in-2019/" itemprop="url">20191231-how-to-work-around-some-bugs-in-2019</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-31T18:54:54+08:00">
-                2019-12-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>2019被bug坑了不少，不过还好找到了一些解决办法</p>
-<p>KB2538242反复安装解决办法：手动安装</p>
-<p>下载 KB2538242</p>
-<p>Microsoft Visual C++ 2005 Service Pack 1 Redistributable Package MFC Security Update</p>
-<p><a href="https://www.microsoft.com/en-us/download/details.aspx?id=26347" target="_blank" rel="noopener">https://www.microsoft.com/en-us/download/details.aspx?id=26347</a></p>
-<p>安装 KB2538242 会提示安装路径错误，估计是打包计算机的默认路径</p>
-<p>C:\Users\Ansifa\AppData\Local\Temp\IXP000.TMP\</p>
-<p>手动选择到本机对应路径，安装完成后重启。</p>
-<p>一句话说明：搜索结果可以用Auto summary字段列出高亮关键字</p>
-<p>详细说明：</p>
-<p>自Win7以来库功能让索引搜索向大众普及了不少，不过Win10的搜索有一个很大的倒退就是搜索结果摘要从两行变成了一行</p>
-<p>变通的办法就是使用详细视图代替摘要视图，然后显示Auto summary字段即可，只要你屏幕足够宽就可以显示的比内容视图要多</p>
-<p>另外 Windows 10 1909更新把搜索栏换成了UWP所以经常挂掉，解决的办法就是任务管理器里面重启explorer：</p>
-<p>如果是土豪的话，可以购买Agent Ransack或者File Locator Pro作为替代方案，并且可以把搜索结果导出纯文本。</p>
-<p>免费版的缺点是无法建立索引，不过文件量不大的情况下也基本上够用了。比Windows索引搜索的好处是对关键字和复合条件搜索支持更好。变通的办法就是先用Windows搜索筛选出来可能有结果的文件，复制到另一个目录，然后再用Agent Ransack lite导出结果。</p>
-<p>最后是一个iOS的feature</p>
-<p>Spotlight do not appear “Ask Siri”</p>
-<p>System Language must same as Siri Language.</p>
-<p>系统语言必须和siri语言一致，中文系统配中文siri，英文系统配英文siri才可以，否则是不会出现Ask Siri的。</p>
-<p>Ref</p>
-<p><a href="https://appletoolbox.com/siri-not-working-troubleshooting/#Check_For_Any_Restrictions_on_Siri" target="_blank" rel="noopener">https://appletoolbox.com/siri-not-working-troubleshooting/#Check_For_Any_Restrictions_on_Siri</a></p>
-<p><a href="https://the8-bit.com/how-to-access-siri-from-spotlight-search-on-the-iphone-and-ipad-in-ios-13/" target="_blank" rel="noopener">https://the8-bit.com/how-to-access-siri-from-spotlight-search-on-the-iphone-and-ipad-in-ios-13/</a></p>
-<p><a href="https://sspai.com/post/56887" target="_blank" rel="noopener">https://sspai.com/post/56887</a> </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1405,7 +1402,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

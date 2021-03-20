@@ -263,6 +263,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/11/26/archived-stream-to-disk-guide-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/11/26/archived-stream-to-disk-guide-02/" itemprop="url">流盘备忘录(2)-软件选择</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-11-26T07:41:21+08:00">
+                2009-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Uncategorized/" itemprop="url" rel="index">
+                    <span itemprop="name">Uncategorized</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div id="msgcns!866B8F96A2761BBE!1392" class="bvMsg"><br><br>对于流盘来说软件也是很重要的,其中会影响到我们流盘性能的有以下几点:<br><br>驱动是否高效<br><br>是否成功启用了DMA传输采集到的数据以减少系统资源占用。以NI的数据采集卡为例，传统DAQ不使用DMA和中断的方式采集数据其CPU占用率长时间飙升在100%，使用DAQmx默认使用DMA方式可以大大减小CPU的占用率。<br><br>软件架构是否合理<br><br>我们需要实现的三个主要任务：采集、处理、保存占用率合理分配，数据存储格式应该在保证精度的前提下减小内存占用。<br><br>存盘API性能<br><br>系统处理文件操作的API分配的缓冲区太小，在读写大文件上性能较低。<br><br>关键点：<br><br>1 驱动一定要支持DMA,减小CPU占用.提供RAWdata格式和转换公式,减小数据内存占用<br><br>2 能否合适的将负载分配到各个CPU上.支持并行和多线程<br><br>3 支持底层的无缓冲模式API,避免软件流盘速度瓶颈.<br><br>解决方案<br><br>1 使用NI DAQmx驱动和NI MI驱动，并启用DMA。<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image24cd46edb.png?w=185" alt="image" title="image"> <img src="http://lhb5883.files.wordpress.com/2009/11/image5b65d6a92a742.png?w=32" alt="image" title="image"><br><br>采集原始数据减小内存占用<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image852bb2442.png?w=77" alt="image" title="image"> <img src="http://lhb5883.files.wordpress.com/2009/11/image1157e9bf59.png?w=99" alt="image" title="image"> <img src="http://lhb5883.files.wordpress.com/2009/11/image5b35d1ff72f9c.png?w=52" alt="image" title="image"><br><br>2 使用LabVIEW或者其他多线程开发软件，启用并行循环和队列。<br><br> <img src="http://lhb5883.files.wordpress.com/2009/11/rfstreaming_thumb5b15d.png?w=300" alt="RF Streaming" title="RF Streaming"><br><br>3 使用Win32API，直接调用底层函数并分配较大的缓冲区<br><br><img src="http://lhb5883.files.wordpress.com/2009/11/image14135548b4.png?w=32" alt="image" title="image"><br> <p>C++<br><br>    BOOL WINAPI WriteFile(<br>      <strong>in         HANDLE <em>hFile</em>,
+      </strong>in         LPCVOID <em>lpBuffer</em>,<br>      <strong>in         DWORD <em>nNumberOfBytesToWrite</em>,
+      </strong>out_opt    LPDWORD <em>lpNumberOfBytesWritten</em>,<br>      __inout_opt  LPOVERLAPPED <em>lpOverlapped</em><br>    );<br>  </p></div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/11/26/archived-stream-to-disk-guide-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -814,147 +957,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/08/31/archived-tips-certified-labview-developer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2009/08/31/archived-tips-certified-labview-developer/" itemprop="url">Certified LabVIEW Developer 认证小结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-08-31T03:30:36+08:00">
-                2009-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机与-Internet/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机与 Internet</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <div id="msgcns!866B8F96A2761BBE!1370" class="bvMsg"><br><br>LabVIEW中级认证考试的主要目的就是考察受试者的LabVIEW编程水平,程序风格,文档注释三个方面.详细可以查看下面的文档<br><br><a href="ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf" title="ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf" target="_blank" rel="noopener">ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf</a><br><br>下面这个链接已经列举了一些注意事项,我再补充几条:<br><br><a href="http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry" title="http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry" target="_blank" rel="noopener">http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry</a><br><br>1. 善于利用LabVIEW自带的模板和VI,例如定时迅捷VI,读写电子表格文件VI,状态机模板,子VI模板几个都要熟练掌握.<br><br>2. 最好使用LabVIEW英文版开发环境.这样无论是模板还是控件名字都是默认英文,可以减小工作量.<br><br>3. 不要忘记在状态机模板里加上错误处理.<br><br>4. 写完程序一定要留调试和注释的时间.<br><br>5. 尽量将状态机Case结构里的代码封装为子VI.<br><br>6. 能用TypeDefine控件的尽量都用TypeDefine控件,方便程序维护.<br><br>7. 不需要用户交互的前面板控件最好隐藏掉.<br><br>细节:<br><br>1. 框图和前面板大小:根据考试要求最好限定为1024x768,要扩展尽量水平扩展.现在显示器以宽屏居多,方便观察整个程序.<br><br>2. LabVIEW配置,如果你到手的机器配置修改太多,例如字体等要改回来很麻烦.最简单的办法就是删除LabVIEW的INI文件.然后在工具-&gt;属性里取消前面板控件:显示为图标.<br><br>3. 状态机里面的等待函数一定要修改,设置为1是个不错的选择.<br><br>4. 使用Ctrl+鼠标拖拽扩展程序框图时一定要慎重,避免程序连线错位.<br>  </div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1004,7 +1006,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

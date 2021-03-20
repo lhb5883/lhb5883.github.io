@@ -263,6 +263,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2013/09/29/archived-tips-7zip-add-time-stamp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobo.li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haobo.li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/09/29/archived-tips-7zip-add-time-stamp/" itemprop="url">给7Zip压缩自动增加时间戳</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-09-29T16:32:29+08:00">
+                2013-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机与-Internet/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机与 Internet</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>WinRAR压缩文件有一个很方便的选项是在文件名追加压缩时间,但是RAR是收费软件,价格不菲.使用7-Zip就没有这样的功能了么?</p>
+<p>其实只要自己动手也能丰衣足食,给7-Zip加上这个功能:</p>
+<p>首先在运行中输入</p>
+<ol>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:maroon;">shell</span>:<span style="color:maroon;">sendto</span><br>            </span></div>
+
+</li>
+</ol>
+<p>打开自己的发送到文件夹.</p>
+<p>在文件夹新建一个文本文档,并贴入以下代码保存为ANSI编码</p>
+<ol>
+<li><div style="background:#f4f4f4;"><a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener"><span style="font-size:9pt;">set</span></a><span style="font-size:9pt;"> hh=%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~0,2%<br></span></div></li>
+<li><div style="background:#f4f4f4;"><a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=if&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener"><span style="font-size:9pt;">if</span></a><span style="font-size:9pt;"> %hh% LSS 10 (<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">set</a> hh=0%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~1,1%)<br></span></div></li>
+<li><div style="background:#f4f4f4;"><a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener"><span style="font-size:9pt;">set</span></a><span style="font-size:9pt;"> dst=%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">date</a>:~0,4%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">date</a>:~5,2%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">date</a>:~8,2%_%hh%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~3,2%%<a href="http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99" target="_blank" rel="noopener">time</a>:~6,2%<br></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">“<span style="color:darkred;">C:\Program Files\7-Zip\7z.exe</span>“ a %1_%dst%.zip %1<br></span></div>
+
+</li>
+</ol>
+<p>修改文件名为</p>
+<p>7zBackup.bat</p>
+<p>使用时选中需要压缩的文件或者目录,选择发送到7zBackup.bat即可。</p>
+<p>以上在Window 7 64bit，7-Zip 9.2 64bit下验证通过。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://haobo.li/2013/09/26/archived-ni-asl-install-tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -897,160 +1060,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2010/10/14/archived-code-share-get-cpu-freq/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobo.li">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haobo.li">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2010/10/14/archived-code-share-get-cpu-freq/" itemprop="url">[Code Share]如何用LabVIEW取得计算机主频</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2010-10-14T11:23:06+08:00">
-                2010-10-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LabVIEW/" itemprop="url" rel="index">
-                    <span itemprop="name">LabVIEW</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>大部分Windows下程序都是使用计算机计时器计算CPU主频，（当然也可以跑个算法自己算）最基础的就是这个了：</p>
-<ul>
-<li><strong>使用Win32API取频率</strong>  </li>
-</ul>
-<p>好处是功能简单速度快，下面代码没做返回值处理，如果计算机没有高精度计数器（这个可能性比较小）有可能出不来频率，详细可以去看MSDN：</p>
-<p><img src="http://lhb5883.files.wordpress.com/2010/10/winapi-queryperformancefrequency.png" alt="WINAPI QueryPerformanceFrequency" title="WINAPI QueryPerformanceFrequency"></p>
-<ul>
-<li><strong>.NET&#160; 利用WMI获取系统信息</strong>  </li>
-</ul>
-<p>这个接口是使用系统信息（C:\Windows\System32\msinfo32.exe）能拿到的信息更多，不过方法复杂，速度也慢。</p>
-<p>&#160;</p>
-<p><img src="http://lhb5883.files.wordpress.com/2010/10/system-management-managementobjectsearcher.png" alt="System.Management.ManagementObjectSearcher" title="System.Management.ManagementObjectSearcher"></p>
-<p>这两个算法都在Win7 32bit，LabVIEW2009SP1下测试通过。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1100,7 +1109,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

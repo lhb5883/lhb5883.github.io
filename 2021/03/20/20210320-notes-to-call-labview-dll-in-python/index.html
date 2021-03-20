@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="虽然NI的控制器质量非常稳定可靠，不过如果使用Windows而非RealTimeOS的话，系统备份恢复软件就是一个值得考虑的问题了。为了找到一个好用的恢复软件给我们的8176上个保险，来来回回测试了多种备份软件。系统备份与恢复软件厂商目前主要是Symantic赛门铁克和Acronis两大厂商。其中Symantic以GHOST系列强大的功能闻名，在收购了PowerQuest之后其实力不可小视。Acr">
+<meta name="description" content="Python调用LabVIEW动态链接库Python调用LabVIEW动态链接库其实和调用一般Windows链接库类似，但是也有一些额外要注意的事项。  32bit和64bit问题  ctypes封装问题  LabVIEW runtime依赖问题   32bit和64bit问题Python调用DLL出错最常见的就是bitness不一致，64bit Python调用32bit LabVIEW DLL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PXI控制器系统备份软件选择">
-<meta property="og:url" content="http://haobo.li/2009/11/24/archived-pxi-os-restore/index.html">
+<meta property="og:title" content="20210320-notes-to-call-labview-dll-in-python">
+<meta property="og:url" content="http://haobo.li/2021/03/20/20210320-notes-to-call-labview-dll-in-python/index.html">
 <meta property="og:site_name" content="haobo.li">
-<meta property="og:description" content="虽然NI的控制器质量非常稳定可靠，不过如果使用Windows而非RealTimeOS的话，系统备份恢复软件就是一个值得考虑的问题了。为了找到一个好用的恢复软件给我们的8176上个保险，来来回回测试了多种备份软件。系统备份与恢复软件厂商目前主要是Symantic赛门铁克和Acronis两大厂商。其中Symantic以GHOST系列强大的功能闻名，在收购了PowerQuest之后其实力不可小视。Acr">
+<meta property="og:description" content="Python调用LabVIEW动态链接库Python调用LabVIEW动态链接库其实和调用一般Windows链接库类似，但是也有一些额外要注意的事项。  32bit和64bit问题  ctypes封装问题  LabVIEW runtime依赖问题   32bit和64bit问题Python调用DLL出错最常见的就是bitness不一致，64bit Python调用32bit LabVIEW DLL">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-26T02:20:32.034Z">
+<meta property="og:updated_time" content="2021-03-20T09:07:04.171Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PXI控制器系统备份软件选择">
-<meta name="twitter:description" content="虽然NI的控制器质量非常稳定可靠，不过如果使用Windows而非RealTimeOS的话，系统备份恢复软件就是一个值得考虑的问题了。为了找到一个好用的恢复软件给我们的8176上个保险，来来回回测试了多种备份软件。系统备份与恢复软件厂商目前主要是Symantic赛门铁克和Acronis两大厂商。其中Symantic以GHOST系列强大的功能闻名，在收购了PowerQuest之后其实力不可小视。Acr">
+<meta name="twitter:title" content="20210320-notes-to-call-labview-dll-in-python">
+<meta name="twitter:description" content="Python调用LabVIEW动态链接库Python调用LabVIEW动态链接库其实和调用一般Windows链接库类似，但是也有一些额外要注意的事项。  32bit和64bit问题  ctypes封装问题  LabVIEW runtime依赖问题   32bit和64bit问题Python调用DLL出错最常见的就是bitness不一致，64bit Python调用32bit LabVIEW DLL">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://haobo.li/2009/11/24/archived-pxi-os-restore/">
+  <link rel="canonical" href="http://haobo.li/2021/03/20/20210320-notes-to-call-labview-dll-in-python/">
 
 
 
 
 
-  <title>PXI控制器系统备份软件选择 | haobo.li</title>
+  <title>20210320-notes-to-call-labview-dll-in-python | haobo.li</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haobo.li/2009/11/24/archived-pxi-os-restore/">
+    <link itemprop="mainEntityOfPage" href="http://haobo.li/2021/03/20/20210320-notes-to-call-labview-dll-in-python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haobo.li">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PXI控制器系统备份软件选择</h1>
+          <h1 class="post-title" itemprop="name headline">20210320-notes-to-call-labview-dll-in-python</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-11-24T07:52:30+08:00">
-                2009-11-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-20T17:02:29+08:00">
+                2021-03-20
               </time>
             
 
@@ -301,28 +301,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computers-and-Internet/" itemprop="url" rel="index">
-                    <span itemprop="name">Computers and Internet</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -351,7 +329,27 @@
       
 
       
-        <div id="msgcns!866B8F96A2761BBE!1389" class="bvMsg"><br><br>虽然NI的控制器质量非常稳定可靠，不过如果使用Windows而非RealTimeOS的话，系统备份恢复软件就是一个值得考虑的问题了。<br><br>为了找到一个好用的恢复软件给我们的8176上个保险，来来回回测试了多种备份软件。<br><br>系统备份与恢复软件厂商目前主要是Symantic赛门铁克和Acronis两大厂商。其中Symantic以GHOST系列强大的功能闻名，在收购了PowerQuest之后其实力不可小视。Acronis以True Image系列软件的方便易用与稳定可靠被NI作为系统默认的硬盘恢复方案。<br><br>我初步的目标是找到一个能在Windows7下备份和恢复整个分区的软件，取代我一直使用的DriveImage。不过该方法需要拆开控制器，所以要是能做成多启动这种方案也不错。<br><br>下表是一个简单的比较<br> <table border="0" cellspacing="0" cellpadding="0"> <tbody> <tr> <td width="165">控制器型号</td> <td width="174">Norton Save&amp;Restore/<br>Symantec Backup Exec System</td> <td width="107">双启动GHOST</td> <td width="138">光盘/U盘版GHOST</td> <td width="198"><br><br>Acronis True Image OEM<br></td> <td width="206">Acronis True Image 2010</td> <td width="246">Power Quest Drive Image 2002</td></tr> <tr> <td width="165">PXI-817X/818X（Intel8系列芯片组）</td> <td width="174">OK</td> <td width="107">OK</td> <td width="138">Fail</td> <td width="198">OK</td> <td width="206">不支持Windows2000</td> <td width="246">OK</td></tr> <tr> <td width="165">PXI-819X/810X/8130（Intel9系列芯片组/Nvidia N-Force）</td> <td width="174">OK</td> <td width="107">OK</td> <td width="138">OK</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">PXI-8108/8110（IntelG系列芯片组）</td> <td width="174">OK</td> <td width="107">未知</td> <td width="138">Fail</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">功能</td> <td width="174"> </td> <td width="107"> </td> <td width="138"> </td> <td width="198"> </td> <td width="206"> </td> <td width="246"> </td></tr> <tr> <td width="165">在Windows下备份和恢复分区（用于在PC机上恢复系统，适用于硬盘数据完全丢失无法启动等情况）</td> <td width="174">只能用于系统盘</td> <td width="107">/</td> <td width="138">/</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">在非windows下备份和恢复分区</td> <td width="174">无</td> <td width="107">OK</td> <td width="138">不适用老控制器</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">无</td></tr> <tr> <td width="165">操作系统支持</td> <td width="174">XP/VISTA</td> <td width="107">/</td> <td width="138">/</td> <td width="198">2000/XP</td> <td width="206">XP/VISTA/Windows7</td> <td width="246">2000/XP</td></tr></tbody></table><br><br>目前GHOST的二次封装而成的USB GHOST，光盘GHOST、一键GHOST等等版本极多，不过能兼容NI大部分控制器的GHOST版本并不多。而企业版GHOST套装使用和配置极其复杂，操作简单的Windows下备份和恢复的软件在系统崩溃后就没有什么用了。所以值得考虑的就是系统恢复光盘里自带的Acronis True Image OEM版，是一个简单可靠的一键恢复系统，不过一旦恢复就会使系统恢复到出厂状态。需自由备份和恢复就需要完整版的软件才行。<br><br>不过我们其实需要的功能往往也没有那么复杂，只需要能恢复系统到一个安装调试好所有软件的状态，那么这时候就可以用到下面这个小技巧了 。<br><br>1。正常安装Windows，注意不要选择安装F4一键恢复。<br><br>2。分区、安装软件、配置程序。。。<br><br>3。将系统恢复盘的CDROM:OSPXI_VXI$OEM$$1SYSPREP目录下的ACRONIS.XML，ACRONIS8199_ENABLE.BAT，ACRONISTRUEIMAGE_8199.MSI三个文件复制到c:Sysprep目录下<br><br>4。运行c:SysprepACRONIS8199_ENABLE.BAT，重启系统后就会自动备份操作系统，完成之后在系统启动时按F4就可以一键恢复了。<br>  </div>
+        <h1 id="Python调用LabVIEW动态链接库"><a href="#Python调用LabVIEW动态链接库" class="headerlink" title="Python调用LabVIEW动态链接库"></a>Python调用LabVIEW动态链接库</h1><p>Python调用LabVIEW动态链接库其实和调用一般Windows链接库类似，但是也有一些额外要注意的事项。</p>
+<ol>
+<li><p>32bit和64bit问题</p>
+</li>
+<li><p>ctypes封装问题</p>
+</li>
+<li><p>LabVIEW runtime依赖问题</p>
+</li>
+</ol>
+<h3 id="32bit和64bit问题"><a href="#32bit和64bit问题" class="headerlink" title="32bit和64bit问题"></a>32bit和64bit问题</h3><p>Python调用DLL出错最常见的就是bitness不一致，64bit Python调用32bit LabVIEW DLL会爆出以下错误</p>
+<blockquote>
+<p>OSError: [WinError 193] %1 is not a valid Win32 application</p>
+</blockquote>
+<p>Python基本上现在都是64bit的了，但是LabVIEW现在还是32bit居多，因为虽然NI自己大部分工具包和驱动虽然已经支持64bit的LabVIEW了，但是很多第三方工具还只支持32bitLabVIEW。</p>
+<p>究其根本原因，还是Windows下 64bi t进程只能调用 64bit DLL，IE11以及Office能支持32bit旧插件全靠黑科技多进程64bit进程混合32bit进程调用，Chrome的32bit版也是靠多进程跨过32bitOS的2G内存限制，不过很多没有那么多开发人手的公司选择了放弃32bit只支持64bit，例如Adobe的Photoshop以及Mathworks的Matlab，很早就64bit化并放弃32bit支持，NI的LabVIEW其实很早就开发了64bit版本，但是因为有很多硬件支持并且有很多代码是已经编译的32bit dll，因此一直还在维护32bit的LabVIEW，并且32bit的LabVIEW还是大部分人的主力版本，所以这个问题是绝大部分LabVIEW开发人员都会遇到的第一个问题。解决问题的方法就是LabVIEW和Python都用32bit版本，或者都用64bit版本，如果没有特殊情况比如必须用的某个工具包是32bit的，那么建议用64bit版，内存使用可以比较充裕。</p>
+<h3 id="ctypes封装问题"><a href="#ctypes封装问题" class="headerlink" title="ctypes封装问题"></a>ctypes封装问题</h3><p>python和LabVIEW一样有一个类似Call library Node的调用DLL的库，名字叫ctypes，这个库和CLN一样，只能调用c接口的DLL，并且要指定是ANSI C还是WinAPI C（这个主要是决定调用方清理内存还是被调方清理内存）一般来说，只要这个选对了，至少dll就能在Python中加载了，但是调用就还要看函数参数了。</p>
+<p>CLN节点在定义的时候就要设置函数原型，只能每个参数的数据类型，这一点决定了LabVIEW中如果有复杂的动态长度的动态类型，就可能无法正确分配内存和调用，而ctypes的好处是这个构建过程是编程控制的，可以动态创建数据结构，非要对比的话，类似于之前LabVIEW有一个CIN（C Inline Node）c内嵌节点，可以直接嵌入C语言源码由LabVIEW编译执行，但是因为容易崩溃，后来的LabVIEW新版本取消了这个功能。</p>
+<p>理论上因为LabVIEW打包的Dll一般数据类型比较确定，所以只要注意簇或者数组结构的配置应该没有什么问题。</p>
+<h3 id="LabVIEW-runtime依赖问题"><a href="#LabVIEW-runtime依赖问题" class="headerlink" title="LabVIEW runtime依赖问题"></a>LabVIEW runtime依赖问题</h3><p>其实和用Visual Studio开发的VC DLL需要依赖C runtime一样，LabVIEW打包的Dll也是需要LabVIEW对应Runtime Engine的，并且如果调用了其他dll或者dot net需要把C Runtime，dll，dot net都要打包。</p>
+<p>尤其要注意路径关系，有些库写死了计算相对路径的方式，所以源代码调通之后，打包dll之后一定也要调通确认。打包安装包之后也最好在新机器/虚拟机上部署一遍，确保没有遗漏依赖项。另外在调试过程中也可以借助Dependency Walker确认依赖关系。</p>
+
       
     </div>
     
@@ -375,8 +373,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2009/09/15/archived-scope-trigger-sensitivity/" rel="next" title="关于示波器的触发灵敏度（Trigger Sensitivity）">
-                <i class="fa fa-chevron-left"></i> 关于示波器的触发灵敏度（Trigger Sensitivity）
+              <a href="/2021/03/10/20210310-labview-2020-sp1-released/" rel="next" title="20210310-labview-2020-sp1-released">
+                <i class="fa fa-chevron-left"></i> 20210310-labview-2020-sp1-released
               </a>
             
           </div>
@@ -384,10 +382,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2009/11/26/archived-stream-to-disk-guide-01/" rel="prev" title="流盘备忘录(1)-流盘概览">
-                流盘备忘录(1)-流盘概览 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -445,8 +439,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="haobo.li">
           <p class="site-author-name" itemprop="name">haobo.li</p>
@@ -506,6 +509,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python调用LabVIEW动态链接库"><span class="nav-number">1.</span> <span class="nav-text">Python调用LabVIEW动态链接库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#32bit和64bit问题"><span class="nav-number">1.0.1.</span> <span class="nav-text">32bit和64bit问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ctypes封装问题"><span class="nav-number">1.0.2.</span> <span class="nav-text">ctypes封装问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LabVIEW-runtime依赖问题"><span class="nav-number">1.0.3.</span> <span class="nav-text">LabVIEW runtime依赖问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
