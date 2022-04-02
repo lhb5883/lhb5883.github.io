@@ -1,0 +1,52 @@
+---
+title: 20220403-something-about-python-and-playback
+date: 2022-04-02 10:48:17
+tags:
+---
+# 之前一些没有发到github上的文章汇总
+
+## Python调用LabVIEW动态链接库
+
+Python调用LabVIEW动态链接库其实和调用一般Windows链接库类似，但是也有一些额外要注意的事项。
+
+32bit和64bit问题
+ctypes封装问题
+LabVIEW runtime依赖问题
+32bit和64bit问题
+Python调用DLL出错最常见的就是bitness不一致，64bit Python调用32bit LabVIEW DLL会爆出以下错误
+
+> OSError: [WinError 193] %1 is not a valid Win32 application
+
+Python基本上现在都是64bit的了，但是LabVIEW现在还是32bit居多，因为虽然NI自己大部分工具包和驱动虽然已经支持64bit的LabVIEW了，但是很多第三方工具还只支持32bitLabVIEW。
+
+究其根本原因，还是Windows下 64bit进程只能调用 64bit DLL，IE11以及Office能支持32bit旧插件全靠黑科技多进程64bit进程混合32bit进程调用，Chrome的32bit版也是靠多进程跨过32bitOS的2G内存限制，不过很多没有那么多开发人手的公司选择了放弃32bit只支持64bit。
+
+例如Adobe的Photoshop以及Mathworks的Matlab，很早就64bit化并放弃32bit支持。NI的LabVIEW其实很早就开发了64bit版本，但是因为有很多硬件支持并且有很多代码是已经编译的32bit dll，因此一直还在维护32bit的LabVIEW。
+
+并且32bit的LabVIEW还是大部分人的主力版本，所以这个问题是绝大部分LabVIEW开发人员都会遇到的第一个问题。解决问题的方法就是LabVIEW和Python都用32bit版本，或者都用64bit版本，如果没有特殊情况比如必须用的某个工具包是32bit的，那么建议用64bit版，内存使用可以比较充裕，并且现在64bit版本的Python已经是主流版本，32bit下出现问题不一定能找到解决方案。
+
+ctypes封装问题
+python和LabVIEW一样有一个类似Call library Node的调用DLL的库，名字叫ctypes，这个库和CLN一样，只能调用c接口的DLL，并且要指定是ANSI C还是WinAPI C（这个主要是决定调用方清理内存还是被调方清理内存）一般来说，只要这个选对了，至少dll就能在Python中加载了，但是调用成功就要看函数参数的配置了。
+
+CLN节点在定义的时候就要设置函数原型，并且要声明每个参数的数据类型，这一点决定了LabVIEW中如果有复杂的动态长度的动态类型，就可能无法正确分配内存和调用，而ctypes的好处是这个构建过程是编程控制的，可以动态创建数据结构，非要对比的话，类似于之前LabVIEW有一个CIN（C Inline Node）c内嵌节点，可以直接嵌入C语言源码由LabVIEW编译执行，但是因为容易崩溃，后来的LabVIEW新版本取消了这个功能。
+
+理论上因为LabVIEW打包的DLL一般数据类型比较确定，所以只要注意簇或者数组结构的配置应该没有什么问题。
+
+LabVIEW runtime依赖问题
+其实和用Visual Studio开发的VC DLL需要依赖C runtime一样，LabVIEW打包的Dll也是需要LabVIEW对应Runtime Engine的，并且如果调用了其他dll或者dot net需要把C Runtime，dll，dot net都要打包。
+
+尤其要注意路径关系，有些库写死了计算相对路径的方式，所以源代码调通之后，打包dll之后一定也要调通确认。打包安装包之后也最好在新机器/虚拟机上部署一遍，确保没有遗漏依赖项。另外在调试过程中也可以借助Dependency Walker确认依赖关系。
+
+
+# 数据文件回放的一些思考
+
+最近在做一个cDAQ的数据采集分析项目，遇到了一个不大不小的问题。cDAQ上只有2G内存，安装了WES7 32bit OS。采集时因为波形是部分显示，所以没什么问题，虽然CPU占用较高，但可以正常保存纯文本数据文件。但是在回放数据时，需要做全趋势显示，加载文件到波形图时提示内存不足；
+
+这个问题我之前在一亿像素的图像采集中遇到过，用加内存和换64bit LabVIEW解决了，但是这种嵌入式的cDAQ内存和CPU都很有限，只能螺蛳壳里做道场了。最后总结出来的几个原则：
+
+显示器上横向分辨率是有限的，因此能显示的点数不可能超过横向分辨率；
+LabVIEW的波形图控件在显示前做了抽点，但是全曲线需要把整个文件赋值给控件，这样内存占用就会很高；
+TDMS利用Offset可以很容易的手动编程抽点，不需要很多内存。
+CSV文件也可以利用文件大小进行粗略的抽点，设置Offset之后，读取两行，第二行是完整的。
+如果需要缩放功能，根据缩放的范围进行二次抽点即可
+如果希望抽出的点能代表轮廓，需要计算抽取间隔中所有点的最大值和最小值，这种情况建议生成一个索引文件以减小后续的计算量。
