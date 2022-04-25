@@ -1,38 +1,314 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
+  
+  <title>cRIO摧残记（下）——FPGA篇 | haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="同志们，在本人的无良拖稿之下大家期待已久的cRIO摧残记终于迎来了下篇，真是可喜可贺啊~撒花庆祝！ 在MAX里面的配置请查看这里 下面我们直接从LabVIEW开始： 首先确认你安装了以下或更新版本软件： LabVIEW 8.5、LabVIEW RT ETS 8.5、LabVIEW FPGA 8.5、NI RIO 2.4、NI Device Driver 200803， 这是本人所安装的软件：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cRIO摧残记（下）——FPGA篇">
+<meta property="og:url" content="http://haobo.li/2008/04/17/archived-crio-teardown-03/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="同志们，在本人的无良拖稿之下大家期待已久的cRIO摧残记终于迎来了下篇，真是可喜可贺啊~撒花庆祝！ 在MAX里面的配置请查看这里 下面我们直接从LabVIEW开始： 首先确认你安装了以下或更新版本软件： LabVIEW 8.5、LabVIEW RT ETS 8.5、LabVIEW FPGA 8.5、NI RIO 2.4、NI Device Driver 200803， 这是本人所安装的软件：">
+<meta property="og:locale">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxCB9abFFHEqcIFTU88U6yCJxBWwCnmAo1TvReAeNmBg03BzeOa5IIfKfg6-uXUTY7mIejCtHefqXY3fR_TILty?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRH-_AUqc9SPdWGe-QgaNunNuLiIpKyRJSmw-Td88QZgl9N3-xE4ygCJTvV_M0klci4?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGtHlA_DIx9isw1gWAj_ekqa094No4O5YFbDdWrGTEK3P4sNUqIX1LPgGdvDToH9p0?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFxZboqLHciW2PBpMaaVKeVhqEhOJ0wPEjBw968-bdlHHr4F8lIUbadVGBsAO-fmNU?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRH-hmk5gCuVIjxJFUEUVLqS4_8wyw8EcIBvfo-V-K6WuFGt1U4V6SFspeGXU73QXWQ?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFCX3j3oF4j0XwfpqM6Zrk-2nwscwn7eEFziGj-AW6uSsJrLsTn1q2fl-6TCT2pMNc?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRF6QCMr52FzDX0roswjJeJyUHnJKxKcnhOr3QAr-d9eD9htxvyoVkPQRjUFCt_rcmw?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFZTq6nX0zwmoa3yyg2pKgowXEkzqT7Jewbr1nZuq4PVmb16XIpxbtLTfSSPdG6fWM?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGdDQdQM4YK_kSx_72sZHvztghzS8LjL0z0s5KI9se8XfHTVJJhnDhpAgKce3AZ9vI?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGbmtIlZgBLjIwIUI2tfSVxuCKHK2VA7a-rkOecT82JXcSKFZpSZjR3G4JoNujAPE0?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGuWExQ6nm0MI52jTgosw84HuF4pp7D_liXHSLZClnXS8mv7u7EubjngBMpNH0SVgU?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFzB8LjhhGyLvIVW5j4Hskm-3oQVy-tQ_NWpT-BhoQ_EeEVInyk8vzQWkzcnqcmzoU?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRF8l6CWbvpNOAbZjHLFYoulqrt3AU9J_tYpyPgI39qE9qf432ZbJgD0XMv8x3ZfsFs?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRES8ONRhfvf77L00y0fGGyx6-STzuWGJoXP1wQ_Q-54ueaHmNSLLO60APp28b3FmkM?PARTNER=WRITER">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMVE12aNFzOEzVg4jZZxSb-vOnenBQXy5AgreIKy-9aGNqw1zc6FUJd7H5fu-zWy6_d5HNdZLDzuDjsdYTC2aHS?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxkmJiPQLyVfjIE8wImomdru1G2FrdlW10aD9kqI_2M3TlNsm38o30BB_z4r81O_gFtUqvEskaqDnzoYyiryVdC?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpyfSJ-COJfS_-G9K0Owh3k5oVIpckTJu2ZgQLOFJsV8mIdvAFNDcX5dlu3sE8uWw9L6kPMbkbq8r66nFizbLjt2?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpzyQaYSiuKeAf-i1DQW1h0mOhgplK7PqhhVoAhHSksze0JGxGcJ7S62qMFllGRO0OrXnly8_UzIfNfr9r4tOMeJ?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxyalXakskdWjoWmg4b6rYpMT4BDsr_yvhELxkazAc5rZeDG84fMOzDZYvq5u-AJEKs0ND8oGzz2XB0802MS6w_?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpyxdSdziVPpFUwUDm6khOwmrdDyg9AyyfKLZwdpvZZLDewkxmm3nvBsdajWUsyJu7IgowfiwTameGj0n1rfMHKb?PARTNER=WRITER">
+<meta property="og:image" content="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFzB8LjhhGyLvIVW5j4Hskm-3oQVy-tQ_NWpT-BhoQ_EeEVInyk8vzQWkzcnqcmzoU?PARTNER=WRITER">
+<meta property="article:published_time" content="2008-04-16T18:05:11.000Z">
+<meta property="article:modified_time" content="2022-04-18T16:55:07.765Z">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxCB9abFFHEqcIFTU88U6yCJxBWwCnmAo1TvReAeNmBg03BzeOa5IIfKfg6-uXUTY7mIejCtHefqXY3fR_TILty?PARTNER=WRITER">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block page_class %}page-post-detail{% endblock %}
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-archived-crio-teardown-03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/04/17/archived-crio-teardown-03/" class="article-date">
+  <time datetime="2008-04-16T18:05:11.000Z" itemprop="datePublished">2008-04-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cRIO摧残记（下）——FPGA篇
+    </h1>
+  
 
-{% block content %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!915" class="bvMsg">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<p>同志们，在本人的无良拖稿之下大家期待已久的cRIO摧残记终于迎来了下篇，真是可喜可贺啊~撒花庆祝！</p>
+<p>在MAX里面的配置请查看<a target="_blank" rel="noopener" href="http://lhb5883.spaces.live.com/blog/cns!866B8F96A2761BBE!729.entry"><strong>这里</strong></a> 下面我们直接从LabVIEW开始：</p>
+<p>首先确认你安装了以下或更新版本软件：</p>
+<p>LabVIEW 8.5、LabVIEW RT ETS 8.5、LabVIEW FPGA 8.5、NI RIO 2.4、NI Device Driver 200803，</p>
+<p>这是本人所安装的软件：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr-Ct8-v8z-CmWeXf7SyzdyG-ZavotkqHoirXTPOOqtAQN37uxSepQZ_-kDc6FGnishMCXjPLhxOsg?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxCB9abFFHEqcIFTU88U6yCJxBWwCnmAo1TvReAeNmBg03BzeOa5IIfKfg6-uXUTY7mIejCtHefqXY3fR_TILty?PARTNER=WRITER" alt="image"></a> </p>
+<p><strong><font color="#ff0000">建议安装好以后用LabVIEW把安装目录Mass Compile一遍。</font></strong></p>
+<p>打开LabVIEW 8.5，新建一个FPGA工程：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuREiz1FKBzCweIH9YjS2WZKCfhG_XGCPrE1HOBNoBMzUR_ZXw4ckWxrm-vtKUMe1XXI?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRH-_AUqc9SPdWGe-QgaNunNuLiIpKyRJSmw-Td88QZgl9N3-xE4ygCJTvV_M0klci4?PARTNER=WRITER" alt="image"></a> </p>
+<p>选择FPGA目标类型：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRG4wP-wjQnssJ9hRVU_sa6Rz-LDK9BgswfqkyrH98sHStn5YdhPp_pXEJ4Z52WtcOQ?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGtHlA_DIx9isw1gWAj_ekqa094No4O5YFbDdWrGTEK3P4sNUqIX1LPgGdvDToH9p0?PARTNER=WRITER" alt="image"></a> </p>
+<p>确认cRIO已经配置好：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRETomBdMJv4_uDJEW3hxjsLZRtLnqGcQAeIgE3gbDJN9xc_DhaEzu8r-SKIGC0RRqo?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFxZboqLHciW2PBpMaaVKeVhqEhOJ0wPEjBw968-bdlHHr4F8lIUbadVGBsAO-fmNU?PARTNER=WRITER" alt="image"></a> </p>
+<p>如果一切正常的话应该这样：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGUJYa6sQ2e7sb2rfJD3CzyUy43m1nCggMnYuH73HfrEHrppj7kmF3ViPn8J__Gjmk?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRH-hmk5gCuVIjxJFUEUVLqS4_8wyw8EcIBvfo-V-K6WuFGt1U4V6SFspeGXU73QXWQ?PARTNER=WRITER" alt="image"></a> </p>
+<p>这里要选discover</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGMWKTc70BqmkgA2mgsXmAWLHW4fbA8RhgAQZKGYNYFPkYrh0OPKyg6NN6B-BAx_3c?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFCX3j3oF4j0XwfpqM6Zrk-2nwscwn7eEFziGj-AW6uSsJrLsTn1q2fl-6TCT2pMNc?PARTNER=WRITER" alt="image"></a> </p>
+<p>这样就会列出cRIO里面所有的模块：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFDqwE_neppTZCdHvgTKFaw-zymNjGhxuH7mHVEd4L9pqyJy4tVm0gSREB8T-ZjN0M?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRF6QCMr52FzDX0roswjJeJyUHnJKxKcnhOr3QAr-d9eD9htxvyoVkPQRjUFCt_rcmw?PARTNER=WRITER" alt="image"></a></p>
+<p>这个向导我已经<a target="_blank" rel="noopener" href="http://lhb5883.spaces.live.com/blog/cns!866B8F96A2761BBE!729.entry">介绍过了</a>，这次就取消，咱们自己动手丰衣足食。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuREaHdaWfVJgPhqc9omvyUqS-kajBN5TPY2C72pf2pWi2ktuEecMeH5ZGin8eCWiS9w?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFZTq6nX0zwmoa3yyg2pKgowXEkzqT7Jewbr1nZuq4PVmb16XIpxbtLTfSSPdG6fWM?PARTNER=WRITER" alt="image"></a> </p>
+<p>我们首先在FPGA上新建一个VI </p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGkzo5MHp0_rFpDNit0x5jaRu1t3723iEDU-3XZfbGj24UhukUJ_j1kjGnK_6ZQF4Y?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGdDQdQM4YK_kSx_72sZHvztghzS8LjL0z0s5KI9se8XfHTVJJhnDhpAgKce3AZ9vI?PARTNER=WRITER" alt="image"></a> </p>
+<p>我们把要访问的资源都丢进FPGA VI里面，**<font color="#ff0000">并创建相应的控件</font>**。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGVezOejCc3nZ6CAxEcSECNUpt2pNr_lDv4L0Q9jIEY5K-AGSIUHa8MjJ9tmsElSpw?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGbmtIlZgBLjIwIUI2tfSVxuCKHK2VA7a-rkOecT82JXcSKFZpSZjR3G4JoNujAPE0?PARTNER=WRITER" alt="image"></a> </p>
+<p>然后在cRIO的控制器上也新建一个VI：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGZI9h4KpIIErx8g6h8f-FRsCpPvo7E1o0JmkREtpowNKWKuFnGkhgVqgqwInY155I?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGuWExQ6nm0MI52jTgosw84HuF4pp7D_liXHSLZClnXS8mv7u7EubjngBMpNH0SVgU?PARTNER=WRITER" alt="image"></a> </p>
+<p>先扔一个FPGA引用：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRETjIqCuC12TxdiwXuUHuCOcxYOFLJ9NQJixgy-_LCrf-mt9O58FRf7lVt4iloHQm0?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFzB8LjhhGyLvIVW5j4Hskm-3oQVy-tQ_NWpT-BhoQ_EeEVInyk8vzQWkzcnqcmzoU?PARTNER=WRITER" alt="image"></a> </p>
+<p>然后选择VI：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRHvvNu5shuH212Ofp_MlIcLkmQ0e-7tLUomXd8oPhsmPPTnQPIIwS_wwS4O0pmEHyE?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRF8l6CWbvpNOAbZjHLFYoulqrt3AU9J_tYpyPgI39qE9qf432ZbJgD0XMv8x3ZfsFs?PARTNER=WRITER" alt="image"></a> </p>
+<p>中间通过<a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFAuv0rCGxZ-tSk3BLs5BvUJwEugmvZVgwIH8np3j_367663T3YQgJWRtCXabT6ojc?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRES8ONRhfvf77L00y0fGGyx6-STzuWGJoXP1wQ_Q-54ueaHmNSLLO60APp28b3FmkM?PARTNER=WRITER" alt="image"></a> 对FPGA进行操作：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr_kofxOb-g3lFoPYLyPxsxPI7dnG70qAGhn3IwpL4Qo9J22ibqtTUUSqWJ3wFvuJFbMyvuUonbb2A?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMVE12aNFzOEzVg4jZZxSb-vOnenBQXy5AgreIKy-9aGNqw1zc6FUJd7H5fu-zWy6_d5HNdZLDzuDjsdYTC2aHS?PARTNER=WRITER" alt="image"></a> </p>
+<p>最后不要忘记关闭FPGA引用。</p>
+<p>这样一个最简单的FPGA程序就写好了。</p>
+<p>我们这时候还不能直接运行程序，因为FPGA还没有编译：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzwzE7ajkkJ305_XfLqPk9Wh5p9weFZR11-6RRbX8wTfFcKq4m4jrmpYywK5CBO8_C3zeu1Xo6o0J35i8l-1nQ3?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxkmJiPQLyVfjIE8wImomdru1G2FrdlW10aD9kqI_2M3TlNsm38o30BB_z4r81O_gFtUqvEskaqDnzoYyiryVdC?PARTNER=WRITER" alt="image"></a></p>
+<p>我们在FPGA VI上右键选择编译：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzm40xhVzMGQFb2OHjp84ns-LVoMPvr7V1vOVhbJClwXeBHrSvZLB6pXxS1413m70wuO0OWNzyolQWC4i6aYvPV?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyfSJ-COJfS_-G9K0Owh3k5oVIpckTJu2ZgQLOFJsV8mIdvAFNDcX5dlu3sE8uWw9L6kPMbkbq8r66nFizbLjt2?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyYEj5k8C9nI5EFsZVLYspVThWcmE_6yNHmM0tLoe9bPu8A7_9qpz6uYFYYOMPnpfRRQ_mMC7ekioSYLD4ou68r?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzyQaYSiuKeAf-i1DQW1h0mOhgplK7PqhhVoAhHSksze0JGxGcJ7S62qMFllGRO0OrXnly8_UzIfNfr9r4tOMeJ?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOmL63LlJgQyqIBZLVVCdEQB4IpOLu58jd8lVYwWbUNRgu9eQ5A2rFQsDKres5PuH5WDeB0PcnG5_4lQk8DRNT1?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxyalXakskdWjoWmg4b6rYpMT4BDsr_yvhELxkazAc5rZeDG84fMOzDZYvq5u-AJEKs0ND8oGzz2XB0802MS6w_?PARTNER=WRITER" alt="image"></a> </p>
+<p>漫长的等待之后我们就可以运行我们的FPGA程序了：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpylNMNt2Bd1k2V7W3avS2ZEP8QhT4w8_WtkDTitIvFt3XLDI69JDQfkKUCJaCHsdsWPpXhNTjlgMbZ2KyYAPb6j?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyxdSdziVPpFUwUDm6khOwmrdDyg9AyyfKLZwdpvZZLDewkxmm3nvBsdajWUsyJu7IgowfiwTameGj0n1rfMHKb?PARTNER=WRITER" alt="image"></a> </p>
+<p>要注意的是**<font color="#ff0000">直接运cRIO上的程序</font>**即可，无需运行FPGA程序，因为cRIO会通过<a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRETjIqCuC12TxdiwXuUHuCOcxYOFLJ9NQJixgy-_LCrf-mt9O58FRf7lVt4iloHQm0?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFzB8LjhhGyLvIVW5j4Hskm-3oQVy-tQ_NWpT-BhoQ_EeEVInyk8vzQWkzcnqcmzoU?PARTNER=WRITER" alt="image"></a> 自动调用FPGA程序。</p>
+<p>最后是友情提醒+小小广告：</p>
+<p>此程序仅仅是为了测试cRIO能否正常工作，如果要进一步发挥出cRIO的强大潜能，</p>
+<p>请联系<a target="_blank" rel="noopener" href="http://www.pansino.con.cn/">泛华测控</a>、<a target="_blank" rel="noopener" href="http://www.ni.com/china">NI中国</a>了解更多详情和专业培训课程。</p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/04/17/archived-crio-teardown-03/" data-id="cl2en8lib0013v4una0230t6y" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2008/05/14/archived-cfp-Serial/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          cFP摧残指南——串口篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2008/04/15/archived-labview-visual-studio-asp-net-publish/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LabVIEW和Visual Studio（ASP.net）的网络发布</div>
+    </a>
+  
+</nav>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

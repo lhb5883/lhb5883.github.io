@@ -1,23 +1,865 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+  
+  <title>haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on">
+<meta property="og:type" content="website">
+<meta property="og:title" content="haobo.li">
+<meta property="og:url" content="http://haobo.li/page/2/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on">
+<meta property="og:locale">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block page_class %}
-  {% if is_home() %} page-home {% endif %}
-{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/17/20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler/" class="article-date">
+  <time datetime="2019-10-17T03:06:42.000Z" itemprop="datePublished">2019-10-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/17/20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler/">20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler</a>
+    </h1>
+  
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabVIEW-FPGA-Vivado-编译器最小内存要求"><a href="#LabVIEW-FPGA-Vivado-编译器最小内存要求" class="headerlink" title="LabVIEW FPGA Vivado 编译器最小内存要求"></a>LabVIEW FPGA Vivado 编译器最小内存要求</h1><p>记得刚开始用LabVIEW FPGA的时候还是在XP下，当时编译时爆内存不足简直是家常便饭。不过在大内存普及的今天我们来看一下到底多少内存足够编译器使用。</p>
+<p>Xilinx FPGA Chips for National Instruments RIO Devices</p>
+<p>From <a target="_blank" rel="noopener" href="http://www.ni.com/product-documentation/54514/en/?OpenDocument">http://www.ni.com/product-documentation/54514/en/?OpenDocument</a> </p>
+<p>Minimum System Memory Recommendations for the Vivado Design Suite</p>
+<p>From <a target="_blank" rel="noopener" href="https://www.xilinx.com/products/design-tools/vivado/memory.html">https://www.xilinx.com/products/design-tools/vivado/memory.html</a> </p>
+<p>Memory Recommendations Using the ISE® Design Suite 14</p>
+<p>From <a target="_blank" rel="noopener" href="https://www.xilinx.com/products/design-tools/ise-design-suite/memory.html">https://www.xilinx.com/products/design-tools/ise-design-suite/memory.html</a> </p>
+<p>整理出来的内存占用，单位GiB</p>
+<table>
+<thead>
+<tr>
+<th>FPGA系列</th>
+<th>典型NI产品型号</th>
+<th>芯片型号</th>
+<th>编译器</th>
+<th>最小内存</th>
+<th>最大内存</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Virtex-5</td>
+<td>PXI-7954R</td>
+<td>LX110</td>
+<td>ISE</td>
+<td>2.1</td>
+<td>2.9</td>
+</tr>
+<tr>
+<td>Virtex-6</td>
+<td>PXIe-5646R</td>
+<td>LX240T</td>
+<td>ISE</td>
+<td>3.7</td>
+<td>6.5</td>
+</tr>
+<tr>
+<td>Virtex-7</td>
+<td>PXIe-5840R</td>
+<td>VX690T</td>
+<td>Vivado</td>
+<td>5</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Spartan 3</td>
+<td>sbRIO 9642</td>
+<td>XC3S2000</td>
+<td>ISE</td>
+<td>1.03</td>
+<td>1.52</td>
+</tr>
+<tr>
+<td>Spartan 6</td>
+<td>cRIO-9082</td>
+<td>LX 150</td>
+<td>ISE</td>
+<td>2.2</td>
+<td>3.7</td>
+</tr>
+<tr>
+<td>Zynq-7000</td>
+<td>sbRIO-9607</td>
+<td>XC7Z020</td>
+<td>Vivado</td>
+<td>1.3</td>
+<td>1.9</td>
+</tr>
+<tr>
+<td>Kintex-7</td>
+<td>PXIe-6592R</td>
+<td>XC7K410T</td>
+<td>Vivado</td>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Kintex Ultrascale</td>
+<td>PXIe-7915</td>
+<td>KU060</td>
+<td>Vivado</td>
+<td>7</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Artix-7</td>
+<td>cRIO-9058</td>
+<td>XC7A100T</td>
+<td>Vivado</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<p>可以看到编译LabVIEW FPGA基本上有个16G内存就差不多了，除非要同时编译多个bitfile可能需要更大的内存。而Xilinx的Virtex UltraScale XCVU440峰值需要48G内存，这就只有上专业工作站才能满足了，或者考虑在Linux服务器上部署编译服务。</p>
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2019/10/17/20191017-Minimum-RAM-for-LabVIEW-FPGA-Compiler/" data-id="cl2en8lhe0005v4unh45yeg9q" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20190618-labview-2019-released" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/18/20190618-labview-2019-released/" class="article-date">
+  <time datetime="2019-06-18T04:20:27.000Z" itemprop="datePublished">2019-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/18/20190618-labview-2019-released/">20190618-labview-2019-released</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabVIEW-2019-已经发布"><a href="#LabVIEW-2019-已经发布" class="headerlink" title="LabVIEW 2019 已经发布"></a>LabVIEW 2019 已经发布</h1><p>LabVIEW 2019其实在五月的NI Week就已经发布了,不过国内CDN(似乎是什么百度云加速)一直没有完成同步,导致下载不了完整的离线包.目前经过我测试至少LabVIEW 2019已经可以成功下载.</p>
+<ol>
+<li>这次最大的改变就是完全使用NI Package格式进行发布,这样可以减小重复的组件占用的控件,像32bit的LabVIEW镜像只有26G.LabVIEW NXG 3.1也已经发布,不过还没办法成功下载离线包,如果着急下载的话,可以下64bit的软件平台安装包(SPB),里面包含了NXG,CVI,Measurement Studio,TESTSTAND等NI大部分软件.</li>
+<li>SPB 2019      Sping和之前SPB不同的地方是把32和64bit软件分开了,因为NI 2021年就要停止32bit操作系统支持以及Win7和Win Server 2008 R2支持.</li>
+<li>另外一个改变就是很多不是很常用的工具包已经移动到了VIPM里面.</li>
+</ol>
+<p>在下载页面点击下载离线安装包就可以下载ISO格式的安装镜像</p>
+<p>NI Software Platform Bundle (SPB) Spring 2019 64bit</p>
+<p><a target="_blank" rel="noopener" href="http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305933">http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305933</a></p>
+<p>Offline Installer</p>
+<p>LabVIEW 2019 and Drivers</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Checksum</strong></th>
+<th><strong>File Size</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2019</td>
+<td><strong>(MD5)</strong> 2c792f957b6bcf5262654bea41842970   <strong>(SHA256)</strong> 1f156d7465eb64d218639f2bd7847bd02a5338ee1f0981f22205688b9e5f9f8d</td>
+<td>35.49 GB</td>
+</tr>
+</tbody></table>
+<p>From &lt;<a target="_blank" rel="noopener" href="http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305933">http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305933</a>&gt; </p>
+<p>NI Software Platform Bundle (SPB) Spring 2019 32bit</p>
+<p><a target="_blank" rel="noopener" href="http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305508">http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305508</a></p>
+<p>Offline Installer</p>
+<p>LabVIEW 2019 and Drivers</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Checksum</strong></th>
+<th><strong>File Size</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2019</td>
+<td><strong>(MD5)</strong> d40c6366a441750ec1ed4a304a09f241   <strong>(SHA256)</strong> 1e268f3ee660acc8b9a4efd8e91f9d187f1f446780025d0743fcc8daa76100b5</td>
+<td>26.01 GB</td>
+</tr>
+</tbody></table>
+<p>From &lt;<a target="_blank" rel="noopener" href="http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305508">http://www.ni.com/en-us/support/downloads/software-products/download.labview.html#305508</a>&gt; </p>
+<p>参考链接</p>
+<p> <strong>NI Software Platform Bundle (SPB) Spring 2019 Readme</strong></p>
+<p> From &lt;<a target="_blank" rel="noopener" href="http://www.ni.com/pdf/manuals/377942a.html">http://www.ni.com/pdf/manuals/377942a.html</a>&gt; </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2019/06/18/20190618-labview-2019-released/" data-id="cl2en8lhe0004v4una3b5bd5c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/labview/" rel="tag">labview</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20190103-labview-2018-call-python-return-error-1671" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/03/20190103-labview-2018-call-python-return-error-1671/" class="article-date">
+  <time datetime="2019-01-03T06:12:54.000Z" itemprop="datePublished">2019-01-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/03/20190103-labview-2018-call-python-return-error-1671/">20190103-labview-2018-call-python-return-error-1671</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabVIEW调用Python返回数组时报错1671"><a href="#LabVIEW调用Python返回数组时报错1671" class="headerlink" title="LabVIEW调用Python返回数组时报错1671"></a>LabVIEW调用Python返回数组时报错1671</h1><p>最近在测试用LabVIEW和Python实现算法时的可替换性,正好LabVIEW 2018可以调用Python代码就方便了不少,可以直接替换比对.但是发现调Python时返回单个值的时候正常,返回一个数组时报错.</p>
+<p>Error 1671 occurred at Python Node in PythonNode_PyIntegral.vi</p>
+<p>Possible reason(s):</p>
+<p>LabVIEW: (Hex 0x687) There was an error in executing the specified function.</p>
+<p>Python returned the following error: &lt;class ‘SystemError’&gt;</p>
+<p>..\Objects\listobject.c:186: bad argument to internal function</p>
+<p>查了一下LabVIEW帮助,返回值应该是支持数组才对的啊?</p>
+<p>仔细研究了一下发现了一条附注:</p>
+<p>Calling Conventions</p>
+<p>This node converts integers and strings to the corresponding data types in Python, converts arrays to lists, and converts clusters to tuples.</p>
+<p>输入参数的时候有类型转换,那么是不是返回值的时候没有转换?</p>
+<p>在python里打印了一下返回值的type,是np.ndarray,于是手动转换成list,果然就可以正常工作了.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2019/01/03/20190103-labview-2018-call-python-return-error-1671/" data-id="cl2en8lhd0003v4un1lngf2vu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20180917-use-labview-with-git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/17/20180917-use-labview-with-git/" class="article-date">
+  <time datetime="2018-09-17T02:35:22.000Z" itemprop="datePublished">2018-09-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/17/20180917-use-labview-with-git/">配置LabVIEW和TortoiseGit工作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="配置LabVIEW和TortoiseGit工作"><a href="#配置LabVIEW和TortoiseGit工作" class="headerlink" title="配置LabVIEW和TortoiseGit工作"></a>配置LabVIEW和TortoiseGit工作</h1><p>首先安装git for windows和TortoiseGit,都使用默认安装即可.</p>
+<p>主要的工作量是在于设置TortoiseGitMerge和TortoiseGitDiff</p>
+<p><img src="/./20180917-use-labview-with-git%5C1537152789409.png" alt="Config git with labview"></p>
+<p><a target="_blank" rel="noopener" href="https://ispring-cloud-45.ispringcloud.com/acc/kc75hpYxMDM3NA/s/10374-N2ZHD-doaJL-kBQpK">https://ispring-cloud-45.ispringcloud.com/acc/kc75hpYxMDM3NA/s/10374-N2ZHD-doaJL-kBQpK</a></p>
+<p><a target="_blank" rel="noopener" href="https://forums.ni.com/t5/Example-Program-Drafts/Source-Code-Control-Using-TortoiseSVN-Subversion-with-LabVIEW/ta-p/3510829">https://forums.ni.com/t5/Example-Program-Drafts/Source-Code-Control-Using-TortoiseSVN-Subversion-with-LabVIEW/ta-p/3510829</a></p>
+<p>Configuring TortoiseGit for Graphical Diff<br>​	1. Right-click in Windows Explorer to expose the TortoiseGit options<br>​	2. Mouse-over ‘TortoiseGit&gt;&gt; Settings’<br>​	3. In the list of settings on the left, select ‘Diff Viewer’,On the right side of the dialog, select ‘Advanced’<br>​	4. When the ‘Advanced diff settings’ dialog appears, select ‘Add’<br>​	5. In the dialog that appears, type .vi as the extension<br>​	6. Where it prompts you for the path to the external program, type the following: “C:\Program Files\National Instruments\Shared\LabVIEW Compare\LVCompare.exe” %mine %base -nobdcosm -nobdpos<br>​	7. Repeat this operation for the file-type .ctl<br>Configuring TortoiseGit for Graphical Merge<br>​	1. Right-click in Windows Explorer to expose the TortoiseGit options<br>​	2. Mouse-over ‘TortoiseGit&gt;&gt; Settings’<br>​	3. In the list of settings on the left, select ‘Merge Tool’ under ‘Diff Viewer’<br>​	4. On the right side of the dialog, select ‘Advanced’<br>​	5. When the ‘Advanced merge settings’ dialog appears, select ‘Add’<br>​	6. In the dialog that appears, type .vi as the extension<br>​	7. Where it prompts you for the path to the external program, type the following: “C:\Program Files\National Instruments\Shared\LabVIEW Merge\LVMerge.exe” %base %mine %theirs %merged<br>​	8. Repeat this operation for the file-type .ctl</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2018/09/17/20180917-use-labview-with-git/" data-id="cl2en8lhd0002v4un7gdz63ip" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20180525-LabVIEW2018-released" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/25/20180525-LabVIEW2018-released/" class="article-date">
+  <time datetime="2018-05-25T08:08:12.000Z" itemprop="datePublished">2018-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/25/20180525-LabVIEW2018-released/">LabVIEW2018_released</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>又到了5月份一年一度的NI Week,LabVIEW 2018按期正式发布,值得注意的有两点,</p>
+<p>Python调用支持</p>
+<p>NXG风格的控件</p>
+<p><img src="/.%5C20180525-LabVIEW2018-released/clip_image001.png" alt="PythonNode_AddTwoDoubIes.vi Front Panel  File Edit View Project Operate Tools Window Help  Overview: Demonstrates how to call a Python function and pass doubles as arguments.  Requirements: Python 2.7 or 3.6 with the same bitness as LabVIEW.  Instructions:  I. Set the Python version to the version of Python you want to execute code in.  2. Run the VI. You should see the result of adding &quot;a&quot; and &quot;b&quot; in the indicator &quot;a + b&quot;.  3. See comments on the block diagram of this VI and in &quot;ExamplePythonModuIe.py&quot; for more  cw eca python no e passes argumentSMidhändIesteturn va ues.  In or  Iona o  Python version  error in (no error)  us code  source  error out  us code  sourc "></p>
+<p>有个大坑,LabVIEW调用的是Python36.dll,导致32bit的LabVIEW只能调32bit的Python,只有64bit的LabVIEW才能调用64bit的Python;绕过的办法是直接用命令行接口调用Python,不过每条命令运行时都要打开Python.exe,运行完之后会关闭Python.</p>
+<p>互连接口选板新增Python子选板，可使用它从LabVIEW代码中调用Python代码。Python选板包 含以下函数：</p>
+<p> • 打开Python会话－用特定版本的Python打开Python会话。</p>
+<p> • Python节点－直接调用Python函数。</p>
+<p> • 关闭Python会话－关闭Python会话。 </p>
+<p>注：必须安装Python 2.7或3.6版本以使用LabVIEW Python函数。尽管不支持的 Python版本可以与LabVIEW Python函数一起使用，但NI建议仅使用支持的Python 版本。访问ni.com&#x2F;info并输入信息代码python，了解更多关于安装Python的 信息。 </p>
+<p>NXG风格控件 控件选板包含新的NXG风格前面板控件。使用NXG风格的控件，创建LabVIEWNXG风格的前面 板。控件的外观随终端用户运行VI的平台改变。如果将VI迁移到LabVIEW NXG，使用这些控件可以最大限度地减少前面板的失真。</p>
+<p>LabVIEW 2018新增了错误寄存器以简化启用了并行循环的For循环的错误处理。错误寄存器取代了并行For循环上错误簇的移位寄存器，如以下程序框图所示。 图 3 错误寄存器可自动合并并行循环的错误。在For循环上配置并行循环时，LabVIEW将自动把移位寄存器转换为错误寄存器，从而遵循通过移位寄存器传输错误的最佳实践。</p>
+<p>针对不同数据类型自定义自适应VI 比较选板新增检查类型子选板。使用“检查类型”VI和函数可强制让自适应VI(.vim)只接受满 足特定要求的数据类型。使用类型专用结构可为指定数据类型自定义自适应VI (.vim)中的代码段。 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2018/05/25/20180525-LabVIEW2018-released/" data-id="cl2en8lhc0001v4ungen62zc5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/26/20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel/" class="article-date">
+  <time datetime="2018-04-26T08:33:39.000Z" itemprop="datePublished">2018-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/26/20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel/">Errors occurred when open NI DMM Soft Pannel</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NI-DMM-软面板出错的解决办法"><a href="#NI-DMM-软面板出错的解决办法" class="headerlink" title="NI-DMM 软面板出错的解决办法"></a>NI-DMM 软面板出错的解决办法</h1><p>安装完NI-DMM之后有时打开软面板会提示</p>
+<p>ERROR:One or more elements of the application could not be found.  Please re-install ni-DMM installer again to fix this problem</p>
+<p><img src="/.%5C20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel%5Cclip_image001.png" alt="NI-DMM Soft Front Panel ERROR: One or more elements of the applicaton could not be found. Please run the NI-DMM installer again to fix this problem "></p>
+<p>这个可能有以下几种常见原因 </p>
+<h2 id="第一-NI软件安装时没有使用默认目录-测试至少NI-DMM-16-0存在此问题"><a href="#第一-NI软件安装时没有使用默认目录-测试至少NI-DMM-16-0存在此问题" class="headerlink" title="第一:NI软件安装时没有使用默认目录,测试至少NI-DMM 16.0存在此问题."></a>第一:NI软件安装时没有使用默认目录,测试至少NI-DMM 16.0存在此问题.</h2><h2 id="第二-NI-DMM-17-5存在Bug-随机性的打不开软面板-重启后偶尔正常"><a href="#第二-NI-DMM-17-5存在Bug-随机性的打不开软面板-重启后偶尔正常" class="headerlink" title="第二:NI-DMM 17.5存在Bug,随机性的打不开软面板,重启后偶尔正常."></a>第二:NI-DMM 17.5存在Bug,随机性的打不开软面板,重启后偶尔正常.</h2><h2 id="第三-DAQmx组件错乱-之前遇到过类似的报错-NI论坛上也是这种错误"><a href="#第三-DAQmx组件错乱-之前遇到过类似的报错-NI论坛上也是这种错误" class="headerlink" title="第三:DAQmx组件错乱,之前遇到过类似的报错,NI论坛上也是这种错误."></a>第三:DAQmx组件错乱,之前遇到过类似的报错,NI论坛上也是这种错误.</h2><p>NI-DMM依赖对应版本的DAQmx,比如是安装了低版本ELVISmx导致DAQmx组件版本不匹配,</p>
+<p>解决办法是在添加删除程序里选择添加删除NI软件,把低版本的DAQmx组件删除即可.</p>
+<p><a target="_blank" rel="noopener" href="https://forums.ni.com/t5/PXI/DMM-SFT-returns-error-message-says-to-re-install/td-p/470375">https://forums.ni.com/t5/PXI/DMM-SFT-returns-error-message-says-to-re-install/td-p/470375</a></p>
+<p>或者最彻底的办法是到 控制面板-添加删除程序-NI软件-删除所有组件.然后安装NI-DMM及内部包含的DAQmx,或者安装NI DeviceDriver Set里面的成套驱动.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2018/04/26/20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel/" data-id="cl2en8lh40000v4un17wd9a0g" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-move-blog-haobo-li" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/03/04/archived-move-blog-haobo-li/" class="article-date">
+  <time datetime="2014-03-04T06:00:24.000Z" itemprop="datePublished">2014-03-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/03/04/archived-move-blog-haobo-li/">已搬家到haobo.li</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>自从Wordpress.com被墙以后，blog基本上就长草了。现在搬到<a href="http://haobo.li/"> http://haobo.li </a>欢迎访问。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2014/03/04/archived-move-blog-haobo-li/" data-id="cl2en8lit002ov4unfb0ee02y" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-tips-7zip-add-time-stamp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/09/29/archived-tips-7zip-add-time-stamp/" class="article-date">
+  <time datetime="2013-09-29T08:32:29.000Z" itemprop="datePublished">2013-09-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/09/29/archived-tips-7zip-add-time-stamp/">给7Zip压缩自动增加时间戳</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>WinRAR压缩文件有一个很方便的选项是在文件名追加压缩时间,但是RAR是收费软件,价格不菲.使用7-Zip就没有这样的功能了么?</p>
+<p>其实只要自己动手也能丰衣足食,给7-Zip加上这个功能:</p>
+<p>首先在运行中输入</p>
+<ol>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:maroon;">shell</span>:<span style="color:maroon;">sendto</span>
+            </span></div></li>
+</ol>
+<p>打开自己的发送到文件夹.</p>
+<p>在文件夹新建一个文本文档,并贴入以下代码保存为ANSI编码</p>
+<ol>
+<li><div style="background:#f4f4f4;">[<span style="font-size:9pt;">set</span>](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99)<span style="font-size:9pt;"> hh=%[time](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~0,2%
+</span></div></li>
+<li><div style="background:#f4f4f4;">[<span style="font-size:9pt;">if</span>](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=if&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99)<span style="font-size:9pt;"> %hh% LSS 10 ([set](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99) hh=0%[time](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~1,1%)
+</span></div></li>
+<li><div style="background:#f4f4f4;">[<span style="font-size:9pt;">set</span>](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99)<span style="font-size:9pt;"> dst=%[date](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~0,4%%[date](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~5,2%%[date](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~8,2%_%hh%%[time](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~3,2%%[time](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~6,2%
+</span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">"<span style="color:darkred;">C:\Program Files\7-Zip\7z.exe</span>" a %1_%dst%.zip %1
+</span></div></li>
+</ol>
+<p>修改文件名为</p>
+<p>7zBackup.bat</p>
+<p>使用时选中需要压缩的文件或者目录,选择发送到7zBackup.bat即可。</p>
+<p>以上在Window 7 64bit，7-Zip 9.2 64bit下验证通过。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2013/09/29/archived-tips-7zip-add-time-stamp/" data-id="cl2en8lj1003rv4unclra8dti" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-ni-asl-install-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/09/26/archived-ni-asl-install-tips/" class="article-date">
+  <time datetime="2013-09-26T02:31:35.000Z" itemprop="datePublished">2013-09-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/09/26/archived-ni-asl-install-tips/">NI院校套件批量安装技巧一则</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:black;font-family:宋体;font-size:10pt;">NI院校套件提供了一个很方便的自动安装功能:<br></span></p>
+<ol>
+<li><span style="color:black;font-family:宋体;font-size:10pt;">可以自动决定安装顺序</span></li>
+<li><span style="color:black;font-family:宋体;font-size:10pt;">可以自动确定依赖关系</span></li>
+</ol>
+<p><span style="color:black;font-family:宋体;font-size:10pt;">不过美中不足的是安装Xilinx 10.1编译器的时候还需要手动安装,通过修改安装包,我们也可以自动安装Xilinx 10.1编译器<br></span></p>
+<p><span style="color:black;font-family:宋体;font-size:10pt;">复制或解压4张安装DVD，一张驱动DVD，并按照下图命名<br></span></p>
+<p><img src="http://lhb5883.files.wordpress.com/2013/09/092613_0241_ni1.png"><span style="color:black;font-size:10pt;"><br>        </span></p>
+<p><span style="color:black;font-size:10pt;"><span style="font-family:宋体;">下载</span>Xilinx 10<span style="font-family:宋体;">编译器，并解压至:</span><br>        </span></p>
+<p><span style="color:black;font-size:10pt;">\ASLFL13DVD2\Distributions\Xilinx 10<br></span></p>
+<p><span style="color:black;font-size:10pt;"><span style="font-family:宋体;">修改</span>\ASLFL13DVD1\nisuite.xml <span style="font-family:宋体;">第4072~4082行</span><br>        </span></p>
+<ol>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:blue;">&lt;<span style="color:maroon;">distribution</span>
+                    <span style="color:red;">id</span>="XILINX10"&gt;</span>
+            </span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">inputRoot</span>
+                    <span style="color:red;">suiteVolume</span>="5"&gt;</span>Windows\Xilinx 10\<span style="color:blue;">&lt;/<span style="color:maroon;">inputRoot<span style="color:blue;">&gt;</span>
+                    </span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span>9998<span style="color:blue;">&lt;/<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span>
+                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span>None<span style="color:blue;">&lt;/<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span>
+                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span>ADE<span style="color:blue;">&lt;/<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span>
+                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span>ASLControl<span style="color:blue;">&lt;/<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span>
+                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">name</span>
+                    <span style="color:red;">language</span>="0009"&gt;</span>Xilinx Compilation Tools 10.1 (Requires Additional Xilinx Compilation Tools DVD)<span style="color:blue;">&lt;/<span style="color:maroon;">name<span style="color:blue;">&gt;</span>
+                    </span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">description</span>
+                    <span style="color:red;">language</span>="0009"&gt;</span>You can install these tools locally or on a remote computer.\n\nUse these compilation tools to compile FPGA VIs on NI hardware containing Virtex-II FPGAs, such as the 781xR, 783xR, and cRIO-910x devices.\n\nLearn more about the FPGA on your NI hardware at ni.com.<span style="color:blue;">&lt;/<span style="color:maroon;">description<span style="color:blue;">&gt;</span>
+                    </span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span>NoDefault<span style="color:blue;">&lt;/<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span>
+                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span>NoInstall<span style="color:blue;">&lt;/<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span>
+                           </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="color:blue;font-size:9pt;">&lt;/<span style="color:maroon;">distribution<span style="color:blue;">&gt;</span>
+               </span></span></div></li>
+</ol>
+<p><span style="color:black;font-family:宋体;font-size:10pt;">替换为<br></span></p>
+<ol>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:blue;">&lt;<span style="color:maroon;">distribution</span>
+                    <span style="color:red;">id</span>="XILINX10"&gt;</span>
+            </span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">distId</span>
+                    <span style="color:red;">GUID</span>="{C7B4CAC5-4001-475C-967D-DC65C097AA3B}"</span>
+                <span style="color:red;">languages</span>=<span style="color:blue;">"0009"</span>
+                <span style="color:red;">packageGUID</span>=<span style="color:blue;">"{1BECF03B-48B7-453F-AEB4-2570F837056B}"</span>
+                <span style="color:red;">version</span>=<span style="color:blue;">"10.13.0"/&gt;</span>
+            </span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">inputRoot</span>
+                    <span style="color:red;">suiteVolume</span>="2"&gt;</span>Distributions\Xilinx 10\<span style="color:blue;">&lt;/<span style="color:maroon;">inputRoot<span style="color:blue;">&gt;</span>
+                    </span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span>9998<span style="color:blue;">&lt;/<span style="color:maroon;">installOrder<span style="color:blue;">&gt;</span>
+                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span>None<span style="color:blue;">&lt;/<span style="color:maroon;">EULAId<span style="color:blue;">&gt;</span>
+                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span>ADE<span style="color:blue;">&lt;/<span style="color:maroon;">distributionType<span style="color:blue;">&gt;</span>
+                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span>ASLControl<span style="color:blue;">&lt;/<span style="color:maroon;">displayFolderId<span style="color:blue;">&gt;</span>
+                            </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">name</span>
+                    <span style="color:red;">language</span>="0009"&gt;</span>Xilinx Compilation Tools 10.1 (Requires Additional Xilinx Compilation Tools DVD)<span style="color:blue;">&lt;/<span style="color:maroon;">name<span style="color:blue;">&gt;</span>
+                    </span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">description</span>
+                    <span style="color:red;">language</span>="0009"&gt;</span>You can install these tools locally or on a remote computer.\n\nUse these compilation tools to compile FPGA VIs on NI hardware containing Virtex-II FPGAs, such as the 781xR, 783xR, and cRIO-910x devices.\n\nLearn more about the FPGA on your NI hardware at ni.com.<span style="color:blue;">&lt;/<span style="color:maroon;">description<span style="color:blue;">&gt;</span>
+                    </span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span>NoCustomInstall<span style="color:blue;">&lt;/<span style="color:maroon;">installOptionSetId<span style="color:blue;">&gt;</span>
+                           </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">  <span style="color:blue;">&lt;<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span>NoInstall<span style="color:blue;">&lt;/<span style="color:maroon;">defaultInstallState<span style="color:blue;">&gt;</span>
+                           </span></span></span></span></span></div></li>
+<li><div style="background:#f4f4f4;"><span style="color:blue;font-size:9pt;">&lt;/<span style="color:maroon;">distribution<span style="color:blue;">&gt;</span>
+               </span></span></div></li>
+</ol>
+<p>今后安装LabVIEW FPGA时,就可以自动安装编译器了.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2013/09/26/archived-ni-asl-install-tips/" data-id="cl2en8liv002zv4ungb0y05ij" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-2012-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/11/23/archived-labview-2012-tips/" class="article-date">
+  <time datetime="2012-11-23T09:42:25.000Z" itemprop="datePublished">2012-11-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/11/23/archived-labview-2012-tips/">LabVIEW 2012 使用心得</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>LabVIEW 2012 自8月发布已有3月有余，总结了一些使用中发现的优缺点：</p>
+<p>优点：</p>
+<ol>
+<li>新加的For循环条件自动索引很方便。2.  新项目向导选项很丰富，模板文档很详尽。3.  新加的Actor Frameworks增加了面向对象的通用架构。4.  可以从NI FTP下载院校系使用权套件的安装镜像，方便批量安装。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>启动界面层级太多，找东西不方便。2.  项目向导响应有时候非常迟钝。3.  LabVIEW 2009的字体BUG重出江湖。4.  不打补丁会出现无法退出的情况。</li>
+</ol>
+<p>点评：</p>
+<p>这一次LabVIEW更新增加的Actor Framework给LabVIEW提供基于类和对象的架构选择，不过LabVIEW面向对象带来的好处能否超过其成本还需要在实践中验证。</p>
+<p>PS：</p>
+<p>LabVIEW 字体BUG修正方案</p>
+<p>针对LabVIEW图标编辑器，可以考虑关闭系统ClearType（但是字体仍然不对），或者使用我以前写的字体图片</p>
+<p>针对LabVIEW环境，目前最治本的办法是将系统非unicode程序语言更换为英文，但是此时LabVIEW里面的中文会乱码，因此对于中国的LabVIEW使用者没有可行性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2012/11/23/archived-labview-2012-tips/" data-id="cl2en8lii001sv4un9guta20q" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

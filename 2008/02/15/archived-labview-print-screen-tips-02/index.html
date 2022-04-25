@@ -1,38 +1,273 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
+  
+  <title>LabVIEW截图技巧-截取全部程序框图 | haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="截截截……打截！ 今天我们要截的是LabVIEW的程序框图（众人：切！~BS！这谁不会啊？）   PrintScreen键很好使，但是还要开画图板，像我们这种注重效率的专业人士（众人围殴中）要截图，当然另有高招   首先截个全图   截个部分   然后截个VI   前面板   按钮们 想知道怎么截么？一般人我不告诉他！（众人继续围殴中）  &#x3D;&#x3D;&#x3D;&#x3D;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LabVIEW截图技巧-截取全部程序框图">
+<meta property="og:url" content="http://haobo.li/2008/02/15/archived-labview-print-screen-tips-02/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="截截截……打截！ 今天我们要截的是LabVIEW的程序框图（众人：切！~BS！这谁不会啊？）   PrintScreen键很好使，但是还要开画图板，像我们这种注重效率的专业人士（众人围殴中）要截图，当然另有高招   首先截个全图   截个部分   然后截个VI   前面板   按钮们 想知道怎么截么？一般人我不告诉他！（众人继续围殴中）  &#x3D;&#x3D;&#x3D;&#x3D;&amp;#x">
+<meta property="og:locale">
+<meta property="og:image" content="http://by1.storage.msn.com/y1p8NjIsGi7lpx0tbuFNRa5izEsTXwYfJr_UJhsjUZ_9etzpNNtEXTr4FavT4sV2qGtQmQiPpKHYBjBbt7IMLBV5T3Up4h47T24?PARTNER=WRITER">
+<meta property="og:image" content="http://by1.storage.msn.com/y1p8NjIsGi7lpy8TDna0aZE7lvD1ly1bnzOopPJWnMBkltjfQA6Cj4dWHjigkztkBF0Z5GFYs6FButiZuoZ6kLmPpHpoOS4XDoV?PARTNER=WRITER">
+<meta property="og:image" content="http://by1.storage.msn.com/y1p8NjIsGi7lpzBHHW2JKKlJ4ABilODwoY8FWvL96gXmrDjW_DnnVdddZuZGaiPyo_yww0EyPzle1i4DE9mPM1sr9vQVLgUb38m?PARTNER=WRITER">
+<meta property="og:image" content="http://by1.storage.msn.com/y1p8NjIsGi7lpzbjHUjqkM26oqBBEwnvCbz5Cxv9UzIaKgL50xhSpJwv1_1ltEoHs374jyI-_xnAHGQGWzvl3zKEJAM9cqftTOH?PARTNER=WRITER">
+<meta property="og:image" content="http://by1.storage.msn.com/y1p8NjIsGi7lpxbATezjQK2rak8xDF2NeK2HMpWI5qCcLV4V9Iz1UFNOXrJZ9hRETu7Lb46cFWNhuzJ7N8__Tjlo9WyhRrflqbT?PARTNER=WRITER">
+<meta property="og:image" content="http://by1.storage.msn.com/y1p8NjIsGi7lpyPeMf4fUbVx7scxbKd6NCthQ4-NOMQsflpQKGS4_QWKwB41QbWqJredBVVRX6cgRF1dyDMh3c7AvYhdHttbvML?PARTNER=WRITER">
+<meta property="og:image" content="http://by1.storage.msn.com/y1p8NjIsGi7lpxcV-ya8tR7M9hoRi0NctznYXngklFjoqosV5r45q46pircV4zW-8vwu3mw8RoVMLCf5_MhQFkRRI_7Auy-zF1C?PARTNER=WRITER">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPul0aiskH4H5dyKisHYNzudivKyNo3LI9jkYLfjAerHc0duogFfNKaTm0kxmcRpbRJPIBbnj-SiqQChyq5AljX?PARTNER=WRITER">
+<meta property="article:published_time" content="2008-02-15T01:30:20.000Z">
+<meta property="article:modified_time" content="2022-04-18T16:55:07.781Z">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://by1.storage.msn.com/y1p8NjIsGi7lpx0tbuFNRa5izEsTXwYfJr_UJhsjUZ_9etzpNNtEXTr4FavT4sV2qGtQmQiPpKHYBjBbt7IMLBV5T3Up4h47T24?PARTNER=WRITER">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block page_class %}page-post-detail{% endblock %}
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-archived-labview-print-screen-tips-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/02/15/archived-labview-print-screen-tips-02/" class="article-date">
+  <time datetime="2008-02-15T01:30:20.000Z" itemprop="datePublished">2008-02-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LabVIEW截图技巧-截取全部程序框图
+    </h1>
+  
 
-{% block content %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!529" class="bvMsg">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<p>截截截……打截！</p>
+<p>今天我们要截的是LabVIEW的程序框图（众人：切！~BS！这谁不会啊？）</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr89UQ9XnjhfWQrpyX-S4uu-y-TwDK5UqFvsdh0CwudZfB4ow2qMiuU0aKdftNO0WvLmZkPg-0E3nA?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpx0tbuFNRa5izEsTXwYfJr_UJhsjUZ_9etzpNNtEXTr4FavT4sV2qGtQmQiPpKHYBjBbt7IMLBV5T3Up4h47T24?PARTNER=WRITER" alt="image"></a> </p>
+<p>PrintScreen键很好使，但是还要开画图板，像我们这种注重效率的专业人士（众人围殴中）要截图，当然另有高招</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMCxmunTTzUe0EW5HXgJL22BWFe2ZuIFOIu9EqY5DrO4ZklXUz-iwdbq6pareXRW4PR8PTV6rHanynf9kSsEYhn?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpy8TDna0aZE7lvD1ly1bnzOopPJWnMBkltjfQA6Cj4dWHjigkztkBF0Z5GFYs6FButiZuoZ6kLmPpHpoOS4XDoV?PARTNER=WRITER" alt="image"></a> </p>
+<p>首先截个全图</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzr0aSuPWbb7T6Prgevraf1L1cnAmyO17ydQVD_uS24yXW4urLplK_ioF1QtpiB6Mc24pM3P6h460Pf-2F_6oSO?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpzBHHW2JKKlJ4ABilODwoY8FWvL96gXmrDjW_DnnVdddZuZGaiPyo_yww0EyPzle1i4DE9mPM1sr9vQVLgUb38m?PARTNER=WRITER" alt="image"></a> </p>
+<p>截个部分</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpxmBfoGUkEJE8B9ff5hzbl5xB__zc2-vbt5hcVOJNiv6V7t5ttNAjDDrAbakQwwR_nAZu1x7F5uiAR58FamgZIp?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpzbjHUjqkM26oqBBEwnvCbz5Cxv9UzIaKgL50xhSpJwv1_1ltEoHs374jyI-_xnAHGQGWzvl3zKEJAM9cqftTOH?PARTNER=WRITER" alt="image"></a> </p>
+<p>然后截个VI</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPeGgNkl99HQcN83JRF-6j8wNHDuVs1B3NMC6xaf9eNnFyvE9sz-THds-6yP9keQ28gTMTI9-B8Mv47SmmWaY3R?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpxbATezjQK2rak8xDF2NeK2HMpWI5qCcLV4V9Iz1UFNOXrJZ9hRETu7Lb46cFWNhuzJ7N8__Tjlo9WyhRrflqbT?PARTNER=WRITER" alt="image"></a> </p>
+<p>前面板</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpxvxqxlwDvUuSsa1d6Ctb02mVJm4BtCriQvMEMgpReLMNxea0jG7QIwjVoX8fFpRU0ObDYJwLtYis69WkjQz7T2?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpyPeMf4fUbVx7scxbKd6NCthQ4-NOMQsflpQKGS4_QWKwB41QbWqJredBVVRX6cgRF1dyDMh3c7AvYhdHttbvML?PARTNER=WRITER" alt="image"></a> </p>
+<p>按钮们</p>
+<p>想知道怎么截么？一般人我不告诉他！（众人继续围殴中）</p>
+<p> &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;我是无辜的分割线&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>Win + R<br>打开“运行”对话框。</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzE3h5nhGJ4NuTIqE7bWsSl0MW-q5ROlwttW2DfV3-ud3-07rtIwQqrg07QTP11bPDDKYbolndrJZmKUs5BE0mH?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpxcV-ya8tR7M9hoRi0NctznYXngklFjoqosV5r45q46pircV4zW-8vwu3mw8RoVMLCf5_MhQFkRRI_7Auy-zF1C?PARTNER=WRITER" alt="image"></a></p>
+<p>呵呵，猜到没有？ <p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpx4BerpwohX-k6IpJoDa7FSe86VB_p0V82072q3CoeVBcaVVW2WLlLnO3M7pitBYc__PFDiQ58M3qk4cTJQW90S?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPul0aiskH4H5dyKisHYNzudivKyNo3LI9jkYLfjAerHc0duogFfNKaTm0kxmcRpbRJPIBbnj-SiqQChyq5AljX?PARTNER=WRITER" alt="image"></a>  <p><strong><font color="#ff0000">秘诀就是Ctrl+C和Ctr+V</font></strong> <p><strong><font color="#ff0000">在LabVIEW里面复制代码之后，到其他程序（例如OFFICE）里面粘贴，</font></strong> <p><strong><font color="#ff0000">因为其他程序不认识LabVIEW的框图代码，所以会把贴进来的对象当作图片处理。</font></strong> <p>以后做演示PPT、Word注释文档轻松多了吧！再也不用开着画图裁裁减减了！</p>
+</p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/02/15/archived-labview-print-screen-tips-02/" data-id="cl2en8lin0025v4un3ni15g85" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2008/03/05/archived-ni-7332-tips/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          NI 7332 搏斗记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2008/01/31/archived-labview-icon-editor-and-self-comment/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LabVIEW 图标编辑器与自注释</div>
+    </a>
+  
+</nav>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

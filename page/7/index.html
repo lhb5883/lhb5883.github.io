@@ -1,23 +1,791 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+  
+  <title>haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on">
+<meta property="og:type" content="website">
+<meta property="og:title" content="haobo.li">
+<meta property="og:url" content="http://haobo.li/page/7/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on">
+<meta property="og:locale">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block page_class %}
-  {% if is_home() %} page-home {% endif %}
-{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-archived-crio-teardown-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/03/20/archived-crio-teardown-01/" class="article-date">
+  <time datetime="2008-03-20T05:10:29.000Z" itemprop="datePublished">2008-03-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/03/20/archived-crio-teardown-01/">cRIO摧残记（上）</a>
+    </h1>
+  
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!729" class="bvMsg">
+
+<p>今天我们出场的主角就是它</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr8AlLm7yxGGhPSPzzAXI6ZGG1UvW-1FvV9NRPHylaG0BM1pmBeLxhTzOIXjo0aA4yvvrzlhex2-iQ?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyiv35ZMGRjDFH97ApuuLjq_N0d4Y2I6CBWyGerWDoWYXGSQJ6v-SQdVUiJsrhfo3cBqTezUeah_3h_YcIcEyu4?PARTNER=WRITER" alt="20080320"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOBp2roWlelbQWmvojenkbYkdVWsGH-9QxQ17C_WqKgu9iWPVXNlRJVAuaLBWgyKylfMotxhGgtQxF7_2YJKm9j?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzVG-OYgPDBYECgY-PK1J2cypGztD4_DTL4jKdvyIsQHq-BGn_i-RBakpZSBzgAXcZU7OgJncSLjRomFX2ro_ir?PARTNER=WRITER" alt="20080320(016)"></a></a></p>
+<p>控制器</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPrN_Lg9UG2HRBxh50ZnyeKruvKcahy77w9M9YdfxwubPOEuJoNPm1Xns9gV_NEl5qeMGBtJ0-Fsr0tdV3z1nZR?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwqMVWYGGE7XoTglxKBdwIl80sqD4v5QLxnHGAPdVtijw4sQ51RjAud60NruIQbvG4HmjRdDrlwQQDyGEE1IWDs?PARTNER=WRITER" alt="20080320(002)"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPrN_Lg9UG2HRBxh50ZnyeKruvKcahy77w9M9YdfxwubPOEuJoNPm1Xns9gV_NEl5qeMGBtJ0-Fsr0tdV3z1nZR?PARTNER=WRITER"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMXNZYS-tUtOYrFpCkvSsxhxjVfUtQZ8JZyN8wjz3QwSng2Ig2iiQ2lr4UlnEq4yPjEwjmGcuJatu-Oxn_3AkGV?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxMT9IiwHp7hNarRHPuuGyNXUp6vBt_lZpoWXihi9d1s8Zq2ASCuSylIWe4vO9zFjpbl4ztPaPdchPQjK_bC7L4?PARTNER=WRITER" alt="20080320(001)"></a></a></a></p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPrN_Lg9UG2HRBxh50ZnyeKruvKcahy77w9M9YdfxwubPOEuJoNPm1Xns9gV_NEl5qeMGBtJ0-Fsr0tdV3z1nZR?PARTNER=WRITER"></a> </p>
+<p>  <a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMXNZYS-tUtOYrFpCkvSsxhxjVfUtQZ8JZyN8wjz3QwSng2Ig2iiQ2lr4UlnEq4yPjEwjmGcuJatu-Oxn_3AkGV?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyfZuQHyTkUGZisuRYGm8Nw1qkOOtqmDgkEFNUDOMn3P8njdTXTxvolLynBsjql8Ry7GbTXBrkspoS69WW5exTh?PARTNER=WRITER" alt="20080320(005)"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwG6YPDORajJ4J10vxvJqovSsnTgYVwaJEvCYTZGsBwWB3GZ7iqdDyDXHcyZAMiXCBEqQ27ZPRyzuCfOO8p2ZeQ?PARTNER=WRITER" alt="20080320(007)"> <img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxFoLJKRZ8EnvOel4CM15y1QeDQ86x7y_eNGz9vUIoB8JR4q2Pd5B4pUM6AsVKMye4-NVMX8jndF6SMsC9ylz4-?PARTNER=WRITER" alt="20080320(006)"> </a></p>
+<p>FPGA</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPN6BgjY_twaRGgHUyhBRMEzOltuU3rhn-AOFmifqEyP19xPz4_nfTBRhoC_JfKSHkg8FpUKLz7rtY9DsXM6BrI?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxm6rQjHpxAUyRZHwFqqKj2xiIUSa9JqhnQ9NUBFPDjcJLlfdcV7zZ6o4BRWrjAY9Ntw-rRRIA64GzcP94a5oHo?PARTNER=WRITER" alt="20080320(003)"></a> <a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhO1zsKqXWNSAL-36wLmrWc2XAyRLr_abPLLfJjrqyWBNUczZ3_xP_KM6Q8LMDlrjfmrJiggmkcaXJlUyRTywtH6?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxe1hoL3ruQopVV33hN0RgLnfVJ8ni-vOTm_PJcQIvaktoTQALQj6WRHKrtP0FPRBm3EOOcAN0UcB2Ciq435MKP?PARTNER=WRITER" alt="20080320(008)"></a> <a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMe9ZTEkZojH71ZXHUXxIwmCa_L9EwkkwIGj2I7bYUze3IIkzgYJ0GK0ZcdrM1XXipmSoA3sKkogCtcIb5_lm1-?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpw3WQR8vopbcs2jhAwjalY3TbDonp0grz_r0Ma4WrHyR0GirTfwFgoaN9StLM_uPAnRDWZ5iqDgfRogCKp9bgGq?PARTNER=WRITER" alt="20080320(013)"></a> </p>
+<p>插上网线通电以后 我们首先打开MAX</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwd7yL5njGXePy8TMJXDq_D93UWEme6opbsfOlhEWw5gMd2Z52Np3jAPtAYW6Bg7Pg0BxSG9w2XzoBHx4UuJLBf?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxOOBaCQ74UtHyhSoFyleQyRL1xGboxZze_vXs63sfLdEtkkV6w1bs0rnHb5NmTJYsmHCEhM45VU3e_Z1tUhe-a?PARTNER=WRITER" alt="image"></a> </p>
+<p>在远程系统按F5</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxs01qfNwAkKpZF3ROmxXwiIJrbYxWn6BInUFbGpl8peh4u5DFcPtGYNsLsfNwxg4yqH9GqQCs-XvqgUXkX416f?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpycIh7VQdnf7URl7puKZEjv7KB6lson7rVwwsMp0BBgbjd3HzTCL04WMB6r_OXTgDvBzBAMhbGVVVt3vJ7XRG40?PARTNER=WRITER" alt="image"></a> </p>
+<p>可以看到已经自动认出来了</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpywaMjt1OSyMRMHZT25NFyJAnYxVWxDimPVrLTiYf6zfmrd55GSKJtQNCvNFAGcXW-V6Leyyl9bkDuGEXulSHtG?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxd5EqvIb0iq4uMFjJIn_w9Y8gcLCGoKE2Yuoh8-hddKDU-X5ox-xVz3tKirXPLwUpYGd9E3GSNGnB78vkQCf4D?PARTNER=WRITER" alt="image"></a> </p>
+<p>使用前请先摇一摇（误</p>
+<p>需要配置一下网络参数</p>
+<p>然后给cRIO里面装软件：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzwugoKRjwdTYyeePMGnh7pZ6iuebI2nj38gW1V1zsE1GXdwDo5HR0Q8xFYvSlRXMfYzWVBkszZ8EMFQmdwc6OU?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpx5lUXJ3-eGJUDgUqNT--JLpgBdTesgi5RbRYyA11Bng-Pexg8ZldweLFd0utOt13UnkpJjsWCj21cIweajRg_J?PARTNER=WRITER" alt="image"></a> </p>
+<p>我是不管3721全部装上去了</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNnAwnFMJxrTSvRan2PoXhEMcCE3uuFj9GsyxbYAG0arGjo-yur0G7-FttPHoKnZVf8J7jrNvOks8THkJsReNqx?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxSnIA08aKb5oxvASvkiIwL5eZBbJ24PZBE8sX7ihcwwFMGbcRK3wCchtZSsug5xREvu5vtZLP7FVlM-083vDk5?PARTNER=WRITER" alt="image"></a> </p>
+<p>装完软件，接下来的工作就要在LabVIEW下进行了：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM1jZMKbePABwCFt07oTH2jQEUyxK-DTzUqEkW8-lq_c7WL_vr-kS_xjKC3fftRTx3mCMETIamiBE2WKmPok3kz?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxdByVdnKD6_tCGf42nSl69TONk_l9kZrGkiwkq7DO6TsA8sMg0YQkvOQUILsrKBRo2MZgpv6sqWhjooKd73_mn?PARTNER=WRITER" alt="image"></a> </p>
+<p>让我们来调<font color="#ffffff">戏</font>试一下吧</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxPnRWO9I4vqQAVgFuhuvTRscL-zL0DwnctiSattH6v5LgoOnh3JWOdQRrOD4ST9Oyi1hIRnqublPneYsXrsJeT?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxjZihyANd5xa2cF3CaEQ7srMPc7Q00fnoxATNU_1DmzMIomrhe1h-SOJZUhdwus2vN4LzyQ6WqkyglZPWKqs7j?PARTNER=WRITER" alt="image"></a> </p>
+<p>一路下一步即可</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNGxwQBybDtjhDolkPOuRROund4CfWkRGVIxQkwJ5G0wkZpFXYmz9W3sm6-_uf6N2Eos596yhuGHI6rYR0ZmzbH?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzdTCRiAwVQTLReo7AnBcteZKAcBycKw6tSHppjM1J8BhEznDbJC3vZp_ljFkn9Aghf9bYYxb0vbdYQY9Tb_zmP?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMj_K2d-6VOC_b75WGCDvyKx32W-3H0RAlWNAnRmNITU7uOP4d7srfDbcAz0Eo3gGnqyMh0p7sz3cy40OBNGkZD?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyXACCo5MBSlqTxtWLZfI3TbASXJwn101xyp6utUjQLzMP1JCdr39RseDX7ksMhfbx1cWheGVdtLOcOEwVITlQq?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOoDEDmQzp4w9M5XkOitdx89RHapg3XB5psrLcAGdmuh6Y7ATSbMvlg0XVJ11JIskxAvusJilCoJhdAT6spOkbB?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxltcV9Wbd5SlFYGODpTgIzaEYVcfoPVKD1rgfKBwlHWxMLePJhINmBJar__H-SsCufxD9Nos2qtC9yP30xBLid?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxOXqHEHD_-OIftYbsU5OXsd5-i-DGy3JZzbjlki90B2qE4woWZ0wxSe5dpeJLKzJy8Jwfm9bAZK-tYTJi2RWR8?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyQmZUNSgIQLlgoP7HBnhJPmP8WQLVa4nsYTnqlfnDNMNlQglDmM0Js9tbxhbasy7mhsJvs0S-mWNMyOCn1Kb2N?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyeLgtNrBkqQ5soSLXlIXxIyZ1wkovF1fOioHVh2jyivxgoqF-DIP8hzXunrfo4YnsvOc-Qcfpdbx_MK_DXPf9r?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxWEf_twcS_ww6Xxdad3VwGl1vmzXR5mfgScp60xJ1lC4cgoR5nsyKC9vVZxpmN7iP1hDtYCy8v_TLcnUk1NA-b?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOaGmhhrIJoQCNPe-9sVHAAifMrU3JDY8APz6dYk46lLUy7HE-hLKP2VHbx6FsQc5iJC-QsNJkYrmVrYa5p0D4m?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwZOfnJEc-VjaDMhNzDBQOP6H7bs0XuF-RCn9PC0NcgIuB50pc138DVn49uDjVxXzH9Z1P-URY09DZ6vVT66728?PARTNER=WRITER" alt="image"></a> </p>
+<p>然后配置一下程序架构</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPt3N5SVFsBtGX1F1sCCQMMopA27qmE21ZndE9Bi6sqWharyjg0TenBnx94P0p-qiuNOUndLmHqO3xE_VzJ0NOE?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwX-GVEff8eBBaD_c2Nx8Q2nEcJbvkf1HKUvdXzDEPLWEgGgC3uPKbZynAzlXgqqjpRoVFwhwSx-rluairUjq5i?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxEJ_Wd5P5aptJdCtvvT0QWkyRUB_hQi0MUc7UhGKeFWGyczs5aFDR_IDNvWC5xcE3qqubWFMZJG0mowiGzhSn9?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpznx-EmcwBjR6Gz4X9WFNRuXRH_f8SXhk2TGccZEoCHEMbqkfizs7eGtj5jQ26v7JZk8lHjR4CU28CMxZ_H1pfj?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyVaF5798WjH3G7kjEwfVgi6DEyyYiYQum3hi6adYS1EVFh9QAlZIoAZBK9G1aRItoal7SFpBbO_x0vqLq-n_qZ?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpytac4PwPhRwV7rja_nuwutyZ11M1hCdoywJfdC5H9RyICJObJa91UEcGP46bmIbOE01lkqsIiR9GSPX6GxaDGF?PARTNER=WRITER" alt="image"></a> 点这个自动生成代码</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyv3SkmBZiFRdPp1ttZ3gaBSabQnzL2qoIzRzXZ5t8HHxFJXCdBo0rVu7zURnPNqlJryzY0206_bMtnKJcdUChS?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyA1q9ARhdixqt47T640dXoMmBQp3pRiMsPKTjDRMLBtK208mC32HKsysn97ag4SAgPcxj94Z-gDXXk9RNBdfLo?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxiR4huo2b3b3-mOWFrKA1qHVrGEjkRtV_6rQJdpoQQZmd0WEBZj0a4rsLqXmBOeISDsOEDyufmwR-l3vJKgxnC?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzq8Yzl3S8-HobFOOHDVjhRbpcCm3Kmkc0J9NgfoW_oMuiReEYFzLIDUGo4eaX2baeJymwqiJ1LWqtJhosmuKlY?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxNhY39apcqhdvGgszVg7kvgm_Rrn0T0AvjbuEzduEgpgIr1WU7AIfP-v0NaneP3EAQd5oQHPMPknqu5zisNsV2?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwQG6_qXe3ms3Nf4Bc2YllPeN9KgaERwL7Dz2YfuGK-ux-yuStfolatSrJO58KzV0frUACJ_zyLw9CdeJaR3OW1?PARTNER=WRITER" alt="image"></a> </p>
+<p>大功告成！</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxQOKYYxmAt8Qb0f0O1-Rhjyz2ICTKqXpSRwQ_CK0UtJW4gq9zBOAlRSFfNigHlBvIEnS8IZIzKbQKXGAB9DPc8?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpy-B5KV1aSZcSkuyZoqiq6kFgF1YuyN1NOxzg2uql2sMfBvazQNhUUdpjiZhLPxB6EZUrmMAc1_0iaeutGGLza8?PARTNER=WRITER" alt="image"></a> </p>
+<p>其实还MADAMADANANE!</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyYPvipnFM7ta4foMTJCFFJpQRTBBhC7j0YG4-3R7_7oiJ7FvgCF9zsw0otheDs_fssmv4jQipSns2NEVnROcb4?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzVWbCoIKZmqqzIDBtXFmhqkaL6k-evV393cl4d6NAhQesCNu2etsVJvdNBuK2q-Uj8RPbE-51IqWDcf7A6XPLv?PARTNER=WRITER" alt="image"></a> </p>
+<p>恩 还有漫长的编译在等待着我们</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyNn8i0rqiOIBhdct1HVxY3HNGwN2h0yyBXI8g3qW-3A529ZlDyWqgoqRzZ68rxkn7CFa-Yh4Ml8tChzlmUBkD5?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOu1QOPMmfd2Aw_I4gJBCKT21bVg8j5QBgot6EGhqm7HBsjpvwQDygzE74YFlTbD4L1k8DA_Mj22MKELv0ULYSJ?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzhvm9UNOy5xnqdHbMSAZ6mhh4YLeU0VSu9nBzvZReyLNZpGxbBLLxdSrnWvpFnlhtQudzyNcjRWI4ufbMEmZfU?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwrm-pqWTPukboyq28vem7oeStjvDEW_EkpMI2cIv7ezPCzAalp5wbcnjEis67Ug588_QAgDBwOO_olDXBH0YPD?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhP3l4ZxZ09yAKNlPjI7FK3P0yKLKnlPNpEZNRMlNI-j9QTYEc-jXOnW35zGGMw46GA9KEQ52t_5dgikkDdn7Ljk?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwJigp3YbDTVBfLdQdOSL4VrQ_88ElpY6uxDDV0QbTBOkE7xnG4XnMS-5uhzJDboUgOVtKBZsLKSUjeidx5IrLK?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPTBj6yVC2fm2tEo4mUos8_8H4AdZgCkbQYkNi4ofd42SrlXTq9YKImDINq3BKkqCvXAxiT2HHeNVwSDjR68LHs?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxWAmpiExA3HfqttkoMHvBFS35W8iySHMWODGKe1fqrQys6V5iC9OAYbtFWfwXXPgqjJlMfJSGlKnmPoqr7t5Rv?PARTNER=WRITER" alt="image"></a> </p>
+<p>正所谓不用FPGA不知道机器慢，各位可以吃饭去了，一般需要半个小时到几个小 时左右才能OK。</p>
+<p>555 我果然被调<font color="#ffffff">戏</font>试了。。。</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzOIyMNp8I5SeW9f86v9FgO-8ijfYMtbjLT3qTAf5FUoj9307YNWg4q93rg2e3v6hNnXuj4g7ujepwzQMDxRko6?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxIyMTwZMc3gsAIqd871mcOAYV3u3b8aiZIDFbqMQ90btapCGwciiaY-C3z-FIqtHl481FkcXkRZL-5TRpGZrxI?PARTNER=WRITER" alt="image"></a> </p>
+<p>I will be back!我们下次继续。。。</p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/03/20/archived-crio-teardown-01/" data-id="cl2en8li5000yv4un1i2iey9v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-ctrlcctrlv-in-labview-icon-editor" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/03/07/archived-ctrlcctrlv-in-labview-icon-editor/" class="article-date">
+  <time datetime="2008-03-07T02:45:13.000Z" itemprop="datePublished">2008-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/03/07/archived-ctrlcctrlv-in-labview-icon-editor/">Ctrl+C~Ctrl+V归来，快捷键万岁！</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!596" class="bvMsg">
+
+<p>对于我们这些LabVIEW专业人士（众人：靠！CLAD都还没过居然还敢说自己专业，拉出去打！）</p>
+<p>快捷键是必不可少的。尤其是Ctrl+C和Ctrl+V，是我们居家旅行杀人灭口必备良药。</p>
+<p>不过在前些日子介绍的LabVIEW高级图标编辑器里面，我们竟然没有办法使用Ctrl+C和Ctrl+V了！</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr9vY7PbuvGbB_LUPmPeEGzFX9LZAJ1XJvsFdFJXW4mls0CUyEOBZXqI2bTCm707r8LPu6hV931r_A?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpy02x2Tc7ig2DQLF1KoicE65J8MIfNTruzqqtcnkrafBL2jilA0bJZ6Fk5M7v8dpzgUm0vHEhgXAV-zptstjOgL?PARTNER=WRITER" alt="image"></a> </p>
+<p>这怎么可以呢？</p>
+<p>身为专业人士当然有解决办法，让我们请出今天的主角：</p>
+<p>ctrl+.</p>
+<p>看看，胡汉三又回来了！</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzhN9vvNeu656SUgI_BQ2QPLe7OGEOAEwxUIsmH5hRG-JCT8EvMH0X69wwNErlmT6aOkcoMoqwAItyTGd3RcB4G?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpz1M6JXo_ZF0nALw8UMFnU_gbyOhID-9hZX05A-tM3Yh04KeUsroFPbkLN8kO5_I_jZYSovpWn-78msTSTmsEbY?PARTNER=WRITER" alt="image"></a> </p>
+<p>这时候你就可以随意Ctrl+C和Ctrl+V了。</p>
+<p>下面再来一个:</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpyoNSr6dVjVRmrS-YWHQfSXcb7jTHl7AvP-rOJpNd2ioaLDaZKxd7ScLxVLlhkgTZGAug4QmZZtOnlHPmfsFj1y?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpy0RCXlwbbMwmkmOR9gY0J_-2DM2wIA9opEEFNt0j7Q8clwgwmm1qL07IlZDLJXUFHUWOpzaaQlB9fZMAcOz4jU?PARTNER=WRITER" alt="image"></a> </p>
+<p>这个程序一运行就会报错</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzCX27kGOKzvuU76lhaF8IjS9DEYXIGUA8nkZQx2cWgGJZtWrdODCC2OmmqS3AgjvTeGZj8Dn_8Mnoq8sn1498j?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpyiQ8sk1bt-d2y3DVP8043uV1E9b4gWQVRGK9F5XquceVy85bMdJ3h_GADRwTfoOP4R-MrAuogkUqDhkwHw7Sqa?PARTNER=WRITER" alt="image"></a> </p>
+<p>我们想把错误信息复制出来搜索，应该怎么办呢？</p>
+<p>还是请ctrl+.出马！</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpwH7xUIP7NQ0mGGRHxwhiNvESeH2b0nw3Mkpj0FqTV6Fcp9L6LezasCmHR0V0Sdo7tV7CytPFYOA0DjQw5doW1e?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpwHhf4FyIYXqU96cVeNK_UJNWRkTciuNgTLL1oIrzru-tVHK8x1RA8L08ORpYv9hoonVr93EPaYnsJJ8DCdWFp6?PARTNER=WRITER" alt="image"></a> </p>
+<p>这下就可以把错误信息Ctrl+C和Ctrl+V了。</p>
+<p>Error -1073807343 occurred at niScope Initialize.vi</p>
+<p>Possible reason(s):<br>Insufficient location information or the device or resource is not present in the system. <p>不错吧！Ctrl+.可以停止很多东西哦，大家可以试一试，不过引发地震火山等等后果概不负责。 </p>
+<h3 id="最后送上LabVIEW快捷键一览表，常用的我已经涂红："><a href="#最后送上LabVIEW快捷键一览表，常用的我已经涂红：" class="headerlink" title="最后送上LabVIEW快捷键一览表，常用的我已经涂红："></a>最后送上LabVIEW快捷键一览表，常用的我已经涂红：</h3><h3 id="键盘快捷键"><a href="#键盘快捷键" class="headerlink" title="键盘快捷键"></a>键盘快捷键</h3> <p>下表列出了LabVIEW环境下的键盘快捷键。也可为VI菜单项创建自定义快捷方式。 <p>
+**注：**   下列快捷方式中的&lt;Ctrl&gt;键对应于(Mac OS)的&lt;Option&gt;或&lt;Command&gt;键。 <p>键盘快捷键
+说明 <p>**对象/动作** <p>Shift-单击
+选取多个对象；将对象添加到当前选择之中。 <p>方向箭头键
+将选中的对象每次移动一个像素。 <p>Shift-方向箭头键
+将选中的对象每次移动若干像素。 <p>Shift-单击（拖曳）
+沿轴线移动对象。 <p><font color="#ff0000">Ctrl-单击（拖曳）
+</font><font color="#ff0000">复制选中对象</font><font color="#ff0000">。</font> <p>Ctrl-Shift-单击（拖曳）
+复制选中对象，并沿轴线移动对象。 <p>Shift-调整大小
+调整选中对象的大小，并保持长宽比例。 <p>Ctrl-调整大小
+调整选中对象的大小，并保持中心点。 <p>Ctrl-Shift-调整大小
+调整选中对象的大小，并保持中心点和长宽比例。 <p><font color="#ff0000">Ctrl-拖曳一个矩形区域
+在前面板和程序框图上添加</font><font color="#ff0000">更多工作空间</font><font color="#ff0000">。</font> <p><font color="#ff0000">Ctrl-A
+选择前面板或程序框图上的所有对象。</font> <p>Ctrl-Shift-A
+在对象上进行最终对齐操作。 <p>Ctrl-D
+在对象上进行最终分布操作。 <p><font color="#ff0000">双击空白区域
+如已启用自动工具选择，则将在前面板或程序框图上添加一个</font><font color="#ff0000">自由标签</font><font color="#ff0000">。</font> <p>Ctrl-鼠标滚轮
+依次浏览条件、事件或层叠式顺序结构的子程序框图。 <p>空白键（拖曳）
+移动标签和标题时，禁用预设对齐位置。 <p>**浏览LabVIEW环境** <p>Ctrl-F
+搜索对象或文本。 <p>Ctrl-Shift-F
+打开搜索结果窗口或查找项目项对话框，其中显示上次搜索结果。 <p>Ctrl-G
+搜索下一个对象或文本。 <p>Ctrl-Shift-G
+搜索上一个VI、对象或文本。 <p>Ctrl-Tab
+根据窗口在屏幕上显示的顺序依次浏览LabVIEW窗口。(Linux) 窗口的顺序取决于窗口管理器。 <p>Ctrl-Shift-Tab
+按照相反的顺序浏览LabVIEW窗口。 <p>Ctrl-L
+显示错误列表窗口。 <p>Ctrl-Shift-W
+显示全部窗口对话框。 <p>**浏览前面板和程序框图** <p><font color="#ff0000">Ctrl-E
+显示前面板或程序框图。</font> <p>Ctrl-#
+启用或禁用网格对齐。在法语键盘上，按&lt;Ctrl-&quot;&gt;键。(Mac OS) 按&lt;Command-*&gt;键。 <p>Ctrl-/
+最大化或恢复窗口。 <p><font color="#ff0000">Ctrl-T
+分左右或上下两栏显示前面板和程序框图。</font> <p>Ctrl-Shift-N
+显示导航窗口。 <p><font color="#ff0000">Ctrl-I
+显示</font><font color="#ff0000">VI属性</font><font color="#ff0000">对话框。</font> <p><font color="#ff0000">Ctrl-Y
+显示</font><font color="#ff0000">历史</font><font color="#ff0000">窗口。</font> <p>**浏览VI层次结构窗口** <p>Ctrl-D
+重新绘制VI层次结构窗口。 <p>Ctrl-A
+在**VI层次结构**窗口中显示所有VI。 <p>Ctrl-单击VI
+显示在**VI层次结构**窗口中选中VI的子VI和其它构成该VI的节点。 <p>Enter
+在**VI层次结构**窗口中初始化一个搜索，输入文本，按回车键查找下一个匹配的节点。 <p>Shift-Enter
+在**VI层次结构**窗口中初始化一个搜索，输入文本，按&lt;Shift-Enter&gt;键查找上一个匹配的节点。 <p>**调试** <p>Ctrl-向下箭头
+单步步入节点。 <p>Ctrl-向右箭头
+单步步过节点。 <p>Ctrl-向上箭头
+单步步出节点。 <p>**文件操作** <p><font color="#ff0000">Ctrl-N
+打开一个空VI。</font> <p><font color="#ff0000">Ctrl-O
+打开一个现有VI。</font> <p><font color="#ff0000">Ctrl-W
+关闭VI。</font> <p><font color="#ff0000">Ctrl-S
+保存VI</font> <p>Ctrl-Shift-S
+保存所有打开的文件。 <p>Ctrl-P
+打印窗口。 <p>Ctrl-Q
+退出LabVIEW。 <p>**基本编辑** <p>Ctrl-Z
+撤销上次操作。 <p>Ctrl-Shift-Z
+重做上次操作。 <p><font color="#ff0000">Ctrl-X
+剪切一个对象。</font> <p><font color="#ff0000">Ctrl-C
+复制一个对象。</font> <p><font color="#ff0000">Ctrl-V
+粘贴一个对象。</font> <p>**帮助** <p><font color="#ff0000">Ctrl-H
+显示</font><font color="#ff0000">即时帮助</font><font color="#ff0000">窗口(Mac OS) 按&lt;Command-Shift-H&gt;键。</font> <p>Ctrl-Shift-L
+锁定即时帮助窗口。 <p>Ctrl-?或&lt;F1&gt;
+显示LabVIEW帮助。 <p>**工具和选板** <p>Ctrl
+切换到下一个最有用的工具。 <p>Shift
+切换至定位工具。 <p>在空白区域按&lt;Ctrl-Shift&gt;
+切换至滚动工具。 <p>空白键
+如自动工具选择被禁用，在两个最常用的工具间循环选择。 <p>Shift-Tab
+启用自动工具选择。 <p>Tab
+如通过单击**自动工具选择**按钮禁用了自动工具选择，则按&lt;Tab&gt;键可在最常用的四个工具中循环选择。 如通过其它方式禁用了自动工具选择，则按&lt;Tab&gt;键将启用自动工具选择。 <p>方向箭头键
+在临时的**控件**和**函数**选板上进行方向移动。 <p>Enter
+选择并进入一个临时选板。 <p>Esc
+跳出一个临时选板。 <p>Shift-右键单击
+在光标处显示临时的工具选板。 <p>**子VI** <p><font color="#ff0000">双击子VI
+</font><font color="#ff0000">显示子VI的前面板</font><font color="#ff0000">。</font> <p><font color="#ff0000">Ctrl-双击子VI
+</font><font color="#ff0000">显示子VI的前面板和程序框图</font><font color="#ff0000">。</font> <p><font color="#ff0000">拖曳VI图标至程序框图
+将该VI作为子VI</font><font color="#ff0000">放置</font><font color="#ff0000">在程序框图上。</font> <p>Shift-拖曳VI图标至程序框图
+将该VI作为子VI放置在程序框图上，并将没有默认值的输入控件与常量相连。 <p>Ctrl-右键单击程序框图并从选板中选择VI
+打开所选VI的前面板。 <p>**执行** <p><font color="#ff0000">Ctrl-R
+</font><font color="#ff0000">运行VI</font><font color="#ff0000">。</font> <p><font color="#ff0000">Ctrl-.
+停止VI，在VI运行时使用。</font> <p>Ctrl-M
+切换至运行或编辑模式。 <p>Ctrl-运行按钮
+重新编译当前VI。 <p>Ctrl-Shift-运行按钮
+重新编译内存中的所有VI。 <p>Ctrl-向下箭头
+将选中光标移入数组或簇，在VI运行时使用。 <p>Ctrl-向上箭头
+将选中光标移出数组或簇，在VI运行时使用。 <p>Tab
+按Tab键顺序轮流选择控件，在VI运行时使用。 <p>Shift-Tab
+按Tab键反序选择控件，在VI运行时使用。 <p>**连线** <p><font color="#ff0000">Ctrl-B
+删除VI中的所有</font><font color="#ff0000">断线</font><font color="#ff0000">。</font> <p><font color="#ff0000">Esc，右键单击或单击接线端
+取消从该接线端起始的连线。</font> <p><font color="#ff0000">单击连线
+选中一个连线段。</font> <p><font color="#ff0000">双击连线
+选中一个连线分支。</font> <p><font color="#ff0000">三击连线
+选中整条连线。</font> <p>A
+连线时，暂停禁用自动连线路径选择。 <p>双击连线（连线时）
+中断连线，不连往接线端。 <p>空白键
+移动对象时，在启用和禁用自动连线两种状态之间切换。 <p>Shift-单击
+撤销对连线设置的最后一个点。 <p>Ctrl-单击有两个输入端函数的某个输入端
+互换两条输入连线的位置。 <p>空白键
+将连线方向在水平和垂直之间切换。 <p>**文本** <p>双击
+选中字符串中的一个单词。 <p>三次单击
+选中整个字符串。 <p>Ctrl-向右箭头
+使用单字节字符的文本（如西方字符集）时，在字符串中向前移一个词。使用多字节字符的文本（如亚洲字符集）时，在字符串中向前移一个字符。 <p>Ctrl-向左箭头
+使用单字节字符的文本（如西方字符集）时，在字符串中向后移一个词。使用多字节字符的文本（如亚洲字符集）时，在字符串中向后移一个字符。 <p>Home
+移至字符串当前行的开始位置。 <p>End
+移至字符串当前行的结束位置。 <p>Ctrl-Home
+移至整个字符串的开始位置。 <p>Ctrl-End
+移至整个字符串的结束位置。 <p>Shift-Enter
+在枚举型控件和常量、下拉列表控件和常量或条件结构中添加新项。在字符串常量中，按下&lt;Shift-Enter&gt;键，可禁用已启用的自动调整大小功能。如已禁用自动调整大小功能，则按下&lt;Shift-Enter&gt;键时将在常量中显示滚动条。 <p>Esc
+取消当前对字符串的编辑。 <p>Ctrl-Enter
+结束字符串输入。 <p>Ctrl-=
+加大当前字号。 <p>Ctrl--
+减小当前字号。 <p>Ctrl-0
+显示字体对话框。 <p>Ctrl-1
+改变**字体**对话框中应用程序的字体。 <p>Ctrl-2
+改变**字体**对话框中的系统字体。 <p>Ctrl-3
+改变**字体**对话框中的对话框字体。 <p>Ctrl-4
+改变**字体**对话框中的当前字体。 
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/03/07/archived-ctrlcctrlv-in-labview-icon-editor/" data-id="cl2en8lic0014v4unblebe12y" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-ni-7332-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/03/05/archived-ni-7332-tips/" class="article-date">
+  <time datetime="2008-03-05T01:05:40.000Z" itemprop="datePublished">2008-03-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/03/05/archived-ni-7332-tips/">NI 7332 搏斗记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!579" class="bvMsg">
+
+<p>NI的Motion卡其实长得都差不多,用法也一样，因此就以7344代替7332搏斗一番：</p>
+<p>首先对每个轴进行配置：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr_MiZVWU1UC4dHzP9GQm4cWAAQWTAeovrMiOk_N1GACMNjpM2-LKEiwX0Ky0hb5Y8nELFLgo0JDbQ?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN4KN9Pf0knmF-sJ5B6vPfJkVXLIDOdKyeLwXbgO9Mr6zLOVCKap5Fixjj_dAtFyO57p0hWORFM_hT222sIV1AE?PARTNER=WRITER" alt="image"></a> </p>
+<p>类型我们选步进电机，可以不接反馈，不要忘了使能。73系列就不用选了，只能接步进电机。</p>
+<p>然后是轴配置</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM3FOU10FyqHg-B4tA0zSUs_hcJZFESPtI24sxi-O5jsWCYI9evoy3eg6O5FDM1rIFfzn4ahNl4FmHagXp1AVNJ?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMOUCu9xAtR5T3bOaxMKLEZFlM_p6YzTiOtFe827_D3AkEths-EoUBjK4hob94LFwoBZVY3tzUDbsF3zfGcawjP?PARTNER=WRITER" alt="image"></a> </p>
+<p>这里要选的就是输出方式：</p>
+<p>方向+步进，一根线控制方向高电平代表一个方向，低电平就反向，另一根线输出脉冲。</p>
+<p>顺时针+逆时针，一根线输出正向的脉冲信号，另一根线输出反向的脉冲信号。</p>
+<p><font color="#ff0000">还有一个灰色的选项要注意：open collector，开集电极接法。</font></p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhO8GCQ3whic38feWJF03HArIoAGnLYGk9gZMhshStKmRVzgTix0o7Fj2aAGUhxgrO9qdbBKCcbNe-QHJ_rqquGc?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPN9dNiJwTZ9vX6tQ-P09K_EOxei2jXWIOKBe1xhuNzysG35KFagl_ylaw2Ti7BQlEZ1BrKGjP0rxuzlvlWKXW8?PARTNER=WRITER" alt="image"></a> </p>
+<p>其他的就可以按默认设置来，然后点<a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpwOGIlLaq6g_ESSlyFmCHepT7yXmCAWXNqGkODtjioX_xJv4W0yqaC5EeSlFOpcoC6ZIm0qaEoszgOuE8nM6_Ev?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpxrr09ERRIRC1Z4LaI4-HIlPbeEgQ4p6HWkLmT81awFogToXrAWz-T-yM9ctQjsVlaNJf9aGZCJj7IB1VE5sP0k?PARTNER=WRITER" alt="image"></a> 保存，点<a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzWaJL8tIUuxC2Bs-74RfzhUO2yrmLCFGYwfyctsGQr-89H2UGZ-hEqJ6Dfaf3RTYvBS8WYOzTNi4lM1RRPZonw?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpyARlYfM9REj5ZjTZU57otyKIh80V0hcpYgFAD_Am9ryskRxW93GTwJcH84TqlUgjkoV38HE_7YwGj4szowNsR9?PARTNER=WRITER" alt="image"></a> 初始化板卡</p>
+<p>好了，现在我们可以让他跑跑看</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNVvlfYEZYMlm1pq_6kVy8Sm-ktf5IrC0b6g6Qe9iY13LdwHi04G2-E7wmGtHTKFmZcTfX4mUNIL9qZJ0SbyLUo?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNrlFYSa6kyvaNX1bzNuuDcU1LoS5DbSgfsTbaKVlLntT6TFFSl5cEBcfbEWE8FP4ply9oCgMg1jbey3a2zAHCY?PARTNER=WRITER" alt="image"></a> </p>
+<p>我们让他按一个速度来跑，配置好以后点<a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzkch8n40SLSW6SOF8yTAVK330ksgSlkGvppg82SB81gM3VCx1o8TeyrblLFQ-kIRhx7G1m4vIg3tLWo1D-jR61?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpxScja0rDkrrPTMiQEAJf3LUfUblGTEPT-BialHzHxuQouxJGz58uoA9vkqOw70L65HDxOaO8BWO23ETA6uhr4S?PARTNER=WRITER" alt="image"></a> 运行，电路图如下：</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpwXup6EbJ5V9po47-9Kb67yG5yF4SeudyTUHMgQQ4e0T89EHzvVDmhtXfiQVVebOZDU3vj6OcxFNlomi_Q3Cw5K?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpzca3nU2BQtrOqHlHOGUM0ShMmUxLeREVWKFhcnEe7tqQUZXZLXnwLKDILqkza3wRlqvoXiDvkl03z35V83g9MH?PARTNER=WRITER" alt="未命名"></a> </p>
+<p>Step+&#x2F;-指的是驱动器的脉冲信号接线端。</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN8eHFFM_Ik3R7s7gBKg1UqnoUzvNmZAmWXLXBAw1YJQPTtT1UxUjhu84GVfQ-NAj3FNfrBcjDTlQ3CsXVeP_8s?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhO4tPhvmYKsaSg1x-ZrwiG61j0Mj_-EHqEDt4uM8c3-09a_r-hcGeQ--wVW7lb_iGYkNDWJKti1YcMDeHf5MMgM?PARTNER=WRITER" alt="20080305"></a> </p>
+<p>看起来不错嘛 5V的TTL电平。</p>
+<p>我们加个1K欧电阻作为负载试试，UMI7764借给客户了，只好拿SCB68代替。</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMQ5Y17_2wO3KwB_Us5LX-FSOndnZkRjsqyrkybMdX8DVsd_kovWOGfdf_yfxGHMpiRTV8a4oiFu0aMbZJFe1Zj?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOuCrwjW6b2PdNq86hUhCnHPE_i6fAfx7qjgxtCNFudW39L6IwtXeJfPWnB_pbsogXeFBxDS4bfCMv8DSx6Q7BB?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMSQHmEyQ03mxzqsKib0kXTHhTC2lFPMhg6EP9SUaLHujjIHhGLqmPAVgSg1PZhekjF1_hZn-HsVRmEjuW53NZF?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPe9_ch90DJ2B24abodKVY59CZNvW352D7DCEaG4n8Zcqqiv1u1wUzNZ65bvTekGjUkV4WBwNhKZPFdLFvvockk?PARTNER=WRITER" alt="20080305(001)"></a> </p>
+<p>？！ sorry拍照片的时候刚好没截上，画图说明：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMoGVN5Lp3g5EwTqErkHLfq3YoFb__GeoUy3wDjhctoDA0aAHRjyiGCWf5V1tZp0RXNcAbCLouiduBol6jIlxBE?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOw228CnboEjRFVFOMBFK_AbJHvFsLp763u9wBeaKuPzh7gKsKzdwOscbshq-S2nH5mHv5S70yz4jOl-BMg7rkY?PARTNER=WRITER" alt="image"></a> </p>
+<p>加上电阻以后电压从5V掉到了1.3V。说明NI的Motion卡输出功率不足！怎么办呢？</p>
+<p><a target="_blank" rel="noopener" href="http://digital.ni.com/public.nsf/allkb/CEC9025B2DD11B2786256CC400802D18" title="http://digital.ni.com/public.nsf/allkb/CEC9025B2DD11B2786256CC400802D18">http://digital.ni.com/public.nsf/allkb/CEC9025B2DD11B2786256CC400802D18</a></p>
+<p>有问题？上网站！</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzdGMV2sBoH9kY8-2bDAa8MDbmR-QC1hV_ZDCKlSdY3y1FWVdPFre3IJI3MNW_5ysmj351dkv9oscm4OaRBrGiu?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpwJIu_wNk1VvkAfiIUOJeYFf47FvZ2tujSImPkpo1VesBJFKUeuq7JsCqpQU86j5hJxNmbziVzyJvUt96H8zi5u?PARTNER=WRITER" alt="image"></a>  </p>
+<p>我们可以用开集电极接法搞定，前提是驱动器这里信号要隔离。</p>
+<p>7332和7344自带了上拉电阻，这样接线即可：</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpx7lMfh980symIlMENwZ0poR6Itq0HvMk63vuG9Gl4uG8m8BJrZf4dblQhwCwHfV6jLpg28J-LXjy0RSjJChL45?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpzjM0s46C6xf85Lun_oocmUFkiQXXMyWTCrv7YRwuzE05W4tgsCAKqY4uGW2KDvOIwese--eRbLDbCgEKbRwLwi?PARTNER=WRITER" alt="未命名2"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhO1W5LtNUhe4GQdFLKNwbHhkJPnw_v8XjTPAj7J458LtJrMWXhnRl51Xos-QRGZYVxQcjNdvDeYQeEt4qEuxw5w?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpzFQH6zC5p_Dsz7r4eOww1H9qHNFGdzWORSGMw7C-wu6gDIhmSV3UZpglJgj02oUrK7fJT0rKE5CEeH2u0ykFIq?PARTNER=WRITER" alt="20080305(003)"></a> <a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzIjj1CSw5pwVSDNDERqwATIh-QjvkQ_1ZIireXkXH8xgTB-gMl9w2Qv9EsSoOEk2BybLgoLG3wHZ3TPFtlxv7N?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpx57TC_42HC38zOuKtSAmLllfsR4zTFfxNK4h4geoyg_fbIyT_30qCGhN9YNRSkqUupTIs_SGT-tqxq-7jd83j9?PARTNER=WRITER" alt="image"></a> </p>
+<p>正好有个4110，拿来用用。</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzFsmEeuoKmRaOSfFvR7Zm2fKILn8vK5lieDx4R5PdMCCyz6nudbsj24qiahgGXQPXcj962j5QUqM6j_W81eXNK?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpxDWj7YCD9CzcsiIDWhIldspACpRAgZOMCiSMFLCOY1QsXvjs2_4TfeXLqvD2EiBIKpzxuLdbXRUrirIamo-zTl?PARTNER=WRITER" alt="image"></a> </p>
+<p>可以看到4110输出了大约4mA电流</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMOBksXAQk7rqsYKWyQL2g8sjHxLHRmMa8FUKeVXsLnTtVHnUAWl9iGliXHA1iuVMIc-rbeYXnhF7uUN0vaGdfG?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN0NkXkRaHvc26EDy376QLKyhDEhT9Og4fltimNZoHpf7l967qFDvbGjuxKPYvM7Hp1xE6sK5Ww7xybj2SuQjM7?PARTNER=WRITER" alt="20080305"></a> </p>
+<p>这下这个世界再一次恢复了和平~</p>
+<p>PS：另外说一下shutdown使用：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNlxD4rcjJFvu6FXNdeaaXVeZUQc4q5joSklobjKn_PuVITXXyTxYv7xanHY4ifDf9UrmWqKrIfrxbaoD4RAppr?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPysFgyu5w-QBq82C4rGofhv7pYYiMSqRVYBakQAeoEq_b3xyqkDQ9lyUawMzAAolLusgXFtGmgZdtV-r0q-_-a?PARTNER=WRITER" alt="image"></a> </p>
+<p>首先把这个选上</p>
+<p>然后点<a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpxYzcnf7JMiRPj5tJv9h9kqKsNycxz1bwnME9QMqveXiw5YPU6VuTcRRnxGi0AWGjXoGiSIXdZGWFWJZSqmeMS3?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpwxcmCHNeqVwzPcFNDVr3xOi3IAdhxB_yh-docf4gIZrSaV-um-AWE4Uim9KibN75OyJiO2iN4ASH_ogBkVyIpv?PARTNER=WRITER" alt="image"></a> 初始化</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzje63HcAG9N5T0xwjsy_cqyAMjAG---vYq0yN1a2ypk-MmFION5uj_s6uWA6ayAXWQUS83taBgz8I1feBKSA5g?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpxCz-VX4nD_l9HDVw19vr519K6lPl5GrID0zql8QItugf2xLBsgr_393gTHOeVpa54m7mT3k2U_fEZrnzppeZMb?PARTNER=WRITER" alt="image"></a> </p>
+<p>当SHUTDOWN线电平为低时7344会停止脉冲输出。</p>
+<p>shutdown后需要Reset后才能使用</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpx3eT4JH3CdLES1huTdvMJ4yFnXFoQqxOXoJpPwI0PiWI4-thws9pYtgdgKl6FFTDj5mP7wEqPFX9WL_BEwbLnq?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpyjJUkqK1BgT2pQ6fC3L1M9wyj4UqC8jDhxQ_ZOuorBBe4z3suS67R1QW5nJeijcCroKWWJ_HnAHR02SGNWaSN4?PARTNER=WRITER" alt="image"></a> </p>
+<p>然后再初始化一下<a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzxmpDaK9ohuqyT_G3TWBYCLMdMY5GNm_6b-N0A66tx-NxO4R0WROkui4cRVa3aZ5gfVSLcWhJNPPpG_cwt_ZN_?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpy5dDiDhlbSee3qs1mA-LwxSIQF1HWrErlhwYbo40UmEIaJat4Z8ipSdKtgb1EyKNiXIQU2hnioGgX-ywP3YAdw?PARTNER=WRITER" alt="image"></a> 就可以了。</p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/03/05/archived-ni-7332-tips/" data-id="cl2en8liv002wv4un58k4ad2v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-print-screen-tips-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/02/15/archived-labview-print-screen-tips-02/" class="article-date">
+  <time datetime="2008-02-15T01:30:20.000Z" itemprop="datePublished">2008-02-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/02/15/archived-labview-print-screen-tips-02/">LabVIEW截图技巧-截取全部程序框图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!529" class="bvMsg">
+
+<p>截截截……打截！</p>
+<p>今天我们要截的是LabVIEW的程序框图（众人：切！~BS！这谁不会啊？）</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr89UQ9XnjhfWQrpyX-S4uu-y-TwDK5UqFvsdh0CwudZfB4ow2qMiuU0aKdftNO0WvLmZkPg-0E3nA?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpx0tbuFNRa5izEsTXwYfJr_UJhsjUZ_9etzpNNtEXTr4FavT4sV2qGtQmQiPpKHYBjBbt7IMLBV5T3Up4h47T24?PARTNER=WRITER" alt="image"></a> </p>
+<p>PrintScreen键很好使，但是还要开画图板，像我们这种注重效率的专业人士（众人围殴中）要截图，当然另有高招</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMCxmunTTzUe0EW5HXgJL22BWFe2ZuIFOIu9EqY5DrO4ZklXUz-iwdbq6pareXRW4PR8PTV6rHanynf9kSsEYhn?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpy8TDna0aZE7lvD1ly1bnzOopPJWnMBkltjfQA6Cj4dWHjigkztkBF0Z5GFYs6FButiZuoZ6kLmPpHpoOS4XDoV?PARTNER=WRITER" alt="image"></a> </p>
+<p>首先截个全图</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzr0aSuPWbb7T6Prgevraf1L1cnAmyO17ydQVD_uS24yXW4urLplK_ioF1QtpiB6Mc24pM3P6h460Pf-2F_6oSO?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpzBHHW2JKKlJ4ABilODwoY8FWvL96gXmrDjW_DnnVdddZuZGaiPyo_yww0EyPzle1i4DE9mPM1sr9vQVLgUb38m?PARTNER=WRITER" alt="image"></a> </p>
+<p>截个部分</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpxmBfoGUkEJE8B9ff5hzbl5xB__zc2-vbt5hcVOJNiv6V7t5ttNAjDDrAbakQwwR_nAZu1x7F5uiAR58FamgZIp?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpzbjHUjqkM26oqBBEwnvCbz5Cxv9UzIaKgL50xhSpJwv1_1ltEoHs374jyI-_xnAHGQGWzvl3zKEJAM9cqftTOH?PARTNER=WRITER" alt="image"></a> </p>
+<p>然后截个VI</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPeGgNkl99HQcN83JRF-6j8wNHDuVs1B3NMC6xaf9eNnFyvE9sz-THds-6yP9keQ28gTMTI9-B8Mv47SmmWaY3R?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpxbATezjQK2rak8xDF2NeK2HMpWI5qCcLV4V9Iz1UFNOXrJZ9hRETu7Lb46cFWNhuzJ7N8__Tjlo9WyhRrflqbT?PARTNER=WRITER" alt="image"></a> </p>
+<p>前面板</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpxvxqxlwDvUuSsa1d6Ctb02mVJm4BtCriQvMEMgpReLMNxea0jG7QIwjVoX8fFpRU0ObDYJwLtYis69WkjQz7T2?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpyPeMf4fUbVx7scxbKd6NCthQ4-NOMQsflpQKGS4_QWKwB41QbWqJredBVVRX6cgRF1dyDMh3c7AvYhdHttbvML?PARTNER=WRITER" alt="image"></a> </p>
+<p>按钮们</p>
+<p>想知道怎么截么？一般人我不告诉他！（众人继续围殴中）</p>
+<p> &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;我是无辜的分割线&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>Win + R<br>打开“运行”对话框。</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzE3h5nhGJ4NuTIqE7bWsSl0MW-q5ROlwttW2DfV3-ud3-07rtIwQqrg07QTP11bPDDKYbolndrJZmKUs5BE0mH?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpxcV-ya8tR7M9hoRi0NctznYXngklFjoqosV5r45q46pircV4zW-8vwu3mw8RoVMLCf5_MhQFkRRI_7Auy-zF1C?PARTNER=WRITER" alt="image"></a></p>
+<p>呵呵，猜到没有？ <p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpx4BerpwohX-k6IpJoDa7FSe86VB_p0V82072q3CoeVBcaVVW2WLlLnO3M7pitBYc__PFDiQ58M3qk4cTJQW90S?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPul0aiskH4H5dyKisHYNzudivKyNo3LI9jkYLfjAerHc0duogFfNKaTm0kxmcRpbRJPIBbnj-SiqQChyq5AljX?PARTNER=WRITER" alt="image"></a>  <p><strong><font color="#ff0000">秘诀就是Ctrl+C和Ctr+V</font></strong> <p><strong><font color="#ff0000">在LabVIEW里面复制代码之后，到其他程序（例如OFFICE）里面粘贴，</font></strong> <p><strong><font color="#ff0000">因为其他程序不认识LabVIEW的框图代码，所以会把贴进来的对象当作图片处理。</font></strong> <p>以后做演示PPT、Word注释文档轻松多了吧！再也不用开着画图裁裁减减了！</p>
+</p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/02/15/archived-labview-print-screen-tips-02/" data-id="cl2en8lin0025v4un3ni15g85" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-icon-editor-and-self-comment" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/01/31/archived-labview-icon-editor-and-self-comment/" class="article-date">
+  <time datetime="2008-01-31T03:03:37.000Z" itemprop="datePublished">2008-01-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/01/31/archived-labview-icon-editor-and-self-comment/">LabVIEW 图标编辑器与自注释</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!507" class="bvMsg">
+
+<p>在LabVIEW里面，图标是VI很重要的一个元素。好的图标可以作为自注释的一部分减少我们做文档的工作量。</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr9GYlfdshgGFXIzNPeaDy9c6h62PwdsH-ZBmWwaUdJkXFT0at_aiU4i951-QjwOyeG3R1brC4PeYQ?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpwzdTCQRa1mwZVc7Nia6D0-SUhBi_3Xzy57cXdoFAZXiQga20Lh5clk_LR583ijsU9x_B09bBoHZT9eHddezDHd?PARTNER=WRITER" alt="image"></a> </p>
+<p>LabVIEW默认的VI图标我们不能从中得出任何信息；</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMCboMk8PopYrYVJwwzbebnNhJjy8v_RPIeIyOUBgw4RQcQYa0c80d4ziJ69PxN5P_i3CgJuT3YlkZ4KdbsinWg?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpwoc4PkQwCJNpLMChINu_wXEoh9czjp4gjgIiSQg5LFDqb-DnB2sD_ld42MN9ngmm4MrckEgf6G1Nic4dQ4A6oX?PARTNER=WRITER" alt="image"></a> </p>
+<p>文本型的图标就可以提供更多的信息；</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNBRSxLyBkANW3QMbrpI9bxbA5ac1bMnyH0Nd5vmPHV30lr0A9DeMt9i_wX1Mdxy-6-cE82vegtpy5QqAqWndw_?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpyh_Ls0FjRb3ba47ePQBtGd_aSUVR_2aZjuPJhxchnTCotY9ND55Ws75r164oh_o0KPfQEzHBQ63gRgCYqN5UjG?PARTNER=WRITER" alt="image"></a> </p>
+<p>文本和图像混合的图标很直观，又能提供一定的信息量；</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpzwrNIslz-NgyQ4AlfcHd77d_p2geUdXWLajEzAsW81U8szdpcdPU3K_tWAMrI7oRW_ehj0U14tYeUZvV57cyw3?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpzVrTiHWQ48c6xtBDZ-j8xChwgWdNuMs7u54fG--YTKiFvtbWFn1lIHgOl0-LSEVqTSxHO4CoaCdXXuZNfRyUZi?PARTNER=WRITER" alt="image"></a> </p>
+<p>好的图像型图标甚至可以指示出各条连线的功能；</p>
+<p>因此，给自己的VI画一个好的图标是很有必要的，不过很多人可能会嫌麻烦，不愿意做这个工作。</p>
+<p>现在好了，LabVIEW开发者社区提供了一个高级图标编辑器：</p>
+<p><a target="_blank" rel="noopener" href="http://community.ni.com/examples/customized-labview-icon-editor" title="http://community.ni.com/examples/customized-labview-icon-editor">http://community.ni.com/examples/customized-labview-icon-editor</a></p>
+<p>具有以下功能</p>
+<p>The following features are provided by the icon editor: <p>*Open source <p>*<strong>Draw easily an icon with heading and three body lines</strong> <p>*Save icon styles <p>*Take a template from the library by double clicking on it <p>*Drag &amp; Drop templates <p>*Save icon templates (template tab: save the icon as 32x32px; tool tab&#x2F;selection tool: save the selected area) <p>*Add&#x2F;Delete templates <p>*Flip templates (left CTRL key) <p>*Rotate templates (Space) <p>*50 undo steps <p>*Paint - Tools: Rectangle, Rounded Rectangle, Circle, Line, Fill, Selection, Text, Rubber, Pen and Dropper <p>*Many colors <p>*Different line profiles <p>*Easy to handle <p>*etc. etc. etc. <p>比较有用的就是可以快速生成文本型图标，还有可以通过拖动生成图像型图标。 <p>总之一句话就是提供了更方便更强大的功能。</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMBLEJ9ebk5qIYCdt6dv-UKx05lNXHaPthdfEpxrZ6JfbJVeVwCnnTp2alfmnTPjCdxnO8jtZZVk3BwUnaO-lX0?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNV63j-XoXplCa7dTunyaAx1bBUn6-qlT0Wi_zqQbr_PJIy8yIPPxt2eOCHOqvtb2_EYioJeV5QcqOZ7698Q74M?PARTNER=WRITER" alt="image"></a> </p>
+<p>clear icon可以清空图标</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhO0cbKgAQvP6U-KSTpLc2QhypUJafzg0qLwQemv6rPjmx-FLld8Pp0ogvLk-6IK1fJ49X4BDRP6HrVfvBoLS9ti?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPW6kWc8U5E4AX3PPWwWHND7xQhuMKBLT08uKgGhE0Ot0aE1cYQkkY-e7vQhmqolMr1XZDRf058yXxLtiFGcX3v?PARTNER=WRITER" alt="image"></a> </p>
+<p>draw icon可以按配置信息生成文本型图标</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMXc3wqSwOfPvbp6JIUiA8rcJboFZUVUVlUVv2ZaazV8tlfsBHHnCTvlk4SDtDTd4SykRNEYjOaTNQ31E69QwQl?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMlkvlvIdNz6I6Q9v11J-3iGN9qEbGFgm_VSIWqTRkCeHCX3Q_7mYo7bC1J4jSs1XADvR1L8WnvhZY-WEMshsXa?PARTNER=WRITER" alt="image"></a> </p>
+<p>这一页可以拖图标上去</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN0S594Oha-EcTy00UjPUSUHoeWg1kD0a-UhXjV-JwyDo14FLQxr7nw5ut9mqoM_FPcKJd3lmoYJf70YX1g5NwJ?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMj2lT7QfmQtWtt9qt8scK680vODPDXihxT0N9OASBRGCrdX0QYrSWAsH117iJQfAuzcWwB44uqpDOjrk8MgMwj?PARTNER=WRITER" alt="image"></a> </p>
+<p>这一页和传统的画图工具类似</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhO6R00G3TNaLa3BzBADm3SCxAwCMk3r5l_vsQi5Xqmx0f-31_RqN7giT2xumGLzsoitPDGUfn_3XW6-Au2A5ecV?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMIDrzHNUfYOA-ovjEhckCh0mpmxptYaGHcC2ELbH2ZS7yVzBqMCwQFP6t1-B_LWsJoQJ5lJQapEFDRloPhvKiJ?PARTNER=WRITER" alt="image"></a> </p>
+<p>完成之后按submit提交。</p>
+<p>总之是个很方便的工具。</p>
+<p><strong><font color="#ff0000">下面是注意事项：</font></strong></p>
+<p><strong>Known issues:</strong> </p>
+<ul>
+<li><p>Using the selection tool in LV 8.2.0 might cause a crash of LabVIEWWorkaround: Recreate all Timed Loop related stuff </p>
+</li>
+<li><p>Starting the Icon Editor by VI-Properties - General - Icon Editor freezes LabVIEWWorkaround: Start it by double clicking on the icon or by right clicking on the icon -&gt; &quot;Edit Icon…&quot; <p>另外卸载要按照手册提示的步骤来。</p>
+</li>
+</ul>
+<p>最后是下载地址：</p>
+ <dt>Download Code:  <dd>[LabVIEW Icon Editor](http://community.ni.com/examples/customized-labview-icon-editor/iconeditor.zip) (3.2 MB)</dd> <p>包含FOR 8.2和8.5的版本
+
+<p>分流地址：</p>
+<p><a target="_blank" rel="noopener" href="http://cid-866b8f96a2761bbe.skydrive.live.com/self.aspx/Public/IconEditor.zip" title="http://cid-866b8f96a2761bbe.skydrive.live.com/self.aspx/Public/IconEditor.zip">http://cid-866b8f96a2761bbe.skydrive.live.com/self.aspx/Public/IconEditor.zip</a></p>
+</p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/01/31/archived-labview-icon-editor-and-self-comment/" data-id="cl2en8lil0020v4unfwskht16" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-8-5-project" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/01/31/archived-labview-8-5-project/" class="article-date">
+  <time datetime="2008-01-30T17:06:37.000Z" itemprop="datePublished">2008-01-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/01/31/archived-labview-8-5-project/">LabVIEW 8.5工程管理器-冲突解决</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!485" class="bvMsg">
+
+<p>自从LabVIEW 8.0新添加了工程管理器之后，给我们带来了很多方便，不过讨厌的冲突问题也随之升级。。。。。。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGcSGi2Ujk4uPcJlzpekFE7gQp0FOKoh-FeHhScWgcpmYCaodb0gR1fdR76v9ziYBg?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRHNd9xywfwKM4ZgykNF-0fxL9Bg3UNaeYL31r66MX16riltc3q3Cjenrb5wy1kP1DI?PARTNER=WRITER" alt="image"></a> </p>
+<p>在LabVIEW 7里面，当我们打开名字一样的VI时就会弹出来这样一个对话框，告诉我们名不正则言不顺，名字一样的只能有一个，不是你死就是我活。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuREPkk0XmQBViLIU-YodFxX1a_sua6RUADbvXF85RusYalvPPC0cL3ufolpu1cigbJ4?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRHQJ2MixiygKbZkiQ2SYMwwAq59l3AvEu9S4OjowUnOSGfyRX2DucDkEvvWVX1aEAA?PARTNER=WRITER" alt="image"></a> </p>
+<p>而在LabVIEW 8里面就更加变本加厉，只要在一个工程里，还没有打开就告诉你：有问题，未解决。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGALeHNeQrA4QvX5d7b584XAQ6pZq5ktFGpI5oI8Z7P9oBxrHRxMnO-meHYjbpoteQ?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFEHR74rec3Fmn8u8U2hpbCa-yaZ7aWKNGiDVoYE3qSxaf8KqoHeWDQ9JtCKer_0O8?PARTNER=WRITER" alt="image"></a> </p>
+<p>一般来说这种小CASE只要说服教育，将其转化为LIbrary即可解决。</p>
+<p>然后就是老同志遇上新问题：如何在8.5的自动更新文件夹里移动VI的位置？</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFAR6eeNDtUY28rc-gfsu6VOd4QwdUKCX-F24pvcZRbhravzhD8ia7PBZTijZoHzqo?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGMj3vZPXrae4aJ6bb5rga4y99gwxkr7ucqtInZwTS7po0vRz4Ai3fM1a9mjN_CVJc?PARTNER=WRITER" alt="image"></a> </p>
+<p>这个自动更新文件夹啊好是好，但是就是太讲原则，文件夹里有什么他就有什么，想拖到新位置—NO WAY。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRHeEOisrcnSX7Ki9wV_4s1y8muejx2RQEEsP95bA6UZPLwHk75-qupjevLo16eyFts?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFmqanLzlwZ5Hu01VeGly0SQzYfxCkFsBR1SjAHV-RYxpUNe05J5igwMemNFaZM3dA?PARTNER=WRITER" alt="image"></a> </p>
+<p>可能你要说，直接在Windows资源管理器拖动之不就ok</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGfY7xpQBGuVFapAwxQ5r_6Vy_8OwE6pT46KmNMPS7YMWGB1TKrSEagFma_FXO0BGo?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRG2ap5vPy23jHXFCuFCgQEdzvTdr5nI04UetvkK7u4vKk6J0ERpVKJUFwxDAsDT0Is?PARTNER=WRITER" alt="image"></a> </p>
+<p>en ?这个是啥？</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRG4F1ETPyrDNfANHgcL_Sywd9MZ2ubIL4sVSq6temPWg0OdOvmtLGlpuDsV_tcyZK0?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFbkpOXxp5UND8SBWbk2lBtE_QbBT7MtVbVEX-KHn5UbSxz551GAqkseuzPevtdlyA?PARTNER=WRITER" alt="image"></a> </p>
+<p>还好只有一个，</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRF6juxSBZglk44aD36rQxR9v1sRiYs7BVRfNns30r2xmptTAeDwn7DoN1uBlfnN-R0?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRF5tEm9TFeNog_GSXXgMjKndh7Pnb1Xubmr1XlY3PdYWLo5MKqU72zTQznQGFNnapo?PARTNER=WRITER" alt="image"></a> </p>
+<p>不过还是不爽，怎么才能没有冲突呢？</p>
+<p>当当当当，正确答案即将揭晓，请大家鼓掌。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRG3sNeTRK__JA5AmAQEu5mdBZdU8jLKkbQhA4Wj9Vp8uRSnYDjZLU8q56-hfXxytOw?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr8PeP6dggYNW7rl5tpP5t6RCGRzJxExGHiWWmZJneYFGXIAlqlhLYj8RTf4QQc1G6BhabWGjXtQQQ?PARTNER=WRITER" alt="image"></a> </p>
+<p>正确答案就是在FILES里面拖动，从此轻松无忧。</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpwoshdi1alynJo9yl_3wMB3PfiOqNu-40zIiPK7GMo1rQHG-kqtch6TBGQieyCnW3C6F1_kWQFxKwLcnNbzjKL6?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpxD-uFHfpgCYKETdX_gzjTpz1kZ3AgEXO_3ePrCtzEnFwbMnhJtrDzLgsMijzJ62wZvgoTrh56o8lwcLdYG5qH-?PARTNER=WRITER" alt="image"></a> </p>
+<p>LabVIEW会自动处理牵涉到文件。</p>
+<p>神州行，我看行。LabVIEW 8.5 今天你升了么？</p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/01/31/archived-labview-8-5-project/" data-id="cl2en8lii001vv4une9e87dr0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-print-screen-tips-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/01/28/archived-labview-print-screen-tips-01/" class="article-date">
+  <time datetime="2008-01-28T01:08:03.000Z" itemprop="datePublished">2008-01-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/01/28/archived-labview-print-screen-tips-01/">LabVIEW截图技巧-截取动态帮助窗口内容</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!433" class="bvMsg"><div>当我们在LabVIEW里面编程时，可以随时按Ctrl+H呼叫动态帮助，动态的显示出鼠标指向的LV元素（VI、连线、控件等等）的相关帮助</div> <div> </div> <div>[![context-help](http://byfiles.storage.live.com/y1pf3H7KtzkuRFIshT2QfDKLJDBMfqOOOCLrDU7_HZFZ6HL0v96vn4ocpGWJ7nxPRlpdJLRWViHCkY)](http://byfiles.storage.live.com/y1pf3H7KtzkuRFIshT2QfDKLJDBMfqOOOCLrDU7_HZFZ6HL0v96vn4ocpGWJ7nxPRlpdJLRWViHCkY)</div> <div>有时候我们只需要截取LabVIEW动态帮助窗口的内容，但是动态帮助窗口会自动丢失焦点的。难道只能截全屏然后再在画图里面裁切么？</div> <div>回答当然是不需要！</div> <div>首先按住Alt，然后用鼠标点选动态帮助的标题，这时候我们会发现动态帮助现在一直处于选中状态，现在就可以随心所欲的截图了，按下PrintScreen键之后再松开Alt键，动态窗口就已经被我们截取下来了。</div> <div>[![context-help-scr](http://by1.storage.msn.com/y1p8NjIsGi7lpzZTG6JYhGUC-B9iIQ_uC1kY5IjS59HD-q_buDCZAuJdtj16N-tVlpsCLNu2gKeK_D_jMljnGfVNkGXdGtooDne?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRF2BRXdpxrC4WtxVx6jFNW1euFUVaVfNt_0IpCuWE4_mbImiPOnSLeeqIALBL09--Y?PARTNER=WRITER) </div> <div> </div> <div> </div> <div> </div> <div> </div> <div> </div> <div> </div> <div> </div> <div> </div> <div> </div> <div> </div> <div> </div> <div> </div> <div> </div> <div>LabVIEW是可以插入图片的，我们可以在LabVIEW里面按Ctrl+V贴进去看看效果。</div> <div> </div> <div> </div> <div> </div>[![labview-ctrl-v](http://by1.storage.msn.com/y1p8NjIsGi7lpyYyAjPQnFpp41mhEY4S63hh6XlsY-HealQ-kw4YLtueFRhpbr9lOULJ9xHZNykh9t6MRhIr2u0Ux4wmRPlQru6?PARTNER=WRITER)](http://by1.storage.msn.com/y1p8NjIsGi7lpw0n6tRgyK45REUbIcQWwhY_B_9s-JJynkTs7lEmWIf_3314D6S8zDn3o7hbYJFisHJZ_xTklTP0_oRb5bFuRxN?PARTNER=WRITER)</div><table cellspacing="0" border="0"><tr><td></td></tr><tr><td valign="top">[![](http://byfiles.storage.live.com/y1pMKpUp0OdnWrYetpZ1KomidKKmpKHZ1Zyx9Txh8X8FxB5lzvHyppLZR7OI1IO7yEJ4wMpMCTctOA)](http://byfiles.storage.live.com/y1pMKpUp0OdnWrYetpZ1Komib8lBnCQ_1d4MaWAIcLFsDgX18SXwjVH1EdFugtPAhqBjmIj5IWrtVw)</td></tr></table>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/01/28/archived-labview-print-screen-tips-01/" data-id="cl2en8lim0022v4uncyiyecuy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

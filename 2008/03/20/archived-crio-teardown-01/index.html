@@ -1,38 +1,333 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
+  
+  <title>cRIO摧残记（上） | haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天我们出场的主角就是它  控制器         FPGA     插上网线通电以后 我们首先打开MAX   在远程系统按F5   可以看到已经自动认出来了   使用前请先摇一摇（误 需要配置一下网络参数 然后给cRIO里面装软件：   我是不管3721全部装上去了   装完软件，接下来的工作就要在LabVIEW下进行了：   让我们来调戏试一下吧   一路下一步即可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cRIO摧残记（上）">
+<meta property="og:url" content="http://haobo.li/2008/03/20/archived-crio-teardown-01/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="今天我们出场的主角就是它  控制器         FPGA     插上网线通电以后 我们首先打开MAX   在远程系统按F5   可以看到已经自动认出来了   使用前请先摇一摇（误 需要配置一下网络参数 然后给cRIO里面装软件：   我是不管3721全部装上去了   装完软件，接下来的工作就要在LabVIEW下进行了：   让我们来调戏试一下吧   一路下一步即可">
+<meta property="og:locale">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpyiv35ZMGRjDFH97ApuuLjq_N0d4Y2I6CBWyGerWDoWYXGSQJ6v-SQdVUiJsrhfo3cBqTezUeah_3h_YcIcEyu4?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpzVG-OYgPDBYECgY-PK1J2cypGztD4_DTL4jKdvyIsQHq-BGn_i-RBakpZSBzgAXcZU7OgJncSLjRomFX2ro_ir?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwqMVWYGGE7XoTglxKBdwIl80sqD4v5QLxnHGAPdVtijw4sQ51RjAud60NruIQbvG4HmjRdDrlwQQDyGEE1IWDs?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxMT9IiwHp7hNarRHPuuGyNXUp6vBt_lZpoWXihi9d1s8Zq2ASCuSylIWe4vO9zFjpbl4ztPaPdchPQjK_bC7L4?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpyfZuQHyTkUGZisuRYGm8Nw1qkOOtqmDgkEFNUDOMn3P8njdTXTxvolLynBsjql8Ry7GbTXBrkspoS69WW5exTh?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwG6YPDORajJ4J10vxvJqovSsnTgYVwaJEvCYTZGsBwWB3GZ7iqdDyDXHcyZAMiXCBEqQ27ZPRyzuCfOO8p2ZeQ?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxFoLJKRZ8EnvOel4CM15y1QeDQ86x7y_eNGz9vUIoB8JR4q2Pd5B4pUM6AsVKMye4-NVMX8jndF6SMsC9ylz4-?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxm6rQjHpxAUyRZHwFqqKj2xiIUSa9JqhnQ9NUBFPDjcJLlfdcV7zZ6o4BRWrjAY9Ntw-rRRIA64GzcP94a5oHo?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxe1hoL3ruQopVV33hN0RgLnfVJ8ni-vOTm_PJcQIvaktoTQALQj6WRHKrtP0FPRBm3EOOcAN0UcB2Ciq435MKP?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpw3WQR8vopbcs2jhAwjalY3TbDonp0grz_r0Ma4WrHyR0GirTfwFgoaN9StLM_uPAnRDWZ5iqDgfRogCKp9bgGq?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxOOBaCQ74UtHyhSoFyleQyRL1xGboxZze_vXs63sfLdEtkkV6w1bs0rnHb5NmTJYsmHCEhM45VU3e_Z1tUhe-a?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpycIh7VQdnf7URl7puKZEjv7KB6lson7rVwwsMp0BBgbjd3HzTCL04WMB6r_OXTgDvBzBAMhbGVVVt3vJ7XRG40?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxd5EqvIb0iq4uMFjJIn_w9Y8gcLCGoKE2Yuoh8-hddKDU-X5ox-xVz3tKirXPLwUpYGd9E3GSNGnB78vkQCf4D?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpx5lUXJ3-eGJUDgUqNT--JLpgBdTesgi5RbRYyA11Bng-Pexg8ZldweLFd0utOt13UnkpJjsWCj21cIweajRg_J?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxSnIA08aKb5oxvASvkiIwL5eZBbJ24PZBE8sX7ihcwwFMGbcRK3wCchtZSsug5xREvu5vtZLP7FVlM-083vDk5?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxdByVdnKD6_tCGf42nSl69TONk_l9kZrGkiwkq7DO6TsA8sMg0YQkvOQUILsrKBRo2MZgpv6sqWhjooKd73_mn?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxjZihyANd5xa2cF3CaEQ7srMPc7Q00fnoxATNU_1DmzMIomrhe1h-SOJZUhdwus2vN4LzyQ6WqkyglZPWKqs7j?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpzdTCRiAwVQTLReo7AnBcteZKAcBycKw6tSHppjM1J8BhEznDbJC3vZp_ljFkn9Aghf9bYYxb0vbdYQY9Tb_zmP?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpyXACCo5MBSlqTxtWLZfI3TbASXJwn101xyp6utUjQLzMP1JCdr39RseDX7ksMhfbx1cWheGVdtLOcOEwVITlQq?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxltcV9Wbd5SlFYGODpTgIzaEYVcfoPVKD1rgfKBwlHWxMLePJhINmBJar__H-SsCufxD9Nos2qtC9yP30xBLid?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpyQmZUNSgIQLlgoP7HBnhJPmP8WQLVa4nsYTnqlfnDNMNlQglDmM0Js9tbxhbasy7mhsJvs0S-mWNMyOCn1Kb2N?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxWEf_twcS_ww6Xxdad3VwGl1vmzXR5mfgScp60xJ1lC4cgoR5nsyKC9vVZxpmN7iP1hDtYCy8v_TLcnUk1NA-b?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwZOfnJEc-VjaDMhNzDBQOP6H7bs0XuF-RCn9PC0NcgIuB50pc138DVn49uDjVxXzH9Z1P-URY09DZ6vVT66728?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwX-GVEff8eBBaD_c2Nx8Q2nEcJbvkf1HKUvdXzDEPLWEgGgC3uPKbZynAzlXgqqjpRoVFwhwSx-rluairUjq5i?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpznx-EmcwBjR6Gz4X9WFNRuXRH_f8SXhk2TGccZEoCHEMbqkfizs7eGtj5jQ26v7JZk8lHjR4CU28CMxZ_H1pfj?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpytac4PwPhRwV7rja_nuwutyZ11M1hCdoywJfdC5H9RyICJObJa91UEcGP46bmIbOE01lkqsIiR9GSPX6GxaDGF?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpyA1q9ARhdixqt47T640dXoMmBQp3pRiMsPKTjDRMLBtK208mC32HKsysn97ag4SAgPcxj94Z-gDXXk9RNBdfLo?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpzq8Yzl3S8-HobFOOHDVjhRbpcCm3Kmkc0J9NgfoW_oMuiReEYFzLIDUGo4eaX2baeJymwqiJ1LWqtJhosmuKlY?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwQG6_qXe3ms3Nf4Bc2YllPeN9KgaERwL7Dz2YfuGK-ux-yuStfolatSrJO58KzV0frUACJ_zyLw9CdeJaR3OW1?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpy-B5KV1aSZcSkuyZoqiq6kFgF1YuyN1NOxzg2uql2sMfBvazQNhUUdpjiZhLPxB6EZUrmMAc1_0iaeutGGLza8?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpzVWbCoIKZmqqzIDBtXFmhqkaL6k-evV393cl4d6NAhQesCNu2etsVJvdNBuK2q-Uj8RPbE-51IqWDcf7A6XPLv?PARTNER=WRITER">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOu1QOPMmfd2Aw_I4gJBCKT21bVg8j5QBgot6EGhqm7HBsjpvwQDygzE74YFlTbD4L1k8DA_Mj22MKELv0ULYSJ?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwrm-pqWTPukboyq28vem7oeStjvDEW_EkpMI2cIv7ezPCzAalp5wbcnjEis67Ug588_QAgDBwOO_olDXBH0YPD?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwJigp3YbDTVBfLdQdOSL4VrQ_88ElpY6uxDDV0QbTBOkE7xnG4XnMS-5uhzJDboUgOVtKBZsLKSUjeidx5IrLK?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxWAmpiExA3HfqttkoMHvBFS35W8iySHMWODGKe1fqrQys6V5iC9OAYbtFWfwXXPgqjJlMfJSGlKnmPoqr7t5Rv?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxIyMTwZMc3gsAIqd871mcOAYV3u3b8aiZIDFbqMQ90btapCGwciiaY-C3z-FIqtHl481FkcXkRZL-5TRpGZrxI?PARTNER=WRITER">
+<meta property="article:published_time" content="2008-03-20T05:10:29.000Z">
+<meta property="article:modified_time" content="2022-04-18T16:55:07.765Z">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpyiv35ZMGRjDFH97ApuuLjq_N0d4Y2I6CBWyGerWDoWYXGSQJ6v-SQdVUiJsrhfo3cBqTezUeah_3h_YcIcEyu4?PARTNER=WRITER">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block page_class %}page-post-detail{% endblock %}
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-archived-crio-teardown-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/03/20/archived-crio-teardown-01/" class="article-date">
+  <time datetime="2008-03-20T05:10:29.000Z" itemprop="datePublished">2008-03-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cRIO摧残记（上）
+    </h1>
+  
 
-{% block content %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!729" class="bvMsg">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<p>今天我们出场的主角就是它</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr8AlLm7yxGGhPSPzzAXI6ZGG1UvW-1FvV9NRPHylaG0BM1pmBeLxhTzOIXjo0aA4yvvrzlhex2-iQ?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyiv35ZMGRjDFH97ApuuLjq_N0d4Y2I6CBWyGerWDoWYXGSQJ6v-SQdVUiJsrhfo3cBqTezUeah_3h_YcIcEyu4?PARTNER=WRITER" alt="20080320"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOBp2roWlelbQWmvojenkbYkdVWsGH-9QxQ17C_WqKgu9iWPVXNlRJVAuaLBWgyKylfMotxhGgtQxF7_2YJKm9j?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzVG-OYgPDBYECgY-PK1J2cypGztD4_DTL4jKdvyIsQHq-BGn_i-RBakpZSBzgAXcZU7OgJncSLjRomFX2ro_ir?PARTNER=WRITER" alt="20080320(016)"></a></a></p>
+<p>控制器</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPrN_Lg9UG2HRBxh50ZnyeKruvKcahy77w9M9YdfxwubPOEuJoNPm1Xns9gV_NEl5qeMGBtJ0-Fsr0tdV3z1nZR?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwqMVWYGGE7XoTglxKBdwIl80sqD4v5QLxnHGAPdVtijw4sQ51RjAud60NruIQbvG4HmjRdDrlwQQDyGEE1IWDs?PARTNER=WRITER" alt="20080320(002)"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPrN_Lg9UG2HRBxh50ZnyeKruvKcahy77w9M9YdfxwubPOEuJoNPm1Xns9gV_NEl5qeMGBtJ0-Fsr0tdV3z1nZR?PARTNER=WRITER"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMXNZYS-tUtOYrFpCkvSsxhxjVfUtQZ8JZyN8wjz3QwSng2Ig2iiQ2lr4UlnEq4yPjEwjmGcuJatu-Oxn_3AkGV?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxMT9IiwHp7hNarRHPuuGyNXUp6vBt_lZpoWXihi9d1s8Zq2ASCuSylIWe4vO9zFjpbl4ztPaPdchPQjK_bC7L4?PARTNER=WRITER" alt="20080320(001)"></a></a></a></p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPrN_Lg9UG2HRBxh50ZnyeKruvKcahy77w9M9YdfxwubPOEuJoNPm1Xns9gV_NEl5qeMGBtJ0-Fsr0tdV3z1nZR?PARTNER=WRITER"></a> </p>
+<p>  <a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMXNZYS-tUtOYrFpCkvSsxhxjVfUtQZ8JZyN8wjz3QwSng2Ig2iiQ2lr4UlnEq4yPjEwjmGcuJatu-Oxn_3AkGV?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyfZuQHyTkUGZisuRYGm8Nw1qkOOtqmDgkEFNUDOMn3P8njdTXTxvolLynBsjql8Ry7GbTXBrkspoS69WW5exTh?PARTNER=WRITER" alt="20080320(005)"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwG6YPDORajJ4J10vxvJqovSsnTgYVwaJEvCYTZGsBwWB3GZ7iqdDyDXHcyZAMiXCBEqQ27ZPRyzuCfOO8p2ZeQ?PARTNER=WRITER" alt="20080320(007)"> <img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxFoLJKRZ8EnvOel4CM15y1QeDQ86x7y_eNGz9vUIoB8JR4q2Pd5B4pUM6AsVKMye4-NVMX8jndF6SMsC9ylz4-?PARTNER=WRITER" alt="20080320(006)"> </a></p>
+<p>FPGA</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPN6BgjY_twaRGgHUyhBRMEzOltuU3rhn-AOFmifqEyP19xPz4_nfTBRhoC_JfKSHkg8FpUKLz7rtY9DsXM6BrI?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxm6rQjHpxAUyRZHwFqqKj2xiIUSa9JqhnQ9NUBFPDjcJLlfdcV7zZ6o4BRWrjAY9Ntw-rRRIA64GzcP94a5oHo?PARTNER=WRITER" alt="20080320(003)"></a> <a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhO1zsKqXWNSAL-36wLmrWc2XAyRLr_abPLLfJjrqyWBNUczZ3_xP_KM6Q8LMDlrjfmrJiggmkcaXJlUyRTywtH6?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxe1hoL3ruQopVV33hN0RgLnfVJ8ni-vOTm_PJcQIvaktoTQALQj6WRHKrtP0FPRBm3EOOcAN0UcB2Ciq435MKP?PARTNER=WRITER" alt="20080320(008)"></a> <a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMe9ZTEkZojH71ZXHUXxIwmCa_L9EwkkwIGj2I7bYUze3IIkzgYJ0GK0ZcdrM1XXipmSoA3sKkogCtcIb5_lm1-?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpw3WQR8vopbcs2jhAwjalY3TbDonp0grz_r0Ma4WrHyR0GirTfwFgoaN9StLM_uPAnRDWZ5iqDgfRogCKp9bgGq?PARTNER=WRITER" alt="20080320(013)"></a> </p>
+<p>插上网线通电以后 我们首先打开MAX</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwd7yL5njGXePy8TMJXDq_D93UWEme6opbsfOlhEWw5gMd2Z52Np3jAPtAYW6Bg7Pg0BxSG9w2XzoBHx4UuJLBf?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxOOBaCQ74UtHyhSoFyleQyRL1xGboxZze_vXs63sfLdEtkkV6w1bs0rnHb5NmTJYsmHCEhM45VU3e_Z1tUhe-a?PARTNER=WRITER" alt="image"></a> </p>
+<p>在远程系统按F5</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxs01qfNwAkKpZF3ROmxXwiIJrbYxWn6BInUFbGpl8peh4u5DFcPtGYNsLsfNwxg4yqH9GqQCs-XvqgUXkX416f?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpycIh7VQdnf7URl7puKZEjv7KB6lson7rVwwsMp0BBgbjd3HzTCL04WMB6r_OXTgDvBzBAMhbGVVVt3vJ7XRG40?PARTNER=WRITER" alt="image"></a> </p>
+<p>可以看到已经自动认出来了</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpywaMjt1OSyMRMHZT25NFyJAnYxVWxDimPVrLTiYf6zfmrd55GSKJtQNCvNFAGcXW-V6Leyyl9bkDuGEXulSHtG?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxd5EqvIb0iq4uMFjJIn_w9Y8gcLCGoKE2Yuoh8-hddKDU-X5ox-xVz3tKirXPLwUpYGd9E3GSNGnB78vkQCf4D?PARTNER=WRITER" alt="image"></a> </p>
+<p>使用前请先摇一摇（误</p>
+<p>需要配置一下网络参数</p>
+<p>然后给cRIO里面装软件：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzwugoKRjwdTYyeePMGnh7pZ6iuebI2nj38gW1V1zsE1GXdwDo5HR0Q8xFYvSlRXMfYzWVBkszZ8EMFQmdwc6OU?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpx5lUXJ3-eGJUDgUqNT--JLpgBdTesgi5RbRYyA11Bng-Pexg8ZldweLFd0utOt13UnkpJjsWCj21cIweajRg_J?PARTNER=WRITER" alt="image"></a> </p>
+<p>我是不管3721全部装上去了</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNnAwnFMJxrTSvRan2PoXhEMcCE3uuFj9GsyxbYAG0arGjo-yur0G7-FttPHoKnZVf8J7jrNvOks8THkJsReNqx?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxSnIA08aKb5oxvASvkiIwL5eZBbJ24PZBE8sX7ihcwwFMGbcRK3wCchtZSsug5xREvu5vtZLP7FVlM-083vDk5?PARTNER=WRITER" alt="image"></a> </p>
+<p>装完软件，接下来的工作就要在LabVIEW下进行了：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM1jZMKbePABwCFt07oTH2jQEUyxK-DTzUqEkW8-lq_c7WL_vr-kS_xjKC3fftRTx3mCMETIamiBE2WKmPok3kz?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxdByVdnKD6_tCGf42nSl69TONk_l9kZrGkiwkq7DO6TsA8sMg0YQkvOQUILsrKBRo2MZgpv6sqWhjooKd73_mn?PARTNER=WRITER" alt="image"></a> </p>
+<p>让我们来调<font color="#ffffff">戏</font>试一下吧</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxPnRWO9I4vqQAVgFuhuvTRscL-zL0DwnctiSattH6v5LgoOnh3JWOdQRrOD4ST9Oyi1hIRnqublPneYsXrsJeT?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxjZihyANd5xa2cF3CaEQ7srMPc7Q00fnoxATNU_1DmzMIomrhe1h-SOJZUhdwus2vN4LzyQ6WqkyglZPWKqs7j?PARTNER=WRITER" alt="image"></a> </p>
+<p>一路下一步即可</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNGxwQBybDtjhDolkPOuRROund4CfWkRGVIxQkwJ5G0wkZpFXYmz9W3sm6-_uf6N2Eos596yhuGHI6rYR0ZmzbH?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzdTCRiAwVQTLReo7AnBcteZKAcBycKw6tSHppjM1J8BhEznDbJC3vZp_ljFkn9Aghf9bYYxb0vbdYQY9Tb_zmP?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMj_K2d-6VOC_b75WGCDvyKx32W-3H0RAlWNAnRmNITU7uOP4d7srfDbcAz0Eo3gGnqyMh0p7sz3cy40OBNGkZD?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyXACCo5MBSlqTxtWLZfI3TbASXJwn101xyp6utUjQLzMP1JCdr39RseDX7ksMhfbx1cWheGVdtLOcOEwVITlQq?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOoDEDmQzp4w9M5XkOitdx89RHapg3XB5psrLcAGdmuh6Y7ATSbMvlg0XVJ11JIskxAvusJilCoJhdAT6spOkbB?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxltcV9Wbd5SlFYGODpTgIzaEYVcfoPVKD1rgfKBwlHWxMLePJhINmBJar__H-SsCufxD9Nos2qtC9yP30xBLid?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxOXqHEHD_-OIftYbsU5OXsd5-i-DGy3JZzbjlki90B2qE4woWZ0wxSe5dpeJLKzJy8Jwfm9bAZK-tYTJi2RWR8?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyQmZUNSgIQLlgoP7HBnhJPmP8WQLVa4nsYTnqlfnDNMNlQglDmM0Js9tbxhbasy7mhsJvs0S-mWNMyOCn1Kb2N?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyeLgtNrBkqQ5soSLXlIXxIyZ1wkovF1fOioHVh2jyivxgoqF-DIP8hzXunrfo4YnsvOc-Qcfpdbx_MK_DXPf9r?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxWEf_twcS_ww6Xxdad3VwGl1vmzXR5mfgScp60xJ1lC4cgoR5nsyKC9vVZxpmN7iP1hDtYCy8v_TLcnUk1NA-b?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOaGmhhrIJoQCNPe-9sVHAAifMrU3JDY8APz6dYk46lLUy7HE-hLKP2VHbx6FsQc5iJC-QsNJkYrmVrYa5p0D4m?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwZOfnJEc-VjaDMhNzDBQOP6H7bs0XuF-RCn9PC0NcgIuB50pc138DVn49uDjVxXzH9Z1P-URY09DZ6vVT66728?PARTNER=WRITER" alt="image"></a> </p>
+<p>然后配置一下程序架构</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPt3N5SVFsBtGX1F1sCCQMMopA27qmE21ZndE9Bi6sqWharyjg0TenBnx94P0p-qiuNOUndLmHqO3xE_VzJ0NOE?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwX-GVEff8eBBaD_c2Nx8Q2nEcJbvkf1HKUvdXzDEPLWEgGgC3uPKbZynAzlXgqqjpRoVFwhwSx-rluairUjq5i?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxEJ_Wd5P5aptJdCtvvT0QWkyRUB_hQi0MUc7UhGKeFWGyczs5aFDR_IDNvWC5xcE3qqubWFMZJG0mowiGzhSn9?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpznx-EmcwBjR6Gz4X9WFNRuXRH_f8SXhk2TGccZEoCHEMbqkfizs7eGtj5jQ26v7JZk8lHjR4CU28CMxZ_H1pfj?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyVaF5798WjH3G7kjEwfVgi6DEyyYiYQum3hi6adYS1EVFh9QAlZIoAZBK9G1aRItoal7SFpBbO_x0vqLq-n_qZ?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpytac4PwPhRwV7rja_nuwutyZ11M1hCdoywJfdC5H9RyICJObJa91UEcGP46bmIbOE01lkqsIiR9GSPX6GxaDGF?PARTNER=WRITER" alt="image"></a> 点这个自动生成代码</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyv3SkmBZiFRdPp1ttZ3gaBSabQnzL2qoIzRzXZ5t8HHxFJXCdBo0rVu7zURnPNqlJryzY0206_bMtnKJcdUChS?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyA1q9ARhdixqt47T640dXoMmBQp3pRiMsPKTjDRMLBtK208mC32HKsysn97ag4SAgPcxj94Z-gDXXk9RNBdfLo?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxiR4huo2b3b3-mOWFrKA1qHVrGEjkRtV_6rQJdpoQQZmd0WEBZj0a4rsLqXmBOeISDsOEDyufmwR-l3vJKgxnC?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzq8Yzl3S8-HobFOOHDVjhRbpcCm3Kmkc0J9NgfoW_oMuiReEYFzLIDUGo4eaX2baeJymwqiJ1LWqtJhosmuKlY?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxNhY39apcqhdvGgszVg7kvgm_Rrn0T0AvjbuEzduEgpgIr1WU7AIfP-v0NaneP3EAQd5oQHPMPknqu5zisNsV2?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwQG6_qXe3ms3Nf4Bc2YllPeN9KgaERwL7Dz2YfuGK-ux-yuStfolatSrJO58KzV0frUACJ_zyLw9CdeJaR3OW1?PARTNER=WRITER" alt="image"></a> </p>
+<p>大功告成！</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxQOKYYxmAt8Qb0f0O1-Rhjyz2ICTKqXpSRwQ_CK0UtJW4gq9zBOAlRSFfNigHlBvIEnS8IZIzKbQKXGAB9DPc8?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpy-B5KV1aSZcSkuyZoqiq6kFgF1YuyN1NOxzg2uql2sMfBvazQNhUUdpjiZhLPxB6EZUrmMAc1_0iaeutGGLza8?PARTNER=WRITER" alt="image"></a> </p>
+<p>其实还MADAMADANANE!</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyYPvipnFM7ta4foMTJCFFJpQRTBBhC7j0YG4-3R7_7oiJ7FvgCF9zsw0otheDs_fssmv4jQipSns2NEVnROcb4?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzVWbCoIKZmqqzIDBtXFmhqkaL6k-evV393cl4d6NAhQesCNu2etsVJvdNBuK2q-Uj8RPbE-51IqWDcf7A6XPLv?PARTNER=WRITER" alt="image"></a> </p>
+<p>恩 还有漫长的编译在等待着我们</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyNn8i0rqiOIBhdct1HVxY3HNGwN2h0yyBXI8g3qW-3A529ZlDyWqgoqRzZ68rxkn7CFa-Yh4Ml8tChzlmUBkD5?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOu1QOPMmfd2Aw_I4gJBCKT21bVg8j5QBgot6EGhqm7HBsjpvwQDygzE74YFlTbD4L1k8DA_Mj22MKELv0ULYSJ?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzhvm9UNOy5xnqdHbMSAZ6mhh4YLeU0VSu9nBzvZReyLNZpGxbBLLxdSrnWvpFnlhtQudzyNcjRWI4ufbMEmZfU?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwrm-pqWTPukboyq28vem7oeStjvDEW_EkpMI2cIv7ezPCzAalp5wbcnjEis67Ug588_QAgDBwOO_olDXBH0YPD?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhP3l4ZxZ09yAKNlPjI7FK3P0yKLKnlPNpEZNRMlNI-j9QTYEc-jXOnW35zGGMw46GA9KEQ52t_5dgikkDdn7Ljk?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwJigp3YbDTVBfLdQdOSL4VrQ_88ElpY6uxDDV0QbTBOkE7xnG4XnMS-5uhzJDboUgOVtKBZsLKSUjeidx5IrLK?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPTBj6yVC2fm2tEo4mUos8_8H4AdZgCkbQYkNi4ofd42SrlXTq9YKImDINq3BKkqCvXAxiT2HHeNVwSDjR68LHs?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxWAmpiExA3HfqttkoMHvBFS35W8iySHMWODGKe1fqrQys6V5iC9OAYbtFWfwXXPgqjJlMfJSGlKnmPoqr7t5Rv?PARTNER=WRITER" alt="image"></a> </p>
+<p>正所谓不用FPGA不知道机器慢，各位可以吃饭去了，一般需要半个小时到几个小 时左右才能OK。</p>
+<p>555 我果然被调<font color="#ffffff">戏</font>试了。。。</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzOIyMNp8I5SeW9f86v9FgO-8ijfYMtbjLT3qTAf5FUoj9307YNWg4q93rg2e3v6hNnXuj4g7ujepwzQMDxRko6?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxIyMTwZMc3gsAIqd871mcOAYV3u3b8aiZIDFbqMQ90btapCGwciiaY-C3z-FIqtHl481FkcXkRZL-5TRpGZrxI?PARTNER=WRITER" alt="image"></a> </p>
+<p>I will be back!我们下次继续。。。</p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/03/20/archived-crio-teardown-01/" data-id="cl2en8li5000yv4un1i2iey9v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2008/04/08/archived-crio-teardown-02/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          cRIO摧残记（中）——RealTime篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2008/03/07/archived-ctrlcctrlv-in-labview-icon-editor/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Ctrl+C~Ctrl+V归来，快捷键万岁！</div>
+    </a>
+  
+</nav>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

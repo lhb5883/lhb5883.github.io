@@ -1,38 +1,252 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
+  
+  <title>批量安装LabVIEW及组件 | haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="有了命令行我们只不过节约了几下鼠标,还要安装好一个组件之后再手动装下一个组件,还是很麻烦,有没有什么省事的办法呢? 当然有,我们有请批处理文件(*.bat)出场. ![image](https:&#x2F;&#x2F;aftv2q.bay.livefilestore.com&#x2F;y1mqqNVZcgJPai7kLPfP-bwMXNiRj29p8OYhJkPI15R4vn-ro4qQ2lmU7LvHK1j8vfdh80">
+<meta property="og:type" content="article">
+<meta property="og:title" content="批量安装LabVIEW及组件">
+<meta property="og:url" content="http://haobo.li/2010/03/26/archived-tips-auto-install-labview-suite/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="有了命令行我们只不过节约了几下鼠标,还要安装好一个组件之后再手动装下一个组件,还是很麻烦,有没有什么省事的办法呢? 当然有,我们有请批处理文件(*.bat)出场. ![image](https:&#x2F;&#x2F;aftv2q.bay.livefilestore.com&#x2F;y1mqqNVZcgJPai7kLPfP-bwMXNiRj29p8OYhJkPI15R4vn-ro4qQ2lmU7LvHK1j8vfdh80">
+<meta property="og:locale">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2010/03/image5b155d.png?w=300">
+<meta property="article:published_time" content="2010-03-25T19:54:47.000Z">
+<meta property="article:modified_time" content="2022-04-18T16:55:07.781Z">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://lhb5883.files.wordpress.com/2010/03/image5b155d.png?w=300">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block page_class %}page-post-detail{% endblock %}
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-archived-tips-auto-install-labview-suite" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/03/26/archived-tips-auto-install-labview-suite/" class="article-date">
+  <time datetime="2010-03-25T19:54:47.000Z" itemprop="datePublished">2010-03-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      批量安装LabVIEW及组件
+    </h1>
+  
 
-{% block content %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1520" class="bvMsg">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<p>有了命令行我们只不过节约了几下鼠标,还要安装好一个组件之后再手动装下一个组件,还是很麻烦,有没有什么省事的办法呢?</p>
+<p>当然有,我们有请批处理文件(*.bat)出场.</p>
+<p><a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1mUGyPv86VpDqpCvF1g-XtKjzFES9Fqx3qayyX_rzmMyemnavCeqy0POzZbplHgpdqKAI61smPZYESdVKW-SfCMFM9yeerGRnxIiF_bCWau4I1wbRhbkmnZ9jec-eHQ5Xc8TrnqoYdBlfWAzBMTccypg/image[7].png">![image](https://aftv2q.bay.livefilestore.com/y1mqqNVZcgJPai7kLPfP-bwMXNiRj29p8OYhJkPI15R4vn-ro4qQ2lmU7LvHK1j8vfdh80QCLBLHUUlNPZ8CGUSbKVIA0-GWa2ehglraOPJmcCneWxwzrX6qOYGMC-_ATAVTbAGb9Tm6YnLhpCHrvT4lA&#x2F;image_thumb[3] 61095F84.png “image”)</a> </p>
+<p>[![image](<a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1mi-lnu06Lw7420S6HuMj8vWvDELiUrYj5iFZh4uw6XG8ORN_jYecm_QDrc07hu3RGxH1HiXUe6FW4TdMn3h6mhcfBrgK-V3dyrx033bkzAzVBJlOr23tK3rI6MB8wA1ukQGmrQh3218WNIc-kGtsWaw/image_thumb[5]">https://aftv2q.bay.livefilestore.com/y1mi-lnu06Lw7420S6HuMj8vWvDELiUrYj5iFZh4uw6XG8ORN_jYecm_QDrc07hu3RGxH1HiXUe6FW4TdMn3h6mhcfBrgK-V3dyrx033bkzAzVBJlOr23tK3rI6MB8wA1ukQGmrQh3218WNIc-kGtsWaw/image_thumb[5]</a> 2B50062B.png “image”)](<a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1mvtOis4jV9Le2-VIxUzE8D0cQwamCCNhUO-ndQNg3MCQ5ElsW3S70crQNR2pKO9BgeMwPvD8QNK3VYn2isBius6dsvpwOoV9sIEVwNuy8T8wC246WqxJpAudZsF1O0INPxzTdfRK85AWTO7BTzcLePg/image[11]">https://aftv2q.bay.livefilestore.com/y1mvtOis4jV9Le2-VIxUzE8D0cQwamCCNhUO-ndQNg3MCQ5ElsW3S70crQNR2pKO9BgeMwPvD8QNK3VYn2isBius6dsvpwOoV9sIEVwNuy8T8wC246WqxJpAudZsF1O0INPxzTdfRK85AWTO7BTzcLePg/image[11]</a> 0C99DDE7.png) </p>
+<p>对于上面这种情形，我们只要建立一个文本文件，输入以下内容，命名为Install.bat双击运行就可以一次安装LabVIEW2009SP1，实时，控制设计仿真等软件： <p>&quot;o:NI SoftwareLabVIEW 2009 SP1LabVIEW 2009 Service Pack 1 32-bitsetup.exe&quot; &#x2F;qb &#x2F;acceptlicenses yes &#x2F;disableNotificationCheck &#x2F;r:n<br>&quot;o:NI SoftwareLabVIEW 2009 SP1LabVIEW 2009 SP1 Real-Time Modulesetup.exe&quot; &#x2F;qb &#x2F;acceptlicenses yes &#x2F;disableNotificationCheck &#x2F;r:n<br>&quot;o:NI SoftwareLabVIEW 2009 SP1LabVIEW 2009 SP1 Control Design and Simulation Modulesetup.exe&quot; &#x2F;qb &#x2F;acceptlicenses yes &#x2F;disableNotificationCheck &#x2F;r:n <p>假如安装包放在其它计算机的共享里面呢？可以使用命令行把共享映射到本地驱动器： <p>net use o: <a>\pansinoagtreadonly</a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b155d.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b155d.png?w=300" alt="image" title="image"></a>  <p>这样我们就可以让他自己安装，而不需要我们操心了。   </p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2010/03/26/archived-tips-auto-install-labview-suite/" data-id="cl2en8lj2003tv4undmhhhl0d" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2010/08/12/archived-tips-quickdrop/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          快速放置快捷键
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2010/03/25/archived-tips-cmd-install-labview/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">快速安装LabVIEW</div>
+    </a>
+  
+</nav>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

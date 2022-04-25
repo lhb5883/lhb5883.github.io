@@ -1,38 +1,271 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
+  
+  <title>cRIO摧残记（中）——RealTime篇 | haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上次我们提到cRIO是由RT控制器、FPGA、模块三部分构成的，今天我们要研究的是cRIO的RT控制器的定时精度。 在LabVIEW的RT例程里面专门有一个benchmark程序，可以用来测试代码的执行时间。   今天我们要测试的是RT的wait函数：   Wait函数有三种定时单位可以选择：  mSec毫秒：这个和一般非Rt的程序里面等待函数用法是一样的 uSec微秒：顾名思义，以微秒为单位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cRIO摧残记（中）——RealTime篇">
+<meta property="og:url" content="http://haobo.li/2008/04/08/archived-crio-teardown-02/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="上次我们提到cRIO是由RT控制器、FPGA、模块三部分构成的，今天我们要研究的是cRIO的RT控制器的定时精度。 在LabVIEW的RT例程里面专门有一个benchmark程序，可以用来测试代码的执行时间。   今天我们要测试的是RT的wait函数：   Wait函数有三种定时单位可以选择：  mSec毫秒：这个和一般非Rt的程序里面等待函数用法是一样的 uSec微秒：顾名思义，以微秒为单位">
+<meta property="og:locale">
+<meta property="og:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM1bRQ2Yn6fZwa_wtmNQsnBZDLygUIyYAvrSxBy6VSympC5KhNA9pIoAV1wXkd92WZMrptQoVIgO21XY12e6mwj?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxIAxqp-1KTfCEOVMfgm9opFQ_VPkg-8pT8auEqqpewRNh9pY3GPmqX96wQMaUAkp-Iov0sCBXJ8a346UZuvKFG?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpy-CA3WeV1N4Ktwc7tRyMgO0CO36qkW63w8S-Wh82Ee9G8UnZfAcxLQM6iQM9qBQdKDXuCoOd8mDRrH3teKVmkH?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxEZVVq6Ms4vkymeJA9gbZzDYg-8OQRqUUXDnJ1JU2aANlV6Qe9XqAj0lKocDElQiP4QAi3K2qoFMmn9afYr834?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpzltceUdA8pVKhqcDNEKO3ReUlrjoA870Vw46Mue8R5Dtl4t00v7VNaLZAv34n04rndSSGVanWJeNs2zAAT3HC3?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpzD0Gpwjvz6Q6QmbkyqzJpFM3wXwwZC_moCditymrPUyUrJW-g_fb0_CFfL7J9O_VtOhZnEB8IJIti6ZnBhf5fs?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwOrjGOm1aDOb7RQP6PFoKM0mEDH4Cr54L6_LtMpEtPp7Br_f1C53aJsTPij-EGB-n4L9KKQcUj0ZJY5Y1ovqQm?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpwxA_7glJKlosjtAkGvsxZbTU4srQ1kwHlsHxC-kHdicLqAOn7W1jYA6TV5wZj-2pXitvr-4XP5LtImgzNmuEW5?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpx82eOyflJuKsCNnjH2WPaC5V0OGDNrSPQPV2uAUx4htz_hZbHyBGBgKdQ0vF9OYUCkQo2uE-otaL-1wdBn2bnN?PARTNER=WRITER">
+<meta property="og:image" content="http://by2.storage.msn.com/y1p8NjIsGi7lpxrGzTWBj4XAkDz2VlibjLAgzFYiH2R51i0-vF0qclEsHXfE2TllzS2pl0WKDU3dXa0oFln9ljANaWQ0hxcEnTW?PARTNER=WRITER">
+<meta property="article:published_time" content="2008-04-08T03:13:22.000Z">
+<meta property="article:modified_time" content="2022-04-18T16:55:07.765Z">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM1bRQ2Yn6fZwa_wtmNQsnBZDLygUIyYAvrSxBy6VSympC5KhNA9pIoAV1wXkd92WZMrptQoVIgO21XY12e6mwj?PARTNER=WRITER">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block page_class %}page-post-detail{% endblock %}
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-archived-crio-teardown-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/04/08/archived-crio-teardown-02/" class="article-date">
+  <time datetime="2008-04-08T03:13:22.000Z" itemprop="datePublished">2008-04-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cRIO摧残记（中）——RealTime篇
+    </h1>
+  
 
-{% block content %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!751" class="bvMsg">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<p>上次我们提到cRIO是由RT控制器、FPGA、模块三部分构成的，今天我们要研究的是cRIO的RT控制器的定时精度。</p>
+<p>在LabVIEW的RT例程里面专门有一个benchmark程序，可以用来测试代码的执行时间。</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr-1y4meOuwAT2PdIaBVzeqAhZZIl4Se-oWsO6Wo3ImpemAS0dTZHaK8QHxdDhf2npniS8dH-X5oHQ?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM1bRQ2Yn6fZwa_wtmNQsnBZDLygUIyYAvrSxBy6VSympC5KhNA9pIoAV1wXkd92WZMrptQoVIgO21XY12e6mwj?PARTNER=WRITER" alt="image"></a> </p>
+<p>今天我们要测试的是RT的wait函数：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyfcCWmMOlLCQ9SOzeX1g1fttzRuey7W4tvnerY6PiRYaAgCOGQ-6EX3vxuuLYOY1rNjJVANnQPzitbJnrtaK-h?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxIAxqp-1KTfCEOVMfgm9opFQ_VPkg-8pT8auEqqpewRNh9pY3GPmqX96wQMaUAkp-Iov0sCBXJ8a346UZuvKFG?PARTNER=WRITER" alt="image"></a> </p>
+<p>Wait函数有三种定时单位可以选择：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxDq3PvOetL-QLdCmPU-Sn_uXxfFytATTilMdHKkyjPg6LoY5ryVza7_mGCTRoLEng4wB6teMmFXfDUuY0-52PF?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpy-CA3WeV1N4Ktwc7tRyMgO0CO36qkW63w8S-Wh82Ee9G8UnZfAcxLQM6iQM9qBQdKDXuCoOd8mDRrH3teKVmkH?PARTNER=WRITER" alt="image"></a></p>
+<p>mSec毫秒：这个和一般非Rt的程序里面等待函数用法是一样的</p>
+<p>uSec微秒：顾名思义，以微秒为单位定时</p>
+<p>Ticks时钟：这个比较诡异，根据下面的实验是以纳秒为单位定时。</p>
+<p>下面就是实验的截图，点击可以看大图，图中横轴代表定时的时间，纵轴代表测得的延时时间：<br> <table cellspacing="0" cellpadding="2" width="400" border="1"> <tbody> <tr> <td valign="top" width="100">Ticks方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100">100</td> <td valign="top" width="100">1000</td> <td valign="top" width="100">2000</td> <td valign="top" width="100">2500</td></tr> <tr> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNdYPoQF__zVl9jVlpAGB0xvstaxYtjhFsuu66s10ugT7ZzM2Na_N7tfG9JBH2K-OK-M0BCStsW7UKlawIW1fiW?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxEZVVq6Ms4vkymeJA9gbZzDYg-8OQRqUUXDnJ1JU2aANlV6Qe9XqAj0lKocDElQiP4QAi3K2qoFMmn9afYr834?PARTNER=WRITER" alt="tick 100ns"></a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN_lAhLLVXxX8tTnz4Aug1QyJumYzVBWBTB2If5Y1DWYLeTGqmnS1Y-BkgRFIGLGVKnf09JOQCm6FGnQm5HlmAS?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzltceUdA8pVKhqcDNEKO3ReUlrjoA870Vw46Mue8R5Dtl4t00v7VNaLZAv34n04rndSSGVanWJeNs2zAAT3HC3?PARTNER=WRITER" alt="tick 1000ns"></a> </td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMkenl1eYt-wG9wegJDUW56QNA3BM1UY3S8Z-zWz3RVZQ6Ole7EzQFCvuL_2AtmcjLNZcJv_o3Ft6nEBLv_TqUI?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzD0Gpwjvz6Q6QmbkyqzJpFM3wXwwZC_moCditymrPUyUrJW-g_fb0_CFfL7J9O_VtOhZnEB8IJIti6ZnBhf5fs?PARTNER=WRITER" alt="tick 2000ns"></a> </td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOjKZQJYG09JmkNRVDv4gkXNyn-VMxcIT6V9C1xWJQnxvUNqCJ0ycSAYPippKIs-9I_YbBigu5TfRSqL3LbsuOP?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwOrjGOm1aDOb7RQP6PFoKM0mEDH4Cr54L6_LtMpEtPp7Br_f1C53aJsTPij-EGB-n4L9KKQcUj0ZJY5Y1ovqQm?PARTNER=WRITER" alt="tick 2500ns"></a> </td></tr> <tr> <td valign="top" width="100">uSec方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">1us</td> <td valign="top" width="100">2us</td> <td valign="top" width="100">3us</td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN0SSHjgkBl6p_fL8lYcmBggZBEvVbZHthF7_mr8kSWAPHqrU34MaxSliInIn2bmCJfFBF9C9GCP2o36TganMZx?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwxA_7glJKlosjtAkGvsxZbTU4srQ1kwHlsHxC-kHdicLqAOn7W1jYA6TV5wZj-2pXitvr-4XP5LtImgzNmuEW5?PARTNER=WRITER" alt="uSec 1us"> </a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM4dQCbUJxgeITDyr31Wu-NllXSeATleh-znVAjqvwyv1SMlSu-VfN298yUSLRZMVA7EmWs7IrvNQP63lVk-dDj?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpx82eOyflJuKsCNnjH2WPaC5V0OGDNrSPQPV2uAUx4htz_hZbHyBGBgKdQ0vF9OYUCkQo2uE-otaL-1wdBn2bnN?PARTNER=WRITER" alt="uSec 2us"></a></td> <td valign="top" width="100"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxrGzTWBj4XAkDz2VlibjLAgzFYiH2R51i0-vF0qclEsHXfE2TllzS2pl0WKDU3dXa0oFln9ljANaWQ0hxcEnTW?PARTNER=WRITER" alt="uSec 3us"></td></tr></tbody></table> </p>
+<p>可以得出的几个结论：</p>
+<p>1 Ticks的计时单位是纳秒</p>
+<p>2 cRIO的定时间隔在20us下是不准确的，在20us以上基本上可以认为是线性的。<br> <table cellspacing="0" cellpadding="2" width="402" border="1"> <tbody> <tr> <td valign="top" width="100">Ticks方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100">100</td> <td valign="top" width="100">1000</td> <td valign="top" width="100">2000</td> <td valign="top" width="100">2500</td></tr> <tr> <td valign="top" width="100">21000ns之后可以认为是线性的</td> <td valign="top" width="100">22000ns</td> <td valign="top" width="100">22000ns</td> <td valign="top" width="100">20000ns</td></tr> <tr> <td valign="top" width="100">uSec方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">1us</td> <td valign="top" width="100">2us</td> <td valign="top" width="100">3us</td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">22us</td> <td valign="top" width="100">16us</td> <td valign="top" width="100">18us</td></tr></tbody></table> </p>
+<p>3 这一点是个人的猜想，仅供参考：20us以上的定时也不是完全线形的，有可能是因为cRIO的RT时钟间隔造成的，</p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/04/08/archived-crio-teardown-02/" data-id="cl2en8li6000zv4unelfuaao7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2008/04/14/archived-labview-visual-studio-database/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LabVIEW和Visual Studio的数据库联接
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2008/03/20/archived-crio-teardown-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">cRIO摧残记（上）</div>
+    </a>
+  
+</nav>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,38 +1,265 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
+  
+  <title>20220425-how-to-choose-a-labview-version | haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="如何选择LabVIEW版本?LabVIEW 常见的BUG LabVIEW 2010的Dll导入功能有问题,支持目录选择cINTools目录后无法继续. LabVIEW 2009字体和语言处理有bug,并且无法绕过.LabVIEW 2009本身容易闪退. LabVIEW 2012+字体和语言处理BUG可以通过语言格式设置绕过,但是可能会删半个字,或者计算字符串显示区域出错. LabVIEW 2019">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20220425-how-to-choose-a-labview-version">
+<meta property="og:url" content="http://haobo.li/2022/04/25/20220425-how-to-choose-a-labview-version/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="如何选择LabVIEW版本?LabVIEW 常见的BUG LabVIEW 2010的Dll导入功能有问题,支持目录选择cINTools目录后无法继续. LabVIEW 2009字体和语言处理有bug,并且无法绕过.LabVIEW 2009本身容易闪退. LabVIEW 2012+字体和语言处理BUG可以通过语言格式设置绕过,但是可能会删半个字,或者计算字符串显示区域出错. LabVIEW 2019">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-04-25T07:21:05.000Z">
+<meta property="article:modified_time" content="2022-04-25T10:23:18.590Z">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block page_class %}page-post-detail{% endblock %}
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-20220425-how-to-choose-a-labview-version" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/" class="article-date">
+  <time datetime="2022-04-25T07:21:05.000Z" itemprop="datePublished">2022-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      20220425-how-to-choose-a-labview-version
+    </h1>
+  
 
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="如何选择LabVIEW版本"><a href="#如何选择LabVIEW版本" class="headerlink" title="如何选择LabVIEW版本?"></a>如何选择LabVIEW版本?</h1><h2 id="LabVIEW-常见的BUG"><a href="#LabVIEW-常见的BUG" class="headerlink" title="LabVIEW 常见的BUG"></a>LabVIEW 常见的BUG</h2><ul>
+<li>LabVIEW 2010的Dll导入功能有问题,支持目录选择cINTools目录后无法继续.</li>
+<li>LabVIEW 2009字体和语言处理有bug,并且无法绕过.LabVIEW 2009本身容易闪退.</li>
+<li>LabVIEW 2012+字体和语言处理BUG可以通过语言格式设置绕过,但是可能会删半个字,或者计算字符串显示区域出错.</li>
+<li>LabVIEW 2019+中文版安装其他软件时会报RabbitMQ错误.</li>
+<li>DAQMX中文版建立任务时文字描述出错,可能会把输出搞成输入.</li>
+<li>中文版LabVIEW在计数器任务生成范例和代码是出错,只能生成空VI.</li>
+<li>中文版RT模块打包RTEXE之后断线<h3 id="LabVIEW建议跳过的几个版本"><a href="#LabVIEW建议跳过的几个版本" class="headerlink" title="LabVIEW建议跳过的几个版本"></a>LabVIEW建议跳过的几个版本</h3>LabVIEW 2009：出了64bit</li>
+</ul>
+<p>LabVIEW 2010：换了LLVM编译器</p>
+<p>LabVIEW 2016：放弃32bit XP，开始NXG的开发</p>
+<p>LabVIEW 2019：开始更换NI Package Manager 支持Linux RT</p>
+<p>LabVIEW 2021：放弃Pharlap ETS</p>
+<h3 id="LabVIEW-值得关注的几个版本"><a href="#LabVIEW-值得关注的几个版本" class="headerlink" title="LabVIEW 值得关注的几个版本"></a>LabVIEW 值得关注的几个版本</h3><p>LabVIEW 7.1本体无需激活的最后一版</p>
+<p>LabVIEW 8.5模块和工具包无需激活的最后一版</p>
+<p>LabVIEW 2011个人使用Bug最少的一版</p>
+<p>LabVIEW 2015支持XP系统的最后一版</p>
+<p>LabVIEW 2018传统安装包的最后一版</p>
+<p>LabVIEW 2020支持Pharlap的最后一版</p>
+<h2 id="LabVIEW的VI兼容策略"><a href="#LabVIEW的VI兼容策略" class="headerlink" title="LabVIEW的VI兼容策略"></a>LabVIEW的VI兼容策略</h2><p>LabVIEW高版本可以打开低版本VI,目前来说打开VI可以向下兼容到LabVIEW 6,</p>
+<p>LabVIEW无法打开高版本的VI</p>
+<p>加密VI可以升级版本,但是没有密码的情况下无法降级</p>
+<p>另存为前期版本最多可以保存到LabVIEW 8.</p>
+<h2 id="LabVIEW的模块和工具包兼容策略"><a href="#LabVIEW的模块和工具包兼容策略" class="headerlink" title="LabVIEW的模块和工具包兼容策略"></a>LabVIEW的模块和工具包兼容策略</h2><p>LabVIEW模块必须和LabVIEW版本一一对应,模块一般对应的是不同的运行目标和对应的编译工具链,所以图像,控制设计仿真,状态图和RT还有FPGA一样都归属于模块.简单的来说能给LabVIEW增加交叉编译功能都属于模块</p>
+<p>LabVIEW官方工具包分为两种情况,新版也是一一对应,LabVIEW,旧版有的可以兼容三个版本,有的自动安装到最新版本的LabVIEW里。</p>
+<p>VIPM安装的工具包理论上如果没有依赖特定版本的官方模块或者工具包，一般都是可以被高版本的LabVIEW支持的，只是不能被低于编写工具包版本的LabVIEW使用。</p>
+<h2 id="LabVIEW的驱动策略"><a href="#LabVIEW的驱动策略" class="headerlink" title="LabVIEW的驱动策略"></a>LabVIEW的驱动策略</h2><p>一般驱动是向下兼容三个版本的LabVIEW，但是依赖特定版本模块的除外。</p>
+<p>另外NI的驱动是可以并行选装的，所以安装的驱动越多，后台服务越多，占用的资源也越多。</p>
+<h2 id="LabVIEW的语言和Bit兼容策略"><a href="#LabVIEW的语言和Bit兼容策略" class="headerlink" title="LabVIEW的语言和Bit兼容策略"></a>LabVIEW的语言和Bit兼容策略</h2><p>LabVIEW的32bit有六国语言，但同版本只能安装一种语言。</p>
+<p>LabVIEW的64bit版只有英文，不过64bit的可以和32bit的同时安装，z共用同一个License</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><h3 id="简单用户"><a href="#简单用户" class="headerlink" title="简单用户"></a>简单用户</h3><p>对于英语不好只使用DAQ板卡，不使用RT或者FPGA的用户，可以用LabVIEW2011中文版（或其他值得关注版本）加对应DAQmx。</p>
+<h3 id="进阶用户"><a href="#进阶用户" class="headerlink" title="进阶用户"></a>进阶用户</h3><p>如果必须要使用RT和FPGA，但RT和FPGA部分较为简单，可以确认自身编写的代码没有问题，可以考虑装最新的中文版LabVIEW和RT+FPGA，出现BUG之后再替换为英文版的。</p>
+<h3 id="学习者"><a href="#学习者" class="headerlink" title="学习者"></a>学习者</h3><p>在学习阶段，装一个次新版本的中文版LabVIEW及对应模块，装一个最新英文版和64bit版的LabVIEW及对应模块，驱动安装最新版的，利用向下兼容支持次新版的LabVIEW。</p>
+<h3 id="资深开发人员"><a href="#资深开发人员" class="headerlink" title="资深开发人员"></a>资深开发人员</h3><p>建议全套英文版开发环境，如果有多版本的项目同时开发，可以通过虚拟机分离，一个虚拟机里面最好只装一个对应版本的全套开发软件和驱动。<br>本机上编写代码装一个LabVIEW 2011，查看代码安装一个最新版的LabVIEW，避免从别的地方接收到的VI无法打开。但是不建议装驱动，因为具体开发还是要在对应版本的环境中比较好。</p>
+<h2 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h2><p>另外多说一句LabVIEW 2021开始64bit官方功能完全和32bit对齐的一版，具备了RT和FPGA模块，不用在64bit中写下位机，32bit中写上位机，等迭代上几年后解决了安装包冲突的问题，以后初学者就可以装一个32bit的中文环境用来学习，同时64bit的英文环境用来开发，入门可能会更方便一些。</p>
 
-{% block content %}
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2022/04/25/20220425-how-to-choose-a-labview-version/" data-id="cl2en8lhu000nv4und9cyfwz2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/04/02/20220403-something-about-python-and-playback/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">20220403-something-about-python-and-playback</div>
+    </a>
+  
+</nav>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  
+</article>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

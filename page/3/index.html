@@ -1,23 +1,755 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+  
+  <title>haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on">
+<meta property="og:type" content="website">
+<meta property="og:title" content="haobo.li">
+<meta property="og:url" content="http://haobo.li/page/3/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on">
+<meta property="og:locale">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block page_class %}
-  {% if is_home() %} page-home {% endif %}
-{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-archived-news-tortoisesvn-1-7-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/10/28/archived-news-tortoisesvn-1-7-1/" class="article-date">
+  <time datetime="2011-10-28T02:43:37.000Z" itemprop="datePublished">2011-10-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/10/28/archived-news-tortoisesvn-1-7-1/">升级至TortoiseSVN 1.7.1</a>
+    </h1>
+  
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在开源界SVN是一个非常有朝气的项目，这个可以从他的版本每两周一个小版本的升级的速度就看出来。</p>
+<p>虽然SVN 1.7出来也有一段时间了，不过一直没有太关注过，最近偶然看到SVN新版本的特性，有几项非常实用的功能和更新，所以果断更新到1.7.1。</p>
+<p>值得注目的新特性有：</p>
+<ol>
+<li><p>数据库整合至根目录（终于解决了目录更名错乱的问题！）</p>
+</li>
+<li><p>深度支持Windows 7。新增Windows 7库整合，界面支持Windows 7 Aero特效。</p>
+</li>
+<li><p>客户端和服务器均向下互兼容，1.7的客户端也可以配合1.6的服务器使用。<br>更新要注意的问题：</p>
+</li>
+<li><p>升级安装需要安装两次，第二次选择修复。</p>
+</li>
+<li><p>工作副本需要升级至新版本，并且无法降级。<br>建议升级流程：</p>
+</li>
+<li><p>提交所有工作。</p>
+</li>
+<li><p>升级SVN（注意要安装一次修复一次！）</p>
+</li>
+<li><p>重新下载或者升级工作副本。<br><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2011/10/image.png"><img src="http://lhb5883.files.wordpress.com/2011/10/image_thumb.png" alt="image" title="image"></a></p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://decibel.ni.com/content/groups/large-labview-application-development/blog/2010/03/29/using-subversion-svn-with-labview">https://decibel.ni.com/content/groups/large-labview-application-development/blog/2010/03/29/using-subversion-svn-with-labview</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2011/10/28/archived-news-tortoisesvn-1-7-1/" data-id="cl2en8liu002rv4une5xmhwbt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-2011-drivers" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/08/31/archived-labview-2011-drivers/" class="article-date">
+  <time datetime="2011-08-31T09:49:04.000Z" itemprop="datePublished">2011-08-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/08/31/archived-labview-2011-drivers/">LabVIEW 2011配套驱动下载地址</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>NI的最新版本LabVIEW 2011已经发布了，配套的驱动也已经出现在NI的FTP。</p>
+<p>NI的驱动包目前分为两种：NI设备驱动和系统驱动集。</p>
+<p>区别是系统驱动集会有所有PXI板卡尤其是所有RF的板卡的驱动，</p>
+<p>而NI设备驱动只有常用的RFSA和RFSG驱动，不过NI设备驱动会有其他总线如USB-8451的驱动。</p>
+<p>推荐下载一个系统驱动集+USB-8451这种组合，可以解决大部分NI板卡的驱动问题。</p>
+<p>NI Device Drivers 2011.08<br><a target="_blank" rel="noopener" href="http://joule.ni.com/nidu/cds/view/p/id/2602/lang/zhs">http://joule.ni.com/nidu/cds/view/p/id/2602/lang/zhs</a><br><a target="_blank" rel="noopener" href="http://ftp.ni.com/support/softlib/driver_cd/aug_11/dcd_aug11.zip">http://ftp.ni.com/support/softlib/driver_cd/aug_11/dcd_aug11.zip</a><br>系统驱动集 201108<br><a target="_blank" rel="noopener" href="http://download.ni.com/support/fis/sds/2011.08/SDS-Aug11-1.zip">http://download.ni.com/support/fis/sds/2011.08/SDS-Aug11-1.zip</a><br>NI-845x 2.0<br><a target="_blank" rel="noopener" href="http://ftp.ni.com/support/softlib/embedded%20networks/I2C_SPI/ni-845x/2.0.0/NI-845x_200.exe">http://ftp.ni.com/support/softlib/embedded%20networks/I2C_SPI/ni-845x/2.0.0/NI-845x_200.exe</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2011/08/31/archived-labview-2011-drivers/" data-id="cl2en8lih001pv4un4pi57x3p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-code-share-get-cpu-freq" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/10/14/archived-code-share-get-cpu-freq/" class="article-date">
+  <time datetime="2010-10-14T03:23:06.000Z" itemprop="datePublished">2010-10-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/10/14/archived-code-share-get-cpu-freq/">[Code Share]如何用LabVIEW取得计算机主频</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>大部分Windows下程序都是使用计算机计时器计算CPU主频，（当然也可以跑个算法自己算）最基础的就是这个了：</p>
+<ul>
+<li><strong>使用Win32API取频率</strong></li>
+</ul>
+<p>好处是功能简单速度快，下面代码没做返回值处理，如果计算机没有高精度计数器（这个可能性比较小）有可能出不来频率，详细可以去看MSDN：</p>
+<p><img src="http://lhb5883.files.wordpress.com/2010/10/winapi-queryperformancefrequency.png" alt="WINAPI QueryPerformanceFrequency" title="WINAPI QueryPerformanceFrequency"></p>
+<ul>
+<li><strong>.NET&amp;#160; 利用WMI获取系统信息</strong></li>
+</ul>
+<p>这个接口是使用系统信息（C:\Windows\System32\msinfo32.exe）能拿到的信息更多，不过方法复杂，速度也慢。</p>
+<p>&amp;#160;</p>
+<p><img src="http://lhb5883.files.wordpress.com/2010/10/system-management-managementobjectsearcher.png" alt="System.Management.ManagementObjectSearcher" title="System.Management.ManagementObjectSearcher"></p>
+<p>这两个算法都在Win7 32bit，LabVIEW2009SP1下测试通过。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2010/10/14/archived-code-share-get-cpu-freq/" data-id="cl2en8li3000vv4unefzycpc6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-blog-to-wordpress" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/10/11/archived-blog-to-wordpress/" class="article-date">
+  <time datetime="2010-10-11T09:08:02.000Z" itemprop="datePublished">2010-10-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computers-and-Internet/">Computers and Internet</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/10/11/archived-blog-to-wordpress/">博客升级至Wordpress</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>微软的网络战略总是变来变去，而功能更新总是极其缓慢，和其他网站竞争总是处于不利地位，终于MSN Space就要被砍掉重练，M$要玩SNS了。</p>
+<p>前前后后也用了不少blog，基本上没有什么太好的选择，国内的说倒就倒了，不倒的隐私也是个问题，国外的不是被墙就是速度不理想，终于趁着MS脑抽升级到Wordpress.com了。还好YO2原来玩过一段时间WP，上手还算简单。</p>
+<p>看见这个帖子的大家可以测试一下留言，以前MSN的space留言经常被吃掉，希望这个能好一些。速度就不报什么希望了，只希望晚一点被墙吧。</p>
+<p>顺便骂一下Windows Live Messenger 2011的开发人员，每次升级干的两件事就是UI大变+功能缩水，不知道回头是不是要把聊天的功能也砍掉。</p>
+<p>记得8.5的时候有个共享文件夹的功能，局域网共享东西还是很给力的，结果2009的时候砍掉了。</p>
+<p>然后2009搜索联系人是可以搜索昵称中间的，比如ABC 搜索BC也能出来搜索AB也能出来，结果2011果断悲剧了。</p>
+<p>还有2009包括以前的所有版本双击主界面左上角是能滚到后台的，2011果断就关闭了。以前是阴魂不散，现在突然玩消失还真是谢谢啊！</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/10/image.png"><img src="http://lhb5883.files.wordpress.com/2010/10/image_thumb.png" alt="image" title="image"></a></p>
+<p>唯一长进的地方就是能排排坐吃果果了</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/10/image1.png"><img src="http://lhb5883.files.wordpress.com/2010/10/image_thumb1.png" alt="image" title="image"></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2010/10/11/archived-blog-to-wordpress/" data-id="cl2en8lhw000pv4un2bid4gfz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-2010-icon-editor-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/09/02/archived-labview-2010-icon-editor-tips/" class="article-date">
+  <time datetime="2010-09-01T17:21:08.000Z" itemprop="datePublished">2010-09-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/09/02/archived-labview-2010-icon-editor-tips/">LabVIEW 2010图标编辑器与库技巧一则</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1592" class="bvMsg">
+
+<p>LabVIEW 2009时一个很方便的改进是图表编辑器支持图层,2010版本里又大幅强化了不少:</p>
+<p>例如支持图层的复制粘贴,自定义图表模板和图例.</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image5b25d1547d36d.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image5b25d1547d36d.png?w=300" alt="image" title="image"></a></p>
+<p>对于库(包含LabVIEW Class, X Control)等来说一个很方便的特性是可以批量修改库中VI(包含自定义控件)的模板</p>
+<p>通过这一点我们可以简化图标设计的工作:</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image5b55d7c1b91c0.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image5b55d7c1b91c0.png?w=300" alt="image" title="image"></a></p>
+<p>1.首先设计库图标模板:</p>
+<p>在库上右键,选择属性,点击编辑图标</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image5b85d419b7831.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image5b85d419b7831.png?w=300" alt="image" title="image"></a></p>
+<p>a)首先选择库模板</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image5b115d5b4326c9.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image5b115d5b4326c9.png?w=300" alt="image" title="image"></a></p>
+<p>b)填充颜色</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image141df56dac.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image141df56dac.png?w=300" alt="image" title="image"></a></p>
+<p>C)编辑文字</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image17.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image17.png?w=300" alt="image" title="image"></a></p>
+<p>点击OK返回库属性,再点击OK提交图标,LabVIEW提示是否应用至库中其他VI,选择YES</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image202fed776d.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image202fed776d.png?w=300" alt="image" title="image"></a></p>
+<p>2 编辑VI图标:</p>
+<p>此时库中VI图标包含如下图层</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image2374953c08.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image2374953c08.png?w=300" alt="image" title="image"></a></p>
+<p>a)首先我们隐藏掉图标编号</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image266993fb27.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image266993fb27.png?w=300" alt="image" title="image"></a></p>
+<p>b）然后选择合适的图标</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image290ea50997.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image290ea50997.png?w=300" alt="image" title="image"></a></p>
+<p>C）填写说明文字</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image32.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image32.png?w=300" alt="image" title="image"></a></p>
+<p>这样一个图文并茂，风格统一的Icon就轻松完成了，可以看到利用LabVIEW2010的图层功能，加上良好的程序架构，优美的代码就在我们手中。</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image38.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image38.png?w=32" alt="image" title="image"></a><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image351e974c55.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image351e974c55.png?w=32" alt="image" title="image"></a><br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2010/09/02/archived-labview-2010-icon-editor-tips/" data-id="cl2en8lig001lv4un4dueapf0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-tips-quickdrop" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/08/12/archived-tips-quickdrop/" class="article-date">
+  <time datetime="2010-08-11T23:01:20.000Z" itemprop="datePublished">2010-08-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/08/12/archived-tips-quickdrop/">快速放置快捷键</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1557" class="bvMsg">
+
+<p>LabVIEW 2010发布以后无意中发现一个”古老”的新功能：快速放置</p>
+<p>这个功能的默认快捷键在LabVIEW英文版下是Ctrl+空格，和输入法切换的快捷键冲突了，因此一直没有使用过，</p>
+<p>LabVIEW 2010的中文版将这个快捷键修改为Ctrl+Shift+空格，就可以比较方便的调用了，</p>
+<p>LabVIEW 默认的键盘快捷键已经将26个字母全用完了，因此一些不是最常用的功能就放到了快速放置里：</p>
+ <table style="width:643pt;border-collapse:collapse;" border="0" cellspacing="0" cellpadding="0" width="696">  <col style="width:65pt;" width="87" /> <col style="width:578pt;" width="770" /> <tbody> <tr style="height:15pt;"> <td style="border-bottom:black 1pt solid;border-left:black .5pt solid;background-color:transparent;width:65pt;font-family:calibri;height:15pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:700;border-right:black .5pt solid;text-decoration:none;" height="20" width="87">键盘快捷键</td> <td style="border-bottom:black 1pt solid;border-left:black .5pt solid;background-color:transparent;width:578pt;font-family:calibri;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:700;border-right:black .5pt solid;text-decoration:none;" width="607">说明</td></tr> <tr style="height:15pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:65pt;font-family:calibri;background:#d9d9d9;height:15pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="20" width="87">Ctrl-D</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:578pt;font-family:calibri;background:#d9d9d9;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，为选中程序框图对象所有未连接的输入和输出创建输入或显示控件。</td></tr> <tr style="height:15pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:65pt;font-family:calibri;height:15pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="20" width="87">Ctrl-Shift-D</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:578pt;font-family:calibri;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，为选中程序框图对象所有未连接的输入和输出创建常量。</td></tr> <tr style="height:30pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:65pt;font-family:calibri;background:#d9d9d9;height:30pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="40" width="87">Ctrl-R</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:578pt;font-family:calibri;background:#d9d9d9;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，移除选中的程序框图对象和与之相连的控件和常量，并连接删除对象输入输出类型相同的接线端。</td></tr> <tr style="height:30pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:65pt;font-family:calibri;height:30pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="40" width="87">Ctrl-T</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:578pt;font-family:calibri;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，将前面板控件的输入标签移至控件左边，将前面板显示控件的标签移至控件右边。</td></tr> <tr style="height:15pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:65pt;font-family:calibri;background:#d9d9d9;height:15pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="20" width="87">Ctrl-P</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:578pt;font-family:calibri;background:#d9d9d9;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，将选中的前面板或程序框图对象替换为快速放置对话框中选中的对象。</td></tr> <tr style="height:15pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:65pt;font-family:calibri;height:15pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="20" width="87">Ctrl-I</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:578pt;font-family:calibri;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，在程序框图选中的连线上插入快速放置对话框中选中的对象。</td></tr> <tr style="height:15pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:65pt;font-family:calibri;background:#d9d9d9;height:15pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="20" width="87">Ctrl-Shift-I</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:578pt;font-family:calibri;background:#d9d9d9;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，在选中的多条连线上插入快速放置对话框中选中的对象。</td></tr> <tr style="height:30pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:65pt;font-family:calibri;height:30pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="40" width="87">Ctrl-B</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:578pt;font-family:calibri;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，将选中属性节点、调用节点、类说明符常量的VI服务器类改为在快速放置窗口输入的类。</td></tr> <tr style="height:30pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:65pt;font-family:calibri;background:#d9d9d9;height:30pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="40" width="87">Ctrl-Shift-B</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:578pt;font-family:calibri;background:#d9d9d9;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，将选中的属性节点/调用节点的属性/方法转换为快速放置窗口键入的属性或方法。</td></tr></tbody></table>
+
+<p>另外LabVIEW的快捷键时可以在选项里面修改的，个人最喜欢的就是Ctrl+&#96;这个组合，比较冷僻，一般不会冲突。</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/08/image5b45d64da4781.png"><img src="http://lhb5883.files.wordpress.com/2010/08/image5b45d64da4781.png?w=300" alt="image" title="image"></a><br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2010/08/12/archived-tips-quickdrop/" data-id="cl2en8lj50043v4undxxv3x2n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-tips-auto-install-labview-suite" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/03/26/archived-tips-auto-install-labview-suite/" class="article-date">
+  <time datetime="2010-03-25T19:54:47.000Z" itemprop="datePublished">2010-03-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/03/26/archived-tips-auto-install-labview-suite/">批量安装LabVIEW及组件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1520" class="bvMsg">
+
+<p>有了命令行我们只不过节约了几下鼠标,还要安装好一个组件之后再手动装下一个组件,还是很麻烦,有没有什么省事的办法呢?</p>
+<p>当然有,我们有请批处理文件(*.bat)出场.</p>
+<p><a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1mUGyPv86VpDqpCvF1g-XtKjzFES9Fqx3qayyX_rzmMyemnavCeqy0POzZbplHgpdqKAI61smPZYESdVKW-SfCMFM9yeerGRnxIiF_bCWau4I1wbRhbkmnZ9jec-eHQ5Xc8TrnqoYdBlfWAzBMTccypg/image[7].png">![image](https://aftv2q.bay.livefilestore.com/y1mqqNVZcgJPai7kLPfP-bwMXNiRj29p8OYhJkPI15R4vn-ro4qQ2lmU7LvHK1j8vfdh80QCLBLHUUlNPZ8CGUSbKVIA0-GWa2ehglraOPJmcCneWxwzrX6qOYGMC-_ATAVTbAGb9Tm6YnLhpCHrvT4lA&#x2F;image_thumb[3] 61095F84.png “image”)</a> </p>
+<p>[![image](<a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1mi-lnu06Lw7420S6HuMj8vWvDELiUrYj5iFZh4uw6XG8ORN_jYecm_QDrc07hu3RGxH1HiXUe6FW4TdMn3h6mhcfBrgK-V3dyrx033bkzAzVBJlOr23tK3rI6MB8wA1ukQGmrQh3218WNIc-kGtsWaw/image_thumb[5]">https://aftv2q.bay.livefilestore.com/y1mi-lnu06Lw7420S6HuMj8vWvDELiUrYj5iFZh4uw6XG8ORN_jYecm_QDrc07hu3RGxH1HiXUe6FW4TdMn3h6mhcfBrgK-V3dyrx033bkzAzVBJlOr23tK3rI6MB8wA1ukQGmrQh3218WNIc-kGtsWaw/image_thumb[5]</a> 2B50062B.png “image”)](<a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1mvtOis4jV9Le2-VIxUzE8D0cQwamCCNhUO-ndQNg3MCQ5ElsW3S70crQNR2pKO9BgeMwPvD8QNK3VYn2isBius6dsvpwOoV9sIEVwNuy8T8wC246WqxJpAudZsF1O0INPxzTdfRK85AWTO7BTzcLePg/image[11]">https://aftv2q.bay.livefilestore.com/y1mvtOis4jV9Le2-VIxUzE8D0cQwamCCNhUO-ndQNg3MCQ5ElsW3S70crQNR2pKO9BgeMwPvD8QNK3VYn2isBius6dsvpwOoV9sIEVwNuy8T8wC246WqxJpAudZsF1O0INPxzTdfRK85AWTO7BTzcLePg/image[11]</a> 0C99DDE7.png) </p>
+<p>对于上面这种情形，我们只要建立一个文本文件，输入以下内容，命名为Install.bat双击运行就可以一次安装LabVIEW2009SP1，实时，控制设计仿真等软件： <p>&quot;o:NI SoftwareLabVIEW 2009 SP1LabVIEW 2009 Service Pack 1 32-bitsetup.exe&quot; &#x2F;qb &#x2F;acceptlicenses yes &#x2F;disableNotificationCheck &#x2F;r:n<br>&quot;o:NI SoftwareLabVIEW 2009 SP1LabVIEW 2009 SP1 Real-Time Modulesetup.exe&quot; &#x2F;qb &#x2F;acceptlicenses yes &#x2F;disableNotificationCheck &#x2F;r:n<br>&quot;o:NI SoftwareLabVIEW 2009 SP1LabVIEW 2009 SP1 Control Design and Simulation Modulesetup.exe&quot; &#x2F;qb &#x2F;acceptlicenses yes &#x2F;disableNotificationCheck &#x2F;r:n <p>假如安装包放在其它计算机的共享里面呢？可以使用命令行把共享映射到本地驱动器： <p>net use o: <a>\pansinoagtreadonly</a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b155d.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b155d.png?w=300" alt="image" title="image"></a>  <p>这样我们就可以让他自己安装，而不需要我们操心了。   </p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2010/03/26/archived-tips-auto-install-labview-suite/" data-id="cl2en8lj2003tv4undmhhhl0d" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-tips-cmd-install-labview" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/03/25/archived-tips-cmd-install-labview/" class="article-date">
+  <time datetime="2010-03-25T02:24:31.000Z" itemprop="datePublished">2010-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/03/25/archived-tips-cmd-install-labview/">快速安装LabVIEW</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1513" class="bvMsg">
+
+<p>通常我们安装LabVIEW最常干的事情就是不停点的下一步，然后等进度条，然后再不停的点下一步，再等待进度条，最后重启。</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b25d1b50e68c.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b25d1b50e68c.png?w=300" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b55d7c0a2bb9.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b55d7c0a2bb9.png?w=300" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b85d26a1f898.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b85d26a1f898.png?w=300" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b115d135d2dfa.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b115d135d2dfa.png?w=300" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b145d2c18670b.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b145d2c18670b.png?w=300" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b175d3c6fcac5.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b175d3c6fcac5.png?w=300" alt="image" title="image"></a> </p>
+<p>其实LabVIEW是支持命令行安装的</p>
+<p>在CMD里面运行SETUP.EXE加上不同的参数就可以实现快速安装，例如下面这条就是快速安装LabVIEW到C盘并且装完不重启</p>
+<p>D:NI SoftwareLabVIEW 2009 SP1LabVIEW 2009 Service Pack 1 32-bit&gt;setup.exe &#x2F;qb &#x2F;acceptlicenses yes &#x2F;disableNotificationCheck &#x2F;r:n</p>
+<p>一旦运行就直接开始扫进度条</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b205d2a3315d1.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b205d2a3315d1.png?w=300" alt="image" title="image"></a> </p>
+<p>一个更简单的办法是创建Setup.exe的快捷方式，然后再目标后面直接加上 &#x2F;qb &#x2F;acceptlicenses yes &#x2F;disableNotificationCheck &#x2F;r:n</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b245d.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b245d.png?w=212" alt="image" title="image"></a> </p>
+<p>这样可以减少我们鼠标点击的次数…</p>
+<p>最省事的办法还是建立一个批处理文件，批量安装多个软件~</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b285d.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b285d.png?w=288" alt="image" title="image"></a><br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2010/03/25/archived-tips-cmd-install-labview/" data-id="cl2en8lj3003xv4une22b0548" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-2009-sp1-released" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/02/21/archived-labview-2009-sp1-released/" class="article-date">
+  <time datetime="2010-02-20T20:06:01.000Z" itemprop="datePublished">2010-02-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/02/21/archived-labview-2009-sp1-released/">LabVIEW 2009 SP1已经可以下载</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1482" class="bvMsg">
+
+<p>下载地址：（须注册）</p>
+<p><a target="_blank" rel="noopener" href="https://lumen.ni.com/nicif/us/evallvmaint/content.xhtml">https://lumen.ni.com/nicif/us/evallvmaint/content.xhtml</a></p>
+<p>据说修正了不少错误，比较令人郁闷的是需要用下载器下载，还好我猜测出了实际下载地址。</p>
+<p>因为牵涉到NI的版权问题，我就不放出实际的下载地址了，大家自己试验吧，还是有迹可寻的。</p>
+<p>对应的DCD可以在<a href="ftp://ftp.ni.com/support/drivercd/">ftp://ftp.ni.com/support/drivercd/</a>找到，</p>
+<h3 id="Index-of-x2F-support-x2F-drivercd-x2F"><a href="#Index-of-x2F-support-x2F-drivercd-x2F" class="headerlink" title="Index of &#x2F;support&#x2F;drivercd&#x2F;"></a>Index of &#x2F;support&#x2F;drivercd&#x2F;</h3><p>Name<br>Size<br>Date Modified  <p><a href="ftp://ftp.ni.com/support/">[parent directory]</a>  <p><a href="ftp://ftp.ni.com/support/drivercd/2008.08/">2008.08&#x2F;</a> LabVIEW 8.6<br>9&#x2F;22&#x2F;08 7:31:00 PM  <p><a href="ftp://ftp.ni.com/support/drivercd/2008.11/">2008.11&#x2F;</a><br>7&#x2F;1&#x2F;09 9:39:00 PM  <p><a href="ftp://ftp.ni.com/support/drivercd/2009.02/">2009.02&#x2F;</a> LabVIEW 8.6.1<br>2&#x2F;6&#x2F;09 5:02:00 PM  <p><a href="ftp://ftp.ni.com/support/drivercd/2009.08/">2009.08&#x2F;</a> LabVIEW 2009<br>7&#x2F;17&#x2F;09 4:31:00 PM  <p><a href="ftp://ftp.ni.com/support/drivercd/2009.11/">2009.11&#x2F;</a><br>11&#x2F;15&#x2F;09 7:57:00 PM  <p><a href="ftp://ftp.ni.com/support/drivercd/2010.02/"><strong><font color="#ff0000">2010.02&#x2F;</font></strong></a> LabVIEW 2009 SP1<br>1&#x2F;26&#x2F;10 10:58:00 PM  <p><a href="ftp://ftp.ni.com/support/drivercd/2010.08/">2010.08&#x2F;</a> LabVIEW 2010<br>1&#x2F;22&#x2F;10 5:38:00 PM  <p>2010.02目录就是LabVIEW2009SP1的对应驱动。可以看到已经出现了八月的站位目录，LabVIEW 2010应该正在Beta测试中，预计八月份就可以正式发布。现在NI的开发工具还是保持着一个快速演进的生命周期，还是非常有活力的，每年一个大版本升级能不断加入新的特性和功能，小版本修正错误。</p>
+<p>As of August 2010, new LabVIEW releases will no longer support: </p>
+<ul>
+<li>Windows 2000  <li>Mac OS X 10.4<img src="http://www.ni.com/images/misc/en/100113_lv_release210.gif"> <p><sup>1</sup> Prior to LabVIEW 2009, LabVIEW was only a 32-bit application that was compatible with Windows Vista x64 through Windows on Windows (WoW) 64. LabVIEW 2009 and later will provide both 32-bit and 64-bit versions of the LabVIEW development environment. <p>而微软还是保持2~3年一代Visual Studio的速度发布，基本上和操作系统相差半年左右。VS2010预计4月份完成，针对Win7和2K8R2开发，个人的感想是.net开发终于进入一个比较成熟的阶段，VS本身也应用了.net来开发，OS也普遍内置.net，以后普及就比较快速了。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://support.microsoft.com/lifecycle/search/?sort=PN&amp;alpha=Visual+Studio">http://support.microsoft.com/lifecycle/search/?sort=PN&amp;alpha=Visual+Studio</a></p>
+<p><a target="_blank" rel="noopener" href="http://tech.it168.com/a2009/1208/821/000000821252.shtml">http://tech.it168.com/a2009/1208/821/000000821252.shtml</a></p>
+<p>总体来说LabVIEW的演进和Visual Studio越来越像，不断地拓展新功能和增加新特性，推动技术的发展和进步。</p>
+<p>最后提醒一下 <strong><font color="#ff0000">LabVIEW2009SP1是一个收费升级，安装需要重新激活软件。</font></strong><br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2010/02/21/archived-labview-2009-sp1-released/" data-id="cl2en8lig001hv4unffxc8ilv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-2009-icon-editor-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/12/31/archived-labview-2009-icon-editor-tips/" class="article-date">
+  <time datetime="2009-12-30T18:08:15.000Z" itemprop="datePublished">2009-12-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/12/31/archived-labview-2009-icon-editor-tips/">关于LabVIEW 2009图标编辑器技巧两则</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1472" class="bvMsg"> 
+
+<p>LabVIEW2009的图标编辑器在书写字符时会出现模糊的现象</p>
+<p>![image](<a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1m80sTh9OID-hm_xBpKcQJPf8_l_40wO8nkraFJxyFseIXlBkmBq6Vj0WvgUUJRsb4Hu6IyDvmuyjJ5oSATC62_cykAwMJ_B852vsgnYTj3FYtTjnYLFL_pgHzx0IgBXG85Y_BTw4lQy5CJIHojMzYrg/image[11]">https://aftv2q.bay.livefilestore.com/y1m80sTh9OID-hm_xBpKcQJPf8_l_40wO8nkraFJxyFseIXlBkmBq6Vj0WvgUUJRsb4Hu6IyDvmuyjJ5oSATC62_cykAwMJ_B852vsgnYTj3FYtTjnYLFL_pgHzx0IgBXG85Y_BTw4lQy5CJIHojMzYrg/image[11]</a> 264EED05.png “image”) </p>
+<p>这个BUG是Cleartype导致的，Cleartype是一种LCD优化显示技术用来平滑字体，在大屏幕上显示大号字体也不会有明显的锯齿，但是对于小号字体就会有模糊的现象。</p>
+<p>IE8中就强制打开了这一技术来获得更好的观感。（说句题外话，虽然我现在主浏览器是Google Chrome，不过对页面渲染效果最好的还是IE8）</p>
+<p>如何解决呢？XP在我的电脑上右键，选择属性</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/12/image5b145d.png?w=258" alt="image" title="image"> </p>
+<p>在高级标签页选择设置</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/12/image5b25d0e8e803e.png?w=205" alt="image" title="image"> </p>
+<p>在视觉效果里关闭平滑字体边缘。</p>
+<p>Windows7&#x2F;Vista在控制面板里搜索ClearType</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/12/image5b55d6f2b8dd0.png?w=300" alt="image" title="image"> </p>
+<p>取消打开Cleartype。</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/12/image5b85d6f5a7be9.png?w=300" alt="image" title="image"> </p>
+<p>这样打出来的字就不会模糊了。</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/12/image5b175d7d26dedb.png?w=300" alt="image" title="image"></p>
+<p>关于Cleartype的一些相关链接。</p>
+<p>Wiki的介绍</p>
+<p><a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/ClearType">http://en.wikipedia.org/wiki/ClearType</a></p>
+<p>M$自家的介绍</p>
+<p><a target="_blank" rel="noopener" href="http://www.microsoft.com/typography/cleartypeInfo.mspx">http://www.microsoft.com/typography/cleartypeInfo.mspx</a></p>
+<p>XP的Cleartype在线调节工具</p>
+<p><a target="_blank" rel="noopener" href="http://www.microsoft.com/typography/cleartype/tuner/step1.aspx">http://www.microsoft.com/typography/cleartype/tuner/step1.aspx</a></p>
+<p>离线版</p>
+<p><a target="_blank" rel="noopener" href="http://www.microsoft.com/typography/ClearTypePowerToy.mspx">http://www.microsoft.com/typography/ClearTypePowerToy.mspx</a></p>
+<p>另外，关于图标编辑器禁用的办法：</p>
+<p> <a target="_blank" rel="noopener" href="http://ruanqizhen.spaces.live.com/blog/cns!5852D4F797C53FB6!4848.entry" title="http://ruanqizhen.spaces.live.com/blog/cns!5852D4F797C53FB6!4848.entry">http://ruanqizhen.spaces.live.com/blog/cns!5852D4F797C53FB6!4848.entry</a></p>
+<p>我个人觉得LabVIEW最好的办法是支持标准的图标文件，这样可以更加开放。例如M$的VisualStudio图标编辑器其实就是第三方的Axialis _IconWorksho_p</p>
+<p>还需要增加更大分辨率和颜色数的支持，能够在图标里提供更多的信息，像LabVIEW Lego开发软件的图标就很有特点。当然这个工作量就非常巨大了，需要修改大量的图标。<br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/12/31/archived-labview-2009-icon-editor-tips/" data-id="cl2en8lie001av4ungwfbga49" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

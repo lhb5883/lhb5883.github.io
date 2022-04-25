@@ -1,38 +1,262 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
+  
+  <title>关于示波器的触发灵敏度（Trigger Sensitivity） | haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="示波器板卡有一项参数叫Edge Trigger Sensitivity  这一项指标翻译过来应该是触发敏感度，有什么意义呢？ 当我们用示波器高速采集一个高频脉冲信号时，往往会混入很多噪声信号，如果没有触发敏感度，直接按边沿触发往往不能得到一个稳定的示波器图形。  触发灵敏度就是用来滤除噪声对触发的影响，使之能够正确被有效信号而非噪声触发，获得稳定波形的一个参数。 TEK网站的定义如下： Tri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于示波器的触发灵敏度（Trigger Sensitivity）">
+<meta property="og:url" content="http://haobo.li/2009/09/15/archived-scope-trigger-sensitivity/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="示波器板卡有一项参数叫Edge Trigger Sensitivity  这一项指标翻译过来应该是触发敏感度，有什么意义呢？ 当我们用示波器高速采集一个高频脉冲信号时，往往会混入很多噪声信号，如果没有触发敏感度，直接按边沿触发往往不能得到一个稳定的示波器图形。  触发灵敏度就是用来滤除噪声对触发的影响，使之能够正确被有效信号而非噪声触发，获得稳定波形的一个参数。 TEK网站的定义如下： Tri">
+<meta property="og:locale">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/09/image5b25d23274975.png?w=300">
+<meta property="og:image" content="http://www.ed-china.com/ARTICLE_IMAGES/200801/20080101_TM_DT_TS_27F2.JPG">
+<meta property="article:published_time" content="2009-09-14T22:19:01.000Z">
+<meta property="article:modified_time" content="2022-04-18T16:55:07.781Z">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://lhb5883.files.wordpress.com/2009/09/image5b25d23274975.png?w=300">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block page_class %}page-post-detail{% endblock %}
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-archived-scope-trigger-sensitivity" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/09/15/archived-scope-trigger-sensitivity/" class="article-date">
+  <time datetime="2009-09-14T22:19:01.000Z" itemprop="datePublished">2009-09-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computers-and-Internet/">Computers and Internet</a>
+  </div>
 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于示波器的触发灵敏度（Trigger Sensitivity）
+    </h1>
+  
 
-{% block content %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1381" class="bvMsg">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<p>示波器板卡有一项参数叫Edge Trigger Sensitivity</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/09/image5b25d23274975.png?w=300" alt="NI PXI/PCI-5152 Specifications（P11）" title="NI PXI/PCI-5152 Specifications（P11）"></p>
+<p>这一项指标翻译过来应该是触发敏感度，有什么意义呢？</p>
+<p>当我们用示波器高速采集一个高频脉冲信号时，往往会混入很多噪声信号，如果没有触发敏感度，直接按边沿触发往往不能得到一个稳定的示波器图形。</p>
+<p><img src="http://www.ed-china.com/ARTICLE_IMAGES/200801/20080101_TM_DT_TS_27F2.JPG" alt="图输入200mVpp锯齿波时的情况。" title="图输入200mVpp锯齿波时的情况。"></p>
+<p>触发灵敏度就是用来滤除噪声对触发的影响，使之能够正确被有效信号而非噪声触发，获得稳定波形的一个参数。</p>
+<p>TEK网站的定义如下：</p>
+<h6 id="Trigger-Sensitivity"><a href="#Trigger-Sensitivity" class="headerlink" title="Trigger Sensitivity"></a>Trigger Sensitivity</h6><p>Trigger sensitivity is a critical attribute when capturing high-speed digital signals. An oscilloscope‘s trigger sensitivity determines its ability to react to specified edge trigger conditions over a range of frequencies. The specification takes the following form: power-line hum interference. </p>
+<p><strong>Trigger System Sensitivity, Internal DC Coupled:</strong><br>0.35 div DC to 50 MHz, increasing to 1.5 div at 3 GHz<br>(guaranteed); 2.7 div at 4 GHz (typical)<br>(from TDS7404 DPO data sheet)</p>
+<p>The oscilloscope will trigger on a signal of 0.35 divisions amplitude p-p in the range of frequencies from DC to 50 MHz. As the frequency goes beyond 50 MHz, the signal must be larger (higher in amplitude) to trigger the instrument. At 3 GHz, the signal must be at least 1.5 divisions in amplitude. Trigger sensitivity is specified with a sine wave input. <p>灵敏度<br>在捕获高速数字信号时，触发灵敏度是一个关键指标。示波器的触发灵敏度决定着在某个频率范围内示波器对规定边沿触发条件的反应能力。这一指标采用下述形式：电源线噪声干扰。<br>       触发系统灵敏度、内部DC耦合:<br>DC - 50 MHz, 0.35格；3 GHz时提高到1.5格(保障值); 4 GHz时2.7格 (典型值)(摘自TDS7404 DPO技术数据)<br>示波器将在DC到50 MHz 的频率范围内，在0.35格的p-p幅度上触发。在频率超过50MHz时，信号必须更大(幅度更高)，以触发仪器。在3 GHz时，信号的幅度必须在1.5格上。可以使用正弦波输入指定触发灵敏度。 <p>开头图中的指标就是说使用通道触发时灵敏度是满量程的10%，而使用外部触发时灵敏度是固定的0.5V峰峰值。小于灵敏度的毛刺都会被示波器忽略，不认为是触发。 <p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="http://www.ed-china.com/ART_8800024153_400013_500015_TS_f6dcb05a.HTM">http://www.ed-china.com/ART_8800024153_400013_500015_TS_f6dcb05a.HTM</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.tek.com/Measurement/scopes/selection/performance/trigger.html">http://www.tek.com/Measurement/scopes/selection/performance/trigger.html</a></p>
+<p>触发扫盲：</p>
+<p><a target="_blank" rel="noopener" href="http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf" title="http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf">http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf</a><br>  </p></div></p>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/09/15/archived-scope-trigger-sensitivity/" data-id="cl2en8lix003bv4unfub549nc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2009/11/24/archived-pxi-os-restore/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PXI控制器系统备份软件选择
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2009/09/14/archived-code-share-cmd-open-webpage/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[code share]使用命令行打开网页</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

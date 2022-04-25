@@ -1,38 +1,259 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
+  
+  <title>PXI控制器系统备份软件选择 | haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="虽然NI的控制器质量非常稳定可靠，不过如果使用Windows而非RealTimeOS的话，系统备份恢复软件就是一个值得考虑的问题了。 为了找到一个好用的恢复软件给我们的8176上个保险，来来回回测试了多种备份软件。 系统备份与恢复软件厂商目前主要是Symantic赛门铁克和Acronis两大厂商。其中Symantic以GHOST系列强大的功能闻名，在收购了PowerQuest之后其实力不可小视">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PXI控制器系统备份软件选择">
+<meta property="og:url" content="http://haobo.li/2009/11/24/archived-pxi-os-restore/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="虽然NI的控制器质量非常稳定可靠，不过如果使用Windows而非RealTimeOS的话，系统备份恢复软件就是一个值得考虑的问题了。 为了找到一个好用的恢复软件给我们的8176上个保险，来来回回测试了多种备份软件。 系统备份与恢复软件厂商目前主要是Symantic赛门铁克和Acronis两大厂商。其中Symantic以GHOST系列强大的功能闻名，在收购了PowerQuest之后其实力不可小视">
+<meta property="og:locale">
+<meta property="article:published_time" content="2009-11-23T23:52:30.000Z">
+<meta property="article:modified_time" content="2022-04-18T16:55:07.781Z">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block page_class %}page-post-detail{% endblock %}
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-archived-pxi-os-restore" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/11/24/archived-pxi-os-restore/" class="article-date">
+  <time datetime="2009-11-23T23:52:30.000Z" itemprop="datePublished">2009-11-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computers-and-Internet/">Computers and Internet</a>
+  </div>
 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PXI控制器系统备份软件选择
+    </h1>
+  
 
-{% block content %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1389" class="bvMsg">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<p>虽然NI的控制器质量非常稳定可靠，不过如果使用Windows而非RealTimeOS的话，系统备份恢复软件就是一个值得考虑的问题了。</p>
+<p>为了找到一个好用的恢复软件给我们的8176上个保险，来来回回测试了多种备份软件。</p>
+<p>系统备份与恢复软件厂商目前主要是Symantic赛门铁克和Acronis两大厂商。其中Symantic以GHOST系列强大的功能闻名，在收购了PowerQuest之后其实力不可小视。Acronis以True Image系列软件的方便易用与稳定可靠被NI作为系统默认的硬盘恢复方案。</p>
+<p>我初步的目标是找到一个能在Windows7下备份和恢复整个分区的软件，取代我一直使用的DriveImage。不过该方法需要拆开控制器，所以要是能做成多启动这种方案也不错。</p>
+<p>下表是一个简单的比较<br> <table border="0" cellspacing="0" cellpadding="0"> <tbody> <tr> <td width="165">控制器型号</td> <td width="174">Norton Save&amp;Restore&#x2F;<br>Symantec Backup Exec System</td> <td width="107">双启动GHOST</td> <td width="138">光盘&#x2F;U盘版GHOST</td> <td width="198"> </p>
+<p>Acronis True Image OEM</p>
+</td> <td width="206">Acronis True Image 2010</td> <td width="246">Power Quest Drive Image 2002</td></tr> <tr> <td width="165">PXI-817X/818X（Intel8系列芯片组）</td> <td width="174">OK</td> <td width="107">OK</td> <td width="138">Fail</td> <td width="198">OK</td> <td width="206">不支持Windows2000</td> <td width="246">OK</td></tr> <tr> <td width="165">PXI-819X/810X/8130（Intel9系列芯片组/Nvidia N-Force）</td> <td width="174">OK</td> <td width="107">OK</td> <td width="138">OK</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">PXI-8108/8110（IntelG系列芯片组）</td> <td width="174">OK</td> <td width="107">未知</td> <td width="138">Fail</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">功能</td> <td width="174"> </td> <td width="107"> </td> <td width="138"> </td> <td width="198"> </td> <td width="206"> </td> <td width="246"> </td></tr> <tr> <td width="165">在Windows下备份和恢复分区（用于在PC机上恢复系统，适用于硬盘数据完全丢失无法启动等情况）</td> <td width="174">只能用于系统盘</td> <td width="107">/</td> <td width="138">/</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">在非windows下备份和恢复分区</td> <td width="174">无</td> <td width="107">OK</td> <td width="138">不适用老控制器</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">无</td></tr> <tr> <td width="165">操作系统支持</td> <td width="174">XP/VISTA</td> <td width="107">/</td> <td width="138">/</td> <td width="198">2000/XP</td> <td width="206">XP/VISTA/Windows7</td> <td width="246">2000/XP</td></tr></tbody></table> 
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<p>目前GHOST的二次封装而成的USB GHOST，光盘GHOST、一键GHOST等等版本极多，不过能兼容NI大部分控制器的GHOST版本并不多。而企业版GHOST套装使用和配置极其复杂，操作简单的Windows下备份和恢复的软件在系统崩溃后就没有什么用了。所以值得考虑的就是系统恢复光盘里自带的Acronis True Image OEM版，是一个简单可靠的一键恢复系统，不过一旦恢复就会使系统恢复到出厂状态。需自由备份和恢复就需要完整版的软件才行。</p>
+<p>不过我们其实需要的功能往往也没有那么复杂，只需要能恢复系统到一个安装调试好所有软件的状态，那么这时候就可以用到下面这个小技巧了 。</p>
+<p>1。正常安装Windows，注意不要选择安装F4一键恢复。</p>
+<p>2。分区、安装软件、配置程序。。。</p>
+<p>3。将系统恢复盘的CDROM:OSPXI_VXI$OEM$$1SYSPREP目录下的ACRONIS.XML，ACRONIS8199_ENABLE.BAT，ACRONISTRUEIMAGE_8199.MSI三个文件复制到c:Sysprep目录下</p>
+<p>4。运行c:SysprepACRONIS8199_ENABLE.BAT，重启系统后就会自动备份操作系统，完成之后在系统启动时按F4就可以一键恢复了。<br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/11/24/archived-pxi-os-restore/" data-id="cl2en8liw0035v4un3r283a5a" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2009/11/26/archived-stream-to-disk-guide-01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          流盘备忘录(1)-流盘概览
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2009/09/15/archived-scope-trigger-sensitivity/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">关于示波器的触发灵敏度（Trigger Sensitivity）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

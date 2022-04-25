@@ -1,23 +1,794 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+  
+  <title>haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on">
+<meta property="og:type" content="website">
+<meta property="og:title" content="haobo.li">
+<meta property="og:url" content="http://haobo.li/page/6/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on">
+<meta property="og:locale">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block page_class %}
-  {% if is_home() %} page-home {% endif %}
-{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-archived-tips-fpga-development" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/02/16/archived-tips-fpga-development/" class="article-date">
+  <time datetime="2009-02-15T22:10:44.000Z" itemprop="datePublished">2009-02-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/02/16/archived-tips-fpga-development/">如何加速FPGA开发？</a>
+    </h1>
+  
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1185" class="bvMsg">
+
+<p>NI LabVIEW FPGA模块提供了一个非常方便的接口供我们以LabVIEW图形化的方式开发FPGA程序，不过也有令人困扰的问题就是LabVIEW FPGA代码编译的速度较慢，如果机器的配置不够高就是一件折磨人的事情。 <p>所以今天给大家介绍几个小技巧： <p>1. IPnet <p>对于LabVIEW开发者，最常用的就是范例查找器这个工具，俗话说得好：“有范例，无问题。” <p>对于FPGA，还有一个非常好的工具： </p>
+<h3 id="LabVIEW-FPGA-IPNET"><a href="#LabVIEW-FPGA-IPNET" class="headerlink" title="LabVIEW FPGA IPNET"></a>LabVIEW FPGA IPNET</h3> <p>[http://zone.ni.com/devzone/cda/tut/p/id/6870](http://zone.ni.com/devzone/cda/tut/p/id/6870 "http://zone.ni.com/devzone/cda/tut/p/id/6870") > <p>LabVIEW FPGA IPNET是您浏览、领会和下载LabVIEW FPGA函数或IP（知识产权）的一站式资源中心。下表是从LabVIEW FPGA函数调色板、NI内部开发人员和LabVIEW FPGA社区收集的FPGA IP与范例的集合。您应当使用这一资源中心，以获取您的应用所需的IP、下载范例以帮助掌握编程技术和深入探究LabVIEW FPGA平台所提供的IP。除了探究这里所提供的资源外，您也可以通过点击下面的链接，为LabVIEW社区共享您的LabVIEW FPGA IP或者提交您对现有IP的更新。 <p>IP是知识产权的缩写，这里就是指NI FPGA的算法。 <p>2.LabVIEW验证 <p>当我们自己写好一个算法或者我们找到了别人写好的IP以后，为了减少编译后在返工的情况，我们可以在LabVIEW里面验证一下算法是否有逻辑问题。 <p>A：在My Computer新建一个VI把FPGA算法复制进去，然后在My Computer下调试。 <p>B：在建好的VI下修改程序运行的位置。 <p>[![image](https://aftv2q.bay.livefilestore.com/y1mVCBaze_B73nnXu9lsLJpGKuFuUQK1iPmaQjTGIOPRkBGIelNyBG-V47Clnc88V7vkwAFyGV06S0baTjnrPC0gwHv5rW0UKOKmGzZXZ87x_Nmy8CvtRAFbTiNP1CuQ6l8cs-nW8JumGA/image_thumb[1].png "image")](https://aftv2q.bay.livefilestore.com/y1m16CiQX4LAsE9oz0_nT9oAPGaxircpCKDunowiDEkwRpRA8a_dtd1ahoztEJzH2fLqq5VONClJxbx-wJJMajnGrCfGRRqIDe4wDsKqggbfhOSFMOWLVfPRm--pW4RPUSotvSRaw6JaIs/image[3].png)  <p>3.设置Compile Server： <p>LabVIEW FPGA编译过程是比较长的，并且速度和计算机配置有关，我们可以在一台机器上开发，另一台机器上编译，这样可以节约时间。 <p>首先在服务器端打开compileServer，并确保防火墙开放96端口或者关闭防火墙， <p>[![image](http://lhb5883.files.wordpress.com/2009/02/image5b65d.png?w=300 "image")](http://lhb5883.files.wordpress.com/2009/02/image5b65d.png) [![image](http://lhb5883.files.wordpress.com/2009/02/image5b175d.png?w=300 "image")](http://lhb5883.files.wordpress.com/2009/02/image5b175d.png)  <p>然后在客户端LabVIEW工具菜单下打开FPGA Module Option，点击Configure按钮，在Machine下输入服务器IP地址，点击OK保存，这样在编译FPGA时就会调用服务器进行。 <p> <p>[![image](http://lhb5883.files.wordpress.com/2009/02/image5b125d.png?w=279 "image")](http://lhb5883.files.wordpress.com/2009/02/image5b125d.png) [![image](http://lhb5883.files.wordpress.com/2009/02/image5b165d.png?w=300 "image")](http://lhb5883.files.wordpress.com/2009/02/image5b165d.png)  <p>  <p>附 FPGA代码的编译过程： <p>首先将LabVIEW 程序框图转换为临时文件，然后传输到编译服务器生成和优化VHDL代码，最后编译为bitfile供下载到FPGA执行。 <p>其中最耗时就是LabVIEW生成VHDL这一步，因为从图形化代码到逻辑电路关系的翻译需要大量的运算，除此之外还要为FPGA芯片优化，提高执行效率，这样就导致要花费较多的时间。  
+</p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/02/16/archived-tips-fpga-development/" data-id="cl2en8lj40041v4un979d6ycc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-led-in-labview" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/01/11/archived-led-in-labview/" class="article-date">
+  <time datetime="2009-01-11T05:34:02.000Z" itemprop="datePublished">2009-01-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/01/11/archived-led-in-labview/">不折腾——如何在LabVIEW中实现LED数码管显示效果</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1158" class="bvMsg">
+
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/01/clip_image0025b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/01/clip_image0025b35d.jpg?w=300" alt="clip_image002" title="clip_image002"></a> <p>数码管是一种非常常用的元器件，适合用于数字的显示，在LabVIEW中我们可以有多种方式折腾出这种效果： <p><strong>第一种：不折腾——改变字体</strong> <p>LabVIEW默认使用系统的应用程序字体，我们也可以使用其它字体来自定义控件。 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/01/clip_image0045b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/01/clip_image0045b35d.jpg?w=153" alt="clip_image004" title="clip_image004"></a><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/01/clip_image0065b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/01/clip_image0065b35d.jpg?w=180" alt="clip_image006" title="clip_image006"></a> <p>这是一个使用DigifaceWide字体的Numeric控件效果，不过前提是系统有这种字体才可以正常显示，如果要发布到其他机器需要将字体文件复制到Windows文件夹的Fonts目录。 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/01/clip_image0085b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/01/clip_image0085b35d.jpg?w=300" alt="clip_image008" title="clip_image008"></a> <p><strong>第二种 折腾不——自定义控件</strong> <p>图示是一个LED数码管的段码图，每一段都有亮和暗两种状态，通过不同的组合实现表示各种数字，因此我们可以用布尔控件和簇控件实现该效果。 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/01/clip_image0105b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/01/clip_image0105b35d.jpg?w=200" alt="clip_image010" title="clip_image010"></a><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/01/clip_image0125b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/01/clip_image0125b35d.jpg?w=191" alt="clip_image012" title="clip_image012"></a> <p>在NI Vision开发软件里就提供了这种簇控件，我们也可以自己实现。 <p>但是比较麻烦的是我们每次用这个空间都需要把数字转换为布尔量序列。 <p><strong>第三种 不，折腾——使用XControl</strong> <p>这个和第二种办法差不多，不过一劳之后我们就可以永逸了 <p>首先先建立一个XControl <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/01/clip_image0145b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/01/clip_image0145b35d.jpg?w=300" alt="clip_image014" title="clip_image014"></a> <p>然后在Façade加入转换代码 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/01/clip_image0165b45d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/01/clip_image0165b45d.jpg?w=300" alt="clip_image016" title="clip_image016"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/01/clip_image0185b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/01/clip_image0185b35d.jpg?w=188" alt="clip_image018" title="clip_image018"></a><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/01/clip_image0205b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/01/clip_image0205b35d.jpg?w=188" alt="clip_image020" title="clip_image020"></a> <p>然后就可以在程序里调用了： <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/01/clip_image0225b45d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/01/clip_image0225b45d.jpg?w=300" alt="clip_image022" title="clip_image022"></a>   补上[相关文件](<a target="_blank" rel="noopener" href="http://cid-866b8f96a2761bbe.skydrive.live.com/self.aspx/Public/xcontrol">http://cid-866b8f96a2761bbe.skydrive.live.com/self.aspx/Public/xcontrol</a> led.zip)：</p>
+</p></p></p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/01/11/archived-led-in-labview/" data-id="cl2en8lis002hv4un396xe47m" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-simulation-module-amesim" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/08/06/archived-labview-simulation-module-amesim/" class="article-date">
+  <time datetime="2008-08-05T18:09:05.000Z" itemprop="datePublished">2008-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/08/06/archived-labview-simulation-module-amesim/">LabVIEW Simulation module与第三方模型（AMESim）的互联性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1101" class="bvMsg">
+
+<p>  <p><strong>安装要求</strong> <p>LabVIEW的版本为：8.2, 8.2.1, 8.5 （当前版本为8.5）并需要安装RT（实时）和CDS（控制设计和仿真）模块。 <p>需要支持LabVIEW Cosim Interface的license.dat（由LMS公司提供，放置在D:AMESimv800licensing目录下）。 <p>需要安装Microsoft Visual C++ 6.0以上版本（英文版）。 <p>操作系统必须为为Windows。 <p><strong>许可配置</strong> <p>AMESim的许可配置及编译器的选择（微软VC++编译器） <p>实时目标机许可配置： <p>将rttargetslicenses.h 文件（由LMS提供）放置于D:AMESimv800interfaceslabview目录下即可。 <p><strong>AMESim模型准备</strong> <p>1.新建一个AMESim模型，并创建接口如图所示： <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1po3tof4rFI5_mWWD5E8M6kNu-6x0rA38mpkznU7925hMUJSuHsHqFB5h6LloOQ_UQ?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pe4_ATVC0vfwOb-n8xzrOekFU91zrWu-iG_iCR0e8BTzIJINyhFP06kXOZH4Txlne_QqTe8nG4QY?PARTNER=WRITER" alt="clip_image002"></a> <p>然后，在接口对话框中的‘Type of Interface’下拉菜单中选择LabVIEW Simulation Module，设置input和output的个数，并逐一对每个input和output进行定义： <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1p9im7NkRoNrK7ojRpsQXLszygmKbC9kCE92qjfitskofSkEa17e-a9BjMbzH-VdfEKyW2LPC-mZk?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pEgQ_myF7DvTPrcQywP1zkv-yXIPlOTAAkVe6PpxZCjF7_XH6g7SeHccbbmMM_lF3OKNJmicTsio?PARTNER=WRITER" alt="clip_image004"></a> <p>点击‘OK’之后就会生成LabVIEW的接口模块。 <p>2．将接口模块与AMESim模型的其余部分相连接 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1p7pomi9UCf1O2dQCiOw6wlVCvpUFiW7Yu95dUwfonDtqkO7-as8JjppxgIfLyXbfiodpJh6ovbK0?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p5U1HgNuUqW1DOjZSFI8WsqTaUTVNhVubZiB3NpcQasVc4gbTPY4xximrvEwjykWTmwrH3691j14?PARTNER=WRITER" alt="clip_image006"></a> <p>点击‘parameter mode’（参数模式），AMESim会用VC编译器编译模型，并在工作目录下生成和模型相关的dll文件。假设该模型名为labviewAMERT.ame，则该dll文件名为labviewAMERT_.dll。 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pxNhi1Nj5dnDR42w5wVach215S4pUue7K8Tclth4hW3hhLa14Yll4Iqrvx2E9ZAoHX3PU87ssRLE?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pdFBgf1mj3FN5Fnj8sAKs5k4RQgLP6QpZH7glJf96ftnQupVH40_Wu7GOW3ZGUoOUnExIfQx73Os?PARTNER=WRITER" alt="clip_image008"></a> <p>这个dll文件可通过LabVIEW的External Model Interface模块加载到LabVIEW中，用于支持Windows环境下与LabVIEW的非实时偶合仿真。 <p><strong>准备LabVIEW 仿真VI</strong> <p>LabVIEW 环境配置：安装LabVIEW8.5和RealTime（实时）、Control Design and Simulation（控制设计仿真）模块，安装完成后应如下图所示： <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pQfuVKbeNuT5Bdjass2x17AwaKmcA578tbJHgtnt5kC6GW5tCbyLCOw10koF9dw0Djc-01PjG7IY?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p_BbXluwbeWGsZ8KJbGaMJaYh2Sn4OoYAf3-yT-3xL9KhXREgqGUeeSMdjB8JPSnKn54L9JabtmQ?PARTNER=WRITER" alt="clip_image010"></a> <p>找到并起动与LabVIEW的插件Simulation Module中的External Model Interface相关的模板vi。在版本8.5中，该例子为bouncingball.vi，位于C:Program FilesNational InstrumentsLabVIEW 8.5examplessimulationExternal Model InterfaceBouncingBall目录下， <p>注意： 要选择’indirect feedthough’的那个，而不是’direct feedthrough’的那个，否则无法正常运行。 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pkc49hweQmYJzbMeGS_C-eM_yG7BZKpU9k5Cfhce1Soy85qTfU6p2A7UFy48NLexoihA0I5s_ScA?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p3X7x4MTqwfSgL7VZsMWWtYq0g2XeJJZpkAo5jgEYZQb4yh3wvilTfx0PvldxdkeRTPWtrr4iaBM?PARTNER=WRITER" alt="clip_image012"></a> <p>根据模型的具体细节配置External Model Interface Node <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pAwYhbUgksRjByNHe49eD_iawqEzuMNJwdWGGzzKSbmfloX1Ja56cdhVkv5DL4FTWP10M0JvIjMI?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p4vcULDORJq8YU6JEtYKSi6rSSRjrZCSK3vjGUIqhdHmghxQTJds1H6C4ioitmwNc-KFINCOYQI8?PARTNER=WRITER" alt="clip_image014"></a> <p>的各个端口，主要包括输入<a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pX9onthMhUodW9OtcKXbwcqaHqwBRWJFK4_ZAEkZPmYjG0wtg87-l-Lqmtwm8q-ToEIi0S2X5PyQ?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p2uVSxCZdgnkpItXGTB9buPjqyu1RYdV77FmzqoHxMhVGnU1u_nIf25DuBtgd2V2delZWoLRx-7U?PARTNER=WRITER" alt="clip_image016"></a>输出<a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pmlDCQ58l1LGp2ZMsSwO3An-I9xGv8vwcTPkil8YrCldBDKm-PGvE5Y9LICkF0vDSn8EicwURuUs?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pbzMaWMsAzAY2Rlw1qa2_o5BlErjJuQoF2ThI8RzwJYS-yJyHlN9YSGTEu-Hje5ByJIxN8lBZZ1A?PARTNER=WRITER" alt="clip_image018"></a>端的配置， <p>指定AMESim生成的dll文件<a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1p-Xelmp5jhqkImJmq2PEi3_ralqJiKj9fDLWyCTG4oT0554W5ElDO0ynQl6I0pUnM8y-sQSu3eUU?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pobV1rPY4wIpWZWrMTZoueAZfWa79cPl29iQsnfSbflbfFwBkmySIYxQGpX1f9aMVVcZm8cZq0Bg?PARTNER=WRITER" alt="clip_image020"></a>。 <p>设置后得到完整的vi，及虚拟控制面板： <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1psDwgSaWlGIcmkqSAffhFL9PeCVwz8Ua0lpb-11HObHSQFCVWXiT8LLwy2whM-PBntmUgQIePLy8?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pnTlbfpiLipCWrKzmAjMX0WknenWKj7iHqz1xrpGXkNOdoVTfnbOYkLIxvuti4mrpYf7tZHdHrMU?PARTNER=WRITER" alt="clip_image022"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pqkklFy5C570FgPSrQUiOioIA9rg41vOL64R03Va2a3CLxXdXtMtv1pxOyO5cK4VU?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pBL5D-0xl4nYJalPnjTqRPMpdTu9X4Jz2qDd0poUhgjDwWHRRoLPCusHgeJf-fxxaiL94TcKG6qA?PARTNER=WRITER" alt="clip_image024"></a> <p>保存并关闭LabVIEW，在AMESim中重写文件，强制编译（确保被调用的dll文件能够反映模型的当前设置）并从AMESim中启动LabVIEW VI。 <p>注意：AMESim要处于参数模式下 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pqGeG4f-vnYjJKRgzqqPFZFj6H7q-Gtgv7Z7_nH7SXY2b55h6jDZBtOIRuERi85AVWKh5Iz6Zbe0?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pBdiRghfHV3ZlRKoYmvtQjNK0rbdA9XMWQN-ZSiaKdsnfiQsVqv-OZmzI8tBFLO7G3_hCilx_3LE?PARTNER=WRITER" alt="clip_image026"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pQ_3tS6awFFFSbTYEoBea1czuTG30zy_expMrP4woUE6rwgn91pcbdrkQnLmYMkT5EFXBLnI0ozo?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1poizNdLARcvkgjxFbxFG7vUxFzHbVCTMcKefnQ71-0A66KmFBLfTYv_ZnvJgUjiEgNYtVSysYSMA?PARTNER=WRITER" alt="clip_image028"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1p1dFuXXtcxQz4YrEaQK3qsA-tcFHy0F1_sR5VR2DLMJviRPBJAS_RE78Edfo2gzr89psSXBF6swI?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p_Ywr0lFNau_KyGAuhhC4-nGK13Mk2APzmZqEKeteCE0HNTvJtm5-b1-yMzcqF8aEBZxssaZ0dJs?PARTNER=WRITER" alt="clip_image030"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pPF6XLHJIY-hXXMslsb97CSNWl-1wxLwQMl8kdM7Gaet3IBXnKsqJicw58EAE8MtXV9k8F516joo?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pFqyNTzdQHS2PHbpBAbMZDtVvD6vrQ5cg4Bnn3O3FtAOoyLrMCGtPiitbKOe8-Ys8gnef5sj5OOY?PARTNER=WRITER" alt="clip_image032"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pMDSNp5IfNEsKs2CWI6aubS_Hglx7idFT-gnUXVfBnHPoXNjYZhkK92B4YL-LrRSCoOIe5llHMDk?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pJc88Dn-0d-HRSmgObjWjig3YOZ0ERf64ES5_CXjMXQW9avNL75E9t8UYKo3Zi76LhHuVQ4TmxTU?PARTNER=WRITER" alt="clip_image034"></a> <p>在虚拟控制面板中点击‘运行’，即可实现软件在环（Software-in-the-loop），即随意操作输入控制信号，可以看到输出响应的变化，该响应来自于AMESim生成的dll被调用后得到的结果（这个dll文件包含了物理模型的数学方程） <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pM8a38VY1XjHSJQ2XP9rZUjp1kejHK6w6IiP5h9BGMYD-y6c-_zG6MnMxOqmU4ms9XeBNiWGJjHw?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pMPPXajd04rLugrK734k8boOjJ14SNJjVlGC7L-LeOfSKVtbI4XmAQY4w1AhXAnG9cCVUl6xjGT4?PARTNER=WRITER" alt="clip_image036"></a> <p><strong>生成目标机需要的实时dll文件</strong> <p>当前四步正常完成后，即可在AMESim界面下生成目标机所需要的实时dll文件。 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pwiF5d_DB492-_Wbj5C9UI3zI336qjeolaOkaWTSPO3OxTYJ4N5oN48EAJX_lQ1ydtNppeKwe9RE?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pXUvPnakbZxhZ6eeVDoZzwZGQyIbbRIe8Ew-9KwFpvCYLi_6gZUESnuRjpO1nTpsW511D_B9hfSg?PARTNER=WRITER" alt="clip_image038"></a> <p>注意：实时平台的选择要选’LabVIEW SimModule x86:obj’，点击generate。</p>
+<p> <a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1p_h1CWcvJ2ROV5A16Rvkd7V9VdLamoUPVzXCVmzxa0ZWz7ekEKqZhQzyBOkYYF0LyqdIY8-hvFYs?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p2AMGuMw8HMqVzqJcQRWSQeLAeVVLebamrL20S0Pzg_BXuxMRPo3rNNfSPUS6BrIrCj1BB-rtV_I?PARTNER=WRITER" alt="clip_image040"></a></p>
+<p>此时，在工作目录下面，就会生成一个目标机所需要的实时dll文件。假设你的AMESim模型名为labviewAMERT.ame，则该dll文件名即为labviewAMERT.dll（不带下划线_）。 <p>注意：在目标加载的过程中不要关闭AMESim，并要保证其处于run模式下，等到上传dll文件完毕后再关闭。 <p><strong>在LabVIEW vi中加载实时的dll文件并生成实时目标代码</strong> <p>上传DLL：打开MAX，选择目标机——右键——文件传输，将labviewAMERT.dll上传到&#x2F;ni-rt&#x2F;startup&#x2F;目录下。 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pK-7Wwa6lBGWZJswpF3wIU2DqfdlOmJJ38HA_CmkPF-srNC_ImgZ0Z6290Thk_jTzslxbjcYtH9E?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1prbrzN7It5PZPhuc4UX6P2XWXNLKIo9iA0CeXBeqUWoRcb5b9VgTVhprs0fia3vnpqT1rs5VxLv8?PARTNER=WRITER" alt="clip_image042"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pncfRoOfWAfzj9Bo-CmOick40ejQwrrs0j6h9kZfnT5QNmIjsYKirIyNNPA09K3WKUi_trQjX8ws?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p9ZyDfMK1NsS-i0zFNmRFUfN3RVvhEmtzdDaE0f_rqFDs98JO3zGMux7pfqFPMgFbFLJy44rSL8k?PARTNER=WRITER" alt="clip_image044"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pFa6HlBdJxgjD1vej_t80vE8JiJeLUSdPqkse08VshOFUVsIpv4WKmG4-TlrgMFgp4GffvaYHVCI?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pFtaMuNPX4qXxaSADrq8nXGj0cqBYPMBEOYzqzthEmebTvdoEVlzK7fk5HSiWOqhUP7hcCiy5h7I?PARTNER=WRITER" alt="clip_image046"></a> <p>在LabVIEW中定义目标机，并将要生成实时代码的vi及dll文件拖放到该目标机的项目下 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pGs6wXen0-rkkmhEVhXLqRMgQmZz3Lcd1UueOTyzoo4r3APW-NTfLODLAedJq5DkCbQQ0C0sAulA?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p7_zhFF1DCos4hwKy3-pag7hcW_7rDf7787dWAH_9a8_DZg0UuYSZTLjVme-ip25pDH9c-1_kj0U?PARTNER=WRITER" alt="clip_image048"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1peVvefd9XwGBJfX1D7pK2rL0rqm_mR9h7kO0aHufSChjiJO_qBgTyBOyMq9tjRKmOfNNPgzFi6WU?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pBQcRcxNyWqeDJVt6XrwUdcbXRC1PkgJGtaqXFEdl52ckn62IQA8Jji6slt3SJlia8bVNzx4tXA4?PARTNER=WRITER" alt="clip_image050"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pKzFz5UNf-W_WmSx-1TMLe0fcmVczutAhOQYCCKiu1X8vd_QcApUQY2Tvk0Ch-77cXCMmQRJaym4?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pR_ReflRgWYBiuqfGcDpCWyW7nQb54tTwPGlyGbpHkv1g7ep3RCGAK142IEYDOZ0TkFNiU4ZyPyU?PARTNER=WRITER" alt="clip_image052"></a> <p>上图为对应的vi程序框图，上上图为程序界面。 <p>点击运行即可进行实时仿真。 <p><strong>发布RT程序</strong> <p>其操作如下：右键点击目标机project下的Build Specification，选择‘Create new real-time application’，并作如下设置： <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1punwzYsuELPRbi3wwgdZF5a96sC0QXaghgkUtgfgSGfp1gJnxEzNZT4PontgAcbmldpzF-Xk9ogs?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pjEafPH8VSJ3t1pUoZRYFieftI1cI5c866SrhSxVntu6LRq40BMdB_i05q1CkwWH_ff2BbYJrHsE?PARTNER=WRITER" alt="clip_image054"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pmsTngwCw4BUQSQRbkaCG0Rouk6LxjvG4bpUEtIknBEd2uUN6oCzxXgPNlXhnjes7LkagRTR9_xI?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pP-o2KKfCDqxrbJgvC4gfMq3I6o1jH5H_eKiWsvBa36IelMWEoOdKTHh2BrfYYXC-X_VnL7icHXE?PARTNER=WRITER" alt="clip_image056"></a> <p>点击Build <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pLB_TMfsmYRXtLtPKeVFLy7AcwUT9zVcxH4Yl0HA06zUPfvhsUoI9Vs6jUwUEv6fhiZga1M4c-c8?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pDUmz2wqzrrRDlsafp7qCUO7n5rXDATdhkvcV5PfO-R-DqfGj38cufN2BF1qQDa_R6H0r8xG_vAA?PARTNER=WRITER" alt="clip_image058"></a> <p>通过右键点击My Real-time application，选择Deploy，即可将代码导入到目标机上。 <p>[<img src="http://byfiles.storage.msn.com/y1pJ3JMrJNCiQ0rkR37fCXW0bDLY8Mo0bRfE5ZKDVY6y2eSziqKU7V7VKI_u0Xt_EEZFDkOIAeJ9UQ?PARTNER=WRITER" alt="clip_image048[1]">](<a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1p_D3SqJR9TR3TTG8NyHNAFegWkwhCHAWYLfGVG7OOyGZ1IjC6OPpK53bFmvaxhs0nLfsJnUyXxt0?PARTNER=WRITER">http://byfiles.storage.msn.com/y1p_D3SqJR9TR3TTG8NyHNAFegWkwhCHAWYLfGVG7OOyGZ1IjC6OPpK53bFmvaxhs0nLfsJnUyXxt0?PARTNER=WRITER</a>) <p>最后，即可在虚拟控制面板中运行并控制目标了。</p>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/08/06/archived-labview-simulation-module-amesim/" data-id="cl2en8lio0029v4ungk0n5is3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-8-5-timed-loop" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/07/03/archived-labview-8-5-timed-loop/" class="article-date">
+  <time datetime="2008-07-03T02:17:12.000Z" itemprop="datePublished">2008-07-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/07/03/archived-labview-8-5-timed-loop/">LabVIEW 8.5的Timed Loop优先级及双核处理器支持</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1037" class="bvMsg">
+
+<p>  <p>Timed loop是LabVIEW 7引入的一个新VI，目的是为了提供具有确定性周期的定时方法。在LabVIEW 8里面又增加了Timed Sequence VI使我们编程更加灵活。不过随之而来也给我们使用造成困扰。  <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pTY5QO9MDNx4PQZJ764VowriMYNXFu93i6JhPZflFOR8V-sNWRqRGDgjgo4VaanPz?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pzfbXjzr4iBFHPkvd0Xh2BDqOCyCkRDKZXgEWQ2WrZe1XVJvEsCrcoffOxVdf6ySd?PARTNER=WRITER" alt="clip_image002"></a>  <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pwQI7TRoLAH3jlQk5fo2yAiJ58spLxRkIYUW3cGx3GKGFR7q8mb3KPlgL7Em4bew8?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pFbQ0NLQ1mxvAEKf_PQfGfYHh42DmcQj1dul4aAxB3sOb9QCp1XJU3X3JjnQaW_b8?PARTNER=WRITER" alt="clip_image004"></a>  <p>从上面两个图可以看出来Timed Loop和Timed Sequence的参数非常的多，很容易把人搞糊涂。所以就介绍一下主要的几个参数：周期，优先级，处理器分配。  </p>
+<h3 id="周期Period-（dt）："><a href="#周期Period-（dt）：" class="headerlink" title="周期Period （dt）："></a>周期Period （dt）：</h3> <p>这个是Timed Loop专有的一个参数，指定循环的周期，作用和普通循环里放Wait[![clip_image006](http://byfiles.storage.msn.com/y1plQtNYHsRGl1GA1JOS9lLrlrTovEnvwhA63M5ptwHxPE7xlzLzahosrUwKKFHH5SV?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1p3g1I9FEARVkht004Ovpn_CaHJS_z0abLpmuQz0vD544c8zt-kbUqXUoTSO-DFmxh?PARTNER=WRITER)是一样的，定时循环内的代码执行完毕以后会自动释放CPU时间供其它代码执行。  <p>[![clip_image008](http://byfiles.storage.msn.com/y1pHWwtwZtFiNzczLTU1Pe5VuSRezX2fp4nPME0PjuTsXhIr4xZgHLzUOMVP4cnMeQ4?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1p_5yQRnvPhM1veaUMfyWTLXKIxFv03jKdiKSl8LGNjJ2ifi6FjkdJKEnSDCOxMgmO?PARTNER=WRITER)  <p>[![clip_image010](http://byfiles.storage.msn.com/y1p9SxAcpOPNa6WsxjLflinwQcGQOcPYo9H2rnwt7Co67AMnFwwgRB9Du33sB0cFxvl?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1p2anbNOAzsZXIpKmZPtJahVCKaP2AynAcSXvf8Kqwswd84Z88Zdb2bwcpWIgEtt1Z?PARTNER=WRITER)  <p>假如将循环周期占满则不会给低优先级程序运行，  <p>[![clip_image012](http://byfiles.storage.msn.com/y1pK9OhVcxUho-FnydU7P2uLjwktIjH7BqQYxHzBK2Uo6xAF4Zp6yqLj99QCp8c1XFu?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pWYrElLUaWegCA5efKAxgzTM_GpoKdLsgT29Tq0T6iZui3eW-8TkztkS16hSy5ii6?PARTNER=WRITER)  <p>[![clip_image014](http://byfiles.storage.msn.com/y1pOtJWC7xw-zRbzRCLfTtxcfCjBk-sL682Vasowf4gGjDVIc2qJi4xPqIPVgy1sdoy?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pyEvVmGtvcMbvc7q1WnAK4QJFrGoH7wZH6HD8dPSOy6sYGjmTUg7N4BwyNyPtFID7?PARTNER=WRITER)  <p>注意要取消这两项钩选以确保不会将剩余时间放弃。  <p>[![clip_image016](http://byfiles.storage.msn.com/y1pPML6MyHGFZz6-vvCfnoxHxUSgD5VTAHjUZgq6aUXLsqQXRLQUda-n70mSaQHPxSO?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pGXeQXo_vtM3eJqvn1txMr7vF35lC0ZmFjmxlaETJpM4RJp7I6syIK5b4tS_v0t4T?PARTNER=WRITER)  <p>也可以将周期设为零这样就不会自动释放CPU了。  <p>[![clip_image018](http://byfiles.storage.msn.com/y1p6KaeOHKZhHkURt_fdHLXJkeh7nSJuLiMJ4rddmmv--Tk-sUGApUIUashNbi7qOOO?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pWKf9tbw56dOhFS6BbXicgZO890x-ZzL3YS7fgXFiRHAgJfm-6SUfOCdy56IY5m3R?PARTNER=WRITER)  <p>[![clip_image016[1]](http://byfiles.storage.msn.com/y1p8lnU9kUWGm8k52PTqyQ2-fVOXKa5q6UreYuY8G2DeNvSaNKtFb_bznH1hxhX5Hw2?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pJPZ1KHIMu_xVEvy343JDzK-2WtHtfd4j3lYcOIeEN7-5ZkwfTZE1ti59Koex9FZD?PARTNER=WRITER)  <p>**
+** 
+
+<h3 id="优先级-Priority："><a href="#优先级-Priority：" class="headerlink" title="优先级 Priority："></a>优先级 Priority：</h3> <p>这里容易和Windows的优先级相混淆，所以先介绍一下windows的优先级概念。  <p>对于NT内核系统都属于抢先时多任务操作系统。抢先多任务功能是由操作系统内部的调度器(scheduler)实现的,所谓抢先多任务就是CPU时间被分为一个个时间片, 调度器将时间片分给当前优先级最高的线程(thread ), 一旦有更高优先级的线程就绪,就马上抢先正在运行的线程,如果有多个优先级相同的线程,调度器把它们排队,先执行队头的线程,执行过的则放到队尾。线程的优先级范围从0（最低）到31（最高）。当你产生线程时，并不是直接以数值指定其优先级，而是采用两个步骤。第一个步骤是指定“优先级等级（Priority Class）”给进程，第二步骤是指定“相对优先级”给该进程所拥有的线程。  <p>进程优先级等级共分为四等  <p>“idle”等级只有在CPU时间将被浪费掉时（也就是idle time）才执行。该等级最适合于系统监视软件，或屏幕保护软件。  <p>“normal”是默认等级。系统可以动态改变优先级，但只限于“normal”等级。当进行变成前台，线程优先级提升为9，当进程变成后台时，优先级降低为7。  <p>“high”等级是为了满足立即反应的需要，例如使用者按下Ctrl + Esc时立刻把工作管理器（task manager）带出场。  <p>“realtime”等级几乎不会被一般的应用程序使用。就连系统中控制鼠标、键盘、驱动器状态重新扫描、Ctrl + Alt + Del等的线程都比“realtime”的优先级还低。这种等使用在“如果不在某个时间范围内被执行的话，数据就要遗失”的情况。这个等级一定得在正确评估之下使用，如果你把这样的等级指定给一般的（并不会常常阻塞的）线程，多任务环境恐怕会瘫痪，因为这个线程有如此高的优先级，其它线程再没有机会被执行。  <p>LabVIEW以及我们所编写的VI一般都属于normal级，驱动程序才属于high级。  <p>另外对于XP来说realtime级并不是真正的实时，因为并没有给出时间上确定性的指标。对于CE来说其内核的realtime级才是真正的实时，可惜我们的LabVIEW还写不了CE上的RT程序。  <p>对于线程优先级每一级来说又有7级优先级供调整  <p>[![image](http://byfiles.storage.msn.com/y1pBR3ZF1casLTzP5QcaqUUvlfBKXJ6h2hqJ2XJf8k0GBXQaoS8zNdFG3MmCVIG83AR?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pM4-vL0bRF9rPmQ_tpDka9FMcfMvhQhL_7AgzlpYca7CucvJ4IIn9FxlHsWkgX6eP?PARTNER=WRITER)  <p>我们在任务管理器里只能调整六级  <p>[![clip_image020](http://byfiles.storage.msn.com/y1psFlSUT2h-e_jDbkcuUjC0-cZFjbSLzGH4x9G_705GUmxJZJpxdvfb2T6CfJLdG0Y?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pyMfm-9Dg36pLgmc4Y6ePnEFaweG9gobeJ5-nyIEC6-X3lCS1gtXNbSFAx24Yua7x?PARTNER=WRITER)  <p>在LabVIEW里面对于进程是5级加一个子程序  <p>[![clip_image022](http://byfiles.storage.msn.com/y1pOS0AvSorQNfT5_eH5zVmkC07cZ2iShEocrwBB35MKRdpH3QLwoLc0LeYy_jaKvt_?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1p9n4lOnHf5OWkZ3W9DrWkuooQYXGfBBICj8SX9Ip8CmqiepZiK8gVK3_5BVm-FEP0?PARTNER=WRITER)  <p>这个可以设置VI在那个线程里执行  <p>[![clip_image024](http://byfiles.storage.msn.com/y1p1hshgW6kLFomKwGk-W2BUOkNCqXOpn-y3pY2F6jXAcXz-hieSP9Wij2K2WaFmMC-?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pUvll-e0ThEJKCQ1WxiIkUphVHnuB2GRBhRyKqj4l5OCuYGzWuiYWPahyDOeEwfco?PARTNER=WRITER)  <p>对于代码，LabVIEW可以设置Timed loop和Timed sequence的优先级，这里的优先级应该和windows优先级不同，由LabVIEW管理，可以设置从0~65535的任意值。  <p>[![clip_image026](http://byfiles.storage.msn.com/y1pOiaDeEpSrpxCGw2KwpbL_gSF6f1JG2jfZXDv4195CdOOMXxvBs_1J3w5tN4zn3WH?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pG5mOEvQGefKEyx7LSErsbktV-fEVqNqTMHmziN2KEj91CTykJM_EYjvUlYE61Mg2?PARTNER=WRITER)  <p>**
+** 
+
+<h3 id="处理器分配-Processor-Assignment："><a href="#处理器分配-Processor-Assignment：" class="headerlink" title="处理器分配 Processor Assignment："></a>处理器分配 Processor Assignment：</h3> <p>下面是LabVIEW帮助里面的介绍：  <p>在多核编程中使用定时结构  <p>多核编程指一台计算机有两个或两个以上的处理器，每个处理器能同时运行一个单独的线程。而多线程应用程序能够同时在多个处理器上运行多个单独的线程。LabVIEW 5.0是第一个包含多核编程的LabVIEW版本。LabVIEW 5.0对用户界面线程与执行线程进行了区分。程序框图在一个或多个线程中执行，而前面板在另一个线程中进行相应更新。操作系统将对各线程进行抢占式多任务处理，即首先将执行时间分配给执行线程，其次分配给用户界面线程，依此类推。  <p>定时循环和定时顺序结构的处理器输入端允许以手动方式分配用于执行结构的处理器。通过将输入值连线至结构或帧结构中输入节点的处理器输入端，可以配置如何分配处理器。 (Windows) 在配置定时循环、配置多帧定时循环、配置下一帧定时和配置下一次循环对话框的处理器分配部分，可配置处理定时结构的处理器。  <p>如加载了来自前期版本LabVIEW中的VI并且其中含有定时结构，默认情况下，处理器输入端将被设置为0，其中0表示系统中第一个可用的处理器，在前期版本的LabVIEW中，所有的定时结构都自动运行于处理器0。  <p>上面这段话里面“LabVIEW 5.0是第一个包含多核编程的LabVIEW版本”准确地说应该是包含多线程编程的版本，能充分利用双核技术的还是只有LabVIEW8.5。对于优先级可以看出LabVIEW的优先级有两级，一级是Windows管理的线程优先机，另一级是LabVIEW管理的代码优先级，虽然不知道LabVIEW那一级是如何实现的，不过优先级高的优先执行这个原则应该是不变的。如果要将LabVIEW程序迅速修改为单核运行，可以将程序另存为8.2版本。  <p>如果你使用双核CPU，在windows的任务管理器里面就可以对进程进行核心分配：  <p>[![clip_image028](http://byfiles.storage.msn.com/y1pI7HARdcCnimX_SAVqsluNzo4Sa3myihF_DZFCb-Vui_Dfxxrbzdtgoo-sblXhUSx?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1py6WJdt_nZMOGagXue5zFfltGJL_eOb8jA0aB3IIdTC4w6F7nOi0LwPP3ce9moBEI?PARTNER=WRITER)[![clip_image030](http://byfiles.storage.msn.com/y1pQmDWqgkBk6EH-r1wwq-U1Tf1oh9JP1Fb5pqdAt9x_Q1wwYRKrmvP7f3X5nL0rxOY?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pO072HCX7r2ExFgNWRUaI-pFxCv6OyXNqeNnvRVqhxwe-yrpyINlnO4DZm866hCK_?PARTNER=WRITER)  <p>只给LabVIEW分配一个核心的话，程序运行就和单核上跑结果一致。  <p>在LabVIEW 8.5里默认模式是自动分配，由LabVIEW负责分配不同的代码到CPU各个核心上执行，  <p>[![clip_image032](http://byfiles.storage.msn.com/y1p0Zw1SEMc0FtdtcMNegXJaTTJe0madCkrnPlSAYQEEpbd51anzcnwVKSmkBKX6u1n?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pE5wkzcxI14couWkQLNKHhe1-Umx6Dc7L3AzdOgsOTONpSdrdq3UaonLZ-_QWjiGW?PARTNER=WRITER)  <p>也可以手动指定运行代码的核心，输入介于0和255之间的任意值，0代表当前的处理器。输入的数量超过可用处理器的数量时，将导致一个运行时错误且定时结构不执行。  <p>[![clip_image034](http://byfiles.storage.msn.com/y1pGBo3w0cgME8F5Yo-Y-3YCXK8JwHSbLE1zdgQghD2GMyyh2FD867prmy-w2Jt3kaq?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pNnjrlVfDJYssQODeimdqVJ18pMOjopPwTzQnpn1zuHxJDl0jqgjexmgdHOxQxYYR?PARTNER=WRITER)  <p>对于timed sequence结构，可以指定每一帧的处理器  <p>[![clip_image035](http://byfiles.storage.msn.com/y1p8qloU1H2NT0ij5iRfHEo7oc725IfjqF4jX2tmT31Vcgu-j3HAtqIZGq2jdguj6wr?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1p6b0zRWml8lPAAJ-W4bezhipjyIUGI6z-bzIhMlGmRI06kgSqsi-df_JLXHc1pRts?PARTNER=WRITER)  <p>在多核执行的情况下程序执行的结果和可能单核的情况下有所不同，因为不同优先级的代码可能同时执行，如果要严格规定程序的执行顺序，可以使用错误簇和数据连线。  <p>[![clip_image037](http://byfiles.storage.msn.com/y1p2LGP9NiwgXjbPp_5iUnrntr90mlNjjm0lHLtkpL_xv_2pzqwvIVjrKfEoAYt_LDQ?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1p2qZUtSNcRTM97N7dj3shbgSDf0eat4uhPlnQMI8xA1NqKEmfLWWsiOai6cFmpLfP?PARTNER=WRITER)[![clip_image039](http://byfiles.storage.msn.com/y1pwJ91E9dNMAyip5qle4tWXbYo9JMFH8wYH5cPyzd7V2umXHikEvOJo3NAts6wMTvz?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1ptDI7UwfVTmFrWNeHh7kfjQYKRZ3hmQ1epRAAE8--wg433F7E2KG1pM6Uhdi3JH69?PARTNER=WRITER)  <p>总结：  <p>LabVIEW 8.5的优先级可以按Windows的优先级理解，优先级高的优先执行，执行完或者释放CPU之后才轮到低优先级代码执行。在多核的情况下低优先级代码可以和高优先级的代码同时执行，因此程序的结果可能和单核情况下不同。一般来说这是有助于提高程序执行效率的，没有必要更改，不过导致错误的话可以按以下办法解决。  <p>解决办法：  <p>1、 让程序以单核方式运行，可以在LabVIEW里指定核心（例如另存为以前版本就是一个很快速的办法），也可以在任务管理器里指定CPU关系到某个核心上。  <p>2、 对于要求固定顺序执行的代码可以通过错误簇和程序连线来保证，使用信号量也是一种解决办法，还有一种办法是全局都指定成一个时钟源，然后在各个结构指定开始时间。  <p>对于Timed Loop有以下几点要注意：  <p>1、 CPU的释放：循环周期的设置，循环内代码如果没有把时间用完，会把剩余时间释放，分配给其他代码。在超时的情况下，如果钩选了保持初始相位也会把从代码结束到下一循环开始之前的时间释放。另外如果有Wait等函数也会释放时间。要想不释放CPU可以将用代码剩余时间都填满（这一点不好做到容易超时），或者将循环周期设为零。  <p>2、 CPU的分配，建议使用自动分配，因为如果核心指派错误代码会不执行。必须要手动分配的情况下，比较可靠的办法是利用代码测出当前计算机CPU数目，然后用不同的CASE处理。  <p>[**Using the GetSystemInfo Function from Kernel32.dll in LabVIEW**](http://zone.ni.com/devzone/cda/epd/p/id/3720)  <p>[![clip_image041](http://byfiles.storage.msn.com/y1pPkvBHzbFvZSrWkwPmWwnis6jFwOMpA2iO-J301JW6uibVlYGxJ7afKd_RmUAXsf8?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pE4cU26qWk7rtt9INEEE3az-2XbwqHE4iYcs3SjjQus4bSikgF5MlVAeQrEjH1ZSC?PARTNER=WRITER) [![clip_image043](http://byfiles.storage.msn.com/y1pJjRrE9W3CN7M9dCotB3PBh0CLcqlNiVRUMbPNb_uX8gn4i10gEgpJ_-EfYcK_A4G?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pj1u2GaoZNLIUb7Q3G6kycO7A-uzjmo1so-eAfDH4q2AC1I9-X4xP9fwzV_2UsSwj?PARTNER=WRITER)
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/07/03/archived-labview-8-5-timed-loop/" data-id="cl2en8lil001xv4un0udf2nx0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-pxi-teardown-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/05/21/archived-pxi-teardown-01/" class="article-date">
+  <time datetime="2008-05-21T01:50:46.000Z" itemprop="datePublished">2008-05-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/05/21/archived-pxi-teardown-01/">PXI摧残指南</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!982" class="bvMsg">
+
+<p>EN终于连PXI都难逃俺的魔掌，灭哈哈哈~  <p><font color="#ff0000"><strong>警告：拆解可能会丧失NI的保修、造成硬件损坏、人身伤害等等，请勿随意模仿！本人概不负任何责任！</strong></font>  <p>适用机箱型号：PXI-1042（Q）、PXI-1045、PXIe1062、PXIe1065.  <p>准备工具：NI螺丝刀，一次性纸杯（用于放螺丝） <p>操作步骤：  </p>
+<h4 id="A断电并拔出所有板卡及控制器。"><a href="#A断电并拔出所有板卡及控制器。" class="headerlink" title="A断电并拔出所有板卡及控制器。"></a>A断电并拔出所有板卡及控制器。</h4> <p>[![clip_image002[1]](http://byfiles.storage.msn.com/y1pf3H7KtzkuRFmSSC5p4JjPTphARYJpy4QXxObM6Ic3e76o6j7t-NOJ4Y_9t0Jj3Aef2pEQgfvxOY?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRHvEiNYlLuN0-9dji01_vKj3-bvAd-351ODw9fD7pkRH7w6cTum2afpP6UNoCjspdw?PARTNER=WRITER)  
+
+<h4 id="B拆卸机箱后部电源的十个螺丝，取出电源模块。将螺丝放到一次性纸杯内。"><a href="#B拆卸机箱后部电源的十个螺丝，取出电源模块。将螺丝放到一次性纸杯内。" class="headerlink" title="B拆卸机箱后部电源的十个螺丝，取出电源模块。将螺丝放到一次性纸杯内。"></a>B拆卸机箱后部电源的十个螺丝，取出电源模块。将螺丝放到一次性纸杯内。</h4> <p>[![clip_image004[1]](http://byfiles.storage.msn.com/y1pf3H7KtzkuRFMCOYImiUSrvn2E9NIzs-FvpBXRCnBjWsjYZkVwW4qE2nKLtmkAuUkeyzGiEYhdi0?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRG0waWBMCEu5Tit5TVZQEdmal_4UAJnmkBo61nGmQ019bdtcSu7Kjj9nB4y1yXN0zM?PARTNER=WRITER)  <p>一共十个螺丝  <p>[![clip_image006[1]](http://byfiles.storage.msn.com/y1pf3H7KtzkuRFIkpJhb--VnkKfLPbYUhbDgc_rl49WIvPlFpUlnEdalcffHxaSOT13HK1T2YK_RMw?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRGGSCQxmqDUD86QMfDIQ-DM-0ZlMRZaKX8ToFkvRVDWhq8QI4eVkw_tGJdJRjuHVZo?PARTNER=WRITER)  <p>这个是拆掉电源的后视图  
+
+<h4 id="c拆卸把手，注意可能需要撬开铁盖。"><a href="#c拆卸把手，注意可能需要撬开铁盖。" class="headerlink" title="c拆卸把手，注意可能需要撬开铁盖。"></a>c拆卸把手，注意可能需要撬开铁盖。</h4> <p>[![clip_image008[1]](http://byfiles.storage.msn.com/y1pf3H7KtzkuRFhDvMwT-r2BBaSVR6GSR0rrZDu3UUg3esYSFVWR7BcV8Y6wGqKrkfvlpaNzpmIsdE?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRFio1GRcmXAed6yx8-tiP1NHdgzpYDBRvQGjifxFb54CLTGWPLdw4XgVc1cYsivFNQ?PARTNER=WRITER)  <p>画圈处可以撬开  <p>[![clip_image010[1]](http://byfiles.storage.msn.com/y1pf3H7KtzkuREdOQrKfNYBDZtSCYobaJpo8WI84gim-J6mhly0DPSC-J5VvnmULEmJj8wsaw-UeVk?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRHdFWDMQ6kPC6qfiX2dv6fprytZoQXf8ZUEPPzBhzrj7I8E3_CkK1E8DKNfPYiJXZs?PARTNER=WRITER)  <p>一共四个螺丝  
+
+<h4 id="d拆卸另一侧的挡板和底座"><a href="#d拆卸另一侧的挡板和底座" class="headerlink" title="d拆卸另一侧的挡板和底座"></a>d拆卸另一侧的挡板和底座</h4> <p>[![clip_image012[1]](http://byfiles.storage.msn.com/y1pf3H7KtzkuRHELWA-Bclj_tpZZXQ6edrdjRqBNjHGKmIIv2uxaR78zTx3PncXZ1gXBWtpmMf_h_s?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRH1375ZFzpmimioPc5ek-bMvlzrPpMwu9dF0Ichm4gaZPhf8LlmRWjt-GZMofCMWiY?PARTNER=WRITER)  <p>共计四个底座和两个挡板螺丝  
+
+<h4 id="E拆卸下机壳"><a href="#E拆卸下机壳" class="headerlink" title="E拆卸下机壳"></a>E拆卸下机壳</h4> <p>[![clip_image014[2]](http://byfiles.storage.msn.com/y1pf3H7KtzkuRGHU0fvzaX93OEV0lMJCAH0swSqOnibvcKW4cdSs9dfzhFL1wbyxzswJaUXyElNtCM?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRGxRXSs_C6EKU0C5BJew5WzlB0mYINu6bEpkKBKTLJ5i_PUvjrGyZ2HdBRnxGjIEt8?PARTNER=WRITER)  <p>拆开前  <p>[![clip_image016[1]](http://byfiles.storage.msn.com/y1pf3H7KtzkuRFxeehX4EQ-oxxHdu74OqZ87R-A6hLCRD-J9CbNtFa1Ba7ZvADXySYuhGrBDU4dLVs?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRHKQB5TkqifJugHK2gRes9qR0PvF9HnWxeHavJb2eNHeLDgAE3uuOwjC0Q5emHvsoA?PARTNER=WRITER)  <p>拆开后  
+
+<h4 id="F上下两个机壳都是可以拆卸的，拆掉就可以看到PXI的背板芯片"><a href="#F上下两个机壳都是可以拆卸的，拆掉就可以看到PXI的背板芯片" class="headerlink" title="F上下两个机壳都是可以拆卸的，拆掉就可以看到PXI的背板芯片"></a>F上下两个机壳都是可以拆卸的，拆掉就可以看到PXI的背板芯片</h4> <p>[![clip_image021[1]](http://byfiles.storage.msn.com/y1pf3H7KtzkuRF90kz6anQ7otaYtVcS__AW0dTD0JwlCTzTmAmy7uz5RBBPv0EzbBkwck41D98veDU?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRFR7fqiuiR_E4K2QYRX1nUX7wR8K9LnvfCSTVX71PlhjhIS02272S-U3AUSOKPY3po?PARTNER=WRITER)  <p>[![clip_image023[1]](http://byfiles.storage.msn.com/y1pf3H7KtzkuRFJyyUsjx6-gQxHLpN4wLobYR19fFZ6KDC1dD9pQzwkxfuhxSiPx13NjesKePwBU-Y?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRFtBivQgCGcrgs8YW5JUKqbi7oxbIe9FjaNqjcbtVwtAfQ3ldbUXLmWo7DfmFV_Opc?PARTNER=WRITER)  <p>这两块电路板也可以卸下来，猜测可能是PXI的桥接芯片。  
+
+<h4 id="G、PXI插槽是不能拆卸的，已经焊死在背板上了。"><a href="#G、PXI插槽是不能拆卸的，已经焊死在背板上了。" class="headerlink" title="G、PXI插槽是不能拆卸的，已经焊死在背板上了。"></a>G、PXI插槽是不能拆卸的，已经焊死在背板上了。</h4> <p>[![clip_image025[1]](http://byfiles.storage.msn.com/y1pf3H7KtzkuRGrCJKvFjHdejX3NFUlirYEDcjBpOHLLzYbUOwH2zCVUmvbXi0CpzIbBzMf8z38kqU?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRFpzV9sYubJRJ-uwZ6DUtQ0pD13IRWwTJt1N3U6X3IaPyOZPOnzJZtc-qfWlCjPh2U?PARTNER=WRITER)  
+
+<h4 id="H导轨可以拆卸，并没有使用螺丝固定，只是卡住的。"><a href="#H导轨可以拆卸，并没有使用螺丝固定，只是卡住的。" class="headerlink" title="H导轨可以拆卸，并没有使用螺丝固定，只是卡住的。"></a>H导轨可以拆卸，并没有使用螺丝固定，只是卡住的。</h4> <p>[![clip_image027[1]](http://byfiles.storage.msn.com/y1pf3H7KtzkuRHVqcBE5t1bT1JubWW_ADCJfm6LIE8pfkECI0AX5vbdSh4MH8yVSICoGd1Y3s4EFEo?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRHjpsni_vN6vz7pbvPEZ5RFBCMYSr_nxrnFQA3_yJyaW9-45uFTxpBCb7-BELZcOGw?PARTNER=WRITER)  
+
+<h4 id="I拆解之后的全家福"><a href="#I拆解之后的全家福" class="headerlink" title="I拆解之后的全家福"></a>I拆解之后的全家福</h4> <p>[![clip_image029[1]](http://byfiles.storage.msn.com/y1pf3H7KtzkuREjA5Ow09ZlRucya7GVzvFM41o22TuhQwMmXLpjGgC3txouPuQ_eH94dp4GxAV6_Vs?PARTNER=WRITER)](http://byfiles.storage.msn.com/y1pf3H7KtzkuRGUVJWG8DZ6mkInxROQZc3GCMT9itn4SgwIlmllsP5tBX0ctnfQQuWuEhYb5P6kQJ8?PARTNER=WRITER)
+</p></p></p></p></p></p></p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/05/21/archived-pxi-teardown-01/" data-id="cl2en8lix0038v4un6p4r5pq8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-cfp-Serial" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/05/14/archived-cfp-Serial/" class="article-date">
+  <time datetime="2008-05-13T17:07:22.000Z" itemprop="datePublished">2008-05-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/05/14/archived-cfp-Serial/">cFP摧残指南——串口篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!954" class="bvMsg">
+
+<p>大家好，继前一段的<a target="_blank" rel="noopener" href="http://lhb5883.spaces.live.com/blog/cns!866B8F96A2761BBE!915.entry">cRIO摧残系列</a>之后，今天我们要研究的就是NI的另一系列低成本PAC——cFP。</p>
+<p>首先我们来看看cFP长什么样子：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr-UP0UivKkSlrd2jdajakIJhtk8A-D6Ye4rgu0h4AKVZGOGZH7smq0gG_c26bDZ04FcXumZSqtmFQ?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOSb0abDNb8pNI3SPwH3N7eAq4_7hYkrr2FVyLqLbzxg7V40CE6NoYWTgMCzkUNEqWf4c1gsaRTmrMIpiRqpmLU?PARTNER=WRITER" alt="20080509(001)"></a> </p>
+<p>和cRIO一样，cFP也是由控制器、背版、模块（包括模块和端子）构成。</p>
+<p>硬件上的准备包括电源、网线，最好再有一个螺丝刀用来跳线。</p>
+<p>首先插上网线通电，然后就是软件配置了。</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzJxUYWMEBcsKRdYoRgNCKw4G4wVUtuCU7puvWWgqHk-QptJKP-NS3GrhYRvuPASl6mycM-OoKsE-pN-RQjR-8e?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpw0OZpeggdqYl9erKGHwvC0nCeUKhACwxvjDpoX8Q4Qf9rdGeOXebzts-uVqXcfHd8iu6MIxWOerTxqsfHK4Ujz?PARTNER=WRITER" alt="image"></a> </p>
+<p>打开MAX之后在远程系统按F5，如果RP不错的话就能看见cFP出现在MAX里。</p>
+<p> <a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpx80Dm5uPNpDmcdguaZtHvzm5gxshdgsNYQVQRjB4EfmkTzhNDrYKkakUVpZzwNMs50wkt6hHf64uQE7vcKi-JG?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwxSVu10gwsiZMbj_XAV7yeTjQc708bxbullpntp92wTX2oKlwK6Kddfo8gViTyu-k0wn4bLkNkDRaHoF5pxYX8?PARTNER=WRITER" alt="image"></a> </p>
+<p>如果看不到可以尝试把reset IP Address跳线拨到On再reset一下，应该就能看到了。</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwtOe_d-ubOuc_2K-VRf9pHHbPfqCa_AT9pQC_HAf5acvkBmSfdqRhnn-mDa4L0W5ZUtzV-pvnyl5NiLKPYBl8-?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxkG5f3H3CIIm04eMg6bPWaxBP1rzxXdAjq0RhW_yormZNAGExO5zbRyihOeG-guDFU4kIZixJU4qFtWlb21px0?PARTNER=WRITER" alt="image"></a> </p>
+<p>然后配置一下网络地址，DCHP比较方便，手动设置灵活一些，看自己的喜好，不过不要忘了把reset Ip关掉。</p>
+<p>下一步打开cFP上的安全模式安装软件。</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMk2hdrIiwwTiqU3tHzOZPYZACoPI1doETg7bEK0Qg5lxo-IJcp9BpybiD03NffgeQiAmM1QzzVJCCB3BCzr12i?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPPPd2dc6x2NN9SPKPV5Vn-mmq0vGskuah2mgDYkhCk9V3xU4q3XeAxEvIsQ38WeN57RCAIV4xdutKUsuQ70CnH?PARTNER=WRITER" alt="image"></a> </p>
+<p>为了能在LabVIEW里面使用cFP，需要安装软件，推荐使用最新的LabVIEW &#x2F;RT 8.5.1+NI Device Driver 200803，可以直接选择预制好的软件包。</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzvF-EFc4cH4o90qzOXcQaLpqnQ1HBuj8R_LH8qxl6_qfcT0T6x0R_izZsjnIiQjRkODuPDkSz38PGBb7dntfsb?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGqCtfuU3kRSBFxxI3XIf25CT70UWNU114Jq7LlvHJSd-mMAPSWPujewbpZI4bld9Y?PARTNER=WRITER" alt="image"></a> </p>
+<p>为了能使用串口，请确保安装NI Serial和NI-VISA。</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr-hj0fIRKSZri29nOUDLVGjA2cU5Mj4eaf1g2-OqaAU01PBQTQhwtHwVg-LME9GZLhRB1cmxZaVnA?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpw2FsEKl9Lhsv10_g-rKlFXPGpmEcC52rrvfPL8BEBg1snpDxTRdBkKxK1Yeb18Zt_VoaOzXAK39y80DqzSj0Ku?PARTNER=WRITER" alt="image"></a> </p>
+<p>接下来的工作就要在LabVIEW下进行了：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyC3fw6broyo5Yumwk-KlHYOO0pldwBp-6Fu9qbM1_3vmHEu3iStQgX3k5IMqWLsz3Wldi9Ofau1GyP7qkR-tsR?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOap8Ze77jH1E9euKPy1rv2vJOi0RdNxFHKoIYAMb0md0BNAO7CCeOyDcmMGHLMVnhHG7iQVQmV41layraCMLA7?PARTNER=WRITER" alt="image"></a> </p>
+<p>新建一个LabVIEW RT工程，基本上一路下一步：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMHfBtG4UzSGZgKR5vTzi2OCl9oC2m4WKgVZcb071oD54I1wZJgIzftYGl9tfBswywE_1n0ImPro_BczYK1ZVAL?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPi8LN59XdlypKk3xS8xrDlXf2IGRss_CVLVDhJkkE3HOJnmLjgAtKY2DJCgfde_Texfy6AJXybHAUdqWyJ8I_H?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOBBETSoUUpiWppAcrNQEj-r-XrwVdSknT-PIH03FO72gMjxsRDaEwVly3V8nWC2r_vY31NEe1ruPUh24iaojK7?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMIkiDd3OksU1r1dw15aVg7Oiu1G08sTEqjFQyOCJRaiw6iHcUm1-LVn9zpVsBXt3bf612Hh6_7m-x5Acvl4bUH?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPSSiFxrqXY_9oXQYt1bfllQPklyM4ngiuUq5fb_gZC_qtrlyuWoZ-gbcBzdEPcUBPONkb-7X-BSyrN2FjZAVUd?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOmq1lvDfOE7McWEt9INRUINrE4_WgArmMtpT-T1l4TsjeS9v_w1E0FvDbn4upZrSbvC01cJzqcvoOoljbB-H30?PARTNER=WRITER" alt="image"></a> </p>
+<p>这里要选择一下target</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxdqZksBh7Glj5nZrJXiG76ZNurqiek4tT61LlVMe9bEmKny6WNW2MLVcXY6yyGqNfd0zO4IBZZhWOhExg4lutA?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzNuVde38_DDJylnHKRu2G0wVTaFtGkKcuGfnKx4Uh5iSrKaWu5Fuz9Uwjg-B95QxSkI-M_JALnYVIIUoiOGTi2?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM3TFr5XfGy0bkxuVFUmgIPOPNGiiayrw-0HKc5_yZtKMW14Y385W4Uh_AoP0JVvr-OEH-JmAWc7srkEVnMtS8r?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOQFTdKCS7kcwRlCfhemgmuTfClI-fRMCKs2mb96-Cez2hBgl_eB4Jb7TxsljufTca6UsEMFiojoCYAjLISDwGz?PARTNER=WRITER" alt="image"></a> </p>
+<p>然后LabVIEW会自动替你把cFP的资源都添加进去，还替你生成了基本的程序架构。</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzsaWtt2INALrq3CE2oXcUMtVeF2NSbCZkh04qEuEG9qQ4jSK5R7TfjYqiBErf42_aYn6J1ZwJuPzWSKrRR6FtM?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpykcTHbXyb6mJq87Q3TEY3g0C4eyn-hDfspENf8KnCV2AaShAf23UswT54Sh3Qn_e9b7egHc5Pdx5Kye6rmXTow?PARTNER=WRITER" alt="image"></a> </p>
+<p>下面我们就看看如何使用cFP的串口，比较诡异的是你虽然在MAX和LabVIEW工程里面都看不见串口，不过你确实可以使用它（囧rz）</p>
+<p>这个是NI网站上的资料：<br> <table width="0.000000%" align="center" bgcolor="#eff7ff" border="1"> <tbody> <tr> <td bgcolor="#658abc"><font color="#ffffff"></font></td> <td bgcolor="#658abc"><font color="#ffffff">FP-2000, FP-2010, FP-2015, cFP-2000</font></td> <td bgcolor="#658abc"><font color="#ffffff">cFP-2010</font></td> <td bgcolor="#658abc"><font color="#ffffff">cFP-2020</font></td> <td bgcolor="#658abc"><font color="#ffffff">cFP-2020</font></td></tr> <tr> <td bgcolor="#eff7ff"><font color="#0">Port Type</font></td> <td bgcolor="#eff7ff"><font color="#0">COM1 (RS-232, DTE)</font></td> <td bgcolor="#eff7ff"><font color="#0">COM1 &amp; COM2 (RS-232, DTE)</font></td> <td bgcolor="#eff7ff"><font color="#0">COM1, COM2, &amp; COM3 (RS-232, DTE)</font></td> <td bgcolor="#eff7ff"><font color="#0">COM4 (RS-485, DTE)</font></td></tr> <tr> <td bgcolor="#eff7ff"><font color="#0">Baud Rate</font></td> <td bgcolor="#eff7ff"><font color="#0">110 to 115200 bps</font></td> <td bgcolor="#eff7ff"><font color="#0">110 to 115200 bps</font></td> <td bgcolor="#eff7ff"><font color="#0">110 to 115200 bps</font></td> <td bgcolor="#eff7ff"><font color="#0">110 to 115200 bps</font></td></tr> <tr> <td bgcolor="#eff7ff"><font color="#0">Data Bits</font></td> <td bgcolor="#eff7ff"><font color="#0">5, 6, 7, 8</font></td> <td bgcolor="#eff7ff"><font color="#0">5, 6, 7, 8</font></td> <td bgcolor="#eff7ff"><font color="#0">5, 6, 7, 8</font></td> <td bgcolor="#eff7ff"><font color="#0">5, 6, 7, 8</font></td></tr> <tr> <td bgcolor="#eff7ff"><font color="#0">Stop Bits</font></td> <td bgcolor="#eff7ff"><font color="#0">1, 1.5, 2</font></td> <td bgcolor="#eff7ff"><font color="#0">1, 1.5, 2</font></td> <td bgcolor="#eff7ff"><font color="#0">1, 1.5, 2</font></td> <td bgcolor="#eff7ff"><font color="#0">1, 1.5, 2</font></td></tr> <tr> <td bgcolor="#eff7ff"><font color="#0">Parity</font></td> <td bgcolor="#eff7ff"><font color="#0">Odd, Even, Mark, Space</font></td> <td bgcolor="#eff7ff"><font color="#0">Odd, Even, Mark, Space</font></td> <td bgcolor="#eff7ff"><font color="#0">Odd, Even, Mark, Space</font></td> <td bgcolor="#eff7ff"><font color="#0">Odd, Even, Mark, Space</font></td></tr> <tr> <td bgcolor="#eff7ff"><font color="#0">Flow Control</font></td> <td bgcolor="#eff7ff"><font color="#0">RTS&#x2F;CTS, XON&#x2F;XOFF, DTR&#x2F;DSR</font></td> <td bgcolor="#eff7ff"><font color="#0">RTS&#x2F;CTS, XON&#x2F;XOFF, DTR&#x2F;DSR</font></td> <td bgcolor="#eff7ff"><font color="#0">RTS&#x2F;CTS, XON&#x2F;XOFF, DTR&#x2F;DSR</font></td> <td bgcolor="#eff7ff"><font color="#0">XON&#x2F;XOFF</font></td></tr> <tr> <td bgcolor="#eff7ff"><font color="#0">Wire mode</font></td> <td bgcolor="#eff7ff"><font color="#0">2-wire</font></td> <td bgcolor="#eff7ff"><font color="#0">2-wire</font></td> <td bgcolor="#eff7ff"><font color="#0">2-wire</font></td> <td bgcolor="#eff7ff"><font color="#0">4-wire</font></td></tr></tbody></table> </p>
+<p>我这里用的是2120，参数就按下图来配置的</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzeeKvO1yETG9iHfsE3hGfdaLP6cGDXv9XKPWecIdoxOQmZUc8SFshImpKYvmbt5GmL1BUnPEdmYbeamvcehPBZ?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyYmV9_oR25YpfHNrcN-3SZdbLi1RQAr5YH_DvzUx2xS7aT0dj5gKuw0Aguz7f5dD9PsN0pcGxc6JOXMOz8WVXZ?PARTNER=WRITER" alt="image"></a> </p>
+<p>接收端使用Windows自带的超级终端，注意串口属性要和cFP这端匹配</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpx-fLK3qkMe2RaNg5tUgBZ7p0FDxsHI-Ft44aYXVa6_0Kr_g8xxco4noz9gUNJetu22VoUvMDv7YK_foEjTS26t?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpx51Q4SAOVXAj6mEDsBehKOViF4UEYhznITPi3pMh87sfwpg9bygsX8WQTJbwotEQpldsx-IIFfQaE8zR54ZRgH?PARTNER=WRITER" alt="image"></a> </p>
+<p>程序在cFP上运行以后就会出现这样的结果：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwL0XT21yqKt0bBzfhA6Wlycv8cT3b8AZz9PzN2ZvLCTTisLrcchpaomrIcs5DH1Bck9BQUmopVZrQ-SiNhTZQs?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzL1J0a53b63VSmHbMaH-AVhiIRrivOfMUoGkTR9fcEQfhDsLwy3LRDyHCRiFP9idj42cT7YB8yKkcognF4LaR9?PARTNER=WRITER" alt="image"></a> </p>
+<p>当然读取也是一样的</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwiwug-WPRSSWDRuT2L1oU3jud4V2fWusRTVOpB0PIfYyeIZMG6puPWc4EYf3EEqsVk8tpAcUssSPCesXjkX-Rp?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyx5SqHJzftF66J6S1GWHI047zZ0VrqWKYlJxpLC85Ie_F-5pUyPCw56I0PXWik7DSpgQs2lriyyDHbhnI1rwQT?PARTNER=WRITER" alt="image"></a> </p>
+<p>在超级终端输入后就可以读回来，不过要注意的是超级终端是看不到自己输入的字符的。</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzn6A3vp7uIGRX1QaTv07ElYi1w02ZRBQMXCZ4j21o-YZb5vapeYK67ghu2oSB0HjURGqOHuoQpIA7v-Nq7hvwe?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxYg-WLK5VtAzWNcqLeAM0Wyj45tlBkLkKz3sHYHAr6UzTDobMtaBTGvalMKS5CFV3WFmSCdjMpKNtWHtF6kRzY?PARTNER=WRITER" alt="image"></a></p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/05/14/archived-cfp-Serial/" data-id="cl2en8lhw000qv4un6fxkfa6s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-crio-teardown-03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/04/17/archived-crio-teardown-03/" class="article-date">
+  <time datetime="2008-04-16T18:05:11.000Z" itemprop="datePublished">2008-04-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/04/17/archived-crio-teardown-03/">cRIO摧残记（下）——FPGA篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!915" class="bvMsg">
+
+<p>同志们，在本人的无良拖稿之下大家期待已久的cRIO摧残记终于迎来了下篇，真是可喜可贺啊~撒花庆祝！</p>
+<p>在MAX里面的配置请查看<a target="_blank" rel="noopener" href="http://lhb5883.spaces.live.com/blog/cns!866B8F96A2761BBE!729.entry"><strong>这里</strong></a> 下面我们直接从LabVIEW开始：</p>
+<p>首先确认你安装了以下或更新版本软件：</p>
+<p>LabVIEW 8.5、LabVIEW RT ETS 8.5、LabVIEW FPGA 8.5、NI RIO 2.4、NI Device Driver 200803，</p>
+<p>这是本人所安装的软件：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr-Ct8-v8z-CmWeXf7SyzdyG-ZavotkqHoirXTPOOqtAQN37uxSepQZ_-kDc6FGnishMCXjPLhxOsg?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxCB9abFFHEqcIFTU88U6yCJxBWwCnmAo1TvReAeNmBg03BzeOa5IIfKfg6-uXUTY7mIejCtHefqXY3fR_TILty?PARTNER=WRITER" alt="image"></a> </p>
+<p><strong><font color="#ff0000">建议安装好以后用LabVIEW把安装目录Mass Compile一遍。</font></strong></p>
+<p>打开LabVIEW 8.5，新建一个FPGA工程：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuREiz1FKBzCweIH9YjS2WZKCfhG_XGCPrE1HOBNoBMzUR_ZXw4ckWxrm-vtKUMe1XXI?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRH-_AUqc9SPdWGe-QgaNunNuLiIpKyRJSmw-Td88QZgl9N3-xE4ygCJTvV_M0klci4?PARTNER=WRITER" alt="image"></a> </p>
+<p>选择FPGA目标类型：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRG4wP-wjQnssJ9hRVU_sa6Rz-LDK9BgswfqkyrH98sHStn5YdhPp_pXEJ4Z52WtcOQ?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGtHlA_DIx9isw1gWAj_ekqa094No4O5YFbDdWrGTEK3P4sNUqIX1LPgGdvDToH9p0?PARTNER=WRITER" alt="image"></a> </p>
+<p>确认cRIO已经配置好：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRETomBdMJv4_uDJEW3hxjsLZRtLnqGcQAeIgE3gbDJN9xc_DhaEzu8r-SKIGC0RRqo?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFxZboqLHciW2PBpMaaVKeVhqEhOJ0wPEjBw968-bdlHHr4F8lIUbadVGBsAO-fmNU?PARTNER=WRITER" alt="image"></a> </p>
+<p>如果一切正常的话应该这样：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGUJYa6sQ2e7sb2rfJD3CzyUy43m1nCggMnYuH73HfrEHrppj7kmF3ViPn8J__Gjmk?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRH-hmk5gCuVIjxJFUEUVLqS4_8wyw8EcIBvfo-V-K6WuFGt1U4V6SFspeGXU73QXWQ?PARTNER=WRITER" alt="image"></a> </p>
+<p>这里要选discover</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGMWKTc70BqmkgA2mgsXmAWLHW4fbA8RhgAQZKGYNYFPkYrh0OPKyg6NN6B-BAx_3c?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFCX3j3oF4j0XwfpqM6Zrk-2nwscwn7eEFziGj-AW6uSsJrLsTn1q2fl-6TCT2pMNc?PARTNER=WRITER" alt="image"></a> </p>
+<p>这样就会列出cRIO里面所有的模块：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFDqwE_neppTZCdHvgTKFaw-zymNjGhxuH7mHVEd4L9pqyJy4tVm0gSREB8T-ZjN0M?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRF6QCMr52FzDX0roswjJeJyUHnJKxKcnhOr3QAr-d9eD9htxvyoVkPQRjUFCt_rcmw?PARTNER=WRITER" alt="image"></a></p>
+<p>这个向导我已经<a target="_blank" rel="noopener" href="http://lhb5883.spaces.live.com/blog/cns!866B8F96A2761BBE!729.entry">介绍过了</a>，这次就取消，咱们自己动手丰衣足食。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuREaHdaWfVJgPhqc9omvyUqS-kajBN5TPY2C72pf2pWi2ktuEecMeH5ZGin8eCWiS9w?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFZTq6nX0zwmoa3yyg2pKgowXEkzqT7Jewbr1nZuq4PVmb16XIpxbtLTfSSPdG6fWM?PARTNER=WRITER" alt="image"></a> </p>
+<p>我们首先在FPGA上新建一个VI </p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGkzo5MHp0_rFpDNit0x5jaRu1t3723iEDU-3XZfbGj24UhukUJ_j1kjGnK_6ZQF4Y?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGdDQdQM4YK_kSx_72sZHvztghzS8LjL0z0s5KI9se8XfHTVJJhnDhpAgKce3AZ9vI?PARTNER=WRITER" alt="image"></a> </p>
+<p>我们把要访问的资源都丢进FPGA VI里面，**<font color="#ff0000">并创建相应的控件</font>**。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGVezOejCc3nZ6CAxEcSECNUpt2pNr_lDv4L0Q9jIEY5K-AGSIUHa8MjJ9tmsElSpw?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGbmtIlZgBLjIwIUI2tfSVxuCKHK2VA7a-rkOecT82JXcSKFZpSZjR3G4JoNujAPE0?PARTNER=WRITER" alt="image"></a> </p>
+<p>然后在cRIO的控制器上也新建一个VI：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGZI9h4KpIIErx8g6h8f-FRsCpPvo7E1o0JmkREtpowNKWKuFnGkhgVqgqwInY155I?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGuWExQ6nm0MI52jTgosw84HuF4pp7D_liXHSLZClnXS8mv7u7EubjngBMpNH0SVgU?PARTNER=WRITER" alt="image"></a> </p>
+<p>先扔一个FPGA引用：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRETjIqCuC12TxdiwXuUHuCOcxYOFLJ9NQJixgy-_LCrf-mt9O58FRf7lVt4iloHQm0?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFzB8LjhhGyLvIVW5j4Hskm-3oQVy-tQ_NWpT-BhoQ_EeEVInyk8vzQWkzcnqcmzoU?PARTNER=WRITER" alt="image"></a> </p>
+<p>然后选择VI：</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRHvvNu5shuH212Ofp_MlIcLkmQ0e-7tLUomXd8oPhsmPPTnQPIIwS_wwS4O0pmEHyE?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRF8l6CWbvpNOAbZjHLFYoulqrt3AU9J_tYpyPgI39qE9qf432ZbJgD0XMv8x3ZfsFs?PARTNER=WRITER" alt="image"></a> </p>
+<p>中间通过<a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFAuv0rCGxZ-tSk3BLs5BvUJwEugmvZVgwIH8np3j_367663T3YQgJWRtCXabT6ojc?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRES8ONRhfvf77L00y0fGGyx6-STzuWGJoXP1wQ_Q-54ueaHmNSLLO60APp28b3FmkM?PARTNER=WRITER" alt="image"></a> 对FPGA进行操作：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr_kofxOb-g3lFoPYLyPxsxPI7dnG70qAGhn3IwpL4Qo9J22ibqtTUUSqWJ3wFvuJFbMyvuUonbb2A?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMVE12aNFzOEzVg4jZZxSb-vOnenBQXy5AgreIKy-9aGNqw1zc6FUJd7H5fu-zWy6_d5HNdZLDzuDjsdYTC2aHS?PARTNER=WRITER" alt="image"></a> </p>
+<p>最后不要忘记关闭FPGA引用。</p>
+<p>这样一个最简单的FPGA程序就写好了。</p>
+<p>我们这时候还不能直接运行程序，因为FPGA还没有编译：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzwzE7ajkkJ305_XfLqPk9Wh5p9weFZR11-6RRbX8wTfFcKq4m4jrmpYywK5CBO8_C3zeu1Xo6o0J35i8l-1nQ3?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxkmJiPQLyVfjIE8wImomdru1G2FrdlW10aD9kqI_2M3TlNsm38o30BB_z4r81O_gFtUqvEskaqDnzoYyiryVdC?PARTNER=WRITER" alt="image"></a></p>
+<p>我们在FPGA VI上右键选择编译：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzm40xhVzMGQFb2OHjp84ns-LVoMPvr7V1vOVhbJClwXeBHrSvZLB6pXxS1413m70wuO0OWNzyolQWC4i6aYvPV?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyfSJ-COJfS_-G9K0Owh3k5oVIpckTJu2ZgQLOFJsV8mIdvAFNDcX5dlu3sE8uWw9L6kPMbkbq8r66nFizbLjt2?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyYEj5k8C9nI5EFsZVLYspVThWcmE_6yNHmM0tLoe9bPu8A7_9qpz6uYFYYOMPnpfRRQ_mMC7ekioSYLD4ou68r?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzyQaYSiuKeAf-i1DQW1h0mOhgplK7PqhhVoAhHSksze0JGxGcJ7S62qMFllGRO0OrXnly8_UzIfNfr9r4tOMeJ?PARTNER=WRITER" alt="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOmL63LlJgQyqIBZLVVCdEQB4IpOLu58jd8lVYwWbUNRgu9eQ5A2rFQsDKres5PuH5WDeB0PcnG5_4lQk8DRNT1?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxyalXakskdWjoWmg4b6rYpMT4BDsr_yvhELxkazAc5rZeDG84fMOzDZYvq5u-AJEKs0ND8oGzz2XB0802MS6w_?PARTNER=WRITER" alt="image"></a> </p>
+<p>漫长的等待之后我们就可以运行我们的FPGA程序了：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpylNMNt2Bd1k2V7W3avS2ZEP8QhT4w8_WtkDTitIvFt3XLDI69JDQfkKUCJaCHsdsWPpXhNTjlgMbZ2KyYAPb6j?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyxdSdziVPpFUwUDm6khOwmrdDyg9AyyfKLZwdpvZZLDewkxmm3nvBsdajWUsyJu7IgowfiwTameGj0n1rfMHKb?PARTNER=WRITER" alt="image"></a> </p>
+<p>要注意的是**<font color="#ff0000">直接运cRIO上的程序</font>**即可，无需运行FPGA程序，因为cRIO会通过<a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRETjIqCuC12TxdiwXuUHuCOcxYOFLJ9NQJixgy-_LCrf-mt9O58FRf7lVt4iloHQm0?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFzB8LjhhGyLvIVW5j4Hskm-3oQVy-tQ_NWpT-BhoQ_EeEVInyk8vzQWkzcnqcmzoU?PARTNER=WRITER" alt="image"></a> 自动调用FPGA程序。</p>
+<p>最后是友情提醒+小小广告：</p>
+<p>此程序仅仅是为了测试cRIO能否正常工作，如果要进一步发挥出cRIO的强大潜能，</p>
+<p>请联系<a target="_blank" rel="noopener" href="http://www.pansino.con.cn/">泛华测控</a>、<a target="_blank" rel="noopener" href="http://www.ni.com/china">NI中国</a>了解更多详情和专业培训课程。</p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/04/17/archived-crio-teardown-03/" data-id="cl2en8lib0013v4una0230t6y" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-visual-studio-asp-net-publish" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/04/15/archived-labview-visual-studio-asp-net-publish/" class="article-date">
+  <time datetime="2008-04-15T02:44:57.000Z" itemprop="datePublished">2008-04-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/04/15/archived-labview-visual-studio-asp-net-publish/">LabVIEW和Visual Studio（ASP.net）的网络发布</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!842" class="bvMsg">
+
+<p>我们还是用继续上<a target="_blank" rel="noopener" href="http://lhb5883.spaces.live.com/blog/cns!866B8F96A2761BBE!793.entry">一次的程序</a>作例子：</p>
+<p>首先我们来看一下如何在LabVIEW中发布VI到WEB：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr9Uge_-zbiiGzBNDigCY9IQN5HPhmA8Sq03-oTVLjivEvSR-Kq4cg-ws7BLVsV-xfmVRd5C9FZw2w?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpw__CMMSgi8xXAz2JIyCd2PQjFZ9QPVdo4tXVuEg0qqXBtaK94RpBF1IEnQZqtGo_6Mibp6m6bCD-aeDp2_vSaH?PARTNER=WRITER" alt="image"></a> </p>
+<p>首先在LabVIEW的选项里打开Web Server：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMW-rlPEr6RkFiHe8p5XtUbZHTZ1Xj1SkO369wJLFDWiyOvPJKlJ8YeCxSGgr3hO-oGZ3vD1v46RvZoYgX46RdE?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMzAI5L3JBsUrhGu8QCejxD89Ule-JLM1YeCtdDXz7L3XwP2aeE5ya5NBkFbZLsZYIBrtmC30LsuLmExrSR4nAf?PARTNER=WRITER" alt="image"></a> </p>
+<p>我们然后在LabVIEW里打开网络发布工具：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzRSFtGQY3Zba1Y_GTqyviNyF8k82c0WT2BSTcfvzbupyxVDaEN8aDOuCbtTfQdK_9QRwsMx29hJ5NLXbQXV19Q?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpw68nuPK7TEIardzdj_TvdyzC2BOLBTlcqT2czEE8POfsf8wv7-3vLAPqPpEsn2htTLoY80bcYrsFOK9o_LwhSB?PARTNER=WRITER" alt="image"></a> </p>
+<p>这一步选择VI的路径和发布的模式:</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMGHBMSsuNJ9ft8_p1SATOVGhYGoKpbB1KazqoHv0p5FfAUXJ7F1Nz0Zh7UvmE3AGw9WeQopHrEQ48rbt_TZ4fz?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMluv02iRJLzw1hGKGEDiFpr56U5c0KVnEQC21pI7b-mwu4kuaSU3_k0oAQpGwdx5d5sYUGgPkchdBKGCdQknaT?PARTNER=WRITER" alt="image"></a> </p>
+<p>这里就随意了</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM-lBlEGEUJiCo7vFTrbFIpPu5B0f2RW7gLoj5_-YSj9mP6Uu6iRYupbZgTGXvX2qjLPq7j2I1-IjqRwSrH4Tyj?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOR685TQ5YzU5pHhRaaa8k0TWRdP58kSbwaMlQJlJeXqKB_6osvhLqiKQMFdOs9j81ruyn620xmuP-h3db04L2I?PARTNER=WRITER" alt="image"></a> </p>
+<p>选择保存位置 默认就可以了：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN1y_6-r6G8Yb-E8U3qP7SmtHUMBqEI7KtyldtEffUHjnb6Nix81Ot9Ylp7y_nDjcJP__prOFGzc2sZk_pdF2pZ?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNDWd-SRmZYvI5c_Wz-d0NthvV51pBsFYXTGE2_BFDkW33xTgTPEaI8tNUhG5WHVnsNNPUd0uoalDyBmGjPJ-8X?PARTNER=WRITER" alt="image"></a> </p>
+<p>大功告成！</p>
+<p>Visual studio(ASP.net)的发布<a target="_blank" rel="noopener" href="http://lhb5883.spaces.live.com/blog/cns!866B8F96A2761BBE!793.entry"><strong>前面</strong></a>已经介绍了，下面直接看结果：<br> <table cellspacing="0" cellpadding="2" width="400" border="1"> <tbody> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">浏览器</td> <td valign="top" width="100">LabVIEW 8.5</td> <td valign="top" width="100">ASP.net 2.0</td></tr> <tr> <td valign="top" width="100">Safari3.1</td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzOovlA0Jhde32NrkvOsC2Q4lynGVmxlJ08dpNUL2_UzOKEIdvMwqFkYVHa5ZdjLW4wf_fzdjsSTX30Pbh4TO2F?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyYEos7DCy5-uPXAZoqxbUEzzD0G3qPyhNBOuATGV2ak_xHpR7eB6pKFTTwOrinMtDhVLtwuAY9CxVAOjSsYOTW?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpw_uCy9MDpW4Q4AfFNJPFXfy4M3zlTaP9DOh8s1hJdH1J0_vSp_05q13RR-9SxBrtx5kqqvlV2I8K8qLZ2T2lp9?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxmL93qpBC0MBPnD7EAzaWwtwsmMPqjPNSF5GJzHIfyOC2bEexx4tJI6s7ERIr14AhekSGaAONrlariLtkeHCmE?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwH6HnFBb7bolo5VB3mDUpt5Afx9N4PfLvzoHJ8PsFT6QhE4N2bL9EcFGUXcMdTUdy3eaBV26U-OMsamPg0MOkG?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxLLikJ7aYjRmW4JqeDGh6xcEwq1qLdMeM-lW03wfSWdHCI41F5eofx4gGWINzxaN6EpUVSDHxc93vXUlx6vUXp?PARTNER=WRITER" alt="image"></a></td></tr> <tr> <td valign="top" width="100">IE7</td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpydmUlpNGjSMTWnYSMd0FIM0yy6HsG2vrxv9Otc2vcMQuY6_gp_hb44nndxYS6o1UJ9aVjAJA86yeTb-ufEvbRA?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpw2WPBkHnykC7JNt-e6YUfAGrhEkT5VpkT-tc2kgO97Qtig4gMLWoiF_lT5dKvnGhkWljlpjOJwviSdJc43QlVL?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwukNcvn20CT4cprLUxEyDuJYdzEOoSa8Yl0UErmxh3CPJi_Bdkc3uXM3lLz5powSgqbBKzc9b2ySzQsqicLDCb?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxTHdzJESyV9fJn6QTmDAEDwWn7pFGO2BcCkwcXwNHEpKOhRKwDKTjzN-p2bgw58KY6W6lqH96Bbo2CmogrH-FA?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpycwmL7IHwAY76BdYNt3LBZOOeg4VgEm_EsLl4fM1fS5PK2XVnn1zVoofKENtskQ7_7l0mSV_Xk-05iOE1neLmf?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpx9AldkWOlz3wwHKDC0qD0Rg7IZINHfwtH8C-ExBXwVswttXKOO3YOpe46M_Y9jJkP2SqJxvNZmd583GsJK1SYq?PARTNER=WRITER" alt="image"></a> </td></tr> <tr> <td valign="top" width="100">IE8beta1</td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzu6tz-OmQn3jfTo4AmhKgGtkONP1oWmYtPxsI0BYlX0Ks7WR_jxIucXPXIML-KgybNMcWVvcw5QY_0Y-jFzZam?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzgLUtv9m4wNW7GgeQKLQR9frOkh4y9848wyPCA0JqylQdpuzF5lmLGkGAPPso91itDgCm5QIz82kY1x76VyH7o?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMwUwywxPHKN1YJDnf3yeDH0zGqtISsxe4q5UQL0Ofmg0yV51SUS5d3El8c3RtB1rQHt_Y4Eu8wV54pjS4lcxaw?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpx5bw-SQMgQfW4qJ9tV2akesBx49uD4-5OxXkLun1f3-WKGcHU_rzCsuVF64XkJh42RTwCIKmND6oJ3a32ZkR4t?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPDkfd6Nd3R689vUTAegioJt1cQyuOItIWt8qZgIdjepEXfRIR-O5r-pmzZ5NAGObhWD415DKGRNLZQ5B4Cj8wA?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwPHHi1b9tTsKxx33JAd62Ci2WRkPGCv5B_g9aqk0WKn9S1TAKZGxe7hlZRG0fx6WNJ9aYDJ-WfEJcRH_eW0yRd?PARTNER=WRITER" alt="image"></a> </td></tr> <tr> <td valign="top" width="100">火狐2</td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxO68zqyvDW-0iHxNbvy6m00ifdUgt_AAvI_8UmiwMDQYpl-bYll_Y6zjlKBp4mWTWKRa0MV2Y4_PXvSA2zjYgj?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzh0q7jb35zGl2D3iQy1E4hHAc-UY3zQJqcSPh_kKggXlCePCJdBmlZ7vdZRzt0GSOuZ_cNha20UQlgtRoaJirY?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNrNnfpTiBBqQTu4jbULOAP2H6WdObpC2w3uAF-9rE2x_-MxYRoJ2_rUzVsy-tlR5xGw30nz-uYLxsb4U3npC9k?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyVgdxCW7y6jG_d8yzAkZzBnxCS-qHNCQmnB9LwF9H7JUry_bGnksrlT9a_MgfAElLnodIlF_A6PwkdggKFi1gk?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMKciqOx8s4PCuW0Ppom71IX-a50iN7InOAXmxabKjjmCoIRrhO0H11i3tqC-H4RYtPv4S06YZ6VHp4tlSwFvQF?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpw-HVKmA006E9BQAd7e98-vozCA4KaS39TVeIRykGY9m1Pb6UnKDo-KpYSCjR-KUyXi1PKNGG8_nm2EvogQ_Nnz?PARTNER=WRITER" alt="image"></a> </td></tr> <tr> <td valign="top" width="100">火狐3beta5</td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzKiTy3H32Q-7l56GUkm-VUp21mH5YgQlmfRKLpAdiN4-iMxwmkqYHqho0JOlvUb1n47ZhRhZqWlswudSdsLBMv?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxPCjiKlu7CnsRJXVAUDAqOPMve6gWrEXvlcHJNBgveEI2oAHOnfEMa-cDhA_NlayBdiKE0IiteLr1ZG3hbiw9n?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNfIcNk_LknRDYTgjyH74A4eOdw7yMmzrCe4UxXqh1BPkB7rGUqUXCi3PB8_z44WbW1lNlrw8He7q8MVshk5CBa?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpz3ukH6AZH2gLmdnlCScjSUVa1AJ5P23i4JytzqBqAvzoNKRyWe7dxF6knz1Nu8uk6Y05ta_q0DmO9ggJp6LQNc?PARTNER=WRITER" alt="image"></a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN6RQznmxS-rQuFvyQ4xVolZ2kK1l7igkOJyvNCT74L8VhS3_d4Fb3JjLOKlWIRhOc5fwIJTSiZLgX6djgiwmOK?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyPJCMOsRzfvBdZgVQ3ZWfnwei_P95Mxfk7bt2cEzgkRHZsmaXRGGC1YLDCxNj4z0LPYENOaMwyOnu2OC8ra4FV?PARTNER=WRITER" alt="image"></a> </td></tr></tbody></table> </p>
+<p>下面是LabVIEW 发布应用程序的几点注意事项：</p>
+<p><strong>1 被发布VI最好设成可重入，以便多用户同时访问，否则同时只有一个用户能控制和操作程序。</strong></p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwJ8a1PX2f9OGt7wh9TsGSAKCrki68f8a4GhA5lhZFd5eCOe5_Vv2ENn33Z5EFiOJczzQsgCMpsnQ_MmlqgzBDC?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzeXGCB09n60DB5nEBCMMfzw37KsDoulsV-TqkzEMFUPPugKxE3akGF6de4Qv6gYgwXVXU0dlMTV5aiNm62ZaFL?PARTNER=WRITER" alt="image"></a> <a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpydEO9ucGTV9q9iZ993aZ9nKrPvODKvWAXQmJfgeZ_asRs7toguILPxLCyzu1gZpVZx-sRTF4hFOd933Za99Muc?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwV1nRi_xLouCpxtfZq5yClz8ZbYtB6Vt6Se6f0ErQtiyivgyu9-QkRZlpIDX4Qo4VAst2s_NGMb5wD4pdUaOxx?PARTNER=WRITER" alt="image"></a> </p>
+<p><strong>2 客户端需要LabVIEW Runtime Engine，并且浏览器需要支持LabVIEW控件才可以。</strong><br> <div><pre><span>&lt;!</span><span>DOCTYPE</span> <span>HTML</span> <span>PUBLIC</span> <span>&quot;-//W3C//DTD HTML 3.2 Draft//EN&quot;</span><span>&gt;</span></pre><pre><span>&lt;</span><span>HTML</span><span>&gt;</span></pre><pre><span>&lt;</span><span>HEAD</span><span>&gt;</span></pre><pre><span>&lt;</span><span>TITLE</span><span>&gt;</span>Title of Web Page<span>&lt;/</span><span>TITLE</span><span>&gt;</span></pre><pre><span>&lt;/</span><span>HEAD</span><span>&gt;</span></pre><pre><span>&lt;</span><span>BODY</span> <span>&gt;</span></pre><pre><span>&lt;</span><span>H1</span><span>&gt;</span>Title of Web Page<span>&lt;/</span><span>H1</span><span>&gt;</span></pre><pre>Text that is going to be displayed before the VI panel image.<span>&lt;</span><span>P</span><span>&gt;</span></pre><pre><span>&lt;</span><span>TABLE</span> <span>BORDER</span> = <span>1</span> <span>BORDERCOLOR</span> = #<span>000000</span><span>&gt;&lt;</span><span>TR</span><span>&gt;&lt;</span><span>TD</span><span>&gt;</span></pre><pre><span>&lt;</span><span>OBJECT</span> <span>ID</span><span>=&quot;LabVIEWControl&quot;</span> <span>CLASSID</span><span>=&quot;CLSID:A40B0AD4-B50E-4E58-8A1D-8544233807AF&quot;</span> <span>WIDTH</span>=<span>914</span> <span>HEIGHT</span>=<span>667</span> <span>CODEBASE</span><span>=&quot;<a href="ftp://ftp.ni.com/support/labview/runtime/windows/8.5/LVRunTimeEng.exe">ftp://ftp.ni.com/support/labview/runtime/windows/8.5/LVRunTimeEng.exe</a>&quot;</span><span>&gt;</span></pre><pre><span>&lt;</span><span>PARAM</span> <span>name</span><span>=&quot;LVFPPVINAME&quot;</span> <span>value</span><span>=&quot;FAQ_DB.lvproj/My Computer/main_v1.0.0.vi&quot;</span><span>&gt;</span></pre><pre><span>&lt;</span><span>PARAM</span> <span>name</span><span>=&quot;REQCTRL&quot;</span> <span>value</span>=<span>true</span><span>&gt;</span></pre><pre><span>&lt;</span><span>EMBED</span> <span>SRC</span><span>=&quot;.LV_FrontPanelProtocol.rpvi85&quot;</span> <span>LVFPPVINAME</span><span>=&quot;FAQ_DB.lvproj/My Computer/main_v1.0.0.vi&quot;</span> <span>REQCTRL</span>=<span>true</span> <span>TYPE</span><span>=&quot;application/x-labviewrpvi85&quot;</span> <span>WIDTH</span>=<span>914</span> <span>HEIGHT</span>=<span>667</span>  <span>PLUGINSPAGE</span><span>=&quot;<a target="_blank" rel="noopener" href="http://digital.ni.com/express.nsf/bycode/exck2m">http://digital.ni.com/express.nsf/bycode/exck2m</a>&quot;</span><span>&gt;</span></pre><pre><span>&lt;/</span><span>EMBED</span><span>&gt;</span></pre><pre><span>&lt;/</span><span>OBJECT</span><span>&gt;</span></pre><pre><span>&lt;/</span><span>TD</span><span>&gt;&lt;/</span><span>TR</span><span>&gt;&lt;/</span><span>TABLE</span><span>&gt;</span></pre><pre><span>&lt;</span><span>P</span><span>&gt;</span></pre><pre>Text that is going to be displayed after the VI panel image.</pre><pre><span>&lt;/</span><span>BODY</span><span>&gt;</span></pre><pre><span>&lt;/</span><span>HTML</span><span>&gt;</span></pre></div></p>
+<p> <a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhP6awthTcHcLjagVSfAfChVDXgUqleWmDnMna9wUx1lzen33ogZxWTU1zKTfHctp58Fl5NsSNHmWXtkZdpLTVgp?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwr37v6Z__8Cyh7wU2EUbF5zgPmhN38wWPAa0VTV-UC9Jz03U8kl_1r_7wYl4vAmIiKgsClDj_5qlRPGTWwJUi8?PARTNER=WRITER" alt="image"></a> </p>
+<p><strong>3 不要忘记打开80端口，否则无法从其它机器访问。</strong></p>
+<p><strong>4 要保证被运行VI在服务器端载入到内存。</strong></p>
+<p><font color="#ff0000">小结：</font></p>
+<p><font color="#ff0000">在程序&#x2F;网站的发布上，我们可以看到LabVIEW的在服务器端配置的易用性远远超过ASP.net，</font></p>
+<p><font color="#ff0000">但是在客户端需要LabVIEW运行引擎和浏览器对LabVIEW WEB控件的支持，</font></p>
+<p><font color="#ff0000">而ASP。net配置虽然复杂，但是客户端只需要浏览器即可。</font></p>
+<p><font color="#ff0000"><strong>总体来说LabVIEW的WEB发布更适合工业控制领域，ASP.net则是开发专业网站使用的工具。</strong></font></p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/04/15/archived-labview-visual-studio-asp-net-publish/" data-id="cl2en8lip002cv4un3xpp5z4h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-visual-studio-database" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/04/14/archived-labview-visual-studio-database/" class="article-date">
+  <time datetime="2008-04-14T01:37:00.000Z" itemprop="datePublished">2008-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/04/14/archived-labview-visual-studio-database/">LabVIEW和Visual Studio的数据库联接</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!793" class="bvMsg">
+
+<p>最近在研究Visual Studio的数据库连接，正好我们的<a target="_blank" rel="noopener" href="http://stormywolf.spaces.live.com/">SW</a>同学写了一个基于LabVIEW的数据库程序就被我厚颜无耻拿来学术研究了：</p>
+<p><strong>首先我们先看看界面：</strong></p>
+<p>这个是他写的LabVIEW程序：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr-rsHPZ9qsTUYK3Bcfks73Qb-WYzW354oRm-XMtpVsxGmC3jCw4Um3GXhqAb4elqN4pWU8B71QfYA?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxiV4koJ1Eq2sXTsE11i8ZJRGewFQiztnfPfw7JTG7xKWusFKmn5ACWO2coVgECx6-XO7SojRS0ODKwQT0VB993?PARTNER=WRITER" alt="image"></a> </p>
+<p>开发环境：LabVIEW 8.2&#x2F;8.5</p>
+<p>需要LabVIEW 8.5（or Runtime）、Database Connection Tools支持</p>
+<p>本人的高仿山寨版：</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMIzc7sPe8YXm9aDYKhVikAkKl9dITc27FKJuvzj0tWGWiVwhWDBDRXWi-3VeagVuk3rTPuOFZMJjPI026dOmYo?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpykb7c7LqXMZWwBs8ne29EIZa1q2StZAc1xotbRR4vvMv1Twk5RevgZYHJXq6wsMOXmXAXoCsseGA9YU5ClGaOg?PARTNER=WRITER" alt="image"></a> </p>
+<p>开发环境：Visual Studio 2008&#x2F;2005</p>
+<p>需要IIS5.1（及以上），.net framework 2.0支持</p>
+<p>浏览器支持：Internet Explorer 7.0&#x2F;8.0 beta1，Firefox 2.0&#x2F;3.0 beta 5，Safari 3.1</p>
+<p><strong>然后我们再看看程序：</strong></p>
+<p><font color="#ff0000">数据库的连接</font>：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyZF-5Nvn7HzrSLf1LEZNS-EngM075lS6O4kfEC4VgI6hH_t6tCWGVQt5c6II-xt-2UdznDlkF7zPGmDjDw4lV4?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzgWo2X06OKTBGkcMlUp15FLlFL0l1Apd9AaN3XZHq5N4ikj1bdVyhxOj1jZkaVht-6xurvYrk_Dgt6TlDovXZF?PARTNER=WRITER" alt="image"></a> </p>
+<p>LabVIEW可以通过DSN连接，也可以通过其他方式。</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpySP0QEmndfxyDA35Sv2iBH41BNwzTHPtdi2bXgdwh3owYRiUBU2Mn8530yjx65FqLw-oPrCCo6a-gNasAwxBbu?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwMFOCxgwtxx6bBOcpYEoA7hdMFUf4F37dBlkSPuDhZcRrTLdJ1X788FzQV7ZBu4g__wgFRJOOJjN_z-E5aPp_C?PARTNER=WRITER" alt="image"></a> </p>
+<p>Visual Studio也是类似的：</p>
+<blockquote>
+<p>String connStr &#x3D; @&quot;Provider&#x3D;Microsoft.Jet.OLEDB.4.0;Data Source&#x3D;db1.mdb;User Id&#x3D;admin;Password&#x3D;;&quot;;<br>OleDbConnection conn &#x3D; new OleDbConnection(connStr) </p>
+</blockquote>
+<p>我使用了连接字符串来连接数据库。 <p><font color="#ff0000">数据库搜索</font>都是用SQL来查询： <p>LabVIEW： <p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwgzO27HK24yQ_j6KkpOiMpB-Fee8wXEVrfu_TKBTsnwuprNTQLWJ1dPGrkKgV0tm9E8nA0B3Jiq5P9fVQb8CWl?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwC28qRpaOuAskfy86qKEv88Iz6e4J1KaSvCR0OMEN_U4jfdZXcgDfBGbbmwYAyewzC7RpOMaeOumuOcXJQdM1D?PARTNER=WRITER" alt="image"></a>  <p>Visual Studio： <p>select ID,Problem,Answer,keyw from (select * from [Communication Buses] union select * from [DAQmx&#x2F;DAQ] union select * from [Instrument Drivers] union select * from [LabVIEW] union select * from [LabWindows&#x2F;CVI] union select * from [Modular Instruments] union select * from [other softwares] union select * from [others] union select * from [PAC] union select * from [Platform] union select * from [Vision and Motion]) as muti where Problem like ‘%6251%’ or KeyW like ‘%6251%’ <p>数据的解析与显示： <p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzUh9RxmHUHlQsQVcZzokKTEOJENxAtuTybqdFW_lN_eXFOpyymoTIgjGZLDZHtSX7LgypP49oYuQ3Tt6599pxJ?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpymnd9lEnht_-dZMjiQaZzHcZGqxkoVmYibVqP1yDyQwE3vWP5USjdIlG8YcDRmr5AxHSPEq_QFW8WK4fd8FetE?PARTNER=WRITER" alt="image"></a>  <p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhPjn1n4pr3OoZpHmo82MeLqchHxscFj-DG4V4bQB04gKU2jt1ckYcFtXpurELrpEslP4PbWbwvtHFZ4vkLxzoBN?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwdjKgkdEOuUJwK9ScRs89anH-BRU9Ar4lcqK88oqJpXMWfepmojz27i54jPWTXDcgHBpb4uvxWC64VKvDXFoNM?PARTNER=WRITER" alt="image"></a>  <p>OleDbDataAdapter sda &#x3D; new OleDbDataAdapter(SQLQueryString, conn);<br>DataSet ds &#x3D; new DataSet();<br>sda.Fill(ds);<br>GridView1.DataSource &#x3D; ds.Tables[0].DefaultView;<br>GridView1.DataBind(); <p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr8zGIRo3qg_bYE6ilLd57GsOmq299QvsIR_ZD86qVDK_QjBa_fnh6tMVue00UudhdWlozNI_TY68A?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGFzf7nu6U_SeaBmQsqJZNNI9rOqaDSe1wyUJlk5D4NBNNbYWaLZtDBJrcRJBIv4vI?PARTNER=WRITER" alt="image"></a>  <p>小结：可以看到LabVIEW和Visual Studio都提供了很方便的数据库连接接口，使用的方法也比较类似。 <p>区别就是LabVIEW编程可以很方便的利用状态机，而使用C#就要利用事件，这个并没有优劣之分，主要看个人习惯。 <p>因此这次的对比证明了LabVIEW和Visual Studio相比数据库的开发能力差不多，关键还是在开发者的开发习惯。 <p>  <p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;以下是纯洁的分割线&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; <p><strong><font color="#ff0000">如何在XP下配置IIS和ASP。net 2.0 </font></strong> <p><font color="#000000">1：安装IIS：</font> <p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr85tot0mo1Q95NcyIQgle5vrAwAbzCiaClOX9MRQTkEgsOBSHME-4MDWKsaX3u0OwVIBC2GaHDJqw?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxVDZ7BNPfyTAO1g1Cd9RgNPSK5K75wJ5y7kxWWxSSCLbxgVIZk_-7zXd6dmegGr7gVfOt162jIx-CvI2N_S4f1?PARTNER=WRITER" alt="image"></a>  <p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzFV87Q5V6h-zClFZXrg085n7WkeRGjB6Rbp5FjVBnGClBcA33bL-4_WMIm0EmHGbm0GurVC8Q4TBfV_Hfvit_0?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzfYzTugeeG0B8_MgWgd81J8wbSM6x5_qkFxRXVJIjBHICmcTrZb6WI_DdM6NF6AxUloeu743yltKZWQ44XjfOu?PARTNER=WRITER" alt="image"></a>  <p>基本上一路下一步即可，提示插入XP光盘就插进去。 <p>2安装。net framework2.0： <p>下载链接： <p><a target="_blank" rel="noopener" href="http://www.microsoft.com/downloads/details.aspx?displaylang=zh-cn&amp;FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5" title="http://www.microsoft.com/downloads/details.aspx?displaylang=zh-cn&amp;FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5">http://www.microsoft.com/downloads/details.aspx?displaylang=zh-cn&amp;FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5</a> <p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwMF7nrOK3OdGYuKbUrxH-5tp-aU4EFJmHLyyrRtSAl-X6072fFQWGhLJM59YGziPqd4gevupLTeG6UgNiySlNv?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzezCn7VvzX937E6uGTHNCCn_LPBvwdHjKE7Bvw3mlp-LIX9etCAAKEbIeBTskKLYHhtCp74z8pnZ3yccKntw5_?PARTNER=WRITER" alt="image"></a>  <p>这个也是一路下一步。 <p>3 配置IIS和ASP。net <p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOuK3E8vElf524vNo7L96Al-WHY4RhiG9WizlpoiWpOyc9qarMj9ZC95_2qZYGvkqxyt_s9FtWTgwAe6Xfk3szT?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwghfT7qH13uHr4hJbZ_655Jg2G15ZEc8KURrfwHYeZYdmcCRFlBDD7s0AqOcbI4zWouWMG5sIHpkgvvVugTrTU?PARTNER=WRITER" alt="clip_image002"></a> <p>首先配置主目录： <p>[<img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzE49wFDunldELaHobS9AA8NpHyr3o5EiCmvonORqb9rABwbwEMuP6YUqsqHZUi_gucJ_KrwtCXh_2zpVTjIX9v?PARTNER=WRITER" alt="clip_image002[4]">](<a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwRH0R9u5SFZsznI6HY7VrMu4CnxbfbZUqkKz_Vv1_7rGNcGd503LPWp0hLpgDMW3sdB1bls2CrzBfiyutdAFWR?PARTNER=WRITER">http://by2.storage.msn.com/y1p8NjIsGi7lpwRH0R9u5SFZsznI6HY7VrMu4CnxbfbZUqkKz_Vv1_7rGNcGd503LPWp0hLpgDMW3sdB1bls2CrzBfiyutdAFWR?PARTNER=WRITER</a>) <p>然后配置ASP。net： <p>[<img src="http://by2.storage.msn.com/y1p8NjIsGi7lpw_XdK8DNb80wjofB6CUcWgv_sMPmDjA_7ZX7gfint7B0QccppCB3ZLYQbIezbXhGA_ILXQLJ0Q9aIKM373bXsy?PARTNER=WRITER" alt="clip_image002[6]">](<a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpzM00JBJt8m05zZ7sl2ZfOiaNJHTLA0VW6f7iT470mg_ocCdJ8yePjelb2CD3e4ebyN0iFyEOLjjm-Mjr-T-O-W?PARTNER=WRITER">http://by2.storage.msn.com/y1p8NjIsGi7lpzM00JBJt8m05zZ7sl2ZfOiaNJHTLA0VW6f7iT470mg_ocCdJ8yePjelb2CD3e4ebyN0iFyEOLjjm-Mjr-T-O-W?PARTNER=WRITER</a>) <p>然后回到主目录这一页配置ASPX关联： <p>[<a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwRH0R9u5SFZsznI6HY7VrMu4CnxbfbZUqkKz_Vv1_7rGNcGd503LPWp0hLpgDMW3sdB1bls2CrzBfiyutdAFWR?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzE49wFDunldELaHobS9AA8NpHyr3o5EiCmvonORqb9rABwbwEMuP6YUqsqHZUi_gucJ_KrwtCXh_2zpVTjIX9v?PARTNER=WRITER" alt="clip_image002[4]">](http://by2.storage.msn.com/y1p8NjIsGi7lpweO_Raw-S1yo9VgHKVd_SioObI6tTYA3y2xpA8B7kQuJX2zHMnr08ix4UBIKAEYdYaA7_1IrL7fIHsaCG_w4h4?PARTNER&#x3D;WRITER)<img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzGegUvTnzx2dQYxBCW4ErigqgaDDQ9dv1rpxqs_O02hyn9GDRexvconsuaQ7mzIVkUtyvnJv3V9aUcx0ExaJ95?PARTNER=WRITER" alt="clip_image002[8]"></a> <p>再添加主页： <p>[<img src="http://by2.storage.msn.com/y1p8NjIsGi7lpyZc-ZNW65n0r860o7lZQfre1DfPBYwNZWJENpjBZqIrRM_TDC_OSql8z0C2uDvWiBT8tL_9hlngperkcFSfBp5?PARTNER=WRITER" alt="clip_image002[10]">](<a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwNJF49vYCiIU7cH9xRpOSjbzeV4EP_4mooK8FtWNsgD3_xA2sm8S1W8D_0g2Emi-Sv-_uQmXPoGmLFVDYkZRKY?PARTNER=WRITER">http://by2.storage.msn.com/y1p8NjIsGi7lpwNJF49vYCiIU7cH9xRpOSjbzeV4EP_4mooK8FtWNsgD3_xA2sm8S1W8D_0g2Emi-Sv-_uQmXPoGmLFVDYkZRKY?PARTNER=WRITER</a>) <p>4 授权IIS用户： <p>在C:WINDOWSMicrosoft.NETFrameworkv2.0.50727&gt;aspnet_regiis.exe运行GA参数 <p>-ga &lt;user&gt; 为指定的用户或用户组授予权限，使其可以访问 IIS 元数据库和 ASP.NET 使用的其他目录 <p>[<img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzp4LiFzVzKER5Zv3jwhZPvAzyNPPvRvdmTE-1qg0lEGdoIy_yck_mDAzPMiLMYy5OlA-x0xscHeYeSBN4cJHdi?PARTNER=WRITER" alt="clip_image002[12]">](<a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhODm2fi_rdmcFZkSzcnQWLsdb5SeV58nSGgVR-MbX-jzRuijok9CvRIoevikOZtnNNWNV29hDzmpDtUDezu41P3?PARTNER=WRITER">http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhODm2fi_rdmcFZkSzcnQWLsdb5SeV58nSGgVR-MbX-jzRuijok9CvRIoevikOZtnNNWNV29hDzmpDtUDezu41P3?PARTNER=WRITER</a>) <p>目标是IWAM打头的那个用户。 <p>[<img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzXj267jt-WJLoaH2SAOcmnGpFZ4KTLXMV2H0L72MMNmDEcbjrI7RBw0xNy4ca384MKEWZHLqal_X48hjvSSoh4?PARTNER=WRITER" alt="clip_image002[14]">](<a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyu9-FSxAqCM2LvhSnRNT_OWuNYVRLZz692d2LCUl7T6JmPH4O0L0qofybqBLDl1a--TQ-99JLIFXoqcCWj-_Wm?PARTNER=WRITER">http://by2.storage.msn.com/y1p8NjIsGi7lpyu9-FSxAqCM2LvhSnRNT_OWuNYVRLZz692d2LCUl7T6JmPH4O0L0qofybqBLDl1a--TQ-99JLIFXoqcCWj-_Wm?PARTNER=WRITER</a>) <p>5 最后打开防火墙80端口 <p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpwPYuPipdQ8EVRSsCHkgBrSrp1RbKIh8ixycGqIApiVrEyO6L-PIisT35K5yIUXilXVgWz5SNS8BuOT6CGozOkr?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxKxTzM1rQvwZOymZp8EiAJsZfz1SYB6cSY1Qyk3Y1DvS7QhwBUiNeoqNmBRjX_VFBl3u83TvlED31WpXyDBReS?PARTNER=WRITER" alt="image"></a>  <p>6 大功告成！ <p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMxe0WHtcOrzvtgtOB5-puP3GdnPRvP8460OHHV3VLDoBDPlYdsRbItrJ-2k4xmOYgsGXqIxabk3iTH15hc5jdX?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwbEbbVmOX-ZoUDQQzV4Mvl19SK07HseVzkfOolMnHOCp8xh8PfKYQwpVlUUcEd7mQS6fSj4EWl5EUnf0igHpGn?PARTNER=WRITER" alt="image"></a></p>
+</p></p></p></p></p></p></p></p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/04/14/archived-labview-visual-studio-database/" data-id="cl2en8lir002ev4ungzjn2tpu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-crio-teardown-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/04/08/archived-crio-teardown-02/" class="article-date">
+  <time datetime="2008-04-08T03:13:22.000Z" itemprop="datePublished">2008-04-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/04/08/archived-crio-teardown-02/">cRIO摧残记（中）——RealTime篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!751" class="bvMsg">
+
+<p>上次我们提到cRIO是由RT控制器、FPGA、模块三部分构成的，今天我们要研究的是cRIO的RT控制器的定时精度。</p>
+<p>在LabVIEW的RT例程里面专门有一个benchmark程序，可以用来测试代码的执行时间。</p>
+<p><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr-1y4meOuwAT2PdIaBVzeqAhZZIl4Se-oWsO6Wo3ImpemAS0dTZHaK8QHxdDhf2npniS8dH-X5oHQ?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM1bRQ2Yn6fZwa_wtmNQsnBZDLygUIyYAvrSxBy6VSympC5KhNA9pIoAV1wXkd92WZMrptQoVIgO21XY12e6mwj?PARTNER=WRITER" alt="image"></a> </p>
+<p>今天我们要测试的是RT的wait函数：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpyfcCWmMOlLCQ9SOzeX1g1fttzRuey7W4tvnerY6PiRYaAgCOGQ-6EX3vxuuLYOY1rNjJVANnQPzitbJnrtaK-h?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxIAxqp-1KTfCEOVMfgm9opFQ_VPkg-8pT8auEqqpewRNh9pY3GPmqX96wQMaUAkp-Iov0sCBXJ8a346UZuvKFG?PARTNER=WRITER" alt="image"></a> </p>
+<p>Wait函数有三种定时单位可以选择：</p>
+<p><a target="_blank" rel="noopener" href="http://by2.storage.msn.com/y1p8NjIsGi7lpxDq3PvOetL-QLdCmPU-Sn_uXxfFytATTilMdHKkyjPg6LoY5ryVza7_mGCTRoLEng4wB6teMmFXfDUuY0-52PF?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpy-CA3WeV1N4Ktwc7tRyMgO0CO36qkW63w8S-Wh82Ee9G8UnZfAcxLQM6iQM9qBQdKDXuCoOd8mDRrH3teKVmkH?PARTNER=WRITER" alt="image"></a></p>
+<p>mSec毫秒：这个和一般非Rt的程序里面等待函数用法是一样的</p>
+<p>uSec微秒：顾名思义，以微秒为单位定时</p>
+<p>Ticks时钟：这个比较诡异，根据下面的实验是以纳秒为单位定时。</p>
+<p>下面就是实验的截图，点击可以看大图，图中横轴代表定时的时间，纵轴代表测得的延时时间：<br> <table cellspacing="0" cellpadding="2" width="400" border="1"> <tbody> <tr> <td valign="top" width="100">Ticks方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100">100</td> <td valign="top" width="100">1000</td> <td valign="top" width="100">2000</td> <td valign="top" width="100">2500</td></tr> <tr> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhNdYPoQF__zVl9jVlpAGB0xvstaxYtjhFsuu66s10ugT7ZzM2Na_N7tfG9JBH2K-OK-M0BCStsW7UKlawIW1fiW?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxEZVVq6Ms4vkymeJA9gbZzDYg-8OQRqUUXDnJ1JU2aANlV6Qe9XqAj0lKocDElQiP4QAi3K2qoFMmn9afYr834?PARTNER=WRITER" alt="tick 100ns"></a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN_lAhLLVXxX8tTnz4Aug1QyJumYzVBWBTB2If5Y1DWYLeTGqmnS1Y-BkgRFIGLGVKnf09JOQCm6FGnQm5HlmAS?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzltceUdA8pVKhqcDNEKO3ReUlrjoA870Vw46Mue8R5Dtl4t00v7VNaLZAv34n04rndSSGVanWJeNs2zAAT3HC3?PARTNER=WRITER" alt="tick 1000ns"></a> </td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhMkenl1eYt-wG9wegJDUW56QNA3BM1UY3S8Z-zWz3RVZQ6Ole7EzQFCvuL_2AtmcjLNZcJv_o3Ft6nEBLv_TqUI?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpzD0Gpwjvz6Q6QmbkyqzJpFM3wXwwZC_moCditymrPUyUrJW-g_fb0_CFfL7J9O_VtOhZnEB8IJIti6ZnBhf5fs?PARTNER=WRITER" alt="tick 2000ns"></a> </td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhOjKZQJYG09JmkNRVDv4gkXNyn-VMxcIT6V9C1xWJQnxvUNqCJ0ycSAYPippKIs-9I_YbBigu5TfRSqL3LbsuOP?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwOrjGOm1aDOb7RQP6PFoKM0mEDH4Cr54L6_LtMpEtPp7Br_f1C53aJsTPij-EGB-n4L9KKQcUj0ZJY5Y1ovqQm?PARTNER=WRITER" alt="tick 2500ns"></a> </td></tr> <tr> <td valign="top" width="100">uSec方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">1us</td> <td valign="top" width="100">2us</td> <td valign="top" width="100">3us</td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhN0SSHjgkBl6p_fL8lYcmBggZBEvVbZHthF7_mr8kSWAPHqrU34MaxSliInIn2bmCJfFBF9C9GCP2o36TganMZx?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpwxA_7glJKlosjtAkGvsxZbTU4srQ1kwHlsHxC-kHdicLqAOn7W1jYA6TV5wZj-2pXitvr-4XP5LtImgzNmuEW5?PARTNER=WRITER" alt="uSec 1us"> </a></td> <td valign="top" width="100"><a target="_blank" rel="noopener" href="http://zdpe9q.bay.livefilestore.com/y1pAFYaglZOQhM4dQCbUJxgeITDyr31Wu-NllXSeATleh-znVAjqvwyv1SMlSu-VfN298yUSLRZMVA7EmWs7IrvNQP63lVk-dDj?PARTNER=WRITER"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpx82eOyflJuKsCNnjH2WPaC5V0OGDNrSPQPV2uAUx4htz_hZbHyBGBgKdQ0vF9OYUCkQo2uE-otaL-1wdBn2bnN?PARTNER=WRITER" alt="uSec 2us"></a></td> <td valign="top" width="100"><img src="http://by2.storage.msn.com/y1p8NjIsGi7lpxrGzTWBj4XAkDz2VlibjLAgzFYiH2R51i0-vF0qclEsHXfE2TllzS2pl0WKDU3dXa0oFln9ljANaWQ0hxcEnTW?PARTNER=WRITER" alt="uSec 3us"></td></tr></tbody></table> </p>
+<p>可以得出的几个结论：</p>
+<p>1 Ticks的计时单位是纳秒</p>
+<p>2 cRIO的定时间隔在20us下是不准确的，在20us以上基本上可以认为是线性的。<br> <table cellspacing="0" cellpadding="2" width="402" border="1"> <tbody> <tr> <td valign="top" width="100">Ticks方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100">100</td> <td valign="top" width="100">1000</td> <td valign="top" width="100">2000</td> <td valign="top" width="100">2500</td></tr> <tr> <td valign="top" width="100">21000ns之后可以认为是线性的</td> <td valign="top" width="100">22000ns</td> <td valign="top" width="100">22000ns</td> <td valign="top" width="100">20000ns</td></tr> <tr> <td valign="top" width="100">uSec方式：</td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td> <td valign="top" width="100"> </td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">1us</td> <td valign="top" width="100">2us</td> <td valign="top" width="100">3us</td></tr> <tr> <td valign="top" width="100"> </td> <td valign="top" width="100">22us</td> <td valign="top" width="100">16us</td> <td valign="top" width="100">18us</td></tr></tbody></table> </p>
+<p>3 这一点是个人的猜想，仅供参考：20us以上的定时也不是完全线形的，有可能是因为cRIO的RT时钟间隔造成的，</p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/04/08/archived-crio-teardown-02/" data-id="cl2en8li6000zv4unelfuaao7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

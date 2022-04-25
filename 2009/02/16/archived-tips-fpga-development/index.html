@@ -1,38 +1,247 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
+  
+  <title>如何加速FPGA开发？ | haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="NI LabVIEW FPGA模块提供了一个非常方便的接口供我们以LabVIEW图形化的方式开发FPGA程序，不过也有令人困扰的问题就是LabVIEW FPGA代码编译的速度较慢，如果机器的配置不够高就是一件折磨人的事情。 所以今天给大家介绍几个小技巧： 1. IPnet 对于LabVIEW开发者，最常用的就是范例查找器这个工具，俗话说得好：“有范例，无问题。” 对于FPGA，还有一个非常好的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何加速FPGA开发？">
+<meta property="og:url" content="http://haobo.li/2009/02/16/archived-tips-fpga-development/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="NI LabVIEW FPGA模块提供了一个非常方便的接口供我们以LabVIEW图形化的方式开发FPGA程序，不过也有令人困扰的问题就是LabVIEW FPGA代码编译的速度较慢，如果机器的配置不够高就是一件折磨人的事情。 所以今天给大家介绍几个小技巧： 1. IPnet 对于LabVIEW开发者，最常用的就是范例查找器这个工具，俗话说得好：“有范例，无问题。” 对于FPGA，还有一个非常好的">
+<meta property="og:locale">
+<meta property="article:published_time" content="2009-02-15T22:10:44.000Z">
+<meta property="article:modified_time" content="2022-04-18T16:55:07.781Z">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block page_class %}page-post-detail{% endblock %}
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-archived-tips-fpga-development" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/02/16/archived-tips-fpga-development/" class="article-date">
+  <time datetime="2009-02-15T22:10:44.000Z" itemprop="datePublished">2009-02-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何加速FPGA开发？
+    </h1>
+  
 
-{% block content %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1185" class="bvMsg">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<p>NI LabVIEW FPGA模块提供了一个非常方便的接口供我们以LabVIEW图形化的方式开发FPGA程序，不过也有令人困扰的问题就是LabVIEW FPGA代码编译的速度较慢，如果机器的配置不够高就是一件折磨人的事情。 <p>所以今天给大家介绍几个小技巧： <p>1. IPnet <p>对于LabVIEW开发者，最常用的就是范例查找器这个工具，俗话说得好：“有范例，无问题。” <p>对于FPGA，还有一个非常好的工具： </p>
+<h3 id="LabVIEW-FPGA-IPNET"><a href="#LabVIEW-FPGA-IPNET" class="headerlink" title="LabVIEW FPGA IPNET"></a>LabVIEW FPGA IPNET</h3> <p>[http://zone.ni.com/devzone/cda/tut/p/id/6870](http://zone.ni.com/devzone/cda/tut/p/id/6870 "http://zone.ni.com/devzone/cda/tut/p/id/6870") > <p>LabVIEW FPGA IPNET是您浏览、领会和下载LabVIEW FPGA函数或IP（知识产权）的一站式资源中心。下表是从LabVIEW FPGA函数调色板、NI内部开发人员和LabVIEW FPGA社区收集的FPGA IP与范例的集合。您应当使用这一资源中心，以获取您的应用所需的IP、下载范例以帮助掌握编程技术和深入探究LabVIEW FPGA平台所提供的IP。除了探究这里所提供的资源外，您也可以通过点击下面的链接，为LabVIEW社区共享您的LabVIEW FPGA IP或者提交您对现有IP的更新。 <p>IP是知识产权的缩写，这里就是指NI FPGA的算法。 <p>2.LabVIEW验证 <p>当我们自己写好一个算法或者我们找到了别人写好的IP以后，为了减少编译后在返工的情况，我们可以在LabVIEW里面验证一下算法是否有逻辑问题。 <p>A：在My Computer新建一个VI把FPGA算法复制进去，然后在My Computer下调试。 <p>B：在建好的VI下修改程序运行的位置。 <p>[![image](https://aftv2q.bay.livefilestore.com/y1mVCBaze_B73nnXu9lsLJpGKuFuUQK1iPmaQjTGIOPRkBGIelNyBG-V47Clnc88V7vkwAFyGV06S0baTjnrPC0gwHv5rW0UKOKmGzZXZ87x_Nmy8CvtRAFbTiNP1CuQ6l8cs-nW8JumGA/image_thumb[1].png "image")](https://aftv2q.bay.livefilestore.com/y1m16CiQX4LAsE9oz0_nT9oAPGaxircpCKDunowiDEkwRpRA8a_dtd1ahoztEJzH2fLqq5VONClJxbx-wJJMajnGrCfGRRqIDe4wDsKqggbfhOSFMOWLVfPRm--pW4RPUSotvSRaw6JaIs/image[3].png)  <p>3.设置Compile Server： <p>LabVIEW FPGA编译过程是比较长的，并且速度和计算机配置有关，我们可以在一台机器上开发，另一台机器上编译，这样可以节约时间。 <p>首先在服务器端打开compileServer，并确保防火墙开放96端口或者关闭防火墙， <p>[![image](http://lhb5883.files.wordpress.com/2009/02/image5b65d.png?w=300 "image")](http://lhb5883.files.wordpress.com/2009/02/image5b65d.png) [![image](http://lhb5883.files.wordpress.com/2009/02/image5b175d.png?w=300 "image")](http://lhb5883.files.wordpress.com/2009/02/image5b175d.png)  <p>然后在客户端LabVIEW工具菜单下打开FPGA Module Option，点击Configure按钮，在Machine下输入服务器IP地址，点击OK保存，这样在编译FPGA时就会调用服务器进行。 <p> <p>[![image](http://lhb5883.files.wordpress.com/2009/02/image5b125d.png?w=279 "image")](http://lhb5883.files.wordpress.com/2009/02/image5b125d.png) [![image](http://lhb5883.files.wordpress.com/2009/02/image5b165d.png?w=300 "image")](http://lhb5883.files.wordpress.com/2009/02/image5b165d.png)  <p>  <p>附 FPGA代码的编译过程： <p>首先将LabVIEW 程序框图转换为临时文件，然后传输到编译服务器生成和优化VHDL代码，最后编译为bitfile供下载到FPGA执行。 <p>其中最耗时就是LabVIEW生成VHDL这一步，因为从图形化代码到逻辑电路关系的翻译需要大量的运算，除此之外还要为FPGA芯片优化，提高执行效率，这样就导致要花费较多的时间。  
+</p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/02/16/archived-tips-fpga-development/" data-id="cl2en8lj40041v4un979d6ycc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2009/02/19/archived-labview-regex/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LabVIEW 正则表达式应用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2009/01/11/archived-led-in-labview/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">不折腾——如何在LabVIEW中实现LED数码管显示效果</div>
+    </a>
+  
+</nav>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

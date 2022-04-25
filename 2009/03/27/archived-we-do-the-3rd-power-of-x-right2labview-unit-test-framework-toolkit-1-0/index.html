@@ -1,38 +1,274 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
+  
+  <title>WE DO THE 3RD POWER OF X RIGHT(2)+LabVIEW Unit Test Framework Toolkit 1.0试用 | haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上回我们说到茴香豆有四种写法X的立方已经有四种办法可以搞定，下面我们来看看更多得办法~ 使用公式节点也可以   M脚本也可以    微软的.NET也可以   如果我们都使用同样的算法，到底这几种接口有没有不同，那种效率更高呢？ 我们还是用事实说话： 首先有请 LabVIEW Unit Test Framework Toolkit 1.0 for LabVIEW 8.6.1   安装好以后我们就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WE DO THE 3RD POWER OF X RIGHT(2)+LabVIEW Unit Test Framework Toolkit 1.0试用">
+<meta property="og:url" content="http://haobo.li/2009/03/27/archived-we-do-the-3rd-power-of-x-right2labview-unit-test-framework-toolkit-1-0/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="上回我们说到茴香豆有四种写法X的立方已经有四种办法可以搞定，下面我们来看看更多得办法~ 使用公式节点也可以   M脚本也可以    微软的.NET也可以   如果我们都使用同样的算法，到底这几种接口有没有不同，那种效率更高呢？ 我们还是用事实说话： 首先有请 LabVIEW Unit Test Framework Toolkit 1.0 for LabVIEW 8.6.1   安装好以后我们就">
+<meta property="og:locale">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image2.png?w=149">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image5.png?w=211">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image8.png?w=137">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image11.png?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image14.png?w=265">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image18.png?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image22.png?w=271">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image26.png?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image31.png?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image35.png?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image39.png?w=265">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image43.png?w=300">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image5b85d.png?w=238">
+<meta property="og:image" content="http://lhb5883.files.wordpress.com/2009/03/image5b45d.png?w=300">
+<meta property="article:published_time" content="2009-03-27T00:53:18.000Z">
+<meta property="article:modified_time" content="2022-04-18T16:55:07.781Z">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://lhb5883.files.wordpress.com/2009/03/image2.png?w=149">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block page_class %}page-post-detail{% endblock %}
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-archived-we-do-the-3rd-power-of-x-right2labview-unit-test-framework-toolkit-1-0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/03/27/archived-we-do-the-3rd-power-of-x-right2labview-unit-test-framework-toolkit-1-0/" class="article-date">
+  <time datetime="2009-03-27T00:53:18.000Z" itemprop="datePublished">2009-03-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      WE DO THE 3RD POWER OF X RIGHT(2)+LabVIEW Unit Test Framework Toolkit 1.0试用
+    </h1>
+  
 
-{% block content %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1316" class="bvMsg">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<p>上回我们说到<strike>茴香豆有四种写法</strike>X的立方已经有四种办法可以搞定，下面我们来看看更多得办法~ <p>使用公式节点也可以 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image2.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image2.png?w=149" alt="image" title="image"></a>  <p>M脚本也可以 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image5.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image5.png?w=211" alt="image" title="image"></a>  <p> <p>微软的.NET也可以 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image8.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image8.png?w=137" alt="image" title="image"></a>  <p>如果我们都使用同样的算法，到底这几种接口有没有不同，那种效率更高呢？ <p>我们还是用事实说话： <p>首先有请 LabVIEW Unit Test Framework Toolkit 1.0 for LabVIEW 8.6.1 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image11.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image11.png?w=300" alt="image" title="image"></a>  <p>安装好以后我们就可以对LabVIEW VI进行自定义的测试了 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image14.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image14.png?w=265" alt="image" title="image"></a>  <p>我们来回顾一下程序代码这里我把循环次数都变为控件 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image18.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image18.png?w=300" alt="image" title="image"></a>  <p>然后新建一个测试 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image22.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image22.png?w=271" alt="image" title="image"></a>  <p>配置输入和输出参数 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image26.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image26.png?w=300" alt="image" title="image"></a>  <p>别忘了在工程里面配置一下报表 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image31.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image31.png?w=300" alt="image" title="image"></a>  <p> <p> <p> <p> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image35.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image35.png?w=300" alt="image" title="image"></a>  <p>点击运行测试就可以让LabVIEW替我们干活了 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image39.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image39.png?w=265" alt="image" title="image"></a>  <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image43.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image43.png?w=300" alt="image" title="image"></a> <p>大功告成~ <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image5b85d.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image5b85d.png?w=238" alt="image" title="image"></a>  <p>我们来总结一下~ <table border="0" cellspacing="0" cellpadding="0"> <tbody> <tr> <td width="89">  <td width="116">Use LabVIEW Power Function <td width="119">Use Expression Node with Power Function <td width="132">Use Formula Node with Power <td width="105">Use M Script with Power <td width="134">Use Dot NET Power <tr> <td width="89">Calculating Time(ms) <td width="116">0.0004777 <td width="119">0.0004948 <td width="132">0.0005344 <td width="105">0.1214 <td width="134">0.925</td></td></td></td></td></tbody></table> <p>  <p>从表格和下图可以看出**<font color="#ff0000">LabVIEW的原生节点和框图效率都还不错，使用外部接口和脚本时效率较低。</font>** <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image5b45d.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image5b45d.png?w=300" alt="image" title="image"></a> <p>另付LabVIEW Unit Test Framework Toolkit的测试报告： </p>
+<h1 id="The-3rd-Power-of-X"><a href="#The-3rd-Power-of-X" class="headerlink" title="The 3rd Power of X"></a>The 3rd Power of X</h1><p>Time: 2009-3-27 14:54:04<br>Operator: lhb<br>Operating System: Windows NT 5.1<br>LabVIEW Version: 8.6.1 (en)</p>
+<h2 id="Test-Summary"><a href="#Test-Summary" class="headerlink" title="Test Summary"></a>Test Summary</h2><p>0 Test Errors<br>0 Tests Failed<br>0 Tests Skipped<br>5 Tests Passed<br>Time elapsed: 00:00:36</p>
+<h2 id="Test-Results"><a href="#Test-Results" class="headerlink" title="Test Results"></a>Test Results</h2><h3 id="Failed"><a href="#Failed" class="headerlink" title="Failed"></a>Failed</h3><p>None.</p>
+<h3 id="Passed"><a href="#Passed" class="headerlink" title="Passed"></a>Passed</h3> <table border="1"> <tbody> <tr> <th>Test Name <th>Test Location <th>VI Name <th>Test Cases <th>Duration [s] <th>Code Coverage [%] <th>Requirements <tr> <td>[Use LabVIEW Power Function.lvtest](#Link0) <td>My Computer/LabVIEW Block Diagram <td>Use LabVIEW Power Function.vi <td>1 <td>5.77 <td>100.0 <td>  <tr> <td>[Use Expression Node with Power Function.lvtest](#Link1) <td>My Computer/Expression Node <td>Use Expression Node with Power Function.vi <td>1 <td>5.91 <td>100.0 <td>  <tr> <td>[Use Formula Node with Power.lvtest](#Link2) <td>My Computer/Fomula Node <td>Use Formula Node with Power.vi <td>1 <td>6.20 <td>100.0 <td>  <tr> <td>[Use M Script with Power.lvtest](#Link3) <td>My Computer/M SCRIPT <td>Use M Script with Power.vi <td>1 <td>2.03 <td>100.0 <td>  <tr> <td>[Use Dot NET Power.lvtest](#Link4) <td>My Computer/Dot NET <td>Use Dot NET Power.vi <td>1 <td>1.77 <td>100.0 <td> </td></td></td></tr></td></td></td></td></td></tr></th></th></tbody></table> 
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<h2 id="Test-Details"><a href="#Test-Details" class="headerlink" title="Test Details"></a>Test Details</h2><p><strong><a>1. My Computer<br>1.1. LabVIEW Block Diagram<br>1.1.1. Use LabVIEW Power Function.lvtest<br></a></strong> <table border="0"> <tbody> <tr> <td>VI Under Test: <td>C:Documents and SettingslhbDesktopInterface TestUse LabVIEW Power Function.vi <tr> <td>Result: <td>Passed <tr> <td>VI Timestamp: <td>2009-3-27 11:59:53 <tr> <td>VI Revision: <td>10 <tr> <td>Test Started: <td>2009-3-27 14:53:27 <tr> <td>Test Duration: <td>00:00:06 <tr> <td>Code Coverage: <td>100.0 % <tr> <td>Setup VI: <td>  <tr> <td>Teardown VI: <td> </td></td></tr></td></tr></td></td></tr></td></tr></tbody></table> </p>
+<ol>
+<li>Test Case 1: Passed**<a>1.2. Expression Node</li>
+</ol>
+<p>1.2.1. Use Expression Node with Power Function.lvtest<br></a>** <table border="0"> <tbody> <tr> <td>VI Under Test: <td>C:Documents and SettingslhbDesktopInterface TestUse Expression Node with Power Function.vi <tr> <td>Result: <td>Passed <tr> <td>VI Timestamp: <td>2009-3-27 11:59:53 <tr> <td>VI Revision: <td>6 <tr> <td>Test Started: <td>2009-3-27 14:53:33 <tr> <td>Test Duration: <td>00:00:06 <tr> <td>Code Coverage: <td>100.0 % <tr> <td>Setup VI: <td>  <tr> <td>Teardown VI: <td> </tr></tr></td></td></td></td></td></tbody></table> </p>
+<p><strong><a>1.3. Fomula Node<br>1.3.1. Use Formula Node with Power.lvtest<br></a></strong> <table border="0"> <tbody> <tr> <td>VI Under Test: <td>C:Documents and SettingslhbDesktopInterface TestUse Formula Node with Power.vi <tr> <td>Result: <td>Passed <tr> <td>VI Timestamp: <td>2009-3-27 13:56:38 <tr> <td>VI Revision: <td>12 <tr> <td>Test Started: <td>2009-3-27 14:53:40 <tr> <td>Test Duration: <td>00:00:06 <tr> <td>Code Coverage: <td>100.0 % <tr> <td>Setup VI: <td>  <tr> <td>Teardown VI: <td> </tr></td></td></tr></td></tr></tbody></table> </p>
+<p><strong><a>1.4. M SCRIPT<br>1.4.1. Use M Script with Power.lvtest<br></a></strong> <table border="0"> <tbody> <tr> <td>VI Under Test: <td>C:Documents and SettingslhbDesktopInterface TestUse M Script with Power.vi <tr> <td>Result: <td>Passed <tr> <td>VI Timestamp: <td>2009-3-27 14:19:42 <tr> <td>VI Revision: <td>11 <tr> <td>Test Started: <td>2009-3-27 14:53:58 <tr> <td>Test Duration: <td>00:00:02 <tr> <td>Code Coverage: <td>100.0 % <tr> <td>Setup VI: <td>  <tr> <td>Teardown VI: <td> </td></td></td></tbody></table> </p>
+<p><strong><a>1.5. Dot NET<br>1.5.1. Use Dot NET Power.lvtest<br></a></strong> <table border="0"> <tbody> <tr> <td>VI Under Test: <td>C:Documents and SettingslhbDesktopInterface TestUse Dot NET Power.vi <tr> <td>Result: <td>Passed <tr> <td>VI Timestamp: <td>2009-3-27 11:59:53 <tr> <td>VI Revision: <td>12 <tr> <td>Test Started: <td>2009-3-27 14:54:01 <tr> <td>Test Duration: <td>00:00:02 <tr> <td>Code Coverage: <td>100.0 % <tr> <td>Setup VI: <td>  <tr> <td>Teardown VI: <td> </td></td></td></tbody></table> </p>
+</p></p></p></p></p></p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/03/27/archived-we-do-the-3rd-power-of-x-right2labview-unit-test-framework-toolkit-1-0/" data-id="cl2en8lj60047v4uncltd0fs6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2009/07/30/archived-ni-drivers-download/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          NI 驱动下载一览表
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2009/03/24/archived-we-do-the-3rd-power-of-x-right1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">WE DO The 3rd Power of X RIGHT(1)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

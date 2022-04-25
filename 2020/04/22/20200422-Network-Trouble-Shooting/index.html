@@ -1,38 +1,264 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
+  
+  <title>20200422-Network-Trouble-Shooting | haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="网络排故记录前言自疫情以来发现网络情况很不稳定，发现虚拟专网时有链接不上的情况。 网络拓扑上海 WAN1 联通光纤固定IP+ WAN2 电信PPPOE  通过飞塔防火墙软件定义网络宽带合一访问外网 飞塔防火墙在 WAN1 提供IPSEC隧道，WAN2提供SSL虚拟专网服务 西安 WAN1 联通专线固定IP+WAN2 电信PPPOE 通过飞塔防火墙软件定义网络宽带合一访问外网 飞塔防火墙在WAN1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20200422-Network-Trouble-Shooting">
+<meta property="og:url" content="http://haobo.li/2020/04/22/20200422-Network-Trouble-Shooting/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="网络排故记录前言自疫情以来发现网络情况很不稳定，发现虚拟专网时有链接不上的情况。 网络拓扑上海 WAN1 联通光纤固定IP+ WAN2 电信PPPOE  通过飞塔防火墙软件定义网络宽带合一访问外网 飞塔防火墙在 WAN1 提供IPSEC隧道，WAN2提供SSL虚拟专网服务 西安 WAN1 联通专线固定IP+WAN2 电信PPPOE 通过飞塔防火墙软件定义网络宽带合一访问外网 飞塔防火墙在WAN1">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-04-22T07:18:29.000Z">
+<meta property="article:modified_time" content="2022-04-18T16:55:07.765Z">
+<meta property="article:author" content="haobo.li">
+<meta property="article:tag" content="network">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block page_class %}page-post-detail{% endblock %}
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-20200422-Network-Trouble-Shooting" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/22/20200422-Network-Trouble-Shooting/" class="article-date">
+  <time datetime="2020-04-22T07:18:29.000Z" itemprop="datePublished">2020-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      20200422-Network-Trouble-Shooting
+    </h1>
+  
 
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="网络排故记录"><a href="#网络排故记录" class="headerlink" title="网络排故记录"></a>网络排故记录</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>自疫情以来发现网络情况很不稳定，发现虚拟专网时有链接不上的情况。</p>
+<h2 id="网络拓扑"><a href="#网络拓扑" class="headerlink" title="网络拓扑"></a>网络拓扑</h2><p>上海 WAN1 联通光纤固定IP+ WAN2 电信PPPOE </p>
+<p>通过飞塔防火墙软件定义网络宽带合一访问外网</p>
+<p>飞塔防火墙在 WAN1 提供IPSEC隧道，WAN2提供SSL虚拟专网服务</p>
+<p>西安 WAN1 联通专线固定IP+WAN2 电信PPPOE</p>
+<p>通过飞塔防火墙软件定义网络宽带合一访问外网</p>
+<p>飞塔防火墙在WAN1 拨号到IPSEC隧道以访问上海的内网资源</p>
+<h2 id="故障现象1"><a href="#故障现象1" class="headerlink" title="故障现象1"></a>故障现象1</h2><p>西安WAN1的IPSEC隧道失败，但可以用客户端SSL虚拟专网访问。</p>
+<h3 id="故障确认："><a href="#故障确认：" class="headerlink" title="故障确认："></a>故障确认：</h3><p>使用TraceRT发现上海WAN1的固定IP无法Ping通，</p>
+<h3 id="故障原因："><a href="#故障原因：" class="headerlink" title="故障原因："></a>故障原因：</h3><p>是联通网络问题。</p>
+<h2 id="故障现象2"><a href="#故障现象2" class="headerlink" title="故障现象2"></a>故障现象2</h2><p>IPSEC隧道正常，使用客户端SSL虚拟专网无法访问。客户端在忽略证书错误后就无法再连接上。</p>
+<h3 id="故障确认：-1"><a href="#故障确认：-1" class="headerlink" title="故障确认："></a>故障确认：</h3><p>使用Web界面可以用账号密码正常登录，确认网络通讯正常，账号密码正常。</p>
+<p>更换机器也可以正常连接。卸载当前版本飞塔客户端重装无效，但更换版本后可以正常工作，如从5.6升级到6.2，或者从6.2降级到5.6都可以。</p>
+<h3 id="故障原因：-1"><a href="#故障原因：-1" class="headerlink" title="故障原因："></a>故障原因：</h3><p>怀疑是注册表或者配置文件出错。</p>
+<h2 id="故障现象3"><a href="#故障现象3" class="headerlink" title="故障现象3"></a>故障现象3</h2><p>IPSEC隧道失败，客户端拨SSL虚拟专网失败。</p>
+<h3 id="故障确认：-2"><a href="#故障确认：-2" class="headerlink" title="故障确认："></a>故障确认：</h3><p>Web界面无法打开，确认网络不通。</p>
+<h3 id="故障原因：-2"><a href="#故障原因：-2" class="headerlink" title="故障原因："></a>故障原因：</h3><p>上海端电信PPPOE拨号失败。</p>
+<h2 id="故障现象4"><a href="#故障现象4" class="headerlink" title="故障现象4"></a>故障现象4</h2><p>IPSEC连接失败，客户端SSL虚拟专网随机性断开。</p>
+<h3 id="故障确认：-3"><a href="#故障确认：-3" class="headerlink" title="故障确认："></a>故障确认：</h3><p>飞塔CPU占用100%，经过测试，只要下载速度超过10MB&#x2F;s，防火墙就没有响应。查询手册，UDP包最大速率1.5Gbps，防火墙策略 5000 SSL虚拟专网吞吐量 30Mbps，IPS吞吐量只有200Mbps也就是20MB&#x2F;s但实际上测试只要到10MB&#x2F;s的下载速度，CPU就已经100%了。</p>
+<h3 id="故障原因：-3"><a href="#故障原因：-3" class="headerlink" title="故障原因："></a>故障原因：</h3><p>防火墙IPS性能不足</p>
+<p> 查了一下，防火墙IPS指的是防火墙的处理能力</p>
+<p>Most vendors talk of firewall throughput even when they are advertising UTMs (Unified Threat Management Systems). There’s a fundamental difference between a firewall and a UTM. A firewall merely does stateful inspection of the traffic whereas a UTM proactively stops attacks even on allowed ports because it contains the all important IPS (Intrusion Prevention System). This means that even if traffic is allowed to certain services, that traffic is continuously examined to detect malicious attacks. In other words, the IPS stops hacker attacks even on open ports.</p>
 
-{% block content %}
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2020/04/22/20200422-Network-Trouble-Shooting/" data-id="cl2en8lhj000cv4un3j77ebns" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/08/20200508-labview-2020-nearly-released/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          20200508-labview-2020-nearly-released
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/31/20191231-how-to-work-around-some-bugs-in-2019/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">20191231-how-to-work-around-some-bugs-in-2019</div>
+    </a>
+  
+</nav>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

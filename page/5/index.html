@@ -1,23 +1,786 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+  
+  <title>haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on">
+<meta property="og:type" content="website">
+<meta property="og:title" content="haobo.li">
+<meta property="og:url" content="http://haobo.li/page/5/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on">
+<meta property="og:locale">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block page_class %}
-  {% if is_home() %} page-home {% endif %}
-{% endblock %}
+<meta name="generator" content="Hexo 6.1.0"></head>
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-archived-scope-trigger-sensitivity" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/09/15/archived-scope-trigger-sensitivity/" class="article-date">
+  <time datetime="2009-09-14T22:19:01.000Z" itemprop="datePublished">2009-09-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computers-and-Internet/">Computers and Internet</a>
+  </div>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/09/15/archived-scope-trigger-sensitivity/">关于示波器的触发灵敏度（Trigger Sensitivity）</a>
+    </h1>
+  
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1381" class="bvMsg">
+
+<p>示波器板卡有一项参数叫Edge Trigger Sensitivity</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/09/image5b25d23274975.png?w=300" alt="NI PXI/PCI-5152 Specifications（P11）" title="NI PXI/PCI-5152 Specifications（P11）"></p>
+<p>这一项指标翻译过来应该是触发敏感度，有什么意义呢？</p>
+<p>当我们用示波器高速采集一个高频脉冲信号时，往往会混入很多噪声信号，如果没有触发敏感度，直接按边沿触发往往不能得到一个稳定的示波器图形。</p>
+<p><img src="http://www.ed-china.com/ARTICLE_IMAGES/200801/20080101_TM_DT_TS_27F2.JPG" alt="图输入200mVpp锯齿波时的情况。" title="图输入200mVpp锯齿波时的情况。"></p>
+<p>触发灵敏度就是用来滤除噪声对触发的影响，使之能够正确被有效信号而非噪声触发，获得稳定波形的一个参数。</p>
+<p>TEK网站的定义如下：</p>
+<h6 id="Trigger-Sensitivity"><a href="#Trigger-Sensitivity" class="headerlink" title="Trigger Sensitivity"></a>Trigger Sensitivity</h6><p>Trigger sensitivity is a critical attribute when capturing high-speed digital signals. An oscilloscope‘s trigger sensitivity determines its ability to react to specified edge trigger conditions over a range of frequencies. The specification takes the following form: power-line hum interference. </p>
+<p><strong>Trigger System Sensitivity, Internal DC Coupled:</strong><br>0.35 div DC to 50 MHz, increasing to 1.5 div at 3 GHz<br>(guaranteed); 2.7 div at 4 GHz (typical)<br>(from TDS7404 DPO data sheet)</p>
+<p>The oscilloscope will trigger on a signal of 0.35 divisions amplitude p-p in the range of frequencies from DC to 50 MHz. As the frequency goes beyond 50 MHz, the signal must be larger (higher in amplitude) to trigger the instrument. At 3 GHz, the signal must be at least 1.5 divisions in amplitude. Trigger sensitivity is specified with a sine wave input. <p>灵敏度<br>在捕获高速数字信号时，触发灵敏度是一个关键指标。示波器的触发灵敏度决定着在某个频率范围内示波器对规定边沿触发条件的反应能力。这一指标采用下述形式：电源线噪声干扰。<br>       触发系统灵敏度、内部DC耦合:<br>DC - 50 MHz, 0.35格；3 GHz时提高到1.5格(保障值); 4 GHz时2.7格 (典型值)(摘自TDS7404 DPO技术数据)<br>示波器将在DC到50 MHz 的频率范围内，在0.35格的p-p幅度上触发。在频率超过50MHz时，信号必须更大(幅度更高)，以触发仪器。在3 GHz时，信号的幅度必须在1.5格上。可以使用正弦波输入指定触发灵敏度。 <p>开头图中的指标就是说使用通道触发时灵敏度是满量程的10%，而使用外部触发时灵敏度是固定的0.5V峰峰值。小于灵敏度的毛刺都会被示波器忽略，不认为是触发。 <p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="http://www.ed-china.com/ART_8800024153_400013_500015_TS_f6dcb05a.HTM">http://www.ed-china.com/ART_8800024153_400013_500015_TS_f6dcb05a.HTM</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.tek.com/Measurement/scopes/selection/performance/trigger.html">http://www.tek.com/Measurement/scopes/selection/performance/trigger.html</a></p>
+<p>触发扫盲：</p>
+<p><a target="_blank" rel="noopener" href="http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf" title="http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf">http://www2.tek.com/cmsreplive/tirep/4394/55C-17291-2_2009.05.27.00.56.45_4394_ZH.pdf</a><br>  </p></div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/09/15/archived-scope-trigger-sensitivity/" data-id="cl2en8lix003bv4unfub549nc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-code-share-cmd-open-webpage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/09/14/archived-code-share-cmd-open-webpage/" class="article-date">
+  <time datetime="2009-09-14T02:32:00.000Z" itemprop="datePublished">2009-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/09/14/archived-code-share-cmd-open-webpage/">[code share]使用命令行打开网页</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1378" class="bvMsg">![Open Web Page use LabVIEW](http://lhb5883.files.wordpress.com/2009/09/openwebpageuselabview5b25d.png?w=158 "Open Web Page use LabVIEW")or ![open web page with CMD](http://lhb5883.files.wordpress.com/2009/09/openwebpagewithcmd5b85d.png?w=243 "open web page with CMD")    
+
+<p>如图，这样就可以调用系统默认浏览器打开网页。<br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/09/14/archived-code-share-cmd-open-webpage/" data-id="cl2en8li1000tv4unec1u5iue" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-tips-certified-labview-developer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/08/31/archived-tips-certified-labview-developer/" class="article-date">
+  <time datetime="2009-08-30T19:30:36.000Z" itemprop="datePublished">2009-08-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/08/31/archived-tips-certified-labview-developer/">Certified LabVIEW Developer 认证小结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1370" class="bvMsg"> 
+
+<p>LabVIEW中级认证考试的主要目的就是考察受试者的LabVIEW编程水平,程序风格,文档注释三个方面.详细可以查看下面的文档  </p>
+<p><a href="ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf" title="ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf">ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf</a></p>
+<p>下面这个链接已经列举了一些注意事项,我再补充几条:</p>
+<p><a target="_blank" rel="noopener" href="http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry" title="http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry">http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry</a></p>
+<p>1. 善于利用LabVIEW自带的模板和VI,例如定时迅捷VI,读写电子表格文件VI,状态机模板,子VI模板几个都要熟练掌握.</p>
+<p>2. 最好使用LabVIEW英文版开发环境.这样无论是模板还是控件名字都是默认英文,可以减小工作量.</p>
+<p>3. 不要忘记在状态机模板里加上错误处理.</p>
+<p>4. 写完程序一定要留调试和注释的时间.</p>
+<p>5. 尽量将状态机Case结构里的代码封装为子VI.</p>
+<p>6. 能用TypeDefine控件的尽量都用TypeDefine控件,方便程序维护.</p>
+<p>7. 不需要用户交互的前面板控件最好隐藏掉.</p>
+<p>细节: </p>
+<p>1. 框图和前面板大小:根据考试要求最好限定为1024x768,要扩展尽量水平扩展.现在显示器以宽屏居多,方便观察整个程序.</p>
+<p>2. LabVIEW配置,如果你到手的机器配置修改太多,例如字体等要改回来很麻烦.最简单的办法就是删除LabVIEW的INI文件.然后在工具-&gt;属性里取消前面板控件:显示为图标.</p>
+<p>3. 状态机里面的等待函数一定要修改,设置为1是个不错的选择.</p>
+<p>4. 使用Ctrl+鼠标拖拽扩展程序框图时一定要慎重,避免程序连线错位.<br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/08/31/archived-tips-certified-labview-developer/" data-id="cl2en8lj3003vv4unhd26c5l7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-2009-recusion" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/08/21/archived-labview-2009-recusion/" class="article-date">
+  <time datetime="2009-08-20T20:19:03.000Z" itemprop="datePublished">2009-08-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/08/21/archived-labview-2009-recusion/">LabVIEW 2009递归研究</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1369" class="bvMsg">
+
+<p><strong>Part I ： Handson</strong></p>
+<p>各位安装LabVIEW2009的同学请跟我做以下动作:</p>
+<p>1:打开LabVIEW 2009.</p>
+<p>[![image](<a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mVYx9-iHIRHcVhl1R903uSWy0-7PkCqDKWTjNmCB171fHEVJhJmm79IjSw8KMzvYCuM6Z5NBkVimPJR-mpTTYeg90perGOqBtBghB04N9a5TZxdGEpKA43q7B8oH0ZeBmT9DvaqRKUNied1mU6jx0Hg/image_thumb">https://f2gz7g.bay.livefilestore.com/y1mVYx9-iHIRHcVhl1R903uSWy0-7PkCqDKWTjNmCB171fHEVJhJmm79IjSw8KMzvYCuM6Z5NBkVimPJR-mpTTYeg90perGOqBtBghB04N9a5TZxdGEpKA43q7B8oH0ZeBmT9DvaqRKUNied1mU6jx0Hg/image_thumb</a> 63232C87.png “image”)](<a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mJf781TsQY2lMDPJPSS-Ciy9j5BqCKwwYq4up4HegzWdSPRRoK9XmPUSm0MhcjjsGdO3yBFl5o2ZUoHcAEFlDD9Idvou3kEx52H_zGgNN4Qq5OZzivi1JsoCTqmPU_J_g-6lkWGxiRub0O8NdLW8Kxw/image2">https://f2gz7g.bay.livefilestore.com/y1mJf781TsQY2lMDPJPSS-Ciy9j5BqCKwwYq4up4HegzWdSPRRoK9XmPUSm0MhcjjsGdO3yBFl5o2ZUoHcAEFlDD9Idvou3kEx52H_zGgNN4Qq5OZzivi1JsoCTqmPU_J_g-6lkWGxiRub0O8NdLW8Kxw/image2</a> 7AFEC386.png) </p>
+<p>2:Ctrl+N</p>
+<p>[![image](<a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1m0ogiAD6Jc2Cbxy3vpUAV6MrpE_K_Dabfar0aXUtgde7OEMLg1Ikyjmx3q6DM4dkzDU_ZVa6Vytc1aN8w4VtsYpBTtJfnyzax9NbFx2nJxlG1Xl3AxOMCDjiSzLGO49ZYdrJkMuRUh4NDF1juq0lLrw/image_thumb2">https://f2gz7g.bay.livefilestore.com/y1m0ogiAD6Jc2Cbxy3vpUAV6MrpE_K_Dabfar0aXUtgde7OEMLg1Ikyjmx3q6DM4dkzDU_ZVa6Vytc1aN8w4VtsYpBTtJfnyzax9NbFx2nJxlG1Xl3AxOMCDjiSzLGO49ZYdrJkMuRUh4NDF1juq0lLrw/image_thumb2</a> 1A28A6A4.png “image”)](<a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mqUA4E2HIjdW9Gb3BZtx2IS9OvqufNm9ay5c3yoX7YyZtiExwtvNyKY6zO4IzSS5_hYD1H1mT82bnVU8GrzxlS_AzTvrzEsxkIBloXGJEeXVT03GQDPTy5-7VXeuYh0kU6fKN5Cf7WXnw8gIPYYITWQ/image8">https://f2gz7g.bay.livefilestore.com/y1mqUA4E2HIjdW9Gb3BZtx2IS9OvqufNm9ay5c3yoX7YyZtiExwtvNyKY6zO4IzSS5_hYD1H1mT82bnVU8GrzxlS_AzTvrzEsxkIBloXGJEeXVT03GQDPTy5-7VXeuYh0kU6fKN5Cf7WXnw8gIPYYITWQ/image8</a> 2D5308B1.png) </p>
+<p>3:Ctrl+I,按下图配置</p>
+<p><a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mTJsXhwFua2feHrRTHHidlP8UL_niDiOlgDLqXBogknVvLwNzcQLlDPnAj9Nd9eU-slt_5e4mpgKoMsZAIswHRF6d9eH2x-0u7mCNVuzKSd2K4VyE5RYrizBHaxPc6H5YnRiUspCSTyHZolbOHjRpMw/image12.png">![image](https://f2gz7g.bay.livefilestore.com/y1mWhcbcuZQz7gwaAOLMDXl0lxrADAEmDyvRlECQD82oaX6EZrXUYRrfHsVXGO5GeLIRwcnLZvKAYu-BD54k0csbzWE7BjJ2JoQWhEkENXymMMwr49aIlhjK48h_aaq6c4M4AbE7BrVuzcnTQsPSm0VWg&#x2F;image_thumb4 796A50DA.png “image”)</a> </p>
+<p>4:Ctrl+E,选择程序框图,将图标拖到程序框图</p>
+<p><a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mtg6ZXjelXoHmXA-xYApe6akbTKVKdtTBH_quMiSzKJndfpVbuYu7gLL-Sam_hY8rH9Icrm244_Qaw6dPLAScQj7ZbK8kxnE1jXgiKsLsGsYokS_LVM7UnagklPGUavrq6fYUsZCsgCP_K5VLYnHjqA/image16.png">![image](https://f2gz7g.bay.livefilestore.com/y1mcDpF6XgX1ChPJouSMEIE3qw8z_IizPqK5nXIwFlwPTl6ctx5Sw4BOgOf6XBGnJ66dpW_iJwhD3q6fWGya3VDTf5jr2lAylB_2U88qUcEnbUvEFn6OVw03NftdN2c39p1nxqkamVlrhq0EH9BIeRwEQ&#x2F;image_thumb6 708CFF2E.png “image”)</a> </p>
+<p>5:Ctrl+R，然后稍等5分钟：</p>
+<p><a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1m1yQuFE2PPchn6j3vH06VfbQjUhxybHx40VJLiaJvTh8Ug5ceO30uH-JkY3AW8fKT9SRvDTHf1WBG8f5DHqPiznrj_6UOcC3v6znY_IXbenCqaFABGdCOxuYloaJmHHVJIGZuG2CU3DqB4aC0LdfK4A/image23.png"><img src="https://f2gz7g.bay.livefilestore.com/y1mTROt_oCMYrqvSPJ04o_93I-BcT6v-wjgCSDCnM2r6e99wb8w2-XPcgd7vl2bYbHxGH8iHmbm6lA-3n86m8LBhbvZdsfTObYKgeBqQVIeSACqPrq_vyUkRFBWol7Q7nG1F97-kUeP9s4nd3XNOmDj-g/image_thumb9.png" alt="image" title="image"></a> </p>
+<p>恭喜你编写了第一个递归VI并且让他挂掉了。</p>
+<p>** Part II ： Basic I**</p>
+<p>好,我们来玩点实在的，先看看LabVIEW 的例程：</p>
+<p><a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mvWEYPjzRXVMmpiuO4xUqrOXFHdNFe0v_y1tVO63ZJGZWgSxL7H_y9eUjrF71FHSZPW7h5_NkO6Ncsz_VXhrbaIIVDLG6mFk6J8DKUHii9Hagg4fAAsx6O6huAsx2nLXGUVP7Pr2DTY6CDSwbboXFaw/image6.png"><img src="https://f2gz7g.bay.livefilestore.com/y1mm8KaiiUP0iV4jeZuGcGwDgHYgJPz8icKzsio12LxgM3wMzboQT03e5_5hSjVTQid9D00wpjamNWPQrSvLu67so_5EEkB_loAoqARIAbEZnlypl43vNLYAwX-ejCOE3_3RK3Ts2sFerIEN5_5dA-O0g/image_thumb2[1].png" alt="image" title="image"></a> </p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/demorecursion5.png?w=300" alt="Demo Recursion" title="Demo Recursion"> </p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/recursion5.png?w=300" alt="Recursion" title="Recursion"> </p>
+<p>在LabVIEW以前的版本只有类才能使用递归，不过现在已经比较成熟，普通的VI也可以递归了。</p>
+<p>注意事项正如图中注释，我就不多废话。</p>
+<p><strong>Part III ： Basic I</strong></p>
+<p>为了更详细的演示递归，我们请出教科书里的经典例程汉诺塔。</p>
+<p>首先附赠一个汉诺塔小游戏：</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/image5b105d.png?w=300" alt="image" title="image"> </p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/hanoitower5b55d.png?w=300" alt="hanoi tower" title="hanoi tower"> </p>
+<p>附赠小游戏汉诺塔下载：<br>  <div style="display:inline;float:none;margin:0;padding:0;"><div><a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1merIkYDIpelIzeY2GYQAQKA_dg4i8FbfdK8GaKiGoTUnlLXvcUNsixVC_kF4eKje1hkTltCHlbr3URvf3IbJRprYA5K2m3ioq8YP-5kcvqgqDIuJh4SpxX6Gu2Y6io3-54vvTfhsDJz7IiAT174ZuLg/hanoi.tower.7z">hanoi tower.7z</a></div></div>（LabVIEW2009）  </p>
+  <div style="display:inline;float:none;margin:0;padding:0;"><pre style="background-color:#FFFFFF;white-space:pre-wrap;word-wrap:break-word;overflow:auto;"><span style="color:#000000;">#include </span><span style="color:#000000;">&lt;</span><span style="color:#000000;">stdio.h</span><span style="color:#000000;">&gt;</span><span style="color:#000000;">
+</span><span style="color:#0000FF;">void</span><span style="color:#000000;"> hano(</span><span style="color:#0000FF;">int</span><span style="color:#000000;"> n,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> a,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> b,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> c)
+&#123;
+    </span><span style="color:#0000FF;">if</span><span style="color:#000000;">(n</span><span style="color:#000000;">==</span><span style="color:#800080;">1</span><span style="color:#000000;">) 
+        printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">t将%d个盘片从%c移动到%cn</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,n,a,c);
+    </span><span style="color:#0000FF;">else</span><span style="color:#000000;"> &#123;
+        hano(n</span><span style="color:#000000;">-</span><span style="color:#800080;">1</span><span style="color:#000000;">,a,c,b);
+        printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">t将第%d个盘片从%c移动到%cn</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,n,a,c);
+        hano(n</span><span style="color:#000000;">-</span><span style="color:#800080;">1</span><span style="color:#000000;">,b,a,c);
+    &#125;
+&#125;
+main()
+&#123;
+    </span><span style="color:#0000FF;">int</span><span style="color:#000000;"> n;
+    printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">输入将要移动多少个盘子n:</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">);
+    scanf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">%d</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,</span><span style="color:#000000;">&amp;</span><span style="color:#000000;">n);
+    printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">递归结果：n</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">);
+    hano(n,</span><span style="color:#800000;">'</span><span style="color:#800000;">x</span><span style="color:#800000;">'</span><span style="color:#000000;">,</span><span style="color:#800000;">'</span><span style="color:#800000;">y</span><span style="color:#800000;">'</span><span style="color:#000000;">,</span><span style="color:#800000;">'</span><span style="color:#800000;">z</span><span style="color:#800000;">'</span><span style="color:#000000;">);
+&#125; </span></pre></div>
+
+<p>然后我们来看看LabVIEW里面如何实现这个算法：</p>
+<p>![auto hanoi tower](<a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mprygHzelJggiWKEkuwsSFY4M5mNbiguBIY5D7W2O9OD5HWZEsrxZuv2G5dv0Xm0gKLPXG60Tm1TqkTvBTIdvpxXoYjKlQG6JepC8a0f9Q4pOsO7iWMu1mKv7QYUrD0oWkuV2bYUM7tVMWd4Y0Wtbnw/auto">https://f2gz7g.bay.livefilestore.com/y1mprygHzelJggiWKEkuwsSFY4M5mNbiguBIY5D7W2O9OD5HWZEsrxZuv2G5dv0Xm0gKLPXG60Tm1TqkTvBTIdvpxXoYjKlQG6JepC8a0f9Q4pOsO7iWMu1mKv7QYUrD0oWkuV2bYUM7tVMWd4Y0Wtbnw/auto</a> hanoi tower[2].png “auto hanoi tower”) </p>
+<p>主程序调用算法，然后演示步骤。</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/autohanoitowerrecursion5b25d.png?w=300" alt="auto hanoi tower recursion" title="auto hanoi tower recursion"> </p>
+<p>递归调用算法。</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/quitrecursion5b25d.png?w=300" alt="Quit Recursion" title="Quit Recursion"> </p>
+<p>当然不要忘记设置退出递归的条件。</p>
+<p>源代码下载</p>
+<div style="display:inline;float:none;margin:0;padding:0;"><div>[auto hanoi tower demo.7z](https://f2gz7g.bay.livefilestore.com/y1mzRAxsj5doJkMoW9WmdSPEQ3iq-X2OaTxJbPM4puKlPm79rh8T6O4U2h3pG8ZBzN8D6gzvsqrP-Sga8PVoRgSpxoLS5mprGxbuzJ3iO-ta5ZzyiZVb0tZ8eG5p_fnTbMme4M5-aBWVFHDog-XemQRKg/auto.hanoi.tower.demo.7z)</div></div>（LabVIEW2009）
+
+<p><strong>Part IV ： Advance I</strong></p>
+<p>到底递归有什么用呢？我们来看一个实用一点的工具：VI图标提取器</p>
+<p><img src="https://f2gz7g.bay.livefilestore.com/y1mthsEtKyirJ5UgEwqu1Pd_SHiauSyudG9LPT5gSFTKp2tj6WRPWmHr9vA2gFltVAbHriMUMAvKkkGATycCxvYG5XOLYLV3PVxcx6vxw_9xqv0B3IZsOa4bdHZnp9aCZerIg1khZ9lhQeoZnevNjoU-Q/image[13].png" alt="image" title="image"> </p>
+<p>主程序：</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/outputviicon5b25d.png?w=203" alt="output vi icon" title="output vi icon"> </p>
+<p>递归代码</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/enumviicon5b25d.png?w=300" alt="enum vi icon" title="enum vi icon"> </p>
+<p>源目录</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/image5b195d37974858.png?w=300" alt="image" title="image"> </p>
+<p>输出目录</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/image5b165d72d9c6a2.png?w=300" alt="image" title="image"> </p>
+<p><strong>Part V ： Advance II</strong></p>
+<p>另外程序里附赠了一个利用LabVIEW自带的枚举函数写的同功能VI，大家可以看看，这个是可以枚举llb的。</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/labviewrecusionpath5b25d.png?w=300" alt="labview recusion path" title="labview recusion path"> </p>
+<div style="display:inline;float:none;margin:0;padding:0;"><div>[Recursion VI  Icon.7z](https://f2gz7g.bay.livefilestore.com/y1mnRGuf_j3Gb5TpKVjOD5CxZ8UBELgZPqY3gZOVgWHl5DBflI0ZjbDuo1EUl-risW3uaQ7wgUlVRHJIDQ_ypyOhRQddP40jPnRG5uEJ1q_4sGMc7lSHn84388p379VGkZgLTFRvZ--1OjwUlAVXTMCtA/Recursion.VI..Icon.7z)</div></div>
+
+<p>最后总结一下递归要注意的事项：</p>
+<p><font color="#ff0000"><strong>1：真的有必要用递归么？</strong></font></p>
+<p><font color="#ff0000"><strong>2：你的程序能否正常退出递归？</strong></font></p>
+<p><font color="#ff0000"><strong>3：递归的过程是无法直接调试的，有没有好的办法保证VI按照我们的预期执行？</strong></font></p>
+<p>如果这三个问题都能保证，恭喜你，你可以使用递归来提高你程序的效率了。<br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/08/21/archived-labview-2009-recusion/" data-id="cl2en8lif001ev4ungsig4urz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-code-share-excel-to-pdf" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/08/20/archived-code-share-excel-to-pdf/" class="article-date">
+  <time datetime="2009-08-19T22:16:23.000Z" itemprop="datePublished">2009-08-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/08/20/archived-code-share-excel-to-pdf/">[代码分享]将Excel报表转换为PDF</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1332" class="bvMsg">
+
+<p>有的时候我们往往不希望操作人员能修改生成的报表,转换为PDF就是一种不错的解决办法.</p>
+<p><a target="_blank" rel="noopener" href="http://decibel.ni.com/content/docs/DOC-4552">http://decibel.ni.com/content/docs/DOC-4552</a></p>
+<p>这就是一种不错的方案，不过需要安装一个软件才行。</p>
+<p>其实Office2007SP2自带了转换为PDF的功能，调用的代码如下：</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/08/xls2pdf_thumb5b25d0cf6b331.png?w=300" alt="xls2pdf" title="xls2pdf"> </p>
+<p>拖到LabVIEW2009里面可以转换为代码。</p>
+<p>Msdn的例程：</p>
+<p><a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/bb407651.aspx">http://msdn.microsoft.com/en-us/library/bb407651.aspx</a><br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/08/20/archived-code-share-excel-to-pdf/" data-id="cl2en8li2000uv4un4obe378i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-ni-drivers-download" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/07/30/archived-ni-drivers-download/" class="article-date">
+  <time datetime="2009-07-29T19:29:00.000Z" itemprop="datePublished">2009-07-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/07/30/archived-ni-drivers-download/">NI 驱动下载一览表</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1325" class="bvMsg">
+
+<h3 id="第一项-NI-Device-Driver-CD，现在可能叫Device-Driver-DVD更好一些。"><a href="#第一项-NI-Device-Driver-CD，现在可能叫Device-Driver-DVD更好一些。" class="headerlink" title="第一项 NI Device Driver CD，现在可能叫Device Driver DVD更好一些。"></a><strong><font color="#ff0000">第一项 NI Device Driver CD，现在可能叫Device Driver DVD更好一些。</font></strong></h3><p>目前最新版2009年8月驱动下载地址：</p>
+<p><a href="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-1.exe" title="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-1.exe">ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-1.exe</a></p>
+<p><a href="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2a.exe" title="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2a.exe">ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2a.exe</a></p>
+<p><a href="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2b.exe" title="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2b.exe">ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2b.exe</a></p>
+<p>三个包下载完毕以后依次解压即可。</p>
+<p>通用下载地址（包含所有版本）：</p>
+<p><a href="ftp://ftp.ni.com/support/drivercd/" title="ftp://ftp.ni.com/support/drivercd/">ftp://ftp.ni.com/support/drivercd/</a></p>
+<h3 id="第二项-高精度温度记录仪驱动，NI-435x系列驱动。"><a href="#第二项-高精度温度记录仪驱动，NI-435x系列驱动。" class="headerlink" title="第二项 高精度温度记录仪驱动，NI 435x系列驱动。"></a><strong><font color="#ff0000">第二项 高精度温度记录仪驱动，NI 435x系列驱动。</font></strong></h3><p>目前最新版 NI 435x 2.5.2下载地址：</p>
+<p><a href="ftp://ftp.ni.com/support/NI-435x/2.5.2/NI435X252.zip" title="ftp://ftp.ni.com/support/NI-435x/2.5.2/NI435X252.zip">ftp://ftp.ni.com/support/NI-435x/2.5.2/NI435X252.zip</a></p>
+<p>通用下载地址：</p>
+<p><a href="ftp://ftp.ni.com/support/NI-435x/" title="ftp://ftp.ni.com/support/NI-435x/">ftp://ftp.ni.com/support/NI-435x/</a></p>
+<h3 id="第三项-NI同步板卡驱动，NI-665x系列板卡驱动。"><a href="#第三项-NI同步板卡驱动，NI-665x系列板卡驱动。" class="headerlink" title="第三项 NI同步板卡驱动，NI 665x系列板卡驱动。"></a><strong><font color="#ff0000">第三项 NI同步板卡驱动，NI 665x系列板卡驱动。</font></strong></h3><p>目前最新版 NI Sync 3.1下载地址：</p>
+<p><a href="ftp://ftp.ni.com/support/softlib/Timing_Sync/3.1/NISync310.zip" title="http://ftp.ni.com/support/softlib/Timing_Sync/3.1/NISync310.zip">ftp://ftp.ni.com/support/softlib/Timing_Sync&#x2F;3.1&#x2F;NISync310.zip</a></p>
+<p>介绍页面：</p>
+<p><a target="_blank" rel="noopener" href="http://joule.ni.com/nidu/cds/view/p/id/1367/lang/zhs" title="http://joule.ni.com/nidu/cds/view/p/id/1367/lang/zhs">http://joule.ni.com/nidu/cds/view/p/id/1367/lang/zhs</a></p>
+<p>Readme：</p>
+<p><a target="_blank" rel="noopener" href="http://ftp.ni.com/support/softlib/Timing_Sync/3.1/readme.htm" title="http://ftp.ni.com/support/softlib/Timing_Sync/3.1/readme.htm">http://ftp.ni.com/support/softlib/Timing_Sync&#x2F;3.1&#x2F;readme.htm</a></p>
+<p>所有版本下载地址：</p>
+<p><a href="ftp://ftp.ni.com/support/softlib/Timing_Sync/" title="ftp://ftp.ni.com/support/softlib/Timing_Sync/">ftp://ftp.ni.com/support/softlib/Timing_Sync&#x2F;</a></p>
+<h3 id="第四项-NI低噪音放大器驱动，对应NI-5690板卡。"><a href="#第四项-NI低噪音放大器驱动，对应NI-5690板卡。" class="headerlink" title="第四项 NI低噪音放大器驱动，对应NI 5690板卡。"></a><strong><font color="#ff0000">第四项 NI低噪音放大器驱动，对应NI 5690板卡。</font></strong></h3><p>最新1.0.6下载地址：</p>
+<p><a href="ftp://ftp.ni.com/support/softlib/RF/NI-5690/1.0.6/NI5690106.ZIP" title="ftp://ftp.ni.com/support/softlib/RF/NI-5690/1.0.6/NI5690106.ZIP">ftp://ftp.ni.com/support/softlib/RF/NI-5690/1.0.6/NI5690106.ZIP</a></p>
+<p>所有版本下载地址：</p>
+<p><a href="ftp://ftp.ni.com/support/softlib/RF/NI-5690/" title="ftp://ftp.ni.com/support/softlib/RF/NI-5690/">ftp://ftp.ni.com/support/softlib/RF/NI-5690/</a></p>
+<h3 id="第五项-NI中频收发器驱动，对应NI-564x系列板卡。"><a href="#第五项-NI中频收发器驱动，对应NI-564x系列板卡。" class="headerlink" title="第五项 NI中频收发器驱动，对应NI 564x系列板卡。"></a><strong><font color="#ff0000">第五项 NI中频收发器驱动，对应NI 564x系列板卡。</font></strong></h3><p>最新1.3下载地址</p>
+<p><a target="_blank" rel="noopener" href="http://ftp.ni.com/support/softlib/RF/NI-5640R/1.3/NI5640R130.zip" title="http://ftp.ni.com/support/softlib/RF/NI-5640R/1.3/NI5640R130.zip">http://ftp.ni.com/support/softlib/RF/NI-5640R/1.3/NI5640R130.zip</a></p>
+<p>所有版本下载地址：</p>
+<p><a href="ftp://ftp.ni.com/support/softlib/RF/NI-5640R/" title="ftp://ftp.ni.com/support/softlib/RF/NI-5640R/">ftp://ftp.ni.com/support/softlib/RF/NI-5640R/</a></p>
+<h3 id="第六项-PXI控制器驱动："><a href="#第六项-PXI控制器驱动：" class="headerlink" title="第六项 PXI控制器驱动："></a><strong><font color="#ff0000">第六项 PXI控制器驱动：</font></strong></h3><p>Trigger Bus,Watchdog driver(8130 for Vista&#x2F;Server2008&#x2F;7&#x2F;Server2008R2 64bit&#x2F;32bit)</p>
+<p>[<a href="ftp://ftp.ni.com/support/pxi/pxie-8130/PXIe-8130%20Peripherals%20(VISTA).zip]">ftp://ftp.ni.com/support/pxi/pxie-8130/PXIe-8130%20Peripherals%20(VISTA).zip]</a>(<a href="ftp://ftp.ni.com/support/pxi/pxie-8130/PXIe-8130">ftp://ftp.ni.com/support/pxi/pxie-8130/PXIe-8130</a> Peripherals (VISTA).zip)</p>
+<p>其他：</p>
+<p><a href="ftp://ftp.ni.com/support/pxi/" title="ftp://ftp.ni.com/support/pxi/">ftp://ftp.ni.com/support/pxi/</a></p>
+<h3 id="第七项-流盘驱动："><a href="#第七项-流盘驱动：" class="headerlink" title="第七项 流盘驱动："></a><strong><font color="#ff0000">第七项 流盘驱动：</font></strong></h3><p><a target="_blank" rel="noopener" href="http://digital.ni.com/public.nsf/allkb/5D08C51AF3C748BD86257560000F7E44" title="http://digital.ni.com/public.nsf/allkb/5D08C51AF3C748BD86257560000F7E44">http://digital.ni.com/public.nsf/allkb/5D08C51AF3C748BD86257560000F7E44</a></p>
+<p>8264</p>
+<p><a target="_blank" rel="noopener" href="http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDK/$FILE/HDD-8264_Version_2.20.0.32_XP.zip" title="http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDK/$FILE/HDD-8264_Version_2.20.0.32_XP.zip">http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDK/$FILE/HDD-8264_Version_2.20.0.32_XP.zip</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.lsi.com/storage_home/products_home/internal_raid/megaraid_sas/megaraid_sas_84016e/index.html?locale=EN&amp;remote=1" title="http://www.lsi.com/storage_home/products_home/internal_raid/megaraid_sas/megaraid_sas_84016e/index.html?locale=EN&amp;remote=1">http://www.lsi.com/storage_home&#x2F;products_home&#x2F;internal_raid&#x2F;megaraid_sas&#x2F;megaraid_sas_84016e&#x2F;index.html?locale&#x3D;EN&amp;remote&#x3D;1</a></p>
+<p>8263</p>
+<p><a target="_blank" rel="noopener" href="http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDF/$FILE/HDD-8263_Version_v2.2_XP.zip" title="http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDF/$FILE/HDD-8263_Version_v2.2_XP.zip">http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDF/$FILE/HDD-8263_Version_v2.2_XP.zip</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.highpoint-tech.com/USA/bios_rr2310.htm" title="http://www.highpoint-tech.com/USA/bios_rr2310.htm">http://www.highpoint-tech.com/USA/bios_rr2310.htm</a><br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/07/30/archived-ni-drivers-download/" data-id="cl2en8liv0032v4un4lr41k8y" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-we-do-the-3rd-power-of-x-right2labview-unit-test-framework-toolkit-1-0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/03/27/archived-we-do-the-3rd-power-of-x-right2labview-unit-test-framework-toolkit-1-0/" class="article-date">
+  <time datetime="2009-03-27T00:53:18.000Z" itemprop="datePublished">2009-03-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/03/27/archived-we-do-the-3rd-power-of-x-right2labview-unit-test-framework-toolkit-1-0/">WE DO THE 3RD POWER OF X RIGHT(2)+LabVIEW Unit Test Framework Toolkit 1.0试用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1316" class="bvMsg">
+
+<p>上回我们说到<strike>茴香豆有四种写法</strike>X的立方已经有四种办法可以搞定，下面我们来看看更多得办法~ <p>使用公式节点也可以 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image2.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image2.png?w=149" alt="image" title="image"></a>  <p>M脚本也可以 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image5.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image5.png?w=211" alt="image" title="image"></a>  <p> <p>微软的.NET也可以 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image8.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image8.png?w=137" alt="image" title="image"></a>  <p>如果我们都使用同样的算法，到底这几种接口有没有不同，那种效率更高呢？ <p>我们还是用事实说话： <p>首先有请 LabVIEW Unit Test Framework Toolkit 1.0 for LabVIEW 8.6.1 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image11.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image11.png?w=300" alt="image" title="image"></a>  <p>安装好以后我们就可以对LabVIEW VI进行自定义的测试了 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image14.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image14.png?w=265" alt="image" title="image"></a>  <p>我们来回顾一下程序代码这里我把循环次数都变为控件 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image18.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image18.png?w=300" alt="image" title="image"></a>  <p>然后新建一个测试 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image22.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image22.png?w=271" alt="image" title="image"></a>  <p>配置输入和输出参数 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image26.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image26.png?w=300" alt="image" title="image"></a>  <p>别忘了在工程里面配置一下报表 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image31.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image31.png?w=300" alt="image" title="image"></a>  <p> <p> <p> <p> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image35.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image35.png?w=300" alt="image" title="image"></a>  <p>点击运行测试就可以让LabVIEW替我们干活了 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image39.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image39.png?w=265" alt="image" title="image"></a>  <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image43.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image43.png?w=300" alt="image" title="image"></a> <p>大功告成~ <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image5b85d.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image5b85d.png?w=238" alt="image" title="image"></a>  <p>我们来总结一下~ <table border="0" cellspacing="0" cellpadding="0"> <tbody> <tr> <td width="89">  <td width="116">Use LabVIEW Power Function <td width="119">Use Expression Node with Power Function <td width="132">Use Formula Node with Power <td width="105">Use M Script with Power <td width="134">Use Dot NET Power <tr> <td width="89">Calculating Time(ms) <td width="116">0.0004777 <td width="119">0.0004948 <td width="132">0.0005344 <td width="105">0.1214 <td width="134">0.925</td></td></td></td></td></tbody></table> <p>  <p>从表格和下图可以看出**<font color="#ff0000">LabVIEW的原生节点和框图效率都还不错，使用外部接口和脚本时效率较低。</font>** <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image5b45d.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image5b45d.png?w=300" alt="image" title="image"></a> <p>另付LabVIEW Unit Test Framework Toolkit的测试报告： </p>
+<h1 id="The-3rd-Power-of-X"><a href="#The-3rd-Power-of-X" class="headerlink" title="The 3rd Power of X"></a>The 3rd Power of X</h1><p>Time: 2009-3-27 14:54:04<br>Operator: lhb<br>Operating System: Windows NT 5.1<br>LabVIEW Version: 8.6.1 (en)</p>
+<h2 id="Test-Summary"><a href="#Test-Summary" class="headerlink" title="Test Summary"></a>Test Summary</h2><p>0 Test Errors<br>0 Tests Failed<br>0 Tests Skipped<br>5 Tests Passed<br>Time elapsed: 00:00:36</p>
+<h2 id="Test-Results"><a href="#Test-Results" class="headerlink" title="Test Results"></a>Test Results</h2><h3 id="Failed"><a href="#Failed" class="headerlink" title="Failed"></a>Failed</h3><p>None.</p>
+<h3 id="Passed"><a href="#Passed" class="headerlink" title="Passed"></a>Passed</h3> <table border="1"> <tbody> <tr> <th>Test Name <th>Test Location <th>VI Name <th>Test Cases <th>Duration [s] <th>Code Coverage [%] <th>Requirements <tr> <td>[Use LabVIEW Power Function.lvtest](#Link0) <td>My Computer/LabVIEW Block Diagram <td>Use LabVIEW Power Function.vi <td>1 <td>5.77 <td>100.0 <td>  <tr> <td>[Use Expression Node with Power Function.lvtest](#Link1) <td>My Computer/Expression Node <td>Use Expression Node with Power Function.vi <td>1 <td>5.91 <td>100.0 <td>  <tr> <td>[Use Formula Node with Power.lvtest](#Link2) <td>My Computer/Fomula Node <td>Use Formula Node with Power.vi <td>1 <td>6.20 <td>100.0 <td>  <tr> <td>[Use M Script with Power.lvtest](#Link3) <td>My Computer/M SCRIPT <td>Use M Script with Power.vi <td>1 <td>2.03 <td>100.0 <td>  <tr> <td>[Use Dot NET Power.lvtest](#Link4) <td>My Computer/Dot NET <td>Use Dot NET Power.vi <td>1 <td>1.77 <td>100.0 <td> </td></td></td></tr></td></td></td></td></td></tr></th></th></tbody></table> 
+
+<h2 id="Test-Details"><a href="#Test-Details" class="headerlink" title="Test Details"></a>Test Details</h2><p><strong><a>1. My Computer<br>1.1. LabVIEW Block Diagram<br>1.1.1. Use LabVIEW Power Function.lvtest<br></a></strong> <table border="0"> <tbody> <tr> <td>VI Under Test: <td>C:Documents and SettingslhbDesktopInterface TestUse LabVIEW Power Function.vi <tr> <td>Result: <td>Passed <tr> <td>VI Timestamp: <td>2009-3-27 11:59:53 <tr> <td>VI Revision: <td>10 <tr> <td>Test Started: <td>2009-3-27 14:53:27 <tr> <td>Test Duration: <td>00:00:06 <tr> <td>Code Coverage: <td>100.0 % <tr> <td>Setup VI: <td>  <tr> <td>Teardown VI: <td> </td></td></tr></td></tr></td></td></tr></td></tr></tbody></table> </p>
+<ol>
+<li>Test Case 1: Passed**<a>1.2. Expression Node</li>
+</ol>
+<p>1.2.1. Use Expression Node with Power Function.lvtest<br></a>** <table border="0"> <tbody> <tr> <td>VI Under Test: <td>C:Documents and SettingslhbDesktopInterface TestUse Expression Node with Power Function.vi <tr> <td>Result: <td>Passed <tr> <td>VI Timestamp: <td>2009-3-27 11:59:53 <tr> <td>VI Revision: <td>6 <tr> <td>Test Started: <td>2009-3-27 14:53:33 <tr> <td>Test Duration: <td>00:00:06 <tr> <td>Code Coverage: <td>100.0 % <tr> <td>Setup VI: <td>  <tr> <td>Teardown VI: <td> </tr></tr></td></td></td></td></td></tbody></table> </p>
+<p><strong><a>1.3. Fomula Node<br>1.3.1. Use Formula Node with Power.lvtest<br></a></strong> <table border="0"> <tbody> <tr> <td>VI Under Test: <td>C:Documents and SettingslhbDesktopInterface TestUse Formula Node with Power.vi <tr> <td>Result: <td>Passed <tr> <td>VI Timestamp: <td>2009-3-27 13:56:38 <tr> <td>VI Revision: <td>12 <tr> <td>Test Started: <td>2009-3-27 14:53:40 <tr> <td>Test Duration: <td>00:00:06 <tr> <td>Code Coverage: <td>100.0 % <tr> <td>Setup VI: <td>  <tr> <td>Teardown VI: <td> </tr></td></td></tr></td></tr></tbody></table> </p>
+<p><strong><a>1.4. M SCRIPT<br>1.4.1. Use M Script with Power.lvtest<br></a></strong> <table border="0"> <tbody> <tr> <td>VI Under Test: <td>C:Documents and SettingslhbDesktopInterface TestUse M Script with Power.vi <tr> <td>Result: <td>Passed <tr> <td>VI Timestamp: <td>2009-3-27 14:19:42 <tr> <td>VI Revision: <td>11 <tr> <td>Test Started: <td>2009-3-27 14:53:58 <tr> <td>Test Duration: <td>00:00:02 <tr> <td>Code Coverage: <td>100.0 % <tr> <td>Setup VI: <td>  <tr> <td>Teardown VI: <td> </td></td></td></tbody></table> </p>
+<p><strong><a>1.5. Dot NET<br>1.5.1. Use Dot NET Power.lvtest<br></a></strong> <table border="0"> <tbody> <tr> <td>VI Under Test: <td>C:Documents and SettingslhbDesktopInterface TestUse Dot NET Power.vi <tr> <td>Result: <td>Passed <tr> <td>VI Timestamp: <td>2009-3-27 11:59:53 <tr> <td>VI Revision: <td>12 <tr> <td>Test Started: <td>2009-3-27 14:54:01 <tr> <td>Test Duration: <td>00:00:02 <tr> <td>Code Coverage: <td>100.0 % <tr> <td>Setup VI: <td>  <tr> <td>Teardown VI: <td> </td></td></td></tbody></table> </p>
+</p></p></p></p></p></p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/03/27/archived-we-do-the-3rd-power-of-x-right2labview-unit-test-framework-toolkit-1-0/" data-id="cl2en8lj60047v4uncltd0fs6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-we-do-the-3rd-power-of-x-right1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/03/24/archived-we-do-the-3rd-power-of-x-right1/" class="article-date">
+  <time datetime="2009-03-24T03:57:08.000Z" itemprop="datePublished">2009-03-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/03/24/archived-we-do-the-3rd-power-of-x-right1/">WE DO The 3rd Power of X RIGHT(1)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1285" class="bvMsg">
+
+<p>我们常常有这样一个错觉，在LabVIEW里面使用文本性的代码往往执行效率不如原生的框图高，究竟是不是这样呢？ <p>我们可以看看下面这个例子，如何才能最快的在LabVIEW里计算出X的三次方： <p>首先我们看看几种计算立方常用的办法（对啦，茴香豆有几种写法啊？） <p>1：LabVIEW math选版的幂函数VI <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image5b65d6b700b3c.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image5b65d6b700b3c.png?w=128" alt="image" title="image"></a>  <p>2：表达式节点的power函数 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image5b95d74f76c31.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image5b95d74f76c31.png?w=154" alt="image" title="image"></a>  <p>3：用乘法VI连乘（简单好用就是硬道理） <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image5b125d7c42446a.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image5b125d7c42446a.png?w=159" alt="image" title="image"></a>  <p>4：对啦！连乘而已，表达式节点一样能搞定 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image5b195d.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image5b195d.png?w=154" alt="image" title="image"></a>  <p>为了测试出到底每种花了多少时间，我们首先记录下算法计算100，000次所花的时间，然后为了消除单次计数的误差，我们循环100次然后平均，最后得出每种算法花费的时间。 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image5b165d267f1184.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image5b165d267f1184.png?w=300" alt="image" title="image"></a>  <p>下面是程序运行的结果，为了保证不互相影响，所有VI都提前打开并运行一次，以确保内存都已分配，结果如下图 <table border="0" cellspacing="0" cellpadding="0"> <tbody> <tr> <td width="72">  <td width="72">连乘 <td width="72">幂运算 <tr> <td>公式节点 <td>28.84 <td>50.8 <tr> <td>框图函数 <td>34.4 <td>49.55</tr></td></tr></tbody></table> <p>  <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image5b235d169e6f3f.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image5b235d169e6f3f.png?w=300" alt="image" title="image"></a>  <p>可以看出来，**<font color="#ff0000">LabVIEW 执行文本代码和框图代码效率基本相同，而且改进算法的影响要远远大于代码的表现形式。</font>** <p>附程序执行截屏一张，大图杀猫！ <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/03/image5b35d5386b4f2.png"><img src="http://lhb5883.files.wordpress.com/2009/03/image5b35d5386b4f2.png?w=300" alt="image" title="image"></a>  </p>
+</p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/03/24/archived-we-do-the-3rd-power-of-x-right1/" data-id="cl2en8lj50045v4unfsco9rkk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-2-icon-editor-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/02/20/archived-labview-2-icon-editor-tips/" class="article-date">
+  <time datetime="2009-02-20T01:09:07.000Z" itemprop="datePublished">2009-02-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/02/20/archived-labview-2-icon-editor-tips/">LabVIEW 图标编辑器相关技巧两则</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1263" class="bvMsg">
+
+<p>  <p><strong>1. 在LabVIEW 8.6下安装图标编辑器报错的解决</strong> <p>下载的安装包直接运行会提示以下错误 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0025b35d33af2eae.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0025b35d33af2eae.jpg?w=300" alt="clip_image002" title="clip_image002"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0045b35d74381fef.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0045b35d74381fef.jpg?w=300" alt="clip_image004" title="clip_image004"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0065b35d383d116a.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0065b35d383d116a.jpg?w=298" alt="clip_image006" title="clip_image006"></a> <p>重启后打开图标编辑器闪过新界面后还是原来的编辑器。 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0085b35d1a8cb9db.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0085b35d1a8cb9db.jpg?w=300" alt="clip_image008" title="clip_image008"></a> <p>以下是解决方案:MASScompile整个目录 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0105b35d115f2119.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0105b35d115f2119.jpg?w=300" alt="clip_image010" title="clip_image010"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0125b35d2af550c5.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0125b35d2af550c5.jpg?w=300" alt="clip_image012" title="clip_image012"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0145b35d75ad4bc2.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0145b35d75ad4bc2.jpg?w=300" alt="clip_image014" title="clip_image014"></a> <p>再次安装即可正常使用 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0165b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0165b35d.jpg?w=300" alt="clip_image016" title="clip_image016"></a> <p><strong>2. 批量获取新图标</strong> <p>1)浏览到合适网页,选择另存全部网页. <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0185b35d2db9ce26.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0185b35d2db9ce26.jpg?w=185" alt="clip_image018" title="clip_image018"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0205b35d5cb212f5.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0205b35d5cb212f5.jpg?w=300" alt="clip_image020" title="clip_image020"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0225b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0225b35d.jpg?w=300" alt="clip_image022" title="clip_image022"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0245b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0245b35d.jpg?w=300" alt="clip_image024" title="clip_image024"></a> <p>这时候我们就有了大量的新图标,不过透明的部分在不支持alpha通道的软件(LabVIEW、画图等)里会显示黑块。 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0265b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0265b35d.jpg?w=201" alt="clip_image026" title="clip_image026"></a> <p>2)此时合该祭出PS <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0285b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0285b35d.jpg?w=300" alt="clip_image028" title="clip_image028"></a> <p>我们以PS化之 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0305b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0305b35d.jpg?w=273" alt="clip_image030" title="clip_image030"></a> <p>3)打开一个图标，打开动作面板，我们新建一个动作 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b45d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b45d.jpg?w=224" alt="clip_image032" title="clip_image032"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0345b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0345b35d.jpg?w=300" alt="clip_image034" title="clip_image034"></a> <p>然后另存为PNG <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0365b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0365b35d.jpg?w=300" alt="clip_image036" title="clip_image036"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0385b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0385b35d.jpg?w=300" alt="clip_image038" title="clip_image038"></a> <p>[<img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b15d5b25d.jpg?w=224" alt="clip_image032[1]" title="clip_image032[1]">](<a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b15d5b25d.jpg">http://lhb5883.files.wordpress.com/2009/02/clip_image0325b15d5b25d.jpg</a>) <p>关闭GIF文件后结束动作录制。 <p>使用文件菜单下批处理，配置好输入输出目录静待PS发威。 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0405b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0405b35d.jpg?w=300" alt="clip_image040" title="clip_image040"></a> <p>4)然后我们打开PNG，再建一个转换背景的动作 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0425b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0425b35d.jpg?w=273" alt="clip_image042" title="clip_image042"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0445b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0445b35d.jpg?w=300" alt="clip_image044" title="clip_image044"></a> <p>首先更改颜色到RGB模式 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0465b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0465b35d.jpg?w=300" alt="clip_image046" title="clip_image046"></a> <p>然后添加背景 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0485b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0485b35d.jpg?w=300" alt="clip_image048" title="clip_image048"></a> <p>最后保存关闭，结束录制 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0505b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0505b35d.jpg?w=222" alt="clip_image050" title="clip_image050"></a> <p>再批处理一次 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0545b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0545b35d.jpg?w=228" alt="clip_image054" title="clip_image054"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0525b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0525b35d.jpg?w=300" alt="clip_image052" title="clip_image052"></a> <p>5)最后复制到相应路径下即可使用 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b25d.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b25d.png?w=300" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0545b35d.jpg"></a>  </p>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/02/20/archived-labview-2-icon-editor-tips/" data-id="cl2en8lie0018v4unb00qdwd6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-archived-labview-regex" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/02/19/archived-labview-regex/" class="article-date">
+  <time datetime="2009-02-18T19:09:02.000Z" itemprop="datePublished">2009-02-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/02/19/archived-labview-regex/">LabVIEW 正则表达式应用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1204" class="bvMsg">
+
+<p>在传统的文本式编程里，最常用的字符串处理方法就是正则表达式。在LabVIEW里面，虽然也提供了大量的文本处理函数包括查找替换等等，供我们处理字符串。 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b35d51d3708e.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b35d51d3708e.png?w=248" alt="image" title="image"></a>  <p>不过LabVIEW里面也提供了正则表达式这一强大的工具： <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b65d65c188ce.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b65d65c188ce.png?w=71" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b95d.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b95d.png?w=127" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b125d079d1142.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b125d079d1142.png?w=149" alt="image" title="image"></a>  <p>  <p> <p> <p>下面我们看看这个例子，将输入字符串的数字、冒号、小数点保留，其他字符去掉。 <p>使用Case结构和字符串函数： <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b165d3abfef7d.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b165d3abfef7d.png?w=300" alt="image" title="image"></a>  <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b235d.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b235d.png?w=300" alt="image" title="image"></a>  <p>然后可以看看用正则表达式实现： <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b275d.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b275d.png?w=284" alt="image" title="image"></a>  <p> <p> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b315d.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b315d.png?w=300" alt="image" title="image"></a>  <p>可以看到正则表达式是一个非常强大的工具。推荐两篇文档可以看看 </p>
+<h3 id="正则表达式30分钟入门教程"><a href="#正则表达式30分钟入门教程" class="headerlink" title="正则表达式30分钟入门教程"></a>正则表达式30分钟入门教程</h3> <p>[http://unibetter.com/deerchao/zhengzhe-biaodashi-jiaocheng-se.htm](http://unibetter.com/deerchao/zhengzhe-biaodashi-jiaocheng-se.htm "http://unibetter.com/deerchao/zhengzhe-biaodashi-jiaocheng-se.htm") <p>Introduction to Regular Expressions(MSDN) <p>[http://msdn.microsoft.com/en-us/library/28hw3sce.aspx](http://msdn.microsoft.com/en-us/library/28hw3sce.aspx "http://msdn.microsoft.com/en-us/library/28hw3sce.aspx")<p>
+<div style="text-align:left;">LabVIEW 程序下载：
+</div>
+[http://cid-866b8f96a2761bbe.skydrive.live.com/embedrowdetail.aspx/Public/regular.zip](http://cid-866b8f96a2761bbe.skydrive.live.com/embedrowdetail.aspx/Public/regular.zip)
+</p></p></p></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/02/19/archived-labview-regex/" data-id="cl2en8lio0027v4unbgdvg1lu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
