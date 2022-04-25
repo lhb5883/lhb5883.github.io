@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://haobo.li/index.html">
 <meta property="og:site_name" content="haobo.li">
 <meta property="og:description" content="A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on">
-<meta property="og:locale">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="haobo.li">
 <meta name="twitter:card" content="summary">
   
@@ -55,7 +55,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
@@ -127,7 +127,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://haobo.li/2022/04/25/20220425-how-to-choose-a-labview-version/" data-id="cl2en8lhu000nv4und9cyfwz2" class="article-share-link">Share</a>
+      <a data-url="http://haobo.li/2022/04/25/20220425-how-to-choose-a-labview-version/" data-id="cl2eni85i000nrcun2prf3og3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -180,7 +180,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://haobo.li/2022/04/02/20220403-something-about-python-and-playback/" data-id="cl2en8lht000mv4und7heeb8c" class="article-share-link">Share</a>
+      <a data-url="http://haobo.li/2022/04/02/20220403-something-about-python-and-playback/" data-id="cl2eni85h000mrcun1dpt0u5g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -228,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://haobo.li/2022/04/02/20210818-labview-2021-released/" data-id="cl2en8lhq000hv4un2iwg7h64" class="article-share-link">Share</a>
+      <a data-url="http://haobo.li/2022/04/02/20210818-labview-2021-released/" data-id="cl2eni85g000hrcun2jzm9sg3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -279,7 +279,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://haobo.li/2022/04/02/20220402-labview-2021sp1-released/" data-id="cl2en8lhs000kv4uncq3d4vek" class="article-share-link">Share</a>
+      <a data-url="http://haobo.li/2022/04/02/20220402-labview-2021sp1-released/" data-id="cl2eni85h000krcun4zgffp6p" class="article-share-link">Share</a>
       
       
     </footer>
@@ -313,7 +313,7 @@
       
         <h1 id="LabVIEW-2020-发布后的一些吐槽汇总"><a href="#LabVIEW-2020-发布后的一些吐槽汇总" class="headerlink" title="LabVIEW 2020 发布后的一些吐槽汇总"></a>LabVIEW 2020 发布后的一些吐槽汇总</h1><h2 id="LabVIEW-2020-离线镜像下载出错的解决办法"><a href="#LabVIEW-2020-离线镜像下载出错的解决办法" class="headerlink" title="LabVIEW 2020 离线镜像下载出错的解决办法"></a>LabVIEW 2020 离线镜像下载出错的解决办法</h2><p>NI的官网使用CloudFlare的CDN加速，国内使用的是百度云加速，因此继承了百度不靠谱的特质，经常发现下下来的hash值和NI官方给的hash值对不上。<br>这种情况下推荐重新下载一遍，有时候hash就能对上了。<br>如果反复下载之后，几次的hash都对不上，这时候就可以用变通的办法来处理。<br>解压缩离线的ISO镜像后<br>目录下会有Install.exe,一些DLL支持文件，目录有以下三个：<br>    1. bin（安装支持文件包含了NI包管理器和.net安装环境）<br>    2. feeds（目录下包含子目录如ni-488.2，再下一层有Packages文件）<br>    3. Pool（包含了实际的nipkg安装包）</p>
 <p>Packages文件是纯文本的，里面包含了Pool目录下的nipkg文件的一些信息。</p>
-<p>Architecture: windows_all<br>CompatibilityVersion: 0<br>Conflicts: ni-package-manager<br>Description: Package for displaying the IVI Foundation Inc. License Agreement<br>DisplayName: IVI Foundation Inc. License Agreement<br>DisplayVersion: 20.0.0<br>EulaTitle: IVI<br>Filename: ..&#x2F;..&#x2F;pool&#x2F;eula-ivi_20.0.0.49153-0+f1_windows_all.nipkg<br>Homepage: <a target="_blank" rel="noopener" href="http://www.ni.com/">http://www.ni.com</a><br>MD5Sum: abdd1d7965acc3749f5d80adec7bac5b<br>MD5sum: abdd1d7965acc3749f5d80adec7bac5b<br>Maintainer: National Instruments <a href="mailto:&#x73;&#x75;&#112;&#112;&#x6f;&#x72;&#x74;&#x40;&#x6e;&#x69;&#x2e;&#x63;&#x6f;&#109;">&#x73;&#x75;&#112;&#112;&#x6f;&#x72;&#x74;&#x40;&#x6e;&#x69;&#x2e;&#x63;&#x6f;&#109;</a><br>OsSupport: WINDOWS_7_SP1_32BIT WINDOWS_7_SP1_64BIT WINDOWS_81_32BIT WINDOWS_81_64BIT WINDOWS_10_32BIT WINDOWS_10_64BIT WINDOWS_EMBEDDED_STANDARD_7_SP1 WINDOWS_SERVER_2008_R2_SP1_64BIT WINDOWS_SERVER_2012_R2_64BIT<br>Package: eula-ivi<br>Plugin: eula<br>Priority: standard<br>Section: Infrastructure<br>Size: 3944<br>UserVisible: no<br>Version: 20.0.0.49153-0+f1</p>
+<p>Architecture: windows_all<br>CompatibilityVersion: 0<br>Conflicts: ni-package-manager<br>Description: Package for displaying the IVI Foundation Inc. License Agreement<br>DisplayName: IVI Foundation Inc. License Agreement<br>DisplayVersion: 20.0.0<br>EulaTitle: IVI<br>Filename: ..&#x2F;..&#x2F;pool&#x2F;eula-ivi_20.0.0.49153-0+f1_windows_all.nipkg<br>Homepage: <a target="_blank" rel="noopener" href="http://www.ni.com/">http://www.ni.com</a><br>MD5Sum: abdd1d7965acc3749f5d80adec7bac5b<br>MD5sum: abdd1d7965acc3749f5d80adec7bac5b<br>Maintainer: National Instruments <a href="mailto:&#x73;&#x75;&#112;&#112;&#111;&#114;&#x74;&#64;&#110;&#105;&#x2e;&#x63;&#x6f;&#x6d;">&#x73;&#x75;&#112;&#112;&#111;&#114;&#x74;&#64;&#110;&#105;&#x2e;&#x63;&#x6f;&#x6d;</a><br>OsSupport: WINDOWS_7_SP1_32BIT WINDOWS_7_SP1_64BIT WINDOWS_81_32BIT WINDOWS_81_64BIT WINDOWS_10_32BIT WINDOWS_10_64BIT WINDOWS_EMBEDDED_STANDARD_7_SP1 WINDOWS_SERVER_2008_R2_SP1_64BIT WINDOWS_SERVER_2012_R2_64BIT<br>Package: eula-ivi<br>Plugin: eula<br>Priority: standard<br>Section: Infrastructure<br>Size: 3944<br>UserVisible: no<br>Version: 20.0.0.49153-0+f1</p>
 <p>里面比较重要的是Filename和MD5Sum两个字段，可以用来确认nipkg文件是否已经损坏。<br>为了修复安装包，需要根据这个配置文件把损坏的nipkg文件找出来，然后替换成好的。<br>目前看来只要是文件名一致的nipkg文件并且没有损坏，hash应该是一致的，所以可以用其他完好安装包里的nipkg文件进行替换。<br>经过我实验，Pool里面将损坏的nipkg文件替换为正常的nipkg文件，安装包就可以正常安装使用。</p>
 <p>PS:<br>另外在C:\Program Files\National Instruments\NI Package Manager下有一个nipkg.exe可以创建离线安装包，可惜的是不支持校验和修复已经下载好的安装包,希望NI以后可以加上对应的功能。</p>
 <h2 id="NI-驱动下载-2020-05"><a href="#NI-驱动下载-2020-05" class="headerlink" title="NI 驱动下载 2020.05"></a>NI 驱动下载 2020.05</h2><p>Peripheral Drivers for Controllers<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.peripheral-drivers-for-controllers.html">https://www.ni.com/en-us/support/downloads/drivers/download.peripheral-drivers-for-controllers.html</a><br>NI CompactRIO<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-compactrio.html#311624">https://www.ni.com/en-us/support/downloads/drivers/download.ni-compactrio.html#311624</a><br>NI-ELVISmx<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-elvismx.html#305452">https://www.ni.com/en-us/support/downloads/drivers/download.ni-elvismx.html#305452</a><br>FlexRIO<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.flexrio.html">https://www.ni.com/en-us/support/downloads/drivers/download.flexrio.html</a><br>PXI Platform Services<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.pxi-platform-services.html#313433">https://www.ni.com/en-us/support/downloads/drivers/download.pxi-platform-services.html#313433</a><br>NI R Series Multifunction RIO<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-r-series-multifunction-rio.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-r-series-multifunction-rio.html</a><br>NI-488.2<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-488-2.html#305442">https://www.ni.com/en-us/support/downloads/drivers/download.ni-488-2.html#305442</a><br>NI-DAQmx<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-daqmx.html#311818">https://www.ni.com/en-us/support/downloads/drivers/download.ni-daqmx.html#311818</a><br>NI-DCPower<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-dcpower.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-dcpower.html</a><br>NI-DMM<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-dmm.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-dmm.html</a><br>NI-FGEN<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-fgen.html#305449">https://www.ni.com/en-us/support/downloads/drivers/download.ni-fgen.html#305449</a><br>NI-HSDIO<br>From <a target="_blank" rel="noopener" href="http://www.ni.com/en-us/support/downloads/drivers/download.ni-hsdio.html">http://www.ni.com/en-us/support/downloads/drivers/download.ni-hsdio.html</a><br>Vision Acquisition Software<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.vision-acquisition-software.html#305518">https://www.ni.com/en-us/support/downloads/drivers/download.vision-acquisition-software.html#305518</a><br>NI-Industrial Communications for Ethernet&#x2F;IP<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-ethernet-ip.html#305843">https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-ethernet-ip.html#305843</a><br>NI-Industrial Communications for EtherCAT<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-ethercat.html#311691">https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-ethercat.html#311691</a><br>NI-Industrial Communications for CANopen<br>From <a target="_blank" rel="noopener" href="http://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-canopen.html#311611">http://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-canopen.html#311611</a><br>NI-Industrial Communications for IEC 61850<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-iec-61850.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-iec-61850.html</a><br>NI-Industrial Communications for DeviceNet<br>From <a target="_blank" rel="noopener" href="http://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-devicenet.html#311812">http://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-devicenet.html#311812</a><br>NI-Industrial Communications for DNP3<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-dnp3.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-dnp3.html</a><br>NI-SCOPE<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-scope.html#305863">https://www.ni.com/en-us/support/downloads/drivers/download.ni-scope.html#305863</a><br>NI-Serial<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-serial.html#305457">https://www.ni.com/en-us/support/downloads/drivers/download.ni-serial.html#305457</a><br>NI-SWITCH<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-switch.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-switch.html</a><br>NI-Sync<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-sync.html#311813">https://www.ni.com/en-us/support/downloads/drivers/download.ni-sync.html#311813</a><br>NI-XNET<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-xnet.html#311817">https://www.ni.com/en-us/support/downloads/drivers/download.ni-xnet.html#311817</a><br>NI-VISA<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-visa.html#305862">https://www.ni.com/en-us/support/downloads/drivers/download.ni-visa.html#305862</a><br>Industrial Controller Device Drivers<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.industrial-controller-device-drivers.html">https://www.ni.com/en-us/support/downloads/drivers/download.industrial-controller-device-drivers.html</a><br>NI-VirtualBench Application and Driver<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-virtualbench-application-and-driver.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-virtualbench-application-and-driver.html</a><br>LabVIEW ELVIS III Toolkit<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.labview-elvis-iii-toolkit.html">https://www.ni.com/en-us/support/downloads/software-products/download.labview-elvis-iii-toolkit.html</a> </p>
@@ -525,7 +525,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://haobo.li/2020/07/29/20200729-labview-2020-summary/" data-id="cl2en8lho000fv4un6z626e58" class="article-share-link">Share</a>
+      <a data-url="http://haobo.li/2020/07/29/20200729-labview-2020-summary/" data-id="cl2eni85f000frcunctdwbv1m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/labview/" rel="tag">labview</a></li></ul>
@@ -582,7 +582,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://haobo.li/2020/05/08/20200508-labview-2020-nearly-released/" data-id="cl2en8lhk000dv4un0vle9x2r" class="article-share-link">Share</a>
+      <a data-url="http://haobo.li/2020/05/08/20200508-labview-2020-nearly-released/" data-id="cl2eni85d000crcun5yzs3vu3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -640,7 +640,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://haobo.li/2020/04/22/20200422-Network-Trouble-Shooting/" data-id="cl2en8lhj000cv4un3j77ebns" class="article-share-link">Share</a>
+      <a data-url="http://haobo.li/2020/04/22/20200422-Network-Trouble-Shooting/" data-id="cl2eni85e000drcun4kavdn1x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
@@ -701,7 +701,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://haobo.li/2019/12/31/20191231-how-to-work-around-some-bugs-in-2019/" data-id="cl2en8lhh0008v4un3z8z2e8k" class="article-share-link">Share</a>
+      <a data-url="http://haobo.li/2019/12/31/20191231-how-to-work-around-some-bugs-in-2019/" data-id="cl2eni85a0008rcun7ez34lh0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -751,7 +751,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://haobo.li/2019/12/31/20191231-labview-2019-sp1-released/" data-id="cl2en8lhh0009v4un46012kk3" class="article-share-link">Share</a>
+      <a data-url="http://haobo.li/2019/12/31/20191231-labview-2019-sp1-released/" data-id="cl2eni85b0009rcuneq0r3kw1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -990,7 +990,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://haobo.li/2019/11/20/20191120-labview-toolkit-stop-maintenance-at-oct-2019/" data-id="cl2en8lhg0007v4unbkr98y8s" class="article-share-link">Share</a>
+      <a data-url="http://haobo.li/2019/11/20/20191120-labview-toolkit-stop-maintenance-at-oct-2019/" data-id="cl2eni85a0007rcundgk55ndt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/labview/" rel="tag">labview</a></li></ul>
@@ -1006,7 +1006,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
   </nav>
 
 </section>
@@ -1015,7 +1015,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">分类</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
     </div>
@@ -1025,7 +1025,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">标签</h3>
     <div class="widget">
       <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
     </div>
@@ -1035,7 +1035,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
       <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
     </div>
@@ -1044,9 +1044,9 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">August 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">July 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">April 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">March 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">February 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -1054,7 +1054,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
         
