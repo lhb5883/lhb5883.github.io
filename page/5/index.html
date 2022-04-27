@@ -66,6 +66,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-archived-pxi-os-restore" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/11/24/archived-pxi-os-restore/" class="article-date">
+  <time datetime="2009-11-23T23:52:30.000Z" itemprop="datePublished">2009-11-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computers-and-Internet/">Computers and Internet</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/11/24/archived-pxi-os-restore/">PXI控制器系统备份软件选择</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1389" class="bvMsg">
+
+<p>虽然NI的控制器质量非常稳定可靠，不过如果使用Windows而非RealTimeOS的话，系统备份恢复软件就是一个值得考虑的问题了。</p>
+<p>为了找到一个好用的恢复软件给我们的8176上个保险，来来回回测试了多种备份软件。</p>
+<p>系统备份与恢复软件厂商目前主要是Symantic赛门铁克和Acronis两大厂商。其中Symantic以GHOST系列强大的功能闻名，在收购了PowerQuest之后其实力不可小视。Acronis以True Image系列软件的方便易用与稳定可靠被NI作为系统默认的硬盘恢复方案。</p>
+<p>我初步的目标是找到一个能在Windows7下备份和恢复整个分区的软件，取代我一直使用的DriveImage。不过该方法需要拆开控制器，所以要是能做成多启动这种方案也不错。</p>
+<p>下表是一个简单的比较<br> <table border="0" cellspacing="0" cellpadding="0"> <tbody> <tr> <td width="165">控制器型号</td> <td width="174">Norton Save&amp;Restore&#x2F;<br>Symantec Backup Exec System</td> <td width="107">双启动GHOST</td> <td width="138">光盘&#x2F;U盘版GHOST</td> <td width="198"> </p>
+<p>Acronis True Image OEM</p>
+</td> <td width="206">Acronis True Image 2010</td> <td width="246">Power Quest Drive Image 2002</td></tr> <tr> <td width="165">PXI-817X/818X（Intel8系列芯片组）</td> <td width="174">OK</td> <td width="107">OK</td> <td width="138">Fail</td> <td width="198">OK</td> <td width="206">不支持Windows2000</td> <td width="246">OK</td></tr> <tr> <td width="165">PXI-819X/810X/8130（Intel9系列芯片组/Nvidia N-Force）</td> <td width="174">OK</td> <td width="107">OK</td> <td width="138">OK</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">PXI-8108/8110（IntelG系列芯片组）</td> <td width="174">OK</td> <td width="107">未知</td> <td width="138">Fail</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">功能</td> <td width="174"> </td> <td width="107"> </td> <td width="138"> </td> <td width="198"> </td> <td width="206"> </td> <td width="246"> </td></tr> <tr> <td width="165">在Windows下备份和恢复分区（用于在PC机上恢复系统，适用于硬盘数据完全丢失无法启动等情况）</td> <td width="174">只能用于系统盘</td> <td width="107">/</td> <td width="138">/</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">OK</td></tr> <tr> <td width="165">在非windows下备份和恢复分区</td> <td width="174">无</td> <td width="107">OK</td> <td width="138">不适用老控制器</td> <td width="198">OK</td> <td width="206">OK</td> <td width="246">无</td></tr> <tr> <td width="165">操作系统支持</td> <td width="174">XP/VISTA</td> <td width="107">/</td> <td width="138">/</td> <td width="198">2000/XP</td> <td width="206">XP/VISTA/Windows7</td> <td width="246">2000/XP</td></tr></tbody></table> 
+
+<p>目前GHOST的二次封装而成的USB GHOST，光盘GHOST、一键GHOST等等版本极多，不过能兼容NI大部分控制器的GHOST版本并不多。而企业版GHOST套装使用和配置极其复杂，操作简单的Windows下备份和恢复的软件在系统崩溃后就没有什么用了。所以值得考虑的就是系统恢复光盘里自带的Acronis True Image OEM版，是一个简单可靠的一键恢复系统，不过一旦恢复就会使系统恢复到出厂状态。需自由备份和恢复就需要完整版的软件才行。</p>
+<p>不过我们其实需要的功能往往也没有那么复杂，只需要能恢复系统到一个安装调试好所有软件的状态，那么这时候就可以用到下面这个小技巧了 。</p>
+<p>1。正常安装Windows，注意不要选择安装F4一键恢复。</p>
+<p>2。分区、安装软件、配置程序。。。</p>
+<p>3。将系统恢复盘的CDROM:OSPXI_VXI$OEM$$1SYSPREP目录下的ACRONIS.XML，ACRONIS8199_ENABLE.BAT，ACRONISTRUEIMAGE_8199.MSI三个文件复制到c:Sysprep目录下</p>
+<p>4。运行c:SysprepACRONIS8199_ENABLE.BAT，重启系统后就会自动备份操作系统，完成之后在系统启动时按F4就可以一键恢复了。<br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/11/24/archived-pxi-os-restore/" data-id="cl2eni8650035rcun4qmn0jwj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-archived-scope-trigger-sensitivity" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2009/09/15/archived-scope-trigger-sensitivity/" class="article-date">
@@ -614,53 +670,6 @@ main()
 
 
   
-    <article id="post-archived-labview-regex" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/02/19/archived-labview-regex/" class="article-date">
-  <time datetime="2009-02-18T19:09:02.000Z" itemprop="datePublished">2009-02-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/02/19/archived-labview-regex/">LabVIEW 正则表达式应用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div id="msgcns!866B8F96A2761BBE!1204" class="bvMsg">
-
-<p>在传统的文本式编程里，最常用的字符串处理方法就是正则表达式。在LabVIEW里面，虽然也提供了大量的文本处理函数包括查找替换等等，供我们处理字符串。 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b35d51d3708e.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b35d51d3708e.png?w=248" alt="image" title="image"></a>  <p>不过LabVIEW里面也提供了正则表达式这一强大的工具： <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b65d65c188ce.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b65d65c188ce.png?w=71" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b95d.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b95d.png?w=127" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b125d079d1142.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b125d079d1142.png?w=149" alt="image" title="image"></a>  <p>  <p> <p> <p>下面我们看看这个例子，将输入字符串的数字、冒号、小数点保留，其他字符去掉。 <p>使用Case结构和字符串函数： <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b165d3abfef7d.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b165d3abfef7d.png?w=300" alt="image" title="image"></a>  <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b235d.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b235d.png?w=300" alt="image" title="image"></a>  <p>然后可以看看用正则表达式实现： <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b275d.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b275d.png?w=284" alt="image" title="image"></a>  <p> <p> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b315d.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b315d.png?w=300" alt="image" title="image"></a>  <p>可以看到正则表达式是一个非常强大的工具。推荐两篇文档可以看看 </p>
-<h3 id="正则表达式30分钟入门教程"><a href="#正则表达式30分钟入门教程" class="headerlink" title="正则表达式30分钟入门教程"></a>正则表达式30分钟入门教程</h3> <p>[http://unibetter.com/deerchao/zhengzhe-biaodashi-jiaocheng-se.htm](http://unibetter.com/deerchao/zhengzhe-biaodashi-jiaocheng-se.htm "http://unibetter.com/deerchao/zhengzhe-biaodashi-jiaocheng-se.htm") <p>Introduction to Regular Expressions(MSDN) <p>[http://msdn.microsoft.com/en-us/library/28hw3sce.aspx](http://msdn.microsoft.com/en-us/library/28hw3sce.aspx "http://msdn.microsoft.com/en-us/library/28hw3sce.aspx")<p>
-<div style="text-align:left;">LabVIEW 程序下载：
-</div>
-[http://cid-866b8f96a2761bbe.skydrive.live.com/embedrowdetail.aspx/Public/regular.zip](http://cid-866b8f96a2761bbe.skydrive.live.com/embedrowdetail.aspx/Public/regular.zip)
-</p></p></p></div>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2009/02/19/archived-labview-regex/" data-id="cl2eni85z0027rcun8l929m2q" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -718,6 +727,10 @@ main()
       <ul>
         
           <li>
+            <a href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/">20220427-what-is-the-relation-between-lean-6s-and-close-loop-management</a>
+          </li>
+        
+          <li>
             <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
           </li>
         
@@ -731,10 +744,6 @@ main()
         
           <li>
             <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
           </li>
         
       </ul>

@@ -66,6 +66,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-archived-labview-2012-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/11/23/archived-labview-2012-tips/" class="article-date">
+  <time datetime="2012-11-23T09:42:25.000Z" itemprop="datePublished">2012-11-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/11/23/archived-labview-2012-tips/">LabVIEW 2012 使用心得</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>LabVIEW 2012 自8月发布已有3月有余，总结了一些使用中发现的优缺点：</p>
+<p>优点：</p>
+<ol>
+<li>新加的For循环条件自动索引很方便。2.  新项目向导选项很丰富，模板文档很详尽。3.  新加的Actor Frameworks增加了面向对象的通用架构。4.  可以从NI FTP下载院校系使用权套件的安装镜像，方便批量安装。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>启动界面层级太多，找东西不方便。2.  项目向导响应有时候非常迟钝。3.  LabVIEW 2009的字体BUG重出江湖。4.  不打补丁会出现无法退出的情况。</li>
+</ol>
+<p>点评：</p>
+<p>这一次LabVIEW更新增加的Actor Framework给LabVIEW提供基于类和对象的架构选择，不过LabVIEW面向对象带来的好处能否超过其成本还需要在实践中验证。</p>
+<p>PS：</p>
+<p>LabVIEW 字体BUG修正方案</p>
+<p>针对LabVIEW图标编辑器，可以考虑关闭系统ClearType（但是字体仍然不对），或者使用我以前写的字体图片</p>
+<p>针对LabVIEW环境，目前最治本的办法是将系统非unicode程序语言更换为英文，但是此时LabVIEW里面的中文会乱码，因此对于中国的LabVIEW使用者没有可行性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2012/11/23/archived-labview-2012-tips/" data-id="cl2eni85v001srcunb7nm6kh8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-archived-news-tortoisesvn-1-7-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2011/10/28/archived-news-tortoisesvn-1-7-1/" class="article-date">
@@ -560,76 +615,6 @@
 
 
   
-    <article id="post-archived-labview-2009-icon-editor-tips" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/12/31/archived-labview-2009-icon-editor-tips/" class="article-date">
-  <time datetime="2009-12-30T18:08:15.000Z" itemprop="datePublished">2009-12-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/12/31/archived-labview-2009-icon-editor-tips/">关于LabVIEW 2009图标编辑器技巧两则</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div id="msgcns!866B8F96A2761BBE!1472" class="bvMsg"> 
-
-<p>LabVIEW2009的图标编辑器在书写字符时会出现模糊的现象</p>
-<p>![image](<a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1m80sTh9OID-hm_xBpKcQJPf8_l_40wO8nkraFJxyFseIXlBkmBq6Vj0WvgUUJRsb4Hu6IyDvmuyjJ5oSATC62_cykAwMJ_B852vsgnYTj3FYtTjnYLFL_pgHzx0IgBXG85Y_BTw4lQy5CJIHojMzYrg/image[11]">https://aftv2q.bay.livefilestore.com/y1m80sTh9OID-hm_xBpKcQJPf8_l_40wO8nkraFJxyFseIXlBkmBq6Vj0WvgUUJRsb4Hu6IyDvmuyjJ5oSATC62_cykAwMJ_B852vsgnYTj3FYtTjnYLFL_pgHzx0IgBXG85Y_BTw4lQy5CJIHojMzYrg/image[11]</a> 264EED05.png “image”) </p>
-<p>这个BUG是Cleartype导致的，Cleartype是一种LCD优化显示技术用来平滑字体，在大屏幕上显示大号字体也不会有明显的锯齿，但是对于小号字体就会有模糊的现象。</p>
-<p>IE8中就强制打开了这一技术来获得更好的观感。（说句题外话，虽然我现在主浏览器是Google Chrome，不过对页面渲染效果最好的还是IE8）</p>
-<p>如何解决呢？XP在我的电脑上右键，选择属性</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/12/image5b145d.png?w=258" alt="image" title="image"> </p>
-<p>在高级标签页选择设置</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/12/image5b25d0e8e803e.png?w=205" alt="image" title="image"> </p>
-<p>在视觉效果里关闭平滑字体边缘。</p>
-<p>Windows7&#x2F;Vista在控制面板里搜索ClearType</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/12/image5b55d6f2b8dd0.png?w=300" alt="image" title="image"> </p>
-<p>取消打开Cleartype。</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/12/image5b85d6f5a7be9.png?w=300" alt="image" title="image"> </p>
-<p>这样打出来的字就不会模糊了。</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/12/image5b175d7d26dedb.png?w=300" alt="image" title="image"></p>
-<p>关于Cleartype的一些相关链接。</p>
-<p>Wiki的介绍</p>
-<p><a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/ClearType">http://en.wikipedia.org/wiki/ClearType</a></p>
-<p>M$自家的介绍</p>
-<p><a target="_blank" rel="noopener" href="http://www.microsoft.com/typography/cleartypeInfo.mspx">http://www.microsoft.com/typography/cleartypeInfo.mspx</a></p>
-<p>XP的Cleartype在线调节工具</p>
-<p><a target="_blank" rel="noopener" href="http://www.microsoft.com/typography/cleartype/tuner/step1.aspx">http://www.microsoft.com/typography/cleartype/tuner/step1.aspx</a></p>
-<p>离线版</p>
-<p><a target="_blank" rel="noopener" href="http://www.microsoft.com/typography/ClearTypePowerToy.mspx">http://www.microsoft.com/typography/ClearTypePowerToy.mspx</a></p>
-<p>另外，关于图标编辑器禁用的办法：</p>
-<p> <a target="_blank" rel="noopener" href="http://ruanqizhen.spaces.live.com/blog/cns!5852D4F797C53FB6!4848.entry" title="http://ruanqizhen.spaces.live.com/blog/cns!5852D4F797C53FB6!4848.entry">http://ruanqizhen.spaces.live.com/blog/cns!5852D4F797C53FB6!4848.entry</a></p>
-<p>我个人觉得LabVIEW最好的办法是支持标准的图标文件，这样可以更加开放。例如M$的VisualStudio图标编辑器其实就是第三方的Axialis _IconWorksho_p</p>
-<p>还需要增加更大分辨率和颜色数的支持，能够在图标里提供更多的信息，像LabVIEW Lego开发软件的图标就很有特点。当然这个工作量就非常巨大了，需要修改大量的图标。<br>  </div></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2009/12/31/archived-labview-2009-icon-editor-tips/" data-id="cl2eni85r001arcun7j0lh0gw" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -687,6 +672,10 @@
       <ul>
         
           <li>
+            <a href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/">20220427-what-is-the-relation-between-lean-6s-and-close-loop-management</a>
+          </li>
+        
+          <li>
             <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
           </li>
         
@@ -700,10 +689,6 @@
         
           <li>
             <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
           </li>
         
       </ul>
