@@ -66,6 +66,60 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-archived-stream-to-disk-guide-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/11/26/archived-stream-to-disk-guide-01/" class="article-date">
+  <time datetime="2009-11-25T23:25:57.000Z" itemprop="datePublished">2009-11-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/11/26/archived-stream-to-disk-guide-01/">流盘备忘录(1)-流盘概览</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1391" class="bvMsg">
+
+<p>流盘概览</p>
+<p>我们经常会看到一个总线速度比较的图表,可以看到在通常的情况下同一时代内总线最高速度是远远高于外总线的,不过对于硬盘来说,尽管应该也可以算是内总线上的设备,硬盘读写速度一直是一个令人无奈的瓶颈,远远落后于计算机技术和测控技术的发展速度.当我们的示波器数据量已经迈入GB&#x2F;s的量级,硬盘的速度还是在MBS&#x2F;s级徘徊.</p>
+<p>造成这种现状的原因:</p>
+<p>1.机械式硬盘本身的局限:</p>
+<p>需要通过寻道等机械动作之后才能实现读写动作,如果使用SSD固态硬盘,单块硬盘速度可以提高到100MBSs以上,</p>
+<p>传统硬盘通过组成Raid0阵列也可以提高写入速度，目前最高性能已经可以到G级。</p>
+<p>2.总线接口:</p>
+<p>SATA和IDE接口挂接到PCI总线上就要受到PCI总线133MS&#x2F;s的限制,只有使用PCI-E的高带宽接口,才能适合大流量的数据读写，PCIe带宽最高4G。</p>
+<p>目前PXIe的系统带宽在3~4G，板卡带宽最高1G。</p>
+<p>3.计算机性能：</p>
+<p>在处理大量数据时大数组的读写、转置、队列都会给CPU大量的压力，数据量的增大对内存大小也提出了更高的要求。</p>
+<p>对于目前PXI平台比较成熟的方案就是使用PXI-E板卡+RAID流盘阵列这种架构.最高数据吞吐量在400M~600MB&#x2F;s左右。<br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/11/26/archived-stream-to-disk-guide-01/" data-id="cl2eni866003drcun9mz8bko1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-archived-pxi-os-restore" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2009/11/24/archived-pxi-os-restore/" class="article-date">
@@ -627,49 +681,6 @@ main()
 
 
   
-    <article id="post-archived-labview-2-icon-editor-tips" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/02/20/archived-labview-2-icon-editor-tips/" class="article-date">
-  <time datetime="2009-02-20T01:09:07.000Z" itemprop="datePublished">2009-02-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/02/20/archived-labview-2-icon-editor-tips/">LabVIEW 图标编辑器相关技巧两则</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div id="msgcns!866B8F96A2761BBE!1263" class="bvMsg">
-
-<p>  <p><strong>1. 在LabVIEW 8.6下安装图标编辑器报错的解决</strong> <p>下载的安装包直接运行会提示以下错误 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0025b35d33af2eae.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0025b35d33af2eae.jpg?w=300" alt="clip_image002" title="clip_image002"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0045b35d74381fef.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0045b35d74381fef.jpg?w=300" alt="clip_image004" title="clip_image004"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0065b35d383d116a.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0065b35d383d116a.jpg?w=298" alt="clip_image006" title="clip_image006"></a> <p>重启后打开图标编辑器闪过新界面后还是原来的编辑器。 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0085b35d1a8cb9db.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0085b35d1a8cb9db.jpg?w=300" alt="clip_image008" title="clip_image008"></a> <p>以下是解决方案:MASScompile整个目录 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0105b35d115f2119.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0105b35d115f2119.jpg?w=300" alt="clip_image010" title="clip_image010"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0125b35d2af550c5.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0125b35d2af550c5.jpg?w=300" alt="clip_image012" title="clip_image012"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0145b35d75ad4bc2.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0145b35d75ad4bc2.jpg?w=300" alt="clip_image014" title="clip_image014"></a> <p>再次安装即可正常使用 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0165b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0165b35d.jpg?w=300" alt="clip_image016" title="clip_image016"></a> <p><strong>2. 批量获取新图标</strong> <p>1)浏览到合适网页,选择另存全部网页. <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0185b35d2db9ce26.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0185b35d2db9ce26.jpg?w=185" alt="clip_image018" title="clip_image018"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0205b35d5cb212f5.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0205b35d5cb212f5.jpg?w=300" alt="clip_image020" title="clip_image020"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0225b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0225b35d.jpg?w=300" alt="clip_image022" title="clip_image022"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0245b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0245b35d.jpg?w=300" alt="clip_image024" title="clip_image024"></a> <p>这时候我们就有了大量的新图标,不过透明的部分在不支持alpha通道的软件(LabVIEW、画图等)里会显示黑块。 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0265b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0265b35d.jpg?w=201" alt="clip_image026" title="clip_image026"></a> <p>2)此时合该祭出PS <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0285b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0285b35d.jpg?w=300" alt="clip_image028" title="clip_image028"></a> <p>我们以PS化之 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0305b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0305b35d.jpg?w=273" alt="clip_image030" title="clip_image030"></a> <p>3)打开一个图标，打开动作面板，我们新建一个动作 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b45d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b45d.jpg?w=224" alt="clip_image032" title="clip_image032"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0345b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0345b35d.jpg?w=300" alt="clip_image034" title="clip_image034"></a> <p>然后另存为PNG <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0365b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0365b35d.jpg?w=300" alt="clip_image036" title="clip_image036"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0385b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0385b35d.jpg?w=300" alt="clip_image038" title="clip_image038"></a> <p>[<img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b15d5b25d.jpg?w=224" alt="clip_image032[1]" title="clip_image032[1]">](<a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0325b15d5b25d.jpg">http://lhb5883.files.wordpress.com/2009/02/clip_image0325b15d5b25d.jpg</a>) <p>关闭GIF文件后结束动作录制。 <p>使用文件菜单下批处理，配置好输入输出目录静待PS发威。 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0405b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0405b35d.jpg?w=300" alt="clip_image040" title="clip_image040"></a> <p>4)然后我们打开PNG，再建一个转换背景的动作 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0425b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0425b35d.jpg?w=273" alt="clip_image042" title="clip_image042"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0445b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0445b35d.jpg?w=300" alt="clip_image044" title="clip_image044"></a> <p>首先更改颜色到RGB模式 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0465b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0465b35d.jpg?w=300" alt="clip_image046" title="clip_image046"></a> <p>然后添加背景 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0485b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0485b35d.jpg?w=300" alt="clip_image048" title="clip_image048"></a> <p>最后保存关闭，结束录制 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0505b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0505b35d.jpg?w=222" alt="clip_image050" title="clip_image050"></a> <p>再批处理一次 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0545b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0545b35d.jpg?w=228" alt="clip_image054" title="clip_image054"></a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0525b35d.jpg"><img src="http://lhb5883.files.wordpress.com/2009/02/clip_image0525b35d.jpg?w=300" alt="clip_image052" title="clip_image052"></a> <p>5)最后复制到相应路径下即可使用 <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/image5b25d.png"><img src="http://lhb5883.files.wordpress.com/2009/02/image5b25d.png?w=300" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/02/clip_image0545b35d.jpg"></a>  </p>
-</p></p></p></p></p></p></p></p></p></p></p></p></p></p></div>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2009/02/20/archived-labview-2-icon-editor-tips/" data-id="cl2eni85r0018rcun329fhqin" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -714,7 +725,7 @@ main()
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -725,6 +736,10 @@ main()
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/">20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk</a>
+          </li>
         
           <li>
             <a href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/">20220427-what-is-the-relation-between-lean-6s-and-close-loop-management</a>
@@ -740,10 +755,6 @@ main()
         
           <li>
             <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
           </li>
         
       </ul>

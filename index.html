@@ -66,6 +66,45 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/" class="article-date">
+  <time datetime="2022-07-11T12:12:18.000Z" itemprop="datePublished">2022-07-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/">20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NI-Windows-10-系统恢复优盘复制"><a href="#NI-Windows-10-系统恢复优盘复制" class="headerlink" title="NI Windows 10 系统恢复优盘复制"></a>NI Windows 10 系统恢复优盘复制</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>NI PXIe-8861控制器出场安装的是Windows 10 IOT Enterprise 1809 SAC(The Semi-Annual Channel)版本,会自动更新到次新版本的Win10，对应的是企业版的Current Business Branch.<br>必须使用U盘进行安装才能识别为正版系统，IOT版本的特殊之处是不连接公网是不需要激活的，有一个延迟激活状态（Windows 10 IoT offers a third option, allowing devices not connected to the Internet to remain in a deferred activation state）而普通的企业版系统是必须要180天激活一次的。</p>
+<h2 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h2><p>预装的Windows 10 IOT Enterprise 1809并非是LTSC版本而是SAC，是有商店和预装程序的，也会滚动升级；<br>官方的优盘虽然是16G的插进电脑是识别成一个8G的空优盘和8G的光盘镜像,使用UltraISO抓取镜像只有2.7G，无法完整抓取,经过刻盘测试无法正常安装系统。<br>使用复制的方法提取出来的安装包大概有8G,直接复制到优盘时会报错，经测试UEFI启动必须是FAT32分区，镜像的WIM文件有4.5GB，超过了上限。而使用exFAT分区得U盘是无法在NI控制器上正常启动的（按照标准UEFI启动只支持Fat32分区启动，有些第三方主板做了特殊处理支持其他格式的分区如NTFS或者exFAT启动到UEFI）.<br>解决的办法是利用DISM命令或者第三方工具将Install.wim拆分为一系列Install.swm文件，使用工具拆分WIM镜像后要注意修改应答XML文件中的对应路径。第三方拆分工具gimagex可以图形化的拆分镜像文件。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>和之前尝试过的利用Acronis True Image提取一键恢复备份文件的方法相比，这种方式安装的Windows可以确保和硬件无关，不会因为网卡Mac地址不同而触发延迟激活失效。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/" data-id="cl5gpnh6c0000y4unbo55027f" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-20220427-what-is-the-relation-between-lean-6s-and-close-loop-management" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/" class="article-date">
@@ -751,56 +790,6 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
 
 
   
-    <article id="post-20191231-labview-2019-sp1-released" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/31/20191231-labview-2019-sp1-released/" class="article-date">
-  <time datetime="2019-12-31T10:46:35.000Z" itemprop="datePublished">2019-12-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/31/20191231-labview-2019-sp1-released/">20191231-labview-2019-sp1-released</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>其实11月NI就把SP1放出来了，不过国内的CDN同步总是要花不少时间才能完成，</p>
-<p>套件的下载地址（点 Individual Offline Installers可以下离线包）：</p>
-<p> 32bit</p>
-<p>(MD5) dc43333aa5473ea075371227457e5b38</p>
-<p>(SHA256) e0466c100aec6c6e752076c6514b63e19fae71b982300bd7d43417f70b1bcc04</p>
-<p> <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#329065">https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#329065</a></p>
-<p>64bit</p>
-<p>(MD5) 62996c45d8909a351fb19336c8ae286a</p>
-<p>(SHA256) 35e942f0135cde845842309b8f0bfcac2f20d21968bc71efff580b3de86a2885</p>
-<p><a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#329069">https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#329069</a></p>
-<p>LabVIEW下载地址：</p>
-<p><a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.labview.html">https://www.ni.com/en-us/support/downloads/software-products/download.labview.html</a></p>
-<p>看Readme，主要是修正了新加的数据类型相关的一些bug，如果发现LabVIEW Crash的问题，可以试试是否升级能够解决。</p>
-<p> <a target="_blank" rel="noopener" href="http://www.ni.com/pdf/manuals/374715m.html#patch">http://www.ni.com/pdf/manuals/374715m.html#patch</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2019/12/31/20191231-labview-2019-sp1-released/" data-id="cl2eni85b0009rcuneq0r3kw1" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -845,7 +834,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -856,6 +845,10 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/">20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk</a>
+          </li>
         
           <li>
             <a href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/">20220427-what-is-the-relation-between-lean-6s-and-close-loop-management</a>
@@ -871,10 +864,6 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
         
           <li>
             <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/02/20220402-labview-2021sp1-released/">20220402-labview-2021sp1-released</a>
           </li>
         
       </ul>
