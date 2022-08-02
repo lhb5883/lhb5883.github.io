@@ -66,6 +66,277 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-20220802-labview-2022-released" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/08/02/20220802-labview-2022-released/" class="article-date">
+  <time datetime="2022-08-02T14:27:10.000Z" itemprop="datePublished">2022-08-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/02/20220802-labview-2022-released/">20220802-labview-2022-released</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabVIEW-2022-Q3已发布"><a href="#LabVIEW-2022-Q3已发布" class="headerlink" title="LabVIEW 2022 Q3已发布"></a>LabVIEW 2022 Q3已发布</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>NI在7月底发布了新版的LabVIEW和套件供下载，版本号为2022Q3，22.5，从这个版本开始，软件改为订阅模型，但是不知道以后会不会改成滚动发布，从LabVIEW的另存为低版本来看，还是有独立的版本号以解决兼容性问题。</p>
+<p>值得关注的一个大变动是驱动和LabVIEW版本分离，详情可以看新特性中的具体说明。如果用高版本的labview打开和保存了公共VI，低版本打开估计会有问题，默认分离已编译代码应该只是规避了一部分，之前LabVIEW的打包EXE后可以用更高版本Runtime支持应该也是为了这个特性做的准备，怀疑公共库里面不少关键VI应该是封装成了打包库。但是对于需要修改的范例，不知道能不能做到未来2023修改后低版本的2022可以打开，我猜测应该是不行的，毕竟NI现在应该是希望客户一直升级的，现在就是不知道2023版会是原位升级还是会新装一个目录。</p>
+<p>目前NI的这种订阅服务模式对需要维护客户固定版本的应用不太友好，除非都用SystemLink进行托管，要不然维护多个不同版本LabVIEW Runtime的工作量其实也不小，如果是工厂等没有公网环境下维护代码就更加麻烦。好在NI现在的订阅制是允许使用低版本LabVIEW的，可以规避这个问题，但是对于希望项目开发环境能够保持在一个稳定版本的LabVIEW上，就只能用非订阅制的旧版了。希望NI能把软件的授权改成JetBrains的半订阅制，订购一定时间长度的软件可以保留最初版本的软件激活，NI之前的口风是有一个专门的调试版的授权是永久的。（更新）查看了一下NI官网，调试版授权比LabVIEW一年订阅要略便宜，不过不提供安装媒体，而且看描述需要先购买一个订阅版的服务才行。</p>
+<p>NI软件订阅计划</p>
+<p>From &lt;<a target="_blank" rel="noopener" href="https://www.ni.com/zh-cn/landing/subscription-software.html">https://www.ni.com/zh-cn/landing/subscription-software.html</a>&gt; </p>
+<p>其他小的变化有支持M1的Mac和支持Windows 11，不过对于目前的Windows 11还不算稳定，Bug还是不少，微软自己官方的Windows Server 2022还是基于Windows 10的，并且企业版的LTSC目前也是Windows10，并没有Windows 11的LTSC，我个人还是建议等到Windows 11稳定发布LTSC之后再配合LabVIEW使用。</p>
+<p>除此之外需要验证LabVIEW 2022 64bit对cRIO的支持是已经做好了还是鸽掉了，不过这一点需要时间安装之后测试，从文档来看，暂时没有官方宣布。（更新根据实际安装测试，64bit下不支持cRIO,支持RT cDAQ）</p>
+<p>另外一个缺点是2022默认使用NI网站的在线帮助了，不过好在本地帮助的CHM文件还在，32bit的帮助位于”C:\Program Files (x86)\National Instruments\LabVIEW 2022\help\lvhelp.chm”，64bit的也类似。</p>
+<p>经过测试，NI在大包里面集成的版本号低于22.0的驱动都不支持LabVIEW 2022，包括Veristand也是，要等后续的更新了。估计和21版一样等到SP1的时候才能基本补齐。</p>
+<p>目前看起来在RoadMap里鸽掉的我期待很久的特性有以下几个,希望未来能开发出来：</p>
+<p>gRPC驱动远程调用协议支持</p>
+<p>LabVIEW 64bit的cRIO支持</p>
+<p>Uincode支持</p>
+<p>LabVIEW在运行时中动态创建控件</p>
+<p>高分屏支持</p>
+<p>我个人比较期待的是Unicode支持，毕竟从2011之后，字体BUG就一直没修，LabVIEW如果把区域和语言选项如果设置成中文，很多字体是加载不出来的，而设置成英文的话，有可能会删除半个汉字，如果能借着这个机会把这个问题修正了，可以让人舒服不少，不用当2011钉子户了。</p>
+<p>高分屏支持也是一样，如果有多显示器并且缩放比例不一致的话，LabVIEW鼠标和菜单经常错位，希望能好好修复一下。</p>
+<p>长期来看比较重要的的特性其实是gRPC的调用，彻底实现了驱动层的解耦和分布式系统的底层支持，还有一个是运行时动态创建控件，不过这个需要一个NI官方实现数据和控件动态绑定的方法，不知道Data Grid Control是不是就是干这个的</p>
+<p>另外补充一点，NI把InsightCM卖给了CutForth，其他大规模使用cRIO的场景就不太多了，感觉cRIO有点像Intel的凌动平台，很多搞物联网的都是用Intel的开发板搭出来原型，然后用ARM的板子量产。尤其是Intel收购赛灵思以后，cRIO也换了集成x86核的FPGA，虽然支持了DAQmx，但是成本也变高了，适合走量的场景不多。</p>
+<p>CUTSFORTH ACQUIRES INSIGHTCM™ FROM NI</p>
+<p>From &lt;<a target="_blank" rel="noopener" href="https://cutsforth.com/insightcm-acquisition-annoucement/">https://cutsforth.com/insightcm-acquisition-annoucement/</a>&gt; </p>
+<h2 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h2><p>已剪辑自: <a target="_blank" rel="noopener" href="https://www.ni.com/docs/zh-CN/bundle/upgrading-labview/page/labview-2022q3-changes.html">https://www.ni.com/docs/zh-CN/bundle/upgrading-labview/page/labview-2022q3-changes.html</a></p>
+<h3 id="在LabVIEW中比较VI"><a href="#在LabVIEW中比较VI" class="headerlink" title="在LabVIEW中比较VI"></a>在LabVIEW中比较VI</h3><p>LabVIEW 2022 Q3（基础版、完整版和专业版）的所有版本现在都提供了比较VI的功能，并且不仅限于专业版许可证。</p>
+<h3 id="Python支持"><a href="#Python支持" class="headerlink" title="Python支持"></a>Python支持</h3><p>LabVIEW 2022 Q3支持通过Python对象引用句柄使用Python节点。该引用句柄可用于传递Python对象，作为Python节点输入参数或返回类型。</p>
+<h3 id="选项默认值的改动"><a href="#选项默认值的改动" class="headerlink" title="选项默认值的改动"></a>选项默认值的改动</h3><p>在LabVIEW 2022 Q3中，从新文件中分离已编译代码选项的默认值为启用。</p>
+<h3 id="调用MATLAB函数"><a href="#调用MATLAB函数" class="headerlink" title="调用MATLAB函数"></a>调用MATLAB函数</h3><p>可在调用MATLAB函数上设置断点，然后使用步入调试打开MATLAB(R)编辑器执行脚本。如安装了多个版本MATLAB，可右键单击函数并在快捷菜单中选择在MATLAB中打开，指定LabVIEW调用的MATLAB版本。</p>
+<h3 id="Actor-lvclass的uninit方法"><a href="#Actor-lvclass的uninit方法" class="headerlink" title="Actor.lvclass的uninit方法"></a>Actor.lvclass的uninit方法</h3><p>在操作者框架中，Actor类新增了Uninit方法（取消初始化）。Actor可重写该方法，释放在执行Pre Launch Init.vi or Actor.vi时获取的资源。即使之前有错误发生，该方法仍然会执行。</p>
+<h3 id="支持独立于LabVIEW版本的驱动程序-x2F-工具包"><a href="#支持独立于LabVIEW版本的驱动程序-x2F-工具包" class="headerlink" title="支持独立于LabVIEW版本的驱动程序&#x2F;工具包"></a>支持独立于LabVIEW版本的驱动程序&#x2F;工具包</h3><p>LabVIEW早期版本的模块、工具包等附加内容都位于LabVIEW目录之下。从LabVIEW 2022 Q3开始，LabVIEW将从LVaddons共享目录加载这些内容。在Windows操作系统上，LVAddons的默认位置是C:\Program Files\NI\LVAddons。请注意，只有一部分NI驱动程序和工具包会随2022 Q3版本安装到此位置。驱动程序或工具包转到LVAddons目录后，无需升级或重新安装即可与新版本的LabVIEW一起使用。</p>
+<p>贴上路径图作为参考</p>
+<p>LabVIEW Roadmap (2022) - NI Community</p>
+<p><a target="_blank" rel="noopener" href="https://forums.ni.com/t5/LabVIEW/LabVIEW-Roadmap-2022/td-p/4218319">https://forums.ni.com/t5/LabVIEW/LabVIEW-Roadmap-2022/td-p/4218319</a></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Capability</th>
+<th>Upcoming   1-2 Releases</th>
+<th>Future   Development</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>项目管理</td>
+<td>Improvements to   workflows with source code control tools</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>LabVIEW VI compare   tool included in all editions   (Base, Full, Pro)</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Driver version   independence from LabVIEW   (no need to update   drivers for every new LabVIEW release)</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Improved LabVIEW   Project Dependency Management</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>互操作</td>
+<td>Call Python code   running in virtual environments</td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>Deploy Python   scripts to NI Linux RT devices</td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>Native gRPC   server&#x2F;client interfaces in LabVIEW</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>Better integration   with MATLAB® for debugging between environments</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Support for   calling .NET Core Assemblies (.NET 5 or later)</td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>系统支持</td>
+<td>Support for   Windows 11</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Support for MacOS   on Apple M1 devices</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LabVIEW RT&#x2F;FPGA   64-bit module support for CompactRIO</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Data Communication   additions (SSH API, IPv6 support)</td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>改进</td>
+<td>Support for   Unicode in the IDE</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>Introducing Data   Grid Control</td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>Dynamically create   controls at runtime</td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>Improve LabVIEW   IDE experience on high resolution monitors   (e.g. 2560 x 1440)</td>
+<td>✓</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="大包下载"><a href="#大包下载" class="headerlink" title="大包下载"></a>大包下载</h2><p>Windows 2022 Q3 Professional 64-bit English</p>
+<p>Software Platform Bundle 2022 Q3</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2022 Q3</td>
+<td>(MD5) ce06c4ca6d95ff99a334d0ba6aa2927d   (SHA256) 990fcd6f52a8b57cb7f1d31cee356e99406a047d6e82f87f9e20756a6e2f48c0</td>
+<td>58.29 GB</td>
+</tr>
+</tbody></table>
+<p>From &lt;<a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#460282">https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#460282</a>&gt; </p>
+<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle/22.5/offline/ni-software-platform-bundle_22.5.0.49199-0+f47_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle/22.5/offline/ni-software-platform-bundle_22.5.0.49199-0+f47_offline.iso</a></p>
+<p>Windows 2022 Q3 Professional 32-bit English</p>
+<p>Software Platform Bundle 2022 Q3</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2022 Q3</td>
+<td>(MD5) c7c80ad9cd6f436a6d38a79ca05ebb3d   (SHA256) 27869760ad84a02ecc0bed4cb8150152aa296b2a30fcbdacd55f18c441df767f</td>
+<td>58.14 GB</td>
+</tr>
+</tbody></table>
+<p>From &lt;<a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#460698">https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#460698</a>&gt; </p>
+<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86/22.5/offline/ni-software-platform-bundle-x86_22.5.0.49199-0+f47_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86/22.5/offline/ni-software-platform-bundle-x86_22.5.0.49199-0+f47_offline.iso</a></p>
+<p>Windows 2022 Q3 Professional 32-bit Simplified Chinese</p>
+<p>Software Platform Bundle 2022 Q3</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2022 Q3</td>
+<td>(MD5) 0bd962fce7a18c0e71f347aa3c9ee1b7   (SHA256) 09402c7abfaccd7e174d0307339eb35897a082d99775fd61dcd7a7a46302a4b6</td>
+<td>58.36 GB</td>
+</tr>
+</tbody></table>
+<p>From &lt;<a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#460299">https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#460299</a>&gt; </p>
+<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86-zh-cn/22.5/offline/ni-software-platform-bundle-x86-zh-cn_22.5.0.49199-0+f47_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86-zh-cn/22.5/offline/ni-software-platform-bundle-x86-zh-cn_22.5.0.49199-0+f47_offline.iso</a></p>
+<p>LabVIEW 2022 Q3 Professional Mac OS English</p>
+<p>Checksum(MD5)b474aa15fd54508dfaa05561ab83055b</p>
+<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/softlib/labview/labview_development_system/2022%20Q3/502141BB-01M_2022Q3LV-LMPro.iso">https://download.ni.com/support/softlib/labview/labview_development_system/2022%20Q3/502141BB-01M_2022Q3LV-LMPro.iso</a></p>
+<p>NI Linux Real-Time Offline Installation Support 2022 Q3</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2022 Q3</td>
+<td>(MD5) 39f7aef09d49123ec0ff221b1a0395a2   (SHA256) 142f11ca1c144c93f437733d92e7ab41ed9adf9a79ed2d65a628b0dd3b4a40c7</td>
+<td>6.78 GB</td>
+</tr>
+</tbody></table>
+<p>From &lt;<a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#460621">https://www.ni.com/en-us/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#460621</a>&gt; </p>
+<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-22.5/22.5/offline/ni-linux-rt-offline-installation-support-22.5_22.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-22.5/22.5/offline/ni-linux-rt-offline-installation-support-22.5_22.5.0_offline.iso</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2022/08/02/20220802-labview-2022-released/" data-id="cl6calrtv0000rsunhmdoapbw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/" class="article-date">
@@ -731,65 +1002,6 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
 
 
   
-    <article id="post-20191231-how-to-work-around-some-bugs-in-2019" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/31/20191231-how-to-work-around-some-bugs-in-2019/" class="article-date">
-  <time datetime="2019-12-31T10:54:54.000Z" itemprop="datePublished">2019-12-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/31/20191231-how-to-work-around-some-bugs-in-2019/">20191231-how-to-work-around-some-bugs-in-2019</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2019被bug坑了不少，不过还好找到了一些解决办法</p>
-<p>KB2538242反复安装解决办法：手动安装</p>
-<p>下载 KB2538242</p>
-<p>Microsoft Visual C++ 2005 Service Pack 1 Redistributable Package MFC Security Update</p>
-<p><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=26347">https://www.microsoft.com/en-us/download/details.aspx?id=26347</a></p>
-<p>安装 KB2538242 会提示安装路径错误，估计是打包计算机的默认路径</p>
-<p>C:\Users\Ansifa\AppData\Local\Temp\IXP000.TMP\</p>
-<p>手动选择到本机对应路径，安装完成后重启。</p>
-<p>一句话说明：搜索结果可以用Auto summary字段列出高亮关键字</p>
-<p>详细说明：</p>
-<p>自Win7以来库功能让索引搜索向大众普及了不少，不过Win10的搜索有一个很大的倒退就是搜索结果摘要从两行变成了一行</p>
-<p>变通的办法就是使用详细视图代替摘要视图，然后显示Auto summary字段即可，只要你屏幕足够宽就可以显示的比内容视图要多</p>
-<p>另外 Windows 10 1909更新把搜索栏换成了UWP所以经常挂掉，解决的办法就是任务管理器里面重启explorer：</p>
-<p>如果是土豪的话，可以购买Agent Ransack或者File Locator Pro作为替代方案，并且可以把搜索结果导出纯文本。</p>
-<p>免费版的缺点是无法建立索引，不过文件量不大的情况下也基本上够用了。比Windows索引搜索的好处是对关键字和复合条件搜索支持更好。变通的办法就是先用Windows搜索筛选出来可能有结果的文件，复制到另一个目录，然后再用Agent Ransack lite导出结果。</p>
-<p>最后是一个iOS的feature</p>
-<p>Spotlight do not appear “Ask Siri”</p>
-<p>System Language must same as Siri Language.</p>
-<p>系统语言必须和siri语言一致，中文系统配中文siri，英文系统配英文siri才可以，否则是不会出现Ask Siri的。</p>
-<p>Ref</p>
-<p><a target="_blank" rel="noopener" href="https://appletoolbox.com/siri-not-working-troubleshooting/#Check_For_Any_Restrictions_on_Siri">https://appletoolbox.com/siri-not-working-troubleshooting/#Check_For_Any_Restrictions_on_Siri</a></p>
-<p><a target="_blank" rel="noopener" href="https://the8-bit.com/how-to-access-siri-from-spotlight-search-on-the-iphone-and-ipad-in-ios-13/">https://the8-bit.com/how-to-access-siri-from-spotlight-search-on-the-iphone-and-ipad-in-ios-13/</a></p>
-<p><a target="_blank" rel="noopener" href="https://sspai.com/post/56887">https://sspai.com/post/56887</a> </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2019/12/31/20191231-how-to-work-around-some-bugs-in-2019/" data-id="cl2eni85a0008rcun7ez34lh0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -834,7 +1046,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -845,6 +1057,10 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/08/02/20220802-labview-2022-released/">20220802-labview-2022-released</a>
+          </li>
         
           <li>
             <a href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/">20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk</a>
@@ -860,10 +1076,6 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
         
           <li>
             <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
           </li>
         
       </ul>

@@ -66,6 +66,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-archived-tips-7zip-add-time-stamp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/09/29/archived-tips-7zip-add-time-stamp/" class="article-date">
+  <time datetime="2013-09-29T08:32:29.000Z" itemprop="datePublished">2013-09-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/09/29/archived-tips-7zip-add-time-stamp/">给7Zip压缩自动增加时间戳</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>WinRAR压缩文件有一个很方便的选项是在文件名追加压缩时间,但是RAR是收费软件,价格不菲.使用7-Zip就没有这样的功能了么?</p>
+<p>其实只要自己动手也能丰衣足食,给7-Zip加上这个功能:</p>
+<p>首先在运行中输入</p>
+<ol>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;"><span style="color:maroon;">shell</span>:<span style="color:maroon;">sendto</span>
+            </span></div></li>
+</ol>
+<p>打开自己的发送到文件夹.</p>
+<p>在文件夹新建一个文本文档,并贴入以下代码保存为ANSI编码</p>
+<ol>
+<li><div style="background:#f4f4f4;">[<span style="font-size:9pt;">set</span>](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99)<span style="font-size:9pt;"> hh=%[time](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~0,2%
+</span></div></li>
+<li><div style="background:#f4f4f4;">[<span style="font-size:9pt;">if</span>](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=if&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99)<span style="font-size:9pt;"> %hh% LSS 10 ([set](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99) hh=0%[time](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~1,1%)
+</span></div></li>
+<li><div style="background:#f4f4f4;">[<span style="font-size:9pt;">set</span>](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=set&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99)<span style="font-size:9pt;"> dst=%[date](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~0,4%%[date](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~5,2%%[date](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=date&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~8,2%_%hh%%[time](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~3,2%%[time](http://search.microsoft.com/default.asp?so=RECCNT&amp;siteid=us%2Fdev&amp;p=1&amp;nq=NEW&amp;qu=time&amp;IntlSearch=&amp;boolean=PHRASE&amp;ig=01&amp;i=09&amp;i=99):~6,2%
+</span></div></li>
+<li><div style="background:#f4f4f4;"><span style="font-size:9pt;">"<span style="color:darkred;">C:\Program Files\7-Zip\7z.exe</span>" a %1_%dst%.zip %1
+</span></div></li>
+</ol>
+<p>修改文件名为</p>
+<p>7zBackup.bat</p>
+<p>使用时选中需要压缩的文件或者目录,选择发送到7zBackup.bat即可。</p>
+<p>以上在Window 7 64bit，7-Zip 9.2 64bit下验证通过。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2013/09/29/archived-tips-7zip-add-time-stamp/" data-id="cl2eni869003rrcundjhs4jx9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-archived-ni-asl-install-tips" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/09/26/archived-ni-asl-install-tips/" class="article-date">
@@ -620,60 +683,6 @@
 
 
   
-    <article id="post-archived-tips-cmd-install-labview" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2010/03/25/archived-tips-cmd-install-labview/" class="article-date">
-  <time datetime="2010-03-25T02:24:31.000Z" itemprop="datePublished">2010-03-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2010/03/25/archived-tips-cmd-install-labview/">快速安装LabVIEW</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div id="msgcns!866B8F96A2761BBE!1513" class="bvMsg">
-
-<p>通常我们安装LabVIEW最常干的事情就是不停点的下一步，然后等进度条，然后再不停的点下一步，再等待进度条，最后重启。</p>
-<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b25d1b50e68c.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b25d1b50e68c.png?w=300" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b55d7c0a2bb9.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b55d7c0a2bb9.png?w=300" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b85d26a1f898.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b85d26a1f898.png?w=300" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b115d135d2dfa.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b115d135d2dfa.png?w=300" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b145d2c18670b.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b145d2c18670b.png?w=300" alt="image" title="image"></a> <a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b175d3c6fcac5.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b175d3c6fcac5.png?w=300" alt="image" title="image"></a> </p>
-<p>其实LabVIEW是支持命令行安装的</p>
-<p>在CMD里面运行SETUP.EXE加上不同的参数就可以实现快速安装，例如下面这条就是快速安装LabVIEW到C盘并且装完不重启</p>
-<p>D:NI SoftwareLabVIEW 2009 SP1LabVIEW 2009 Service Pack 1 32-bit&gt;setup.exe &#x2F;qb &#x2F;acceptlicenses yes &#x2F;disableNotificationCheck &#x2F;r:n</p>
-<p>一旦运行就直接开始扫进度条</p>
-<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b205d2a3315d1.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b205d2a3315d1.png?w=300" alt="image" title="image"></a> </p>
-<p>一个更简单的办法是创建Setup.exe的快捷方式，然后再目标后面直接加上 &#x2F;qb &#x2F;acceptlicenses yes &#x2F;disableNotificationCheck &#x2F;r:n</p>
-<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b245d.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b245d.png?w=212" alt="image" title="image"></a> </p>
-<p>这样可以减少我们鼠标点击的次数…</p>
-<p>最省事的办法还是建立一个批处理文件，批量安装多个软件~</p>
-<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b285d.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b285d.png?w=288" alt="image" title="image"></a><br>  </div></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2010/03/25/archived-tips-cmd-install-labview/" data-id="cl2eni86c003xrcunfgjmbycs" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -718,7 +727,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -729,6 +738,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/08/02/20220802-labview-2022-released/">20220802-labview-2022-released</a>
+          </li>
         
           <li>
             <a href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/">20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk</a>
@@ -744,10 +757,6 @@
         
           <li>
             <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
           </li>
         
       </ul>
