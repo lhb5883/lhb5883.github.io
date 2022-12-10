@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>20221210-labview-fonts-fix | haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LabVIEW字体bug终极修正图标编辑器中的文本变得模糊来自 https:&#x2F;&#x2F;knowledge.ni.com&#x2F;KnowledgeArticleDetails?id&#x3D;kA00Z0000019ZTFSA2&amp;l&#x3D;zh-CN  除了设置控制面板为英文环境，也可以用改INI的方式修正 FontCodePageList&#x3D;Small Fonts,1252设置为中文显示 设置为英文字体显示">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20221210-labview-fonts-fix">
+<meta property="og:url" content="http://haobo.li/2022/12/10/20221210-labview-fonts-fix/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="LabVIEW字体bug终极修正图标编辑器中的文本变得模糊来自 https:&#x2F;&#x2F;knowledge.ni.com&#x2F;KnowledgeArticleDetails?id&#x3D;kA00Z0000019ZTFSA2&amp;l&#x3D;zh-CN  除了设置控制面板为英文环境，也可以用改INI的方式修正 FontCodePageList&#x3D;Small Fonts,1252设置为中文显示 设置为英文字体显示">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-10T05:21:17.000Z">
+<meta property="article:modified_time" content="2022-12-10T05:27:46.909Z">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-20221210-labview-fonts-fix" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/12/10/20221210-labview-fonts-fix/" class="article-date">
+  <time datetime="2022-12-10T05:21:17.000Z" itemprop="datePublished">2022-12-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      20221210-labview-fonts-fix
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabVIEW字体bug终极修正"><a href="#LabVIEW字体bug终极修正" class="headerlink" title="LabVIEW字体bug终极修正"></a>LabVIEW字体bug终极修正</h1><h2 id="图标编辑器中的文本变得模糊"><a href="#图标编辑器中的文本变得模糊" class="headerlink" title="图标编辑器中的文本变得模糊"></a>图标编辑器中的文本变得模糊</h2><p>来自 <a target="_blank" rel="noopener" href="https://knowledge.ni.com/KnowledgeArticleDetails?id=kA00Z0000019ZTFSA2&amp;l=zh-CN">https://knowledge.ni.com/KnowledgeArticleDetails?id=kA00Z0000019ZTFSA2&amp;l=zh-CN</a> </p>
+<p>除了设置控制面板为英文环境，也可以用改INI的方式修正</p>
+<p>FontCodePageList&#x3D;Small Fonts,1252<br>设置为中文显示</p>
+<p>设置为英文字体显示</p>
+<h2 id="安全字体"><a href="#安全字体" class="headerlink" title="安全字体:"></a>安全字体:</h2><p>所有中文字体和英文界面字体:FixedSys,Terminal,SegoeUI,tahoma<br>不能显示的字体:Arial,Calibri,CourierNew,NI7SEG,consolas,Times New Roman,Small Fonts;</p>
+<h2 id="多字体修复"><a href="#多字体修复" class="headerlink" title="多字体修复"></a>多字体修复</h2><p>经过尝试，<br>可以添加多个字体<br>对EXE也有效<br>FontCodePageList&#x3D;Small Fonts,1252;NI7SEG,1252</p>
+<p>用注册表查询系统所有字体，然后追加到LabVIEW的INI文件</p>
+<h2 id="程序修复"><a href="#程序修复" class="headerlink" title="程序修复"></a>程序修复</h2><p>发现LabVIEW读取注册表键值时没法确认键的数量，所以动态增加NumValues的数量直到超过后报错，然后再从大向小尝试直到不报错，就可以刚好把所有键值读取出来。</p>
+<p>经过多次整理之后再把字体名称重复的去掉，最后添加配置项到搜索出来的LabVIEW.INI</p>
+<h2 id="常见Windows字体修复"><a href="#常见Windows字体修复" class="headerlink" title="常见Windows字体修复"></a>常见Windows字体修复</h2><p>如果没有其他特殊字体也可以直接给INI添加这一句<br>FontCodePageList&#x3D;”Andalus,1252;Angsana New,1252;AngsanaUPC,1252;Aparajita,1252;Arabic Typesetting,1252;Arial,1252;Browallia New,1252;BrowalliaUPC,1252;Calibri,1252;Candara,1252;Comic Sans MS,1252;Consolas,1252;Constantia,1252;Corbel,1252;Cordia New,1252;CordiaUPC,1252;Courier New,1252;DFKai-SB,1252;DaunPenh,1252;David,1252;DilleniaUPC,1252;DokChampa,1252;Ebrima,1252;Estrangelo Edessa,1252;EucrosiaUPC,1252;Euphemia,1252;FZShuTi,1252;FZYaoTi,1252;FangSong,1252;FrankRuehl,1252;Franklin Gothic Medium,1252;FreesiaUPC,1252;Gabriola,1252;Gautami,1252;Georgia,1252;Gisha,1252;Impact,1252;IrisUPC,1252;Iskoola Pota,1252;JasmineUPC,1252;KaiTi,1252;Kalinga,1252;Kartika,1252;Khmer UI,1252;KodchiangUPC,1252;Kokila,1252;Lao UI,1252;Latha,1252;Leelawadee,1252;Levenim MT,1252;LiSu,1252;LilyUPC,1252;Lucida Console,1252;Lucida Sans Unicode,1252;MV Boli,1252;Malgun Gothic,1252;Mangal,1252;Microsoft Himalaya,1252;Microsoft JhengHei,1252;Microsoft New Tai Lue,1252;Microsoft PhagsPa,1252;Microsoft Sans Serif,1252;Microsoft Tai Le,1252;Microsoft Uighur,1252;Microsoft YaHei,1252;Microsoft Yi Baiti,1252;Miriam,1252;Miriam Fixed,1252;Modern,1252;Mongolian Baiti,1252;MoolBoran,1252;Narkisim,1252;Nyala,1252;Palatino Linotype,1252;Plantagenet Cherokee,1252;Raavi,1252;Rod,1252;Roman,1252;STCaiyun,1252;STFangsong,1252;STHupo,1252;STKaiti,1252;Sakkal Majalla,1252;Script,1252;Segoe Print,1252;Segoe Script,1252;Segoe UI,1252;Shonar Bangla,1252;Shruti,1252;SimHei,1252;SimSun-ExtB,1252;Simplified Arabic,1252;Simplified Arabic Fixed,1252;Small Fonts,1252;Small Fonts,1252;Sylfaen,1252;Tahoma,1252;Times New Roman,1252;Traditional Arabic,1252;Trebuchet MS,1252;Tunga,1252;Utsaah,1252;Vani,1252;Verdana,1252;Vijaya,1252;Vrinda,1252;Webdings,1252;Wingdings,1252”</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>修正程序的源代码已提交github<br><a target="_blank" rel="noopener" href="https://github.com/lhb5883/LabVIEWFontsFix">https://github.com/lhb5883/LabVIEWFontsFix</a></p>
+<p>可以在VIPM中搜索font找到LabVIEW Fonts fix 安装<br>安装好以后重启labVIEW，在LabVIEW的Tools菜单选择Fix Fonts…再重启LabVIEW就可以正常调用字体了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2022/12/10/20221210-labview-fonts-fix/" data-id="clbhhxi18000074un1pkkaqro" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/08/02/20220802-labview-2022-released/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">20220802-labview-2022-released</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/12/10/20221210-labview-fonts-fix/">20221210-labview-fonts-fix</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/02/20220802-labview-2022-released/">20220802-labview-2022-released</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/">20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/">20220427-what-is-the-relation-between-lean-6s-and-close-loop-management</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

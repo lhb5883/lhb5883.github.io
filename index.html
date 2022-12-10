@@ -66,6 +66,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-20221210-labview-fonts-fix" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/12/10/20221210-labview-fonts-fix/" class="article-date">
+  <time datetime="2022-12-10T05:21:17.000Z" itemprop="datePublished">2022-12-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/12/10/20221210-labview-fonts-fix/">20221210-labview-fonts-fix</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabVIEW字体bug终极修正"><a href="#LabVIEW字体bug终极修正" class="headerlink" title="LabVIEW字体bug终极修正"></a>LabVIEW字体bug终极修正</h1><h2 id="图标编辑器中的文本变得模糊"><a href="#图标编辑器中的文本变得模糊" class="headerlink" title="图标编辑器中的文本变得模糊"></a>图标编辑器中的文本变得模糊</h2><p>来自 <a target="_blank" rel="noopener" href="https://knowledge.ni.com/KnowledgeArticleDetails?id=kA00Z0000019ZTFSA2&amp;l=zh-CN">https://knowledge.ni.com/KnowledgeArticleDetails?id=kA00Z0000019ZTFSA2&amp;l=zh-CN</a> </p>
+<p>除了设置控制面板为英文环境，也可以用改INI的方式修正</p>
+<p>FontCodePageList&#x3D;Small Fonts,1252<br>设置为中文显示</p>
+<p>设置为英文字体显示</p>
+<h2 id="安全字体"><a href="#安全字体" class="headerlink" title="安全字体:"></a>安全字体:</h2><p>所有中文字体和英文界面字体:FixedSys,Terminal,SegoeUI,tahoma<br>不能显示的字体:Arial,Calibri,CourierNew,NI7SEG,consolas,Times New Roman,Small Fonts;</p>
+<h2 id="多字体修复"><a href="#多字体修复" class="headerlink" title="多字体修复"></a>多字体修复</h2><p>经过尝试，<br>可以添加多个字体<br>对EXE也有效<br>FontCodePageList&#x3D;Small Fonts,1252;NI7SEG,1252</p>
+<p>用注册表查询系统所有字体，然后追加到LabVIEW的INI文件</p>
+<h2 id="程序修复"><a href="#程序修复" class="headerlink" title="程序修复"></a>程序修复</h2><p>发现LabVIEW读取注册表键值时没法确认键的数量，所以动态增加NumValues的数量直到超过后报错，然后再从大向小尝试直到不报错，就可以刚好把所有键值读取出来。</p>
+<p>经过多次整理之后再把字体名称重复的去掉，最后添加配置项到搜索出来的LabVIEW.INI</p>
+<h2 id="常见Windows字体修复"><a href="#常见Windows字体修复" class="headerlink" title="常见Windows字体修复"></a>常见Windows字体修复</h2><p>如果没有其他特殊字体也可以直接给INI添加这一句<br>FontCodePageList&#x3D;”Andalus,1252;Angsana New,1252;AngsanaUPC,1252;Aparajita,1252;Arabic Typesetting,1252;Arial,1252;Browallia New,1252;BrowalliaUPC,1252;Calibri,1252;Candara,1252;Comic Sans MS,1252;Consolas,1252;Constantia,1252;Corbel,1252;Cordia New,1252;CordiaUPC,1252;Courier New,1252;DFKai-SB,1252;DaunPenh,1252;David,1252;DilleniaUPC,1252;DokChampa,1252;Ebrima,1252;Estrangelo Edessa,1252;EucrosiaUPC,1252;Euphemia,1252;FZShuTi,1252;FZYaoTi,1252;FangSong,1252;FrankRuehl,1252;Franklin Gothic Medium,1252;FreesiaUPC,1252;Gabriola,1252;Gautami,1252;Georgia,1252;Gisha,1252;Impact,1252;IrisUPC,1252;Iskoola Pota,1252;JasmineUPC,1252;KaiTi,1252;Kalinga,1252;Kartika,1252;Khmer UI,1252;KodchiangUPC,1252;Kokila,1252;Lao UI,1252;Latha,1252;Leelawadee,1252;Levenim MT,1252;LiSu,1252;LilyUPC,1252;Lucida Console,1252;Lucida Sans Unicode,1252;MV Boli,1252;Malgun Gothic,1252;Mangal,1252;Microsoft Himalaya,1252;Microsoft JhengHei,1252;Microsoft New Tai Lue,1252;Microsoft PhagsPa,1252;Microsoft Sans Serif,1252;Microsoft Tai Le,1252;Microsoft Uighur,1252;Microsoft YaHei,1252;Microsoft Yi Baiti,1252;Miriam,1252;Miriam Fixed,1252;Modern,1252;Mongolian Baiti,1252;MoolBoran,1252;Narkisim,1252;Nyala,1252;Palatino Linotype,1252;Plantagenet Cherokee,1252;Raavi,1252;Rod,1252;Roman,1252;STCaiyun,1252;STFangsong,1252;STHupo,1252;STKaiti,1252;Sakkal Majalla,1252;Script,1252;Segoe Print,1252;Segoe Script,1252;Segoe UI,1252;Shonar Bangla,1252;Shruti,1252;SimHei,1252;SimSun-ExtB,1252;Simplified Arabic,1252;Simplified Arabic Fixed,1252;Small Fonts,1252;Small Fonts,1252;Sylfaen,1252;Tahoma,1252;Times New Roman,1252;Traditional Arabic,1252;Trebuchet MS,1252;Tunga,1252;Utsaah,1252;Vani,1252;Verdana,1252;Vijaya,1252;Vrinda,1252;Webdings,1252;Wingdings,1252”</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>修正程序的源代码已提交github<br><a target="_blank" rel="noopener" href="https://github.com/lhb5883/LabVIEWFontsFix">https://github.com/lhb5883/LabVIEWFontsFix</a></p>
+<p>可以在VIPM中搜索font找到LabVIEW Fonts fix 安装<br>安装好以后重启labVIEW，在LabVIEW的Tools菜单选择Fix Fonts…再重启LabVIEW就可以正常调用字体了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2022/12/10/20221210-labview-fonts-fix/" data-id="clbhhxi18000074un1pkkaqro" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-20220802-labview-2022-released" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/08/02/20220802-labview-2022-released/" class="article-date">
@@ -942,71 +990,11 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
 
 
   
-    <article id="post-20200422-Network-Trouble-Shooting" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/22/20200422-Network-Trouble-Shooting/" class="article-date">
-  <time datetime="2020-04-22T07:18:29.000Z" itemprop="datePublished">2020-04-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/22/20200422-Network-Trouble-Shooting/">20200422-Network-Trouble-Shooting</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="网络排故记录"><a href="#网络排故记录" class="headerlink" title="网络排故记录"></a>网络排故记录</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>自疫情以来发现网络情况很不稳定，发现虚拟专网时有链接不上的情况。</p>
-<h2 id="网络拓扑"><a href="#网络拓扑" class="headerlink" title="网络拓扑"></a>网络拓扑</h2><p>上海 WAN1 联通光纤固定IP+ WAN2 电信PPPOE </p>
-<p>通过飞塔防火墙软件定义网络宽带合一访问外网</p>
-<p>飞塔防火墙在 WAN1 提供IPSEC隧道，WAN2提供SSL虚拟专网服务</p>
-<p>西安 WAN1 联通专线固定IP+WAN2 电信PPPOE</p>
-<p>通过飞塔防火墙软件定义网络宽带合一访问外网</p>
-<p>飞塔防火墙在WAN1 拨号到IPSEC隧道以访问上海的内网资源</p>
-<h2 id="故障现象1"><a href="#故障现象1" class="headerlink" title="故障现象1"></a>故障现象1</h2><p>西安WAN1的IPSEC隧道失败，但可以用客户端SSL虚拟专网访问。</p>
-<h3 id="故障确认："><a href="#故障确认：" class="headerlink" title="故障确认："></a>故障确认：</h3><p>使用TraceRT发现上海WAN1的固定IP无法Ping通，</p>
-<h3 id="故障原因："><a href="#故障原因：" class="headerlink" title="故障原因："></a>故障原因：</h3><p>是联通网络问题。</p>
-<h2 id="故障现象2"><a href="#故障现象2" class="headerlink" title="故障现象2"></a>故障现象2</h2><p>IPSEC隧道正常，使用客户端SSL虚拟专网无法访问。客户端在忽略证书错误后就无法再连接上。</p>
-<h3 id="故障确认：-1"><a href="#故障确认：-1" class="headerlink" title="故障确认："></a>故障确认：</h3><p>使用Web界面可以用账号密码正常登录，确认网络通讯正常，账号密码正常。</p>
-<p>更换机器也可以正常连接。卸载当前版本飞塔客户端重装无效，但更换版本后可以正常工作，如从5.6升级到6.2，或者从6.2降级到5.6都可以。</p>
-<h3 id="故障原因：-1"><a href="#故障原因：-1" class="headerlink" title="故障原因："></a>故障原因：</h3><p>怀疑是注册表或者配置文件出错。</p>
-<h2 id="故障现象3"><a href="#故障现象3" class="headerlink" title="故障现象3"></a>故障现象3</h2><p>IPSEC隧道失败，客户端拨SSL虚拟专网失败。</p>
-<h3 id="故障确认：-2"><a href="#故障确认：-2" class="headerlink" title="故障确认："></a>故障确认：</h3><p>Web界面无法打开，确认网络不通。</p>
-<h3 id="故障原因：-2"><a href="#故障原因：-2" class="headerlink" title="故障原因："></a>故障原因：</h3><p>上海端电信PPPOE拨号失败。</p>
-<h2 id="故障现象4"><a href="#故障现象4" class="headerlink" title="故障现象4"></a>故障现象4</h2><p>IPSEC连接失败，客户端SSL虚拟专网随机性断开。</p>
-<h3 id="故障确认：-3"><a href="#故障确认：-3" class="headerlink" title="故障确认："></a>故障确认：</h3><p>飞塔CPU占用100%，经过测试，只要下载速度超过10MB&#x2F;s，防火墙就没有响应。查询手册，UDP包最大速率1.5Gbps，防火墙策略 5000 SSL虚拟专网吞吐量 30Mbps，IPS吞吐量只有200Mbps也就是20MB&#x2F;s但实际上测试只要到10MB&#x2F;s的下载速度，CPU就已经100%了。</p>
-<h3 id="故障原因：-3"><a href="#故障原因：-3" class="headerlink" title="故障原因："></a>故障原因：</h3><p>防火墙IPS性能不足</p>
-<p> 查了一下，防火墙IPS指的是防火墙的处理能力</p>
-<p>Most vendors talk of firewall throughput even when they are advertising UTMs (Unified Threat Management Systems). There’s a fundamental difference between a firewall and a UTM. A firewall merely does stateful inspection of the traffic whereas a UTM proactively stops attacks even on allowed ports because it contains the all important IPS (Intrusion Prevention System). This means that even if traffic is allowed to certain services, that traffic is continuously examined to detect malicious attacks. In other words, the IPS stops hacker attacks even on open ports.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2020/04/22/20200422-Network-Trouble-Shooting/" data-id="cl2eni85e000drcun4kavdn1x" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
   </nav>
 
 </section>
@@ -1046,7 +1034,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -1057,6 +1045,10 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/12/10/20221210-labview-fonts-fix/">20221210-labview-fonts-fix</a>
+          </li>
         
           <li>
             <a href="/2022/08/02/20220802-labview-2022-released/">20220802-labview-2022-released</a>
@@ -1072,10 +1064,6 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
         
           <li>
             <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
           </li>
         
       </ul>

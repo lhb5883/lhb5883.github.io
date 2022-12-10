@@ -66,6 +66,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-archived-tips-auto-install-labview-suite" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/03/26/archived-tips-auto-install-labview-suite/" class="article-date">
+  <time datetime="2010-03-25T19:54:47.000Z" itemprop="datePublished">2010-03-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/03/26/archived-tips-auto-install-labview-suite/">批量安装LabVIEW及组件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1520" class="bvMsg">
+
+<p>有了命令行我们只不过节约了几下鼠标,还要安装好一个组件之后再手动装下一个组件,还是很麻烦,有没有什么省事的办法呢?</p>
+<p>当然有,我们有请批处理文件(*.bat)出场.</p>
+<p><a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1mUGyPv86VpDqpCvF1g-XtKjzFES9Fqx3qayyX_rzmMyemnavCeqy0POzZbplHgpdqKAI61smPZYESdVKW-SfCMFM9yeerGRnxIiF_bCWau4I1wbRhbkmnZ9jec-eHQ5Xc8TrnqoYdBlfWAzBMTccypg/image[7].png">![image](https://aftv2q.bay.livefilestore.com/y1mqqNVZcgJPai7kLPfP-bwMXNiRj29p8OYhJkPI15R4vn-ro4qQ2lmU7LvHK1j8vfdh80QCLBLHUUlNPZ8CGUSbKVIA0-GWa2ehglraOPJmcCneWxwzrX6qOYGMC-_ATAVTbAGb9Tm6YnLhpCHrvT4lA&#x2F;image_thumb[3] 61095F84.png “image”)</a> </p>
+<p>[![image](<a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1mi-lnu06Lw7420S6HuMj8vWvDELiUrYj5iFZh4uw6XG8ORN_jYecm_QDrc07hu3RGxH1HiXUe6FW4TdMn3h6mhcfBrgK-V3dyrx033bkzAzVBJlOr23tK3rI6MB8wA1ukQGmrQh3218WNIc-kGtsWaw/image_thumb[5]">https://aftv2q.bay.livefilestore.com/y1mi-lnu06Lw7420S6HuMj8vWvDELiUrYj5iFZh4uw6XG8ORN_jYecm_QDrc07hu3RGxH1HiXUe6FW4TdMn3h6mhcfBrgK-V3dyrx033bkzAzVBJlOr23tK3rI6MB8wA1ukQGmrQh3218WNIc-kGtsWaw/image_thumb[5]</a> 2B50062B.png “image”)](<a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1mvtOis4jV9Le2-VIxUzE8D0cQwamCCNhUO-ndQNg3MCQ5ElsW3S70crQNR2pKO9BgeMwPvD8QNK3VYn2isBius6dsvpwOoV9sIEVwNuy8T8wC246WqxJpAudZsF1O0INPxzTdfRK85AWTO7BTzcLePg/image[11]">https://aftv2q.bay.livefilestore.com/y1mvtOis4jV9Le2-VIxUzE8D0cQwamCCNhUO-ndQNg3MCQ5ElsW3S70crQNR2pKO9BgeMwPvD8QNK3VYn2isBius6dsvpwOoV9sIEVwNuy8T8wC246WqxJpAudZsF1O0INPxzTdfRK85AWTO7BTzcLePg/image[11]</a> 0C99DDE7.png) </p>
+<p>对于上面这种情形，我们只要建立一个文本文件，输入以下内容，命名为Install.bat双击运行就可以一次安装LabVIEW2009SP1，实时，控制设计仿真等软件： <p>&quot;o:NI SoftwareLabVIEW 2009 SP1LabVIEW 2009 Service Pack 1 32-bitsetup.exe&quot; &#x2F;qb &#x2F;acceptlicenses yes &#x2F;disableNotificationCheck &#x2F;r:n<br>&quot;o:NI SoftwareLabVIEW 2009 SP1LabVIEW 2009 SP1 Real-Time Modulesetup.exe&quot; &#x2F;qb &#x2F;acceptlicenses yes &#x2F;disableNotificationCheck &#x2F;r:n<br>&quot;o:NI SoftwareLabVIEW 2009 SP1LabVIEW 2009 SP1 Control Design and Simulation Modulesetup.exe&quot; &#x2F;qb &#x2F;acceptlicenses yes &#x2F;disableNotificationCheck &#x2F;r:n <p>假如安装包放在其它计算机的共享里面呢？可以使用命令行把共享映射到本地驱动器： <p>net use o: <a>\pansinoagtreadonly</a> <p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/03/image5b155d.png"><img src="http://lhb5883.files.wordpress.com/2010/03/image5b155d.png?w=300" alt="image" title="image"></a>  <p>这样我们就可以让他自己安装，而不需要我们操心了。   </p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2010/03/26/archived-tips-auto-install-labview-suite/" data-id="cl2eni86a003trcunb3tc482t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-archived-tips-cmd-install-labview" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2010/03/25/archived-tips-cmd-install-labview/" class="article-date">
@@ -597,119 +644,11 @@
 
 
   
-    <article id="post-archived-stream-to-disk-guide-03" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/11/26/archived-stream-to-disk-guide-03/" class="article-date">
-  <time datetime="2009-11-26T00:00:17.000Z" itemprop="datePublished">2009-11-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/11/26/archived-stream-to-disk-guide-03/">流盘备忘录(3)-数据格式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div id="msgcns!866B8F96A2761BBE!1393" class="bvMsg">
-
-<p>数据保存格式注意事项</p>
-<p>2D I32 数据换算.</p>
-<p>以DAQmx读取为例，我们读取数据可以用以下三种格式：</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/11/image11595a2be2.png?w=157" alt="image" title="image"> </p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/11/image1438466da1.png?w=177" alt="image" title="image"> </p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/11/image20.png?w=143" alt="image" title="image"> </p>
-<p>其中I16占用内存最小，每一个采样使用2Byte内存，DBL会占用8个Byte，在采集大量数据时使用RawData可以大量减少内存和CPU的使用。</p>
-<p>binary data格式</p>
-<p>二进制表示的是AD芯片转换的原始信息，如何换算为电压呢？</p>
-<p>直接 Volt&#x3D;bin data&#x2F;(2^ADbits)*Range理论是可行的 ，但是实际上是不准确的，因为通道还有校准信息我们没有得到。</p>
-<p>DAQmx提供了通道的标定信息，结合多项式函数就可以简单的得出实际电压。</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/11/convertdata_thumb.png?w=300" alt="convert data" title="convert data"> </p>
-<p>交织还是非交织;</p>
-<p>对于RawData来说，单通道的结构比较简单就是一个数组，但是多通道时读回来的还是一个1D Array，如何找出每个通道所对应的数据呢？这就牵扯到交织和非交织了。</p>
-<blockquote>
-<h3 id="Raw-Data"><a href="#Raw-Data" class="headerlink" title="Raw Data"></a>Raw Data</h3><p>Raw data is in the native format and <em>organization</em> of the device, read directly from the device or buffer without scaling or reordering. The native format of a device can be an 8-, 16-, or 32-bit integer, signed or unsigned.  <p>If you use a different integer size than the native format of the device, one integer can contain multiple samples or one sample can stretch across multiple integers. For example, if you use 32-bit integers, but the device uses 8-bit samples, one integer contains up to four samples. If you use 8-bit integers, but the device uses 16-bit samples, a sample might require two integers. This behavior varies from device to device. Refer to your device documentation for more information.  <p>NI-DAQmx does not separate raw data into channels. It returns data in an <a href="interleaving.html">interleaved or non-interleaved</a> 1D array, depending on the raw ordering of the device. Refer to your device documentation for more information.  </p>
-<h3 id="Interleaving"><a href="#Interleaving" class="headerlink" title="Interleaving"></a>Interleaving</h3> <p>Interleaved samples prioritize samples before channels, such that the array lists the first sample from every channel in the task, then the second sample from every channel, up to the last sample from every channel.  <p>Channel 0—Sample 1  <p>Channel 1—Sample 1  <p>Channel 2—Sample 1  <p>Channel 0—Sample 2  <p>Channel 1—Sample 2  <p>Channel 2—Sample 2  <p>...  <p>Channel 0—Sample _N_  <p>Channel 1—Sample _N_  <p>Channel 2—Sample _N_  <p>Non-interleaved samples prioritize channels before samples, such that the array lists all samples from the first channel in the task, then all samples from the second channel, up to all samples from the last channel.  <p>Channel 0—Sample 1  <p>Channel 0—Sample 2  <p>...  <p>Channel 0—Sample _N_  <p>Channel 1—Sample 1  <p>Channel 1—Sample 2  <p>...  <p>Channel 1—Sample _N_  <p>Channel 2—Sample 1  <p>Channel 2—Sample 2  <p>...  <p>Channel 2—Sample _N_
-</p></p></p></p></p></p></p> 
-</blockquote>
-<p>最简单的例子6124采集到的数据卡内通道是交织的，卡间又是非交织的，</p>
-<p>一个使用两块6124每块使用2个通道连续采集每次采集3个点的数据应该如下：</p>
-<p>Broad0CH0Sample1</p>
-<p>Broad0CH1Sample1</p>
-<p>Broad0CH0Sample2</p>
-<p>Broad0CH1Sample2</p>
-<p>Broad0CH0Sample3</p>
-<p>Broad0CH1Sample3</p>
-<p>Broad1CH0Sample1</p>
-<p>Broad1CH1Sample1</p>
-<p>Broad1CH0Sample2</p>
-<p>Broad1CH1Sample2</p>
-<p>Broad1CH0Sample3</p>
-<p>Broad0CH1Sample3</p>
-<p>Broad0CH0Sample4</p>
-<p>Broad0CH1Sample4</p>
-<p>Broad0CH0Sample5</p>
-<p>Broad0CH1Sample5</p>
-<p>Broad0CH0Sample6</p>
-<p>Broad0CH1Sample6</p>
-<p>Broad1CH0Sample4</p>
-<p>Broad1CH1Sample4</p>
-<p>Broad1CH0Sample5</p>
-<p>Broad1CH1Sample5</p>
-<p>Broad1CH0Sample6</p>
-<p>Broad0CH1Sample6</p>
-<p>抽象一下应该如下图，SampleBlock包含了所有通道这一次采集的N点</p>
-<p>SampleBlock1 </p>
-<p>SampleBlock2</p>
-<p>SampleBlock3</p>
-<p>….</p>
-<p>然后每个SampleBlock里面包含BroadSample</p>
-<p>Broad0sample</p>
-<p>Broad1sample</p>
-<p>Broadsample包含着N次采样</p>
-<p>Sample1</p>
-<p>Sample2</p>
-<p>Sample3</p>
-<p>…</p>
-<p>SampleN</p>
-<p>每个Sample里含有这块板卡上的通道各一个点</p>
-<p>CH1</p>
-<p>CH2</p>
-<p>CH3</p>
-<p>CH4</p>
-<p>所以一定要分析清楚数据结构才能正确解析出各通道数据</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/11/deinterleaving_thumb.png?w=300" alt="deInterleaving" title="deInterleaving"><br>  </div></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2009/11/26/archived-stream-to-disk-guide-03/" data-id="cl2eni867003hrcun07lneaya" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">下一页 &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">下一页 &amp;raquo;</a>
   </nav>
 
 </section>
@@ -749,7 +688,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -760,6 +699,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/12/10/20221210-labview-fonts-fix/">20221210-labview-fonts-fix</a>
+          </li>
         
           <li>
             <a href="/2022/08/02/20220802-labview-2022-released/">20220802-labview-2022-released</a>
@@ -775,10 +718,6 @@
         
           <li>
             <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/02/20220403-something-about-python-and-playback/">20220403-something-about-python-and-playback</a>
           </li>
         
       </ul>
