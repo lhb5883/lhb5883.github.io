@@ -66,6 +66,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-archived-stream-to-disk-guide-04" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/12/02/archived-stream-to-disk-guide-04/" class="article-date">
+  <time datetime="2009-12-01T23:36:29.000Z" itemprop="datePublished">2009-12-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/12/02/archived-stream-to-disk-guide-04/">流盘备忘录(4)-存盘API</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1426" class="bvMsg">
+
+<p>存盘接口</p>
+<p>Windows写入文件有两种形式缓冲和非缓冲</p>
+<p><a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/aa365747(VS.85).aspx">http://msdn.microsoft.com/en-us/library/aa365747(VS.85).aspx</a></p>
+<p>缓冲模式是Windows自动分配缓冲区将数据分割到硬盘的每个簇大小以便写入，而非缓冲模式是有我们程序员进行缓冲区 的分配，可以任意指定大小。（这个任意并不是绝对的，必须要是硬盘簇的整数倍）</p>
+<p>XP系统默认的缓冲区应该不是很大，在Copy文件时效率比Windows7要低一些，而在我们操作巨型的文件时至少要4MB以上的缓冲区才能发挥出最大效能。</p>
+<p>如下图所示，block size越大数据流盘速度就相对越快，读盘反而是缓冲区较小时效率较高。不过这张图使用的是RAMDISK，数据只能供参考，使用硬盘时可以再行测试。</p>
+<p><a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1mat4peCvjmEMxPILOBL4FVkwlcJIh2zKzqf4tHnaYy-Cew0asruMV-q8nQPl_ycWqG4NnNlPfNpfRIBJ9IOQ0FtLE9DdHhvkrF-y1OrOnoaqSCiMQBTGsv6LV15isGY20RnyhK6l729eJo_2xqmZnBw/image25.png">![image](https://aftv2q.bay.livefilestore.com/y1mmJSZHqeg1_dNBpTc6Djg73HIE-DyBZiWejBXbE3B9Jg78ilPCO3f9Xmx9x4CMddw6Q-paX_XTIcQ2Y3E7yOi0lewNzyomXKE4vp9-n7JchgCiE17yaEMP8Ux_HMMH1CrCCuTNwtubzvN43O_65mUKA&#x2F;image_thumb 763FDADC.png “image”)</a> </p>
+<p>在LabVIEW 2009里面支持非缓冲格式流盘的有TDMS，BINARY和Win32APIVIs三种</p>
+<p>![image](<a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1m4CV566wf7PJgi97WlOxgGH0Wo06tB9RxB7f_jJOr7OXVIePxxEWGB_1CTjM1sMQ-1TF7lxUUg7HOMqixnY_6dmjJASUsBc3AcILPmT_T6wrsnNMQmbcPL2zwdp9vechREimzqj5lR8v7ApbXeOu09Q/image[5]">https://aftv2q.bay.livefilestore.com/y1m4CV566wf7PJgi97WlOxgGH0Wo06tB9RxB7f_jJOr7OXVIePxxEWGB_1CTjM1sMQ-1TF7lxUUg7HOMqixnY_6dmjJASUsBc3AcILPmT_T6wrsnNMQmbcPL2zwdp9vechREimzqj5lR8v7ApbXeOu09Q/image[5]</a> 0B448D74.png “image”) </p>
+<p>LabVIEW 2009 TDMS</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/12/tdms6.png"><img src="http://lhb5883.files.wordpress.com/2009/12/tdms6.png?w=300" alt="TDMS" title="TDMS"></a></p>
+<p>Lab VIEW 2009 Binary</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/12/labview20094.png"><img src="http://lhb5883.files.wordpress.com/2009/12/labview20094.png?w=300" alt="LabVIEW 2009" title="LabVIEW 2009"></a> </p>
+<p>Win32API</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/12/win324.png"><img src="http://lhb5883.files.wordpress.com/2009/12/win324.png?w=300" alt="win32" title="win32"></a> </p>
+<p>这三种接口效率如何我们用RAMDISK分配一个内存盘以测试API本身的性能。</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/12/image27.png"><img src="http://lhb5883.files.wordpress.com/2009/12/image27.png?w=300" alt="image" title="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/12/image29.png"><img src="http://lhb5883.files.wordpress.com/2009/12/image29.png?w=300" alt="image" title="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/12/image314f2cef3a.png"><img src="http://lhb5883.files.wordpress.com/2009/12/image314f2cef3a.png?w=300" alt="image" title="image"></a> </p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/12/image33.png"><img src="http://lhb5883.files.wordpress.com/2009/12/image33.png?w=277" alt="image" title="image"></a> </p>
+<p>结果： TDMS 153.2MB&#x2F;s LabVIEW2009 Bin 497MB&#x2F;s Win32APIVIs 515.9MB&#x2F;s</p>
+<p>分析 因为三种API流盘的目标都是内存，数据量也相等，所以性能的差别应该是API本身造成的，观察CPU占用也可以看到TDMS最高，LabVIEW2009 bin和Win32基本持平，可见写入函数过于复杂也会影响存盘效率。<br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/12/02/archived-stream-to-disk-guide-04/" data-id="cl2eni867003jrcundk00clv6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-archived-stream-to-disk-guide-03" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2009/11/26/archived-stream-to-disk-guide-03/" class="article-date">
@@ -680,86 +744,6 @@ main()
 
 
   
-    <article id="post-archived-ni-drivers-download" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/07/30/archived-ni-drivers-download/" class="article-date">
-  <time datetime="2009-07-29T19:29:00.000Z" itemprop="datePublished">2009-07-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/07/30/archived-ni-drivers-download/">NI 驱动下载一览表</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div id="msgcns!866B8F96A2761BBE!1325" class="bvMsg">
-
-<h3 id="第一项-NI-Device-Driver-CD，现在可能叫Device-Driver-DVD更好一些。"><a href="#第一项-NI-Device-Driver-CD，现在可能叫Device-Driver-DVD更好一些。" class="headerlink" title="第一项 NI Device Driver CD，现在可能叫Device Driver DVD更好一些。"></a><strong><font color="#ff0000">第一项 NI Device Driver CD，现在可能叫Device Driver DVD更好一些。</font></strong></h3><p>目前最新版2009年8月驱动下载地址：</p>
-<p><a href="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-1.exe" title="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-1.exe">ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-1.exe</a></p>
-<p><a href="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2a.exe" title="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2a.exe">ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2a.exe</a></p>
-<p><a href="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2b.exe" title="ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2b.exe">ftp://ftp.ni.com/support/drivercd/2009.08/dcd-aug09-2b.exe</a></p>
-<p>三个包下载完毕以后依次解压即可。</p>
-<p>通用下载地址（包含所有版本）：</p>
-<p><a href="ftp://ftp.ni.com/support/drivercd/" title="ftp://ftp.ni.com/support/drivercd/">ftp://ftp.ni.com/support/drivercd/</a></p>
-<h3 id="第二项-高精度温度记录仪驱动，NI-435x系列驱动。"><a href="#第二项-高精度温度记录仪驱动，NI-435x系列驱动。" class="headerlink" title="第二项 高精度温度记录仪驱动，NI 435x系列驱动。"></a><strong><font color="#ff0000">第二项 高精度温度记录仪驱动，NI 435x系列驱动。</font></strong></h3><p>目前最新版 NI 435x 2.5.2下载地址：</p>
-<p><a href="ftp://ftp.ni.com/support/NI-435x/2.5.2/NI435X252.zip" title="ftp://ftp.ni.com/support/NI-435x/2.5.2/NI435X252.zip">ftp://ftp.ni.com/support/NI-435x/2.5.2/NI435X252.zip</a></p>
-<p>通用下载地址：</p>
-<p><a href="ftp://ftp.ni.com/support/NI-435x/" title="ftp://ftp.ni.com/support/NI-435x/">ftp://ftp.ni.com/support/NI-435x/</a></p>
-<h3 id="第三项-NI同步板卡驱动，NI-665x系列板卡驱动。"><a href="#第三项-NI同步板卡驱动，NI-665x系列板卡驱动。" class="headerlink" title="第三项 NI同步板卡驱动，NI 665x系列板卡驱动。"></a><strong><font color="#ff0000">第三项 NI同步板卡驱动，NI 665x系列板卡驱动。</font></strong></h3><p>目前最新版 NI Sync 3.1下载地址：</p>
-<p><a href="ftp://ftp.ni.com/support/softlib/Timing_Sync/3.1/NISync310.zip" title="http://ftp.ni.com/support/softlib/Timing_Sync/3.1/NISync310.zip">ftp://ftp.ni.com/support/softlib/Timing_Sync&#x2F;3.1&#x2F;NISync310.zip</a></p>
-<p>介绍页面：</p>
-<p><a target="_blank" rel="noopener" href="http://joule.ni.com/nidu/cds/view/p/id/1367/lang/zhs" title="http://joule.ni.com/nidu/cds/view/p/id/1367/lang/zhs">http://joule.ni.com/nidu/cds/view/p/id/1367/lang/zhs</a></p>
-<p>Readme：</p>
-<p><a target="_blank" rel="noopener" href="http://ftp.ni.com/support/softlib/Timing_Sync/3.1/readme.htm" title="http://ftp.ni.com/support/softlib/Timing_Sync/3.1/readme.htm">http://ftp.ni.com/support/softlib/Timing_Sync&#x2F;3.1&#x2F;readme.htm</a></p>
-<p>所有版本下载地址：</p>
-<p><a href="ftp://ftp.ni.com/support/softlib/Timing_Sync/" title="ftp://ftp.ni.com/support/softlib/Timing_Sync/">ftp://ftp.ni.com/support/softlib/Timing_Sync&#x2F;</a></p>
-<h3 id="第四项-NI低噪音放大器驱动，对应NI-5690板卡。"><a href="#第四项-NI低噪音放大器驱动，对应NI-5690板卡。" class="headerlink" title="第四项 NI低噪音放大器驱动，对应NI 5690板卡。"></a><strong><font color="#ff0000">第四项 NI低噪音放大器驱动，对应NI 5690板卡。</font></strong></h3><p>最新1.0.6下载地址：</p>
-<p><a href="ftp://ftp.ni.com/support/softlib/RF/NI-5690/1.0.6/NI5690106.ZIP" title="ftp://ftp.ni.com/support/softlib/RF/NI-5690/1.0.6/NI5690106.ZIP">ftp://ftp.ni.com/support/softlib/RF/NI-5690/1.0.6/NI5690106.ZIP</a></p>
-<p>所有版本下载地址：</p>
-<p><a href="ftp://ftp.ni.com/support/softlib/RF/NI-5690/" title="ftp://ftp.ni.com/support/softlib/RF/NI-5690/">ftp://ftp.ni.com/support/softlib/RF/NI-5690/</a></p>
-<h3 id="第五项-NI中频收发器驱动，对应NI-564x系列板卡。"><a href="#第五项-NI中频收发器驱动，对应NI-564x系列板卡。" class="headerlink" title="第五项 NI中频收发器驱动，对应NI 564x系列板卡。"></a><strong><font color="#ff0000">第五项 NI中频收发器驱动，对应NI 564x系列板卡。</font></strong></h3><p>最新1.3下载地址</p>
-<p><a target="_blank" rel="noopener" href="http://ftp.ni.com/support/softlib/RF/NI-5640R/1.3/NI5640R130.zip" title="http://ftp.ni.com/support/softlib/RF/NI-5640R/1.3/NI5640R130.zip">http://ftp.ni.com/support/softlib/RF/NI-5640R/1.3/NI5640R130.zip</a></p>
-<p>所有版本下载地址：</p>
-<p><a href="ftp://ftp.ni.com/support/softlib/RF/NI-5640R/" title="ftp://ftp.ni.com/support/softlib/RF/NI-5640R/">ftp://ftp.ni.com/support/softlib/RF/NI-5640R/</a></p>
-<h3 id="第六项-PXI控制器驱动："><a href="#第六项-PXI控制器驱动：" class="headerlink" title="第六项 PXI控制器驱动："></a><strong><font color="#ff0000">第六项 PXI控制器驱动：</font></strong></h3><p>Trigger Bus,Watchdog driver(8130 for Vista&#x2F;Server2008&#x2F;7&#x2F;Server2008R2 64bit&#x2F;32bit)</p>
-<p>[<a href="ftp://ftp.ni.com/support/pxi/pxie-8130/PXIe-8130%20Peripherals%20(VISTA).zip]">ftp://ftp.ni.com/support/pxi/pxie-8130/PXIe-8130%20Peripherals%20(VISTA).zip]</a>(<a href="ftp://ftp.ni.com/support/pxi/pxie-8130/PXIe-8130">ftp://ftp.ni.com/support/pxi/pxie-8130/PXIe-8130</a> Peripherals (VISTA).zip)</p>
-<p>其他：</p>
-<p><a href="ftp://ftp.ni.com/support/pxi/" title="ftp://ftp.ni.com/support/pxi/">ftp://ftp.ni.com/support/pxi/</a></p>
-<h3 id="第七项-流盘驱动："><a href="#第七项-流盘驱动：" class="headerlink" title="第七项 流盘驱动："></a><strong><font color="#ff0000">第七项 流盘驱动：</font></strong></h3><p><a target="_blank" rel="noopener" href="http://digital.ni.com/public.nsf/allkb/5D08C51AF3C748BD86257560000F7E44" title="http://digital.ni.com/public.nsf/allkb/5D08C51AF3C748BD86257560000F7E44">http://digital.ni.com/public.nsf/allkb/5D08C51AF3C748BD86257560000F7E44</a></p>
-<p>8264</p>
-<p><a target="_blank" rel="noopener" href="http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDK/$FILE/HDD-8264_Version_2.20.0.32_XP.zip" title="http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDK/$FILE/HDD-8264_Version_2.20.0.32_XP.zip">http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDK/$FILE/HDD-8264_Version_2.20.0.32_XP.zip</a></p>
-<p><a target="_blank" rel="noopener" href="http://www.lsi.com/storage_home/products_home/internal_raid/megaraid_sas/megaraid_sas_84016e/index.html?locale=EN&amp;remote=1" title="http://www.lsi.com/storage_home/products_home/internal_raid/megaraid_sas/megaraid_sas_84016e/index.html?locale=EN&amp;remote=1">http://www.lsi.com/storage_home&#x2F;products_home&#x2F;internal_raid&#x2F;megaraid_sas&#x2F;megaraid_sas_84016e&#x2F;index.html?locale&#x3D;EN&amp;remote&#x3D;1</a></p>
-<p>8263</p>
-<p><a target="_blank" rel="noopener" href="http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDF/$FILE/HDD-8263_Version_v2.2_XP.zip" title="http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDF/$FILE/HDD-8263_Version_v2.2_XP.zip">http://digital.natinst.com/public.nsf/$CXIV/ATTACH-AEEE-7EUTDF/$FILE/HDD-8263_Version_v2.2_XP.zip</a></p>
-<p><a target="_blank" rel="noopener" href="http://www.highpoint-tech.com/USA/bios_rr2310.htm" title="http://www.highpoint-tech.com/USA/bios_rr2310.htm">http://www.highpoint-tech.com/USA/bios_rr2310.htm</a><br>  </div></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2009/07/30/archived-ni-drivers-download/" data-id="cl2eni8650032rcun4hzj02lj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -804,7 +788,7 @@ main()
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -815,6 +799,10 @@ main()
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/02/21/20230221-labview-cross-platform-interoperate/">20230221-labview-cross-platform-interoperate</a>
+          </li>
         
           <li>
             <a href="/2022/12/10/20221210-labview-fonts-fix/">20221210-labview-fonts-fix</a>
@@ -832,10 +820,6 @@ main()
             <a href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/">20220427-what-is-the-relation-between-lean-6s-and-close-loop-management</a>
           </li>
         
-          <li>
-            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -848,7 +832,7 @@ main()
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2022 haobo.li<br>
+      &copy; 2023 haobo.li<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

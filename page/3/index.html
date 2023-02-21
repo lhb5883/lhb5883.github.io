@@ -66,6 +66,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/26/20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel/" class="article-date">
+  <time datetime="2018-04-26T08:33:39.000Z" itemprop="datePublished">2018-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/26/20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel/">Errors occurred when open NI DMM Soft Pannel</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NI-DMM-软面板出错的解决办法"><a href="#NI-DMM-软面板出错的解决办法" class="headerlink" title="NI-DMM 软面板出错的解决办法"></a>NI-DMM 软面板出错的解决办法</h1><p>安装完NI-DMM之后有时打开软面板会提示</p>
+<p>ERROR:One or more elements of the application could not be found.  Please re-install ni-DMM installer again to fix this problem</p>
+<p><img src="/.%5C20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel%5Cclip_image001.png" alt="NI-DMM Soft Front Panel ERROR: One or more elements of the applicaton could not be found. Please run the NI-DMM installer again to fix this problem "></p>
+<p>这个可能有以下几种常见原因 </p>
+<h2 id="第一-NI软件安装时没有使用默认目录-测试至少NI-DMM-16-0存在此问题"><a href="#第一-NI软件安装时没有使用默认目录-测试至少NI-DMM-16-0存在此问题" class="headerlink" title="第一:NI软件安装时没有使用默认目录,测试至少NI-DMM 16.0存在此问题."></a>第一:NI软件安装时没有使用默认目录,测试至少NI-DMM 16.0存在此问题.</h2><h2 id="第二-NI-DMM-17-5存在Bug-随机性的打不开软面板-重启后偶尔正常"><a href="#第二-NI-DMM-17-5存在Bug-随机性的打不开软面板-重启后偶尔正常" class="headerlink" title="第二:NI-DMM 17.5存在Bug,随机性的打不开软面板,重启后偶尔正常."></a>第二:NI-DMM 17.5存在Bug,随机性的打不开软面板,重启后偶尔正常.</h2><h2 id="第三-DAQmx组件错乱-之前遇到过类似的报错-NI论坛上也是这种错误"><a href="#第三-DAQmx组件错乱-之前遇到过类似的报错-NI论坛上也是这种错误" class="headerlink" title="第三:DAQmx组件错乱,之前遇到过类似的报错,NI论坛上也是这种错误."></a>第三:DAQmx组件错乱,之前遇到过类似的报错,NI论坛上也是这种错误.</h2><p>NI-DMM依赖对应版本的DAQmx,比如是安装了低版本ELVISmx导致DAQmx组件版本不匹配,</p>
+<p>解决办法是在添加删除程序里选择添加删除NI软件,把低版本的DAQmx组件删除即可.</p>
+<p><a target="_blank" rel="noopener" href="https://forums.ni.com/t5/PXI/DMM-SFT-returns-error-message-says-to-re-install/td-p/470375">https://forums.ni.com/t5/PXI/DMM-SFT-returns-error-message-says-to-re-install/td-p/470375</a></p>
+<p>或者最彻底的办法是到 控制面板-添加删除程序-NI软件-删除所有组件.然后安装NI-DMM及内部包含的DAQmx,或者安装NI DeviceDriver Set里面的成套驱动.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2018/04/26/20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel/" data-id="cl2eni84w0000rcuncqisb7c4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-archived-move-blog-haobo-li" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/03/04/archived-move-blog-haobo-li/" class="article-date">
@@ -627,56 +671,6 @@
 
 
   
-    <article id="post-archived-tips-quickdrop" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2010/08/12/archived-tips-quickdrop/" class="article-date">
-  <time datetime="2010-08-11T23:01:20.000Z" itemprop="datePublished">2010-08-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2010/08/12/archived-tips-quickdrop/">快速放置快捷键</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div id="msgcns!866B8F96A2761BBE!1557" class="bvMsg">
-
-<p>LabVIEW 2010发布以后无意中发现一个”古老”的新功能：快速放置</p>
-<p>这个功能的默认快捷键在LabVIEW英文版下是Ctrl+空格，和输入法切换的快捷键冲突了，因此一直没有使用过，</p>
-<p>LabVIEW 2010的中文版将这个快捷键修改为Ctrl+Shift+空格，就可以比较方便的调用了，</p>
-<p>LabVIEW 默认的键盘快捷键已经将26个字母全用完了，因此一些不是最常用的功能就放到了快速放置里：</p>
- <table style="width:643pt;border-collapse:collapse;" border="0" cellspacing="0" cellpadding="0" width="696">  <col style="width:65pt;" width="87" /> <col style="width:578pt;" width="770" /> <tbody> <tr style="height:15pt;"> <td style="border-bottom:black 1pt solid;border-left:black .5pt solid;background-color:transparent;width:65pt;font-family:calibri;height:15pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:700;border-right:black .5pt solid;text-decoration:none;" height="20" width="87">键盘快捷键</td> <td style="border-bottom:black 1pt solid;border-left:black .5pt solid;background-color:transparent;width:578pt;font-family:calibri;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:700;border-right:black .5pt solid;text-decoration:none;" width="607">说明</td></tr> <tr style="height:15pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:65pt;font-family:calibri;background:#d9d9d9;height:15pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="20" width="87">Ctrl-D</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:578pt;font-family:calibri;background:#d9d9d9;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，为选中程序框图对象所有未连接的输入和输出创建输入或显示控件。</td></tr> <tr style="height:15pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:65pt;font-family:calibri;height:15pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="20" width="87">Ctrl-Shift-D</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:578pt;font-family:calibri;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，为选中程序框图对象所有未连接的输入和输出创建常量。</td></tr> <tr style="height:30pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:65pt;font-family:calibri;background:#d9d9d9;height:30pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="40" width="87">Ctrl-R</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:578pt;font-family:calibri;background:#d9d9d9;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，移除选中的程序框图对象和与之相连的控件和常量，并连接删除对象输入输出类型相同的接线端。</td></tr> <tr style="height:30pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:65pt;font-family:calibri;height:30pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="40" width="87">Ctrl-T</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:578pt;font-family:calibri;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，将前面板控件的输入标签移至控件左边，将前面板显示控件的标签移至控件右边。</td></tr> <tr style="height:15pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:65pt;font-family:calibri;background:#d9d9d9;height:15pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="20" width="87">Ctrl-P</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:578pt;font-family:calibri;background:#d9d9d9;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，将选中的前面板或程序框图对象替换为快速放置对话框中选中的对象。</td></tr> <tr style="height:15pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:65pt;font-family:calibri;height:15pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="20" width="87">Ctrl-I</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:578pt;font-family:calibri;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，在程序框图选中的连线上插入快速放置对话框中选中的对象。</td></tr> <tr style="height:15pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:65pt;font-family:calibri;background:#d9d9d9;height:15pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="20" width="87">Ctrl-Shift-I</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:578pt;font-family:calibri;background:#d9d9d9;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，在选中的多条连线上插入快速放置对话框中选中的对象。</td></tr> <tr style="height:30pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:65pt;font-family:calibri;height:30pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="40" width="87">Ctrl-B</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;background-color:transparent;width:578pt;font-family:calibri;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，将选中属性节点、调用节点、类说明符常量的VI服务器类改为在快速放置窗口输入的类。</td></tr> <tr style="height:30pt;"> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:65pt;font-family:calibri;background:#d9d9d9;height:30pt;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" height="40" width="87">Ctrl-Shift-B</td> <td style="border-bottom:black .5pt solid;border-left:black .5pt solid;width:578pt;font-family:calibri;background:#d9d9d9;color:black;font-size:11pt;border-top:black .5pt solid;font-weight:400;border-right:black .5pt solid;text-decoration:none;" width="607">当快速放置对话框为活动状态时，将选中的属性节点/调用节点的属性/方法转换为快速放置窗口键入的属性或方法。</td></tr></tbody></table>
-
-<p>另外LabVIEW的快捷键时可以在选项里面修改的，个人最喜欢的就是Ctrl+&#96;这个组合，比较冷僻，一般不会冲突。</p>
-<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/08/image5b45d64da4781.png"><img src="http://lhb5883.files.wordpress.com/2010/08/image5b45d64da4781.png?w=300" alt="image" title="image"></a><br>  </div></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2010/08/12/archived-tips-quickdrop/" data-id="cl2eni86f0043rcuneq47a6m6" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -721,7 +715,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -732,6 +726,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/02/21/20230221-labview-cross-platform-interoperate/">20230221-labview-cross-platform-interoperate</a>
+          </li>
         
           <li>
             <a href="/2022/12/10/20221210-labview-fonts-fix/">20221210-labview-fonts-fix</a>
@@ -749,10 +747,6 @@
             <a href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/">20220427-what-is-the-relation-between-lean-6s-and-close-loop-management</a>
           </li>
         
-          <li>
-            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -765,7 +759,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2022 haobo.li<br>
+      &copy; 2023 haobo.li<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

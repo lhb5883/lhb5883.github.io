@@ -66,6 +66,72 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-archived-labview-8-5-project" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/01/31/archived-labview-8-5-project/" class="article-date">
+  <time datetime="2008-01-30T17:06:37.000Z" itemprop="datePublished">2008-01-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/01/31/archived-labview-8-5-project/">LabVIEW 8.5工程管理器-冲突解决</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!485" class="bvMsg">
+
+<p>自从LabVIEW 8.0新添加了工程管理器之后，给我们带来了很多方便，不过讨厌的冲突问题也随之升级。。。。。。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGcSGi2Ujk4uPcJlzpekFE7gQp0FOKoh-FeHhScWgcpmYCaodb0gR1fdR76v9ziYBg?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRHNd9xywfwKM4ZgykNF-0fxL9Bg3UNaeYL31r66MX16riltc3q3Cjenrb5wy1kP1DI?PARTNER=WRITER" alt="image"></a> </p>
+<p>在LabVIEW 7里面，当我们打开名字一样的VI时就会弹出来这样一个对话框，告诉我们名不正则言不顺，名字一样的只能有一个，不是你死就是我活。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuREPkk0XmQBViLIU-YodFxX1a_sua6RUADbvXF85RusYalvPPC0cL3ufolpu1cigbJ4?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRHQJ2MixiygKbZkiQ2SYMwwAq59l3AvEu9S4OjowUnOSGfyRX2DucDkEvvWVX1aEAA?PARTNER=WRITER" alt="image"></a> </p>
+<p>而在LabVIEW 8里面就更加变本加厉，只要在一个工程里，还没有打开就告诉你：有问题，未解决。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGALeHNeQrA4QvX5d7b584XAQ6pZq5ktFGpI5oI8Z7P9oBxrHRxMnO-meHYjbpoteQ?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFEHR74rec3Fmn8u8U2hpbCa-yaZ7aWKNGiDVoYE3qSxaf8KqoHeWDQ9JtCKer_0O8?PARTNER=WRITER" alt="image"></a> </p>
+<p>一般来说这种小CASE只要说服教育，将其转化为LIbrary即可解决。</p>
+<p>然后就是老同志遇上新问题：如何在8.5的自动更新文件夹里移动VI的位置？</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFAR6eeNDtUY28rc-gfsu6VOd4QwdUKCX-F24pvcZRbhravzhD8ia7PBZTijZoHzqo?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGMj3vZPXrae4aJ6bb5rga4y99gwxkr7ucqtInZwTS7po0vRz4Ai3fM1a9mjN_CVJc?PARTNER=WRITER" alt="image"></a> </p>
+<p>这个自动更新文件夹啊好是好，但是就是太讲原则，文件夹里有什么他就有什么，想拖到新位置—NO WAY。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRHeEOisrcnSX7Ki9wV_4s1y8muejx2RQEEsP95bA6UZPLwHk75-qupjevLo16eyFts?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFmqanLzlwZ5Hu01VeGly0SQzYfxCkFsBR1SjAHV-RYxpUNe05J5igwMemNFaZM3dA?PARTNER=WRITER" alt="image"></a> </p>
+<p>可能你要说，直接在Windows资源管理器拖动之不就ok</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRGfY7xpQBGuVFapAwxQ5r_6Vy_8OwE6pT46KmNMPS7YMWGB1TKrSEagFma_FXO0BGo?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRG2ap5vPy23jHXFCuFCgQEdzvTdr5nI04UetvkK7u4vKk6J0ERpVKJUFwxDAsDT0Is?PARTNER=WRITER" alt="image"></a> </p>
+<p>en ?这个是啥？</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRG4F1ETPyrDNfANHgcL_Sywd9MZ2ubIL4sVSq6temPWg0OdOvmtLGlpuDsV_tcyZK0?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRFbkpOXxp5UND8SBWbk2lBtE_QbBT7MtVbVEX-KHn5UbSxz551GAqkseuzPevtdlyA?PARTNER=WRITER" alt="image"></a> </p>
+<p>还好只有一个，</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRF6juxSBZglk44aD36rQxR9v1sRiYs7BVRfNns30r2xmptTAeDwn7DoN1uBlfnN-R0?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pf3H7KtzkuRF5tEm9TFeNog_GSXXgMjKndh7Pnb1Xubmr1XlY3PdYWLo5MKqU72zTQznQGFNnapo?PARTNER=WRITER" alt="image"></a> </p>
+<p>不过还是不爽，怎么才能没有冲突呢？</p>
+<p>当当当当，正确答案即将揭晓，请大家鼓掌。</p>
+<p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pf3H7KtzkuRG3sNeTRK__JA5AmAQEu5mdBZdU8jLKkbQhA4Wj9Vp8uRSnYDjZLU8q56-hfXxytOw?PARTNER=WRITER"><img src="http://zdpe9q.bay.livefilestore.com/y1pwkYDTaroUr8PeP6dggYNW7rl5tpP5t6RCGRzJxExGHiWWmZJneYFGXIAlqlhLYj8RTf4QQc1G6BhabWGjXtQQQ?PARTNER=WRITER" alt="image"></a> </p>
+<p>正确答案就是在FILES里面拖动，从此轻松无忧。</p>
+<p><a target="_blank" rel="noopener" href="http://by1.storage.msn.com/y1p8NjIsGi7lpwoshdi1alynJo9yl_3wMB3PfiOqNu-40zIiPK7GMo1rQHG-kqtch6TBGQieyCnW3C6F1_kWQFxKwLcnNbzjKL6?PARTNER=WRITER"><img src="http://by1.storage.msn.com/y1p8NjIsGi7lpxD-uFHfpgCYKETdX_gzjTpz1kZ3AgEXO_3ePrCtzEnFwbMnhJtrDzLgsMijzJ62wZvgoTrh56o8lwcLdYG5qH-?PARTNER=WRITER" alt="image"></a> </p>
+<p>LabVIEW会自动处理牵涉到文件。</p>
+<p>神州行，我看行。LabVIEW 8.5 今天你升了么？</p>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2008/01/31/archived-labview-8-5-project/" data-id="cl2eni85v001vrcun9e1y26mw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-archived-labview-print-screen-tips-01" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2008/01/28/archived-labview-print-screen-tips-01/" class="article-date">
@@ -150,7 +216,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -161,6 +227,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/02/21/20230221-labview-cross-platform-interoperate/">20230221-labview-cross-platform-interoperate</a>
+          </li>
         
           <li>
             <a href="/2022/12/10/20221210-labview-fonts-fix/">20221210-labview-fonts-fix</a>
@@ -178,10 +248,6 @@
             <a href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/">20220427-what-is-the-relation-between-lean-6s-and-close-loop-management</a>
           </li>
         
-          <li>
-            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -194,7 +260,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2022 haobo.li<br>
+      &copy; 2023 haobo.li<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

@@ -66,6 +66,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-20200508-labview-2020-nearly-released" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/08/20200508-labview-2020-nearly-released/" class="article-date">
+  <time datetime="2020-05-08T10:19:44.000Z" itemprop="datePublished">2020-05-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/08/20200508-labview-2020-nearly-released/">20200508-labview-2020-nearly-released</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabVIEW-2020-新特性"><a href="#LabVIEW-2020-新特性" class="headerlink" title="LabVIEW 2020 新特性"></a>LabVIEW 2020 新特性</h1><h2 id="社区版简介教程"><a href="#社区版简介教程" class="headerlink" title="社区版简介教程"></a>社区版简介教程</h2><p>Getting Started with LabVIEW 2020 Community Edition</p>
+<p><a target="_blank" rel="noopener" href="https://learn.ni.com/training/resources/1407/getting-started-with-labview-2020-community-edition">https://learn.ni.com/training/resources/1407/getting-started-with-labview-2020-community-edition</a></p>
+<p><a target="_blank" rel="noopener" href="https://learn.ni.com/training/resources/1407/courses/11523/take?locale=en_US">https://learn.ni.com/training/resources/1407/courses/11523/take?locale=en_US</a></p>
+<p>新出社区版，免费非商业使用，不能打包EXE。</p>
+<p>支持Linx工具包，支持树莓派等Target</p>
+<p><a target="_blank" rel="noopener" href="https://ekerry.wordpress.com/2019/11/20/introducing-labview-2020-community-edition-beta-free-for-non-commercial-use/">https://ekerry.wordpress.com/2019/11/20/introducing-labview-2020-community-edition-beta-free-for-non-commercial-use/</a></p>
+<p>原来的Home版被Community取代</p>
+<h2 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h2><p>对类的增强，可以显示多重继承了。</p>
+<p>增加NI Web Server同时维护Application Web Server。</p>
+<p>打包增加了对SystemLink的优化。</p>
+<p>其他都是细节增强，</p>
+<p>比如很多窗口界面可以调整大小。</p>
+<p>错误窗口优化了层级关系等等</p>
+<p>断线只清理有问题的部分。</p>
+<p>VI的增改主要是增加了</p>
+<p>NI Web Server相关的部分，还有加密和哈希的VI。</p>
+<p>PS：</p>
+<p>另外发现一个NI平台软件包2019Fall 32bit版本（对应LabVIEW 2019 SP1 32bit）下载的问题，每次下载下来的hash值都不一样，和NI官方hash对比也不一样，安装时会报安装包损坏。</p>
+<p>用文件比较工具对比，发现集中在visa驱动部分，用64bit的镜像文件里面的同名文件替换后可以正常工作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2020/05/08/20200508-labview-2020-nearly-released/" data-id="cl2eni85d000crcun5yzs3vu3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-20200422-Network-Trouble-Shooting" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/04/22/20200422-Network-Trouble-Shooting/" class="article-date">
@@ -832,50 +887,6 @@
 
 
   
-    <article id="post-20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/26/20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel/" class="article-date">
-  <time datetime="2018-04-26T08:33:39.000Z" itemprop="datePublished">2018-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/26/20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel/">Errors occurred when open NI DMM Soft Pannel</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="NI-DMM-软面板出错的解决办法"><a href="#NI-DMM-软面板出错的解决办法" class="headerlink" title="NI-DMM 软面板出错的解决办法"></a>NI-DMM 软面板出错的解决办法</h1><p>安装完NI-DMM之后有时打开软面板会提示</p>
-<p>ERROR:One or more elements of the application could not be found.  Please re-install ni-DMM installer again to fix this problem</p>
-<p><img src="/.%5C20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel%5Cclip_image001.png" alt="NI-DMM Soft Front Panel ERROR: One or more elements of the applicaton could not be found. Please run the NI-DMM installer again to fix this problem "></p>
-<p>这个可能有以下几种常见原因 </p>
-<h2 id="第一-NI软件安装时没有使用默认目录-测试至少NI-DMM-16-0存在此问题"><a href="#第一-NI软件安装时没有使用默认目录-测试至少NI-DMM-16-0存在此问题" class="headerlink" title="第一:NI软件安装时没有使用默认目录,测试至少NI-DMM 16.0存在此问题."></a>第一:NI软件安装时没有使用默认目录,测试至少NI-DMM 16.0存在此问题.</h2><h2 id="第二-NI-DMM-17-5存在Bug-随机性的打不开软面板-重启后偶尔正常"><a href="#第二-NI-DMM-17-5存在Bug-随机性的打不开软面板-重启后偶尔正常" class="headerlink" title="第二:NI-DMM 17.5存在Bug,随机性的打不开软面板,重启后偶尔正常."></a>第二:NI-DMM 17.5存在Bug,随机性的打不开软面板,重启后偶尔正常.</h2><h2 id="第三-DAQmx组件错乱-之前遇到过类似的报错-NI论坛上也是这种错误"><a href="#第三-DAQmx组件错乱-之前遇到过类似的报错-NI论坛上也是这种错误" class="headerlink" title="第三:DAQmx组件错乱,之前遇到过类似的报错,NI论坛上也是这种错误."></a>第三:DAQmx组件错乱,之前遇到过类似的报错,NI论坛上也是这种错误.</h2><p>NI-DMM依赖对应版本的DAQmx,比如是安装了低版本ELVISmx导致DAQmx组件版本不匹配,</p>
-<p>解决办法是在添加删除程序里选择添加删除NI软件,把低版本的DAQmx组件删除即可.</p>
-<p><a target="_blank" rel="noopener" href="https://forums.ni.com/t5/PXI/DMM-SFT-returns-error-message-says-to-re-install/td-p/470375">https://forums.ni.com/t5/PXI/DMM-SFT-returns-error-message-says-to-re-install/td-p/470375</a></p>
-<p>或者最彻底的办法是到 控制面板-添加删除程序-NI软件-删除所有组件.然后安装NI-DMM及内部包含的DAQmx,或者安装NI DeviceDriver Set里面的成套驱动.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2018/04/26/20180426-Errors-occurred-when-open-NI-DMM-Soft-Pannel/" data-id="cl2eni84w0000rcuncqisb7c4" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -920,7 +931,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -931,6 +942,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/02/21/20230221-labview-cross-platform-interoperate/">20230221-labview-cross-platform-interoperate</a>
+          </li>
         
           <li>
             <a href="/2022/12/10/20221210-labview-fonts-fix/">20221210-labview-fonts-fix</a>
@@ -948,10 +963,6 @@
             <a href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/">20220427-what-is-the-relation-between-lean-6s-and-close-loop-management</a>
           </li>
         
-          <li>
-            <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -964,7 +975,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2022 haobo.li<br>
+      &copy; 2023 haobo.li<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
