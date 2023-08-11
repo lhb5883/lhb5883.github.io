@@ -66,6 +66,57 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-20230811-labview-202023Q3-released" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/08/11/20230811-labview-202023Q3-released/" class="article-date">
+  <time datetime="2023-08-11T10:34:46.000Z" itemprop="datePublished">2023-08-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/08/11/20230811-labview-202023Q3-released/">20230811-labview-202023Q3-released</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabVIEW-2023Q3新特性"><a href="#LabVIEW-2023Q3新特性" class="headerlink" title="LabVIEW 2023Q3新特性"></a>LabVIEW 2023Q3新特性</h1><p>NI发布了LabVIEW 2023Q3，主要的新特性就是以下几点<br>第一个是等了很久的程序框图支持缩放，不过对字体的处理感觉不是很好<br>第二个是正在连出的连线左键双击快速创建控件，右键弹出快捷菜单，之前从右键移到二级菜单，如今终于回归了。<br>第三个是选中快速替换。<br>第四个是高亮执行可以选择速度了，长按高亮执行按钮可以在四种速度之间选择。</p>
+<h2 id="macOS下原生支持ARM-CPU"><a href="#macOS下原生支持ARM-CPU" class="headerlink" title="macOS下原生支持ARM CPU"></a>macOS下原生支持ARM CPU</h2><p>不过这些新特性不是我最想聊的，我最感兴趣的是在Apple的macOS平台上终于原生支持M系列ARM CPU了，无需x86转译，并且驱动也已经移植了NI VISA，也可以原生支持ARM CPU了。这个时候可以畅想一下未来的Apple生产线测试设备可能是什么样的。</p>
+<p>之前查到Apple要求所有生产测试环节一定要运行在MacOS平台之上。<br>Ref<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/545108671/answer/2720242493">https://www.zhihu.com/question/545108671/answer/2720242493</a><br>LabVIEW在这方面确实会有一定的优势，毕竟1.0的时候就是诞生在Macintosh平台上，后续的LabVIEW也一直有macOS平台的对应软件。</p>
+<h2 id="首先我们回顾一下Intel-Mac时代，我们的选择有哪些？"><a href="#首先我们回顾一下Intel-Mac时代，我们的选择有哪些？" class="headerlink" title="首先我们回顾一下Intel Mac时代，我们的选择有哪些？"></a>首先我们回顾一下Intel Mac时代，我们的选择有哪些？</h2><p>对于需要硬件参与的测试设备，很重要的一点就是驱动支持，mac下主要就是DAQmx Base和NI Visa，可以使用M系列或者E系列的数据采集卡以及传统的台式仪器来开发测试系统。</p>
+<p>DAQmx base最新版本是15.0，最高支持到OS X 10.14，所以最新的刨丝器Mac Pro 2019是用不了的，老款的Mac Pro垃圾桶是没什么扩展性的，显卡都是专门定制过的，更老的Mac Pro基本上是电子古董了。</p>
+<p>用iMac或者Mac Mini的雷电接口连接NI的雷电 MXI机箱PXIe 1090就更不用想了，NI PXI Platform Service是没有OS X版的。</p>
+<p>综合下来能用USB M系列数据采集卡（DAQmx Base）+LXI的台式仪器（NI VISA）就是这个测试系统基本构成了，上位机可以选择能装OS X 10.14以下的Intel iMac或者Mac Mini，性能需求特别高的也可以选Mac Pro，不过也就是垃圾桶，不见得就比iMac强。</p>
+<p>如果稍微放松一点，允许使用双系统，那么上位机装Windows，就可以使用MXI连接PXI机箱，那么基本上所有的PXI板卡都可以选型和传统的测试设备其实区别不大。</p>
+<h2 id="如果未来Apple强行要求所有测试设备使用M1设备来开发，又有什么选择呢？"><a href="#如果未来Apple强行要求所有测试设备使用M1设备来开发，又有什么选择呢？" class="headerlink" title="如果未来Apple强行要求所有测试设备使用M1设备来开发，又有什么选择呢？"></a>如果未来Apple强行要求所有测试设备使用M1设备来开发，又有什么选择呢？</h2><p>目前来看只能使用传统的台式仪器来搭建测试系统，梦回八十年代LabVIEW刚刚诞生的年代。</p>
+<p>不过我要说不过了，台式仪器的操作系统Apple可没法限制，例如示波器的操作系统，有些是定制的Linux，有些是Windows For Embeded，那么我配一个下位机，装个WES的Windows是不是也可以擦边呢？</p>
+<p>哪怕不用Windows，就用Linux RT，开发好RTEXE之后，定一个通讯协议或者就用VI Server，在上位机的Mac上用LabVIEW开发一个测试软件似乎也是可行的？</p>
+<h2 id="稍微展望一下未来，Apple生态下的测试系统可能会是什么样的？"><a href="#稍微展望一下未来，Apple生态下的测试系统可能会是什么样的？" class="headerlink" title="稍微展望一下未来，Apple生态下的测试系统可能会是什么样的？"></a>稍微展望一下未来，Apple生态下的测试系统可能会是什么样的？</h2><p>展望未来，一种可能是NI出了适配macOS的DAQmx，这样就可以在M2的Mac Pro上使用PCIe的数采卡了，不过以NI停产绝大部分非PXIe的趋势，应该是不太可能了。</p>
+<p>另一种是NI的驱动完善gRPC接口，LabVIEW通过gRPC接口从M系列ARM CPU的MAC上远程调用Linux RT下位机的板卡，这样板卡的选型也能更丰富一些</p>
+<h2 id="小小的总结"><a href="#小小的总结" class="headerlink" title="小小的总结"></a>小小的总结</h2><p>其实从操作系统的演进历史来看，硬件驱动的开发也是越来越复杂，并且限制越来越多的，DOS时代只要有中断和内存映射的地址就可以直接操作硬件，NT时代就有了WDDM，区分了Kernel驱动和User驱动，Vista时代更是有了驱动强制签名认证，Windows 10有了UWP驱动，系统封装的越来越完善。对于OS X也是类似，Kext内核扩展驱动也是增加了签名认证，并且现在系统有了SIP系统完整性保护System Integrity Protection。</p>
+<p>未来如何达成系统方便性和安全性以及扩展性的平衡，只能等待厂家，开发商，用户三者达成新的博弈平衡了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2023/08/11/20230811-labview-202023Q3-released/" data-id="cll6ggfiu00009sun3r3ndemq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-20230221-labview-cross-platform-interoperate" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2023/02/21/20230221-labview-cross-platform-interoperate/" class="article-date">
@@ -745,254 +796,6 @@
 
 
   
-    <article id="post-20200729-labview-2020-summary" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/29/20200729-labview-2020-summary/" class="article-date">
-  <time datetime="2020-07-29T12:05:46.000Z" itemprop="datePublished">2020-07-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/29/20200729-labview-2020-summary/">20200729-labview-2020-summary</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="LabVIEW-2020-发布后的一些吐槽汇总"><a href="#LabVIEW-2020-发布后的一些吐槽汇总" class="headerlink" title="LabVIEW 2020 发布后的一些吐槽汇总"></a>LabVIEW 2020 发布后的一些吐槽汇总</h1><h2 id="LabVIEW-2020-离线镜像下载出错的解决办法"><a href="#LabVIEW-2020-离线镜像下载出错的解决办法" class="headerlink" title="LabVIEW 2020 离线镜像下载出错的解决办法"></a>LabVIEW 2020 离线镜像下载出错的解决办法</h2><p>NI的官网使用CloudFlare的CDN加速，国内使用的是百度云加速，因此继承了百度不靠谱的特质，经常发现下下来的hash值和NI官方给的hash值对不上。<br>这种情况下推荐重新下载一遍，有时候hash就能对上了。<br>如果反复下载之后，几次的hash都对不上，这时候就可以用变通的办法来处理。<br>解压缩离线的ISO镜像后<br>目录下会有Install.exe,一些DLL支持文件，目录有以下三个：<br>    1. bin（安装支持文件包含了NI包管理器和.net安装环境）<br>    2. feeds（目录下包含子目录如ni-488.2，再下一层有Packages文件）<br>    3. Pool（包含了实际的nipkg安装包）</p>
-<p>Packages文件是纯文本的，里面包含了Pool目录下的nipkg文件的一些信息。</p>
-<p>Architecture: windows_all<br>CompatibilityVersion: 0<br>Conflicts: ni-package-manager<br>Description: Package for displaying the IVI Foundation Inc. License Agreement<br>DisplayName: IVI Foundation Inc. License Agreement<br>DisplayVersion: 20.0.0<br>EulaTitle: IVI<br>Filename: ..&#x2F;..&#x2F;pool&#x2F;eula-ivi_20.0.0.49153-0+f1_windows_all.nipkg<br>Homepage: <a target="_blank" rel="noopener" href="http://www.ni.com/">http://www.ni.com</a><br>MD5Sum: abdd1d7965acc3749f5d80adec7bac5b<br>MD5sum: abdd1d7965acc3749f5d80adec7bac5b<br>Maintainer: National Instruments <a href="mailto:&#x73;&#x75;&#112;&#112;&#111;&#114;&#x74;&#64;&#110;&#105;&#x2e;&#x63;&#x6f;&#x6d;">&#x73;&#x75;&#112;&#112;&#111;&#114;&#x74;&#64;&#110;&#105;&#x2e;&#x63;&#x6f;&#x6d;</a><br>OsSupport: WINDOWS_7_SP1_32BIT WINDOWS_7_SP1_64BIT WINDOWS_81_32BIT WINDOWS_81_64BIT WINDOWS_10_32BIT WINDOWS_10_64BIT WINDOWS_EMBEDDED_STANDARD_7_SP1 WINDOWS_SERVER_2008_R2_SP1_64BIT WINDOWS_SERVER_2012_R2_64BIT<br>Package: eula-ivi<br>Plugin: eula<br>Priority: standard<br>Section: Infrastructure<br>Size: 3944<br>UserVisible: no<br>Version: 20.0.0.49153-0+f1</p>
-<p>里面比较重要的是Filename和MD5Sum两个字段，可以用来确认nipkg文件是否已经损坏。<br>为了修复安装包，需要根据这个配置文件把损坏的nipkg文件找出来，然后替换成好的。<br>目前看来只要是文件名一致的nipkg文件并且没有损坏，hash应该是一致的，所以可以用其他完好安装包里的nipkg文件进行替换。<br>经过我实验，Pool里面将损坏的nipkg文件替换为正常的nipkg文件，安装包就可以正常安装使用。</p>
-<p>PS:<br>另外在C:\Program Files\National Instruments\NI Package Manager下有一个nipkg.exe可以创建离线安装包，可惜的是不支持校验和修复已经下载好的安装包,希望NI以后可以加上对应的功能。</p>
-<h2 id="NI-驱动下载-2020-05"><a href="#NI-驱动下载-2020-05" class="headerlink" title="NI 驱动下载 2020.05"></a>NI 驱动下载 2020.05</h2><p>Peripheral Drivers for Controllers<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.peripheral-drivers-for-controllers.html">https://www.ni.com/en-us/support/downloads/drivers/download.peripheral-drivers-for-controllers.html</a><br>NI CompactRIO<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-compactrio.html#311624">https://www.ni.com/en-us/support/downloads/drivers/download.ni-compactrio.html#311624</a><br>NI-ELVISmx<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-elvismx.html#305452">https://www.ni.com/en-us/support/downloads/drivers/download.ni-elvismx.html#305452</a><br>FlexRIO<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.flexrio.html">https://www.ni.com/en-us/support/downloads/drivers/download.flexrio.html</a><br>PXI Platform Services<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.pxi-platform-services.html#313433">https://www.ni.com/en-us/support/downloads/drivers/download.pxi-platform-services.html#313433</a><br>NI R Series Multifunction RIO<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-r-series-multifunction-rio.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-r-series-multifunction-rio.html</a><br>NI-488.2<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-488-2.html#305442">https://www.ni.com/en-us/support/downloads/drivers/download.ni-488-2.html#305442</a><br>NI-DAQmx<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-daqmx.html#311818">https://www.ni.com/en-us/support/downloads/drivers/download.ni-daqmx.html#311818</a><br>NI-DCPower<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-dcpower.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-dcpower.html</a><br>NI-DMM<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-dmm.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-dmm.html</a><br>NI-FGEN<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-fgen.html#305449">https://www.ni.com/en-us/support/downloads/drivers/download.ni-fgen.html#305449</a><br>NI-HSDIO<br>From <a target="_blank" rel="noopener" href="http://www.ni.com/en-us/support/downloads/drivers/download.ni-hsdio.html">http://www.ni.com/en-us/support/downloads/drivers/download.ni-hsdio.html</a><br>Vision Acquisition Software<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.vision-acquisition-software.html#305518">https://www.ni.com/en-us/support/downloads/drivers/download.vision-acquisition-software.html#305518</a><br>NI-Industrial Communications for Ethernet&#x2F;IP<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-ethernet-ip.html#305843">https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-ethernet-ip.html#305843</a><br>NI-Industrial Communications for EtherCAT<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-ethercat.html#311691">https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-ethercat.html#311691</a><br>NI-Industrial Communications for CANopen<br>From <a target="_blank" rel="noopener" href="http://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-canopen.html#311611">http://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-canopen.html#311611</a><br>NI-Industrial Communications for IEC 61850<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-iec-61850.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-iec-61850.html</a><br>NI-Industrial Communications for DeviceNet<br>From <a target="_blank" rel="noopener" href="http://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-devicenet.html#311812">http://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-devicenet.html#311812</a><br>NI-Industrial Communications for DNP3<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-dnp3.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-industrial-communications-for-dnp3.html</a><br>NI-SCOPE<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-scope.html#305863">https://www.ni.com/en-us/support/downloads/drivers/download.ni-scope.html#305863</a><br>NI-Serial<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-serial.html#305457">https://www.ni.com/en-us/support/downloads/drivers/download.ni-serial.html#305457</a><br>NI-SWITCH<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-switch.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-switch.html</a><br>NI-Sync<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-sync.html#311813">https://www.ni.com/en-us/support/downloads/drivers/download.ni-sync.html#311813</a><br>NI-XNET<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-xnet.html#311817">https://www.ni.com/en-us/support/downloads/drivers/download.ni-xnet.html#311817</a><br>NI-VISA<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-visa.html#305862">https://www.ni.com/en-us/support/downloads/drivers/download.ni-visa.html#305862</a><br>Industrial Controller Device Drivers<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.industrial-controller-device-drivers.html">https://www.ni.com/en-us/support/downloads/drivers/download.industrial-controller-device-drivers.html</a><br>NI-VirtualBench Application and Driver<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-virtualbench-application-and-driver.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-virtualbench-application-and-driver.html</a><br>LabVIEW ELVIS III Toolkit<br>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.labview-elvis-iii-toolkit.html">https://www.ni.com/en-us/support/downloads/software-products/download.labview-elvis-iii-toolkit.html</a> </p>
-<h2 id="NI-非集成驱动"><a href="#NI-非集成驱动" class="headerlink" title="NI 非集成驱动"></a>NI 非集成驱动</h2><p>NI-Digital Pattern Driver</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-digital-pattern-driver.html#320889">https://www.ni.com/en-us/support/downloads/drivers/download.ni-digital-pattern-driver.html#320889</a><br>NI-Digital Pattern Driver 19.0.1<br>Name	Checksum	File Size<br>19.0.1	(MD5) 0e9477f71b0f7e23ff34fd44396eaeb8	1.03 GB<br>    (SHA256) b157150f962b6cd15df4c6879f6e89a568978060f7221a7ab98a8e701dcdb33f</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-digital-pattern-driver.html#320889">https://www.ni.com/en-us/support/downloads/drivers/download.ni-digital-pattern-driver.html#320889</a> </p>
-<p><a target="_blank" rel="noopener" href="http://download.ni.com/support/nipkg/products/ni-d/ni-digital/19.0/offline/ni-digital_19.0.1_offline.iso">http://download.ni.com/support/nipkg/products/ni-d/ni-digital/19.0/offline/ni-digital_19.0.1_offline.iso</a></p>
-<p>NI-PXImc</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-pximc.html#339602">https://www.ni.com/en-us/support/downloads/drivers/download.ni-pximc.html#339602</a> </p>
-<p>NI-PXImc 19.0<br>Name	Checksum	File Size<br>19.0.0	(MD5) 8018d68d9593a9d7d8ecac68f21386c0	654.29 MB<br>    (SHA256) 70ee376319886ce472748774d34010d3361d59c485b2ef8125b9f70fa3ea8c13</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-pximc.html#339602">https://www.ni.com/en-us/support/downloads/drivers/download.ni-pximc.html#339602</a> </p>
-<p><a target="_blank" rel="noopener" href="http://download.ni.com/support/nipkg/products/ni-p/ni-pximc/19.0/offline/ni-pximc_19.0.0_offline.iso">http://download.ni.com/support/nipkg/products/ni-p/ni-pximc/19.0/offline/ni-pximc_19.0.0_offline.iso</a></p>
-<p>NI-ATCA</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-atca.html#">https://www.ni.com/en-us/support/downloads/drivers/download.ni-atca.html#</a> </p>
-<p>NI-ATCA 19.5<br>Name	Checksum	File Size<br>19.5.0	(MD5) 2be487ba66fd99f794ddbf8f2881ca50	3.9 GB<br>    (SHA256) 82fa460c4ab257b4d923964814bbbf33d22cbb6d59d8ceb05d81df17c50d9052</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-atca.html#">https://www.ni.com/en-us/support/downloads/drivers/download.ni-atca.html#</a><br><a target="_blank" rel="noopener" href="http://download.ni.com/support/nipkg/products/ni-a/ni-atca/19.5/offline/ni-atca_19.5.0_offline.iso">http://download.ni.com/support/nipkg/products/ni-a/ni-atca/19.5/offline/ni-atca_19.5.0_offline.iso</a></p>
-<p>NI-845x Driver Software</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-845x-driver-software.html#346270">https://www.ni.com/en-us/support/downloads/drivers/download.ni-845x-driver-software.html#346270</a> </p>
-<p>NI-845x Driver Software 20.0<br>Name	Checksum	File Size<br>20.0.0	(MD5) ba5cb91a93268c50132d823ddc9cb0e8	594.72 MB<br>    (SHA256) 366699b272abf25d59cfaabbdbf20f328630188ad3f7b1bfff3d3812ae07f820</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-845x-driver-software.html#346270">https://www.ni.com/en-us/support/downloads/drivers/download.ni-845x-driver-software.html#346270</a> </p>
-<p><a target="_blank" rel="noopener" href="http://download.ni.com/support/nipkg/products/ni-8/ni-845x/20.0/offline/ni-845x_20.0.0_offline.iso">http://download.ni.com/support/nipkg/products/ni-8/ni-845x/20.0/offline/ni-845x_20.0.0_offline.iso</a></p>
-<p>NI-SLSC</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-slsc.html#345643">https://www.ni.com/en-us/support/downloads/drivers/download.ni-slsc.html#345643</a> </p>
-<p>NI-SLSC 20.0<br>Name	Checksum	File Size<br>20.0.0	(MD5) d9ad63fca2429542213ad1da64ebe8dd	1.03 GB<br>    (SHA256) 932f54b6b1d238f424bf3236b883f995cdd957fa67d3e7c9daa8b9fac1b80bb9</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-slsc.html#345643">https://www.ni.com/en-us/support/downloads/drivers/download.ni-slsc.html#345643</a> </p>
-<p><a target="_blank" rel="noopener" href="http://download.ni.com/support/nipkg/products/ni-s/ni-slsc/20.0/offline/ni-slsc_20.0.0_offline.iso">http://download.ni.com/support/nipkg/products/ni-s/ni-slsc/20.0/offline/ni-slsc_20.0.0_offline.iso</a></p>
-<p>Digital Systems Development Board Driver for LabVIEW</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.digital-systems-development-board-driver-for-labview.html#305456">https://www.ni.com/en-us/support/downloads/drivers/download.digital-systems-development-board-driver-for-labview.html#305456</a> </p>
-<p>Digital Systems Development Board Driver for LabVIEW 2019<br>Name	Checksum	File Size<br>2019	(MD5) 9a52c902c6ff623fe42df892c3428995	811.27 MB<br>    (SHA256) 8f0bb9c789c379048070e9834bbcf325ea21700e28d7b018aea3a50b254c020b</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.digital-systems-development-board-driver-for-labview.html#305456">https://www.ni.com/en-us/support/downloads/drivers/download.digital-systems-development-board-driver-for-labview.html#305456</a> </p>
-<p><a target="_blank" rel="noopener" href="http://download.ni.com/support/nipkg/products/ni-d/ni-dsdb-2019-drivers-labview-support-x86/19.0/offline/ni-dsdb-2019-drivers-labview-support-x86_19.0.0_offline.iso">http://download.ni.com/support/nipkg/products/ni-d/ni-dsdb-2019-drivers-labview-support-x86/19.0/offline/ni-dsdb-2019-drivers-labview-support-x86_19.0.0_offline.iso</a></p>
-<p>NI Linux RT System Image</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.ni-linux-rt-system-image.html#">https://www.ni.com/en-us/support/downloads/software-products/download.ni-linux-rt-system-image.html#</a> </p>
-<p>NI Linux RT System Image 2020.06<br>Name	Checksum	File Size<br>2020.06	(MD5) b81cb14684db49e612c15a5e5c37dd47	567.75 MB<br>    (SHA256) 5cfa03d861c371831e4921a903bc4e4ec3355498d71b478a4261229525e5debd</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.ni-linux-rt-system-image.html#">https://www.ni.com/en-us/support/downloads/software-products/download.ni-linux-rt-system-image.html#</a> </p>
-<p><a target="_blank" rel="noopener" href="http://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-system-image-2020.06/20.1/offline/ni-linux-rt-system-image-2020.06_20.1.0_offline.iso">http://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-system-image-2020.06/20.1/offline/ni-linux-rt-system-image-2020.06_20.1.0_offline.iso</a></p>
-<p>NI Linux Real-Time Offline Installation Support</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#">https://www.ni.com/en-us/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#</a> </p>
-<p>NI Linux Real-Time Offline Installation Support 20.0<br>Name	Checksum	File Size<br>20.0.0	(MD5) afbbd55a649be6716974b838873edac9	3.68 GB<br>    (SHA256) 43d768e958b3497493a5615d1462c96232bf1410f9c0bf7f45eb18eb7f1140b6</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#">https://www.ni.com/en-us/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#</a> </p>
-<p><a target="_blank" rel="noopener" href="http://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-20.0/20.0/offline/ni-linux-rt-offline-installation-support-20.0_20.0.0_offline.iso">http://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-20.0/20.0/offline/ni-linux-rt-offline-installation-support-20.0_20.0.0_offline.iso</a></p>
-<p>VirtualBench Software</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.virtualbench-software.html#324215">https://www.ni.com/en-us/support/downloads/drivers/download.virtualbench-software.html#324215</a><br>VirtualBench Software 18.0<br>(MD5)<br>17dcca1927826257b48eaefed0d258b0</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.virtualbench-software.html#324215">https://www.ni.com/en-us/support/downloads/drivers/download.virtualbench-software.html#324215</a><br><a target="_blank" rel="noopener" href="http://download.ni.com/support/softlib/VirtualBench/Windows/18.0/NIVirtualBench1800.zip">http://download.ni.com/support/softlib/VirtualBench/Windows/18.0/NIVirtualBench1800.zip</a></p>
-<p>Functional Safety Editor</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.functional-safety-editor.html#326204">https://www.ni.com/en-us/support/downloads/drivers/download.functional-safety-editor.html#326204</a> </p>
-<p>Functional Safety Editor 2018<br>(MD5)<br>6d77dc4e227758aeddabe9df674ed006</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.functional-safety-editor.html#326204">https://www.ni.com/en-us/support/downloads/drivers/download.functional-safety-editor.html#326204</a> </p>
-<p><a target="_blank" rel="noopener" href="http://download.ni.com/support/softlib/reconfigurable_io/Functional%20Safety/2018%20May/FUNCSAFETY2018MAY.exe">http://download.ni.com/support/softlib/reconfigurable_io/Functional%20Safety/2018%20May/FUNCSAFETY2018MAY.exe</a></p>
-<p>FRC Game Tools</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.frc-game-tools.html#">https://www.ni.com/en-us/support/downloads/drivers/download.frc-game-tools.html#</a> </p>
-<p>FRC Game Tools 2020<br>Name	Checksum	File Size<br>2020	(MD5) 0fd5df9e21e69e2e5a0e1e5f7d60f60a	850.5 MB<br>    (SHA256) 63da2e87bd66c6003daa2e31283207eecaf2a91dbdae2b060848ad95ab63c094</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.frc-game-tools.html#">https://www.ni.com/en-us/support/downloads/drivers/download.frc-game-tools.html#</a> </p>
-<p><a target="_blank" rel="noopener" href="http://download.ni.com/support/nipkg/products/ni-f/ni-frc-2020-game-tools/19.0/offline/ni-frc-2020-game-tools_19.0.0_offline.iso">http://download.ni.com/support/nipkg/products/ni-f/ni-frc-2020-game-tools/19.0/offline/ni-frc-2020-game-tools_19.0.0_offline.iso</a></p>
-<p>LabVIEW Software for FRC</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.labview-software-for-frc.html#">https://www.ni.com/en-us/support/downloads/drivers/download.labview-software-for-frc.html#</a> </p>
-<p>LabVIEW Software for FRC 2020<br>Name	Checksum	File Size<br>2020	(MD5) 2bed0a8236a5dd452c96a019450a9ecf	7.71 GB<br>    (SHA256) 7e33d9a3d88b34d11af40b3a18656d1d640679ad6c342151fe247d6f15cb9a9e</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.labview-software-for-frc.html#">https://www.ni.com/en-us/support/downloads/drivers/download.labview-software-for-frc.html#</a> </p>
-<p><a target="_blank" rel="noopener" href="http://download.ni.com/support/nipkg/products/ni-f/ni-frc-2020-base-suite/19.0/offline/ni-frc-2020-base-suite_19.0.0.49152-0+f0_offline.iso">http://download.ni.com/support/nipkg/products/ni-f/ni-frc-2020-base-suite/19.0/offline/ni-frc-2020-base-suite_19.0.0.49152-0+f0_offline.iso</a></p>
-<p>NI-568x Driver Software</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-568x-driver-software.html#331229">https://www.ni.com/en-us/support/downloads/drivers/download.ni-568x-driver-software.html#331229</a><br>NI-568x Driver Software 19.0<br>(MD5)<br>fa01656d755cf54d6e27237e573bfc34<br><a target="_blank" rel="noopener" href="https://download.ni.com/support/softlib/RF/NI-568x/NI568X190.zip">https://download.ni.com/support/softlib/RF/NI-568x/NI568X190.zip</a></p>
-<p>NI-5690 Driver Software</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-5690-driver-software.html">https://www.ni.com/en-us/support/downloads/drivers/download.ni-5690-driver-software.html</a> </p>
-<p>Filesize: 1501.48 MB</p>
-<p>Checksum (MD5): c1710c5a8c82104fc751e46925cf5ea3</p>
-<p><a target="_blank" rel="noopener" href="http://download.ni.com/support/softlib/RF/NI-5690/NI5690190.zip">http://download.ni.com/support/softlib/RF/NI-5690/NI5690190.zip</a><br>NI-mmWave</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-mmwave.html#312718">https://www.ni.com/en-us/support/downloads/drivers/download.ni-mmwave.html#312718</a> </p>
-<p>NI-mmWave 19.0<br>Name	Checksum	File Size<br>19.0.0	(MD5) 7e0441e39df7f00457d302c54cf315ff	3.35 GB<br>    (SHA256) 871e69a27107519d309187f9476ce482dd74c179d363d22252155c60f13b5ee9</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-mmwave.html#312718">https://www.ni.com/en-us/support/downloads/drivers/download.ni-mmwave.html#312718</a> </p>
-<p><a target="_blank" rel="noopener" href="http://download.ni.com/support/nipkg/products/ni-m/ni-mmwave/19.0/offline/ni-mmwave_19.0.0_offline.iso">http://download.ni.com/support/nipkg/products/ni-m/ni-mmwave/19.0/offline/ni-mmwave_19.0.0_offline.iso</a></p>
-<h2 id="NI-RF驱动下载-2020-05"><a href="#NI-RF驱动下载-2020-05" class="headerlink" title="NI RF驱动下载 2020.05"></a>NI RF驱动下载 2020.05</h2><p>RFmx</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.rfmx.html#333458">https://www.ni.com/en-us/support/downloads/software-products/download.rfmx.html#333458</a> </p>
-<p>Application Software<br>    RFmx Waveform Creator<br>    RFmx SpecAn<br>    RFmx Demod<br>    RFmx Noise Figure<br>    RFmx Phase Noise<br>    RFmx WLAN<br>    RFmx Bluetooth<br>    RFmx NR<br>    RFmx LTE<br>    RFmx WCDMA<br>    RFmx TD-SCDMA<br>    RFmx EV-DO<br>    RFmx CDMA2k<br>    RFmx GSM<br>Drivers<br>    NI-RFSG Playback Library</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/pdf/manuals/377996b.html">https://www.ni.com/pdf/manuals/377996b.html</a> </p>
-<p>NI-RFSA</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-rfsa.html#344193">https://www.ni.com/en-us/support/downloads/drivers/download.ni-rfsa.html#344193</a> </p>
-<p>NI-RFSG</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-rfsg.html#344209">https://www.ni.com/en-us/support/downloads/drivers/download.ni-rfsg.html#344209</a></p>
-<p>NI Wireless Test Standards Software - January 2019<br><a target="_blank" rel="noopener" href="http://download.ni.com/support/softlib/RF/NI-RFmx/NI%20Wireless%20Test%20Standards%20Software/2019.01/WTSSSUITE012019.zip">http://download.ni.com/support/softlib/RF/NI-RFmx/NI%20Wireless%20Test%20Standards%20Software/2019.01/WTSSSUITE012019.zip</a><br>From <a target="_blank" rel="noopener" href="http://www.ni.com/download/ni-rfmx-january-2019/8043/en/">http://www.ni.com/download/ni-rfmx-january-2019/8043/en/</a><br>Filesize: 4711.16 MB<br>Checksum (MD5): b0d0266e838d0a29da3fba42822da8e1</p>
-<p>From <a target="_blank" rel="noopener" href="http://www.ni.com/download/ni-rfmx-january-2019/8043/en/">http://www.ni.com/download/ni-rfmx-january-2019/8043/en/</a> </p>
-<p>Wireless Test Standard Software Readme Files</p>
-<p>NI-RFmx Measurement APIs</p>
-<pre><code>NI-RFmx SpecAn 3.0
-RFmx SpecAn
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.rfmx-specan.html#341840&gt; 
-
-NI-RFmx Noise Figure Runtime 3.0
-RFmx Phase Noise
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.rfmx-phase-noise.html#334020&gt;
-
-NI-RFmx Demod 3.0
-RFmx Demod
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.rfmx-demod.html#333892&gt; 
-
-NI-RFmx GSM 3.0
-RFmx GSM/EDGE+
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.rfmx-gsm-edge-.html#333491&gt; 
-
-
-NI-RFmx WCDMA 3.0
-RFmx W-CDMA/HSPA+
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.rfmx-w-cdma-hspa-.html#333973&gt; 
-
-
-NI-RFmx LTE 3.0
-RFmx LTE/LTE-Advanced
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.rfmx-lte-lte-advanced.html#333523&gt; 
-
-RFmx LTE-V2X
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.rfmx-lte-v2x.html#337828&gt; 
-
-
-NI-RFmx CDMA2k 3.0
-RFmx CDMA2k 19.1
-
-From &lt;http://www.ni.com/download/ni-rfmx-cdma2k-19.1/8368/en/&gt; 
-
-
-NI-RFmx EV-DO 3.0
-RFmx EV-DO
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.rfmx-ev-do.html#333924&gt; 
-
-
-NI-RFmx TD-SCDMA 3.0
-RFmx TD-SCDMA
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.rfmx-td-scdma.html#333583&gt; 
-
-
-NI-RFmx Bluetooth 3.0
-RFmx Bluetooth
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.rfmx-bluetooth.html#333828&gt; 
-
-NI Bluetooth Direct Test Mode 3.0
-Test Toolkit for Bluetooth
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.test-toolkit-for-bluetooth.html#346269&gt; 
-
-
-NI-RFmx WLAN 3.0
-RFmx WLAN
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.rfmx-wlan.html#333999&gt; 
-
-NI-RFmx NR 3.0
-
-RFmx NR
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.rfmx-nr.html#333551&gt; 
-</code></pre>
-<p>NI-RFSG Playback Library:</p>
-<pre><code>NI-RFSG Playback Library 3.0
-NI-RFSG Playback Library
-
-From &lt;https://www.ni.com/en-us/support/downloads/drivers/download.ni-rfsg-playback-library.html#332845&gt; 
-</code></pre>
-<p>NI-RFmx Waveform Creator:</p>
-<pre><code>NI-RFmx Waveform Creator 3.0
-RFmx Waveform Creator
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.rfmx-waveform-creator.html#333592&gt; 
-</code></pre>
-<p>RF Toolkits:</p>
-<pre><code>NI LabVIEW Modulation Toolkit 18.0
-LabVIEW Modulation Toolkit
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.labview-modulation-toolkit.html#345617&gt; 
-
-
-NI WLAN Toolkit 18.0
-WLAN Test Toolkit
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.wlan-test-toolkit.html#345670&gt; 
-
-
-NI Bluetooth Toolkit 18.0
-Test Toolkit for Bluetooth
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.test-toolkit-for-bluetooth.html#346269&gt; 
-
-
-NI FM-RDS Toolkit 1.0.1
-NI FM-RDS Toolkit 1.0.1
-
-From &lt;http://www.ni.com/download/ni-fm-rds-toolkit-1.0.1/4462/en/&gt; 
-
-
-NI GNSS Simulation Toolkit 3.0
-GNSS Test Toolkit
-
-From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.gnss-test-toolkit.html#333303&gt; 
-</code></pre>
-<p>NI-USRP 20.0</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/drivers/download.ni-usrp.html#346279">https://www.ni.com/en-us/support/downloads/drivers/download.ni-usrp.html#346279</a> </p>
-<p>RFmx 20.0</p>
-<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.rfmx.html#">https://www.ni.com/en-us/support/downloads/software-products/download.rfmx.html#</a> </p>
-<p>USRP 19.5.1<br>19.5.1	(MD5) 4868bae57b329326ffdced4afb72fce5<br>(SHA256) 0de26bbe50480d7abe2b0e5f0da2fd5e06ed2dc1790e58d625033c91b6e37b6b	4.63 GB</p>
-<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-u/ni-usrp/19.5/offline/ni-usrp_19.5.1_offline.iso">https://download.ni.com/support/nipkg/products/ni-u/ni-usrp/19.5/offline/ni-usrp_19.5.1_offline.iso</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2020/07/29/20200729-labview-2020-summary/" data-id="cl2eni85f000frcunctdwbv1m" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/labview/" rel="tag">labview</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1037,7 +840,7 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -1048,6 +851,10 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/08/11/20230811-labview-202023Q3-released/">20230811-labview-202023Q3-released</a>
+          </li>
         
           <li>
             <a href="/2023/02/21/20230221-labview-cross-platform-interoperate/">20230221-labview-cross-platform-interoperate</a>
@@ -1063,10 +870,6 @@ From &lt;https://www.ni.com/en-us/support/downloads/software-products/download.g
         
           <li>
             <a href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/">20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/">20220427-what-is-the-relation-between-lean-6s-and-close-loop-management</a>
           </li>
         
       </ul>

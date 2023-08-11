@@ -66,6 +66,76 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-archived-labview-2010-icon-editor-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/09/02/archived-labview-2010-icon-editor-tips/" class="article-date">
+  <time datetime="2010-09-01T17:21:08.000Z" itemprop="datePublished">2010-09-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/09/02/archived-labview-2010-icon-editor-tips/">LabVIEW 2010图标编辑器与库技巧一则</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1592" class="bvMsg">
+
+<p>LabVIEW 2009时一个很方便的改进是图表编辑器支持图层,2010版本里又大幅强化了不少:</p>
+<p>例如支持图层的复制粘贴,自定义图表模板和图例.</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image5b25d1547d36d.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image5b25d1547d36d.png?w=300" alt="image" title="image"></a></p>
+<p>对于库(包含LabVIEW Class, X Control)等来说一个很方便的特性是可以批量修改库中VI(包含自定义控件)的模板</p>
+<p>通过这一点我们可以简化图标设计的工作:</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image5b55d7c1b91c0.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image5b55d7c1b91c0.png?w=300" alt="image" title="image"></a></p>
+<p>1.首先设计库图标模板:</p>
+<p>在库上右键,选择属性,点击编辑图标</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image5b85d419b7831.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image5b85d419b7831.png?w=300" alt="image" title="image"></a></p>
+<p>a)首先选择库模板</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image5b115d5b4326c9.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image5b115d5b4326c9.png?w=300" alt="image" title="image"></a></p>
+<p>b)填充颜色</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image141df56dac.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image141df56dac.png?w=300" alt="image" title="image"></a></p>
+<p>C)编辑文字</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image17.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image17.png?w=300" alt="image" title="image"></a></p>
+<p>点击OK返回库属性,再点击OK提交图标,LabVIEW提示是否应用至库中其他VI,选择YES</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image202fed776d.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image202fed776d.png?w=300" alt="image" title="image"></a></p>
+<p>2 编辑VI图标:</p>
+<p>此时库中VI图标包含如下图层</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image2374953c08.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image2374953c08.png?w=300" alt="image" title="image"></a></p>
+<p>a)首先我们隐藏掉图标编号</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image266993fb27.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image266993fb27.png?w=300" alt="image" title="image"></a></p>
+<p>b）然后选择合适的图标</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image290ea50997.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image290ea50997.png?w=300" alt="image" title="image"></a></p>
+<p>C）填写说明文字</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image32.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image32.png?w=300" alt="image" title="image"></a></p>
+<p>这样一个图文并茂，风格统一的Icon就轻松完成了，可以看到利用LabVIEW2010的图层功能，加上良好的程序架构，优美的代码就在我们手中。</p>
+<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image38.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image38.png?w=32" alt="image" title="image"></a><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/09/image351e974c55.png"><img src="http://lhb5883.files.wordpress.com/2010/09/image351e974c55.png?w=32" alt="image" title="image"></a><br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2010/09/02/archived-labview-2010-icon-editor-tips/" data-id="cl2eni85t001lrcun8zm8dzwg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-archived-tips-quickdrop" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2010/08/12/archived-tips-quickdrop/" class="article-date">
@@ -565,71 +635,6 @@
 
 
   
-    <article id="post-archived-stream-to-disk-guide-05" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/12/02/archived-stream-to-disk-guide-05/" class="article-date">
-  <time datetime="2009-12-02T00:48:04.000Z" itemprop="datePublished">2009-12-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/12/02/archived-stream-to-disk-guide-05/">流盘备忘录(5)-文件读取</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div id="msgcns!866B8F96A2761BBE!1430" class="bvMsg">
-
-<p>我们存好数据并不是大功告成了，我们还需要从流盘数据文件恢复各通道信号才能再做各种分析。</p>
-<p>其中最关键的核心问题就是存盘的文件格式和数据解析。</p>
-<p>上一篇我们已经解析了一个数据块的构成，这一篇我们来看看到底如何用LabVIEW实现：</p>
-<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2009/12/labviewreadallchanneldata5b55d.png"><img src="http://lhb5883.files.wordpress.com/2009/12/labviewreadallchanneldata5b55d.png?w=300" alt="LabVIEW read all channel data" title="LabVIEW read all channel data"></a></p>
-<p>这个在数据量较小时姑且还可以用一用，不过要想更灵活的解析出各个通道数据，还需要推导出采样在文件中的位置公式。</p>
-<p>我们需要的参数有</p>
-<ol>
-<li>通道所在的板卡编号 BoardID（从0开始）  <li>通道在板卡上的编号 ChannelID（从0开始）  <li>采样点的编号 SampleNum  <li>一共有多少板卡 BoardNumber  <li>每板卡使用几个通道 ChannelNumber  <li>每个数据块每通道的采样点 SampleperChannel  <li>每个采样占用的字节 SampleByte</li>
-</ol>
-<p>我们需要得出的参数：</p>
-<ol>
-<li>我们所需采样点在文件中的位置 SamplePosition</li>
-</ol>
-<p>SamplePosition&#x3D;</p>
-<p>&amp;#123;</p>
-<p>(SampleNum&#x2F;SampleperChannel)<em>SampleperChannel</em>BoardNumber<em>ChannelNumber 数据块偏移<br>+<br>BoardID</em>SampleperChannel*ChannelNumber 板卡偏移<br>+<br>(mod(SampleNum,SampleperChannel))*ChannelNumber 采样偏移<br>+<br>ChannelID 通道偏移</p>
-<p>&amp;#125;*SampleByte</p>
-<p><img src="https://aftv2q.bay.livefilestore.com/y1m7Q8U7w8Oul572fCc-_Iku3gROg3G7UYbKwGiqI2yE0L4fjrmcVZuhmWS8I_kyuyLgPbV2QQcxkZd0Srka7RHfHzq8l7eACtuMnkkkKmK2Awa3r1Bo_W0HIEiuMGGpOB--GGNseEjOzcx6xRVSSLawA/image[5].png" alt="image" title="image"> </p>
-<p>另外要注意的是偏移量最好用U64，I32最多能寻址2GB，大于2GB就会溢出。</p>
-<p>有了这个公式再配合设置偏移量，就可以很方便的取出每个通道的数据了。</p>
-<p>其他要注意的是如果使用Win32API，那么读取数据的高低位是Windows格式的Little Endian而不是LabVIEW通常的Big Endian。</p>
-<p>![image](<a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1mIS2FZksrhqxtsgC3tXJ_mDvez4ehbPJQh2c4DopAAVhWZx9aFCtp5rWsN7AX-LTKlTQ_THRfpctxWDI8ybrE5bq3TmZA7DELe4rdb84tsO3lSinX9Q7dix3gBzcWOBZsNy1qAbfkMacqMZvik6bJ-A/image[3]">https://aftv2q.bay.livefilestore.com/y1mIS2FZksrhqxtsgC3tXJ_mDvez4ehbPJQh2c4DopAAVhWZx9aFCtp5rWsN7AX-LTKlTQ_THRfpctxWDI8ybrE5bq3TmZA7DELe4rdb84tsO3lSinX9Q7dix3gBzcWOBZsNy1qAbfkMacqMZvik6bJ-A/image[3]</a> 4EFCFDF4.png “image”) </p>
-<p>[](<a target="_blank" rel="noopener" href="https://aftv2q.bay.livefilestore.com/y1m_jcU-aepq8aD9tZ4T2IdyzWPI43xpwNF3eQWd6zishWaHJyvXioh4tjQLDf882YIIUQszfI1azwrP1t1gec6R-lUwUOSyGE-3KzE_IBtQO2LP9tGCSpkOLg2J-zUNcXzJPuzEYtFrBIIfGPVlpoVmg/LabVIEW">https://aftv2q.bay.livefilestore.com/y1m_jcU-aepq8aD9tZ4T2IdyzWPI43xpwNF3eQWd6zishWaHJyvXioh4tjQLDf882YIIUQszfI1azwrP1t1gec6R-lUwUOSyGE-3KzE_IBtQO2LP9tGCSpkOLg2J-zUNcXzJPuzEYtFrBIIfGPVlpoVmg/LabVIEW</a> read all channel data[5].png)<br>  </div></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2009/12/02/archived-stream-to-disk-guide-05/" data-id="cl2eni868003lrcunbnwi1d0j" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -674,7 +679,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -685,6 +690,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/08/11/20230811-labview-202023Q3-released/">20230811-labview-202023Q3-released</a>
+          </li>
         
           <li>
             <a href="/2023/02/21/20230221-labview-cross-platform-interoperate/">20230221-labview-cross-platform-interoperate</a>
@@ -700,10 +709,6 @@
         
           <li>
             <a href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/">20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/">20220427-what-is-the-relation-between-lean-6s-and-close-loop-management</a>
           </li>
         
       </ul>
