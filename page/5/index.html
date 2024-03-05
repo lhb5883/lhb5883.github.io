@@ -66,6 +66,60 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-archived-stream-to-disk-guide-06" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/12/05/archived-stream-to-disk-guide-06/" class="article-date">
+  <time datetime="2009-12-05T02:00:37.000Z" itemprop="datePublished">2009-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/12/05/archived-stream-to-disk-guide-06/">流盘备忘录(6)-程序架构</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1437" class="bvMsg">
+
+<p>并行执行</p>
+<p>采集和保存大量数据对计算机内存和CPU占用率都很高，如果使用单循环顺序结构很容易将CPU超载,所以我们有必要使用数据队列。</p>
+<p>NI的RF流盘例程：</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/12/rfstreaming4.png?w=300" alt="RF Streaming" title="RF Streaming"> </p>
+<p>一个比较合理的架构是使用采集-送入队列 同时并行取出队列-流盘，可以较为充分的利用双核CPU。</p>
+<p>完成之后再提取数据进行处理。</p>
+<p>对于使用DAQmx 9.0和LabVIEW2009平台，我们还有一个更优秀的选择：使用DAQmx TDMS2.0集成流盘</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/12/tdmsstreaming2.png?w=300" alt="TDMS Streaming" title="TDMS Streaming"> </p>
+<p>这个API的好处是效率更高编程更简单，而且占用系统资源更少，直接由DAQ DMA到硬盘。而且最高速度可达1.8GBS&#x2F;s</p>
+<p>需要注意这个VI在Log模式效率最高，但是还需要读取数据做其他处理的话要选Log and Read。</p>
+<p><img src="http://lhb5883.files.wordpress.com/2009/12/image200b3dd1c.png?w=90" alt="image" title="image"> </p>
+<p>存好的文件就是标准的TDMS2.0文件。<br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/12/05/archived-stream-to-disk-guide-06/" data-id="cl2eni868003nrcun8xbx19n8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-archived-stream-to-disk-guide-05" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2009/12/02/archived-stream-to-disk-guide-05/" class="article-date">
@@ -640,125 +694,6 @@
 
 
   
-    <article id="post-archived-labview-2009-recusion" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/08/21/archived-labview-2009-recusion/" class="article-date">
-  <time datetime="2009-08-20T20:19:03.000Z" itemprop="datePublished">2009-08-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/08/21/archived-labview-2009-recusion/">LabVIEW 2009递归研究</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div id="msgcns!866B8F96A2761BBE!1369" class="bvMsg">
-
-<p><strong>Part I ： Handson</strong></p>
-<p>各位安装LabVIEW2009的同学请跟我做以下动作:</p>
-<p>1:打开LabVIEW 2009.</p>
-<p>[![image](<a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mVYx9-iHIRHcVhl1R903uSWy0-7PkCqDKWTjNmCB171fHEVJhJmm79IjSw8KMzvYCuM6Z5NBkVimPJR-mpTTYeg90perGOqBtBghB04N9a5TZxdGEpKA43q7B8oH0ZeBmT9DvaqRKUNied1mU6jx0Hg/image_thumb">https://f2gz7g.bay.livefilestore.com/y1mVYx9-iHIRHcVhl1R903uSWy0-7PkCqDKWTjNmCB171fHEVJhJmm79IjSw8KMzvYCuM6Z5NBkVimPJR-mpTTYeg90perGOqBtBghB04N9a5TZxdGEpKA43q7B8oH0ZeBmT9DvaqRKUNied1mU6jx0Hg/image_thumb</a> 63232C87.png “image”)](<a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mJf781TsQY2lMDPJPSS-Ciy9j5BqCKwwYq4up4HegzWdSPRRoK9XmPUSm0MhcjjsGdO3yBFl5o2ZUoHcAEFlDD9Idvou3kEx52H_zGgNN4Qq5OZzivi1JsoCTqmPU_J_g-6lkWGxiRub0O8NdLW8Kxw/image2">https://f2gz7g.bay.livefilestore.com/y1mJf781TsQY2lMDPJPSS-Ciy9j5BqCKwwYq4up4HegzWdSPRRoK9XmPUSm0MhcjjsGdO3yBFl5o2ZUoHcAEFlDD9Idvou3kEx52H_zGgNN4Qq5OZzivi1JsoCTqmPU_J_g-6lkWGxiRub0O8NdLW8Kxw/image2</a> 7AFEC386.png) </p>
-<p>2:Ctrl+N</p>
-<p>[![image](<a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1m0ogiAD6Jc2Cbxy3vpUAV6MrpE_K_Dabfar0aXUtgde7OEMLg1Ikyjmx3q6DM4dkzDU_ZVa6Vytc1aN8w4VtsYpBTtJfnyzax9NbFx2nJxlG1Xl3AxOMCDjiSzLGO49ZYdrJkMuRUh4NDF1juq0lLrw/image_thumb2">https://f2gz7g.bay.livefilestore.com/y1m0ogiAD6Jc2Cbxy3vpUAV6MrpE_K_Dabfar0aXUtgde7OEMLg1Ikyjmx3q6DM4dkzDU_ZVa6Vytc1aN8w4VtsYpBTtJfnyzax9NbFx2nJxlG1Xl3AxOMCDjiSzLGO49ZYdrJkMuRUh4NDF1juq0lLrw/image_thumb2</a> 1A28A6A4.png “image”)](<a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mqUA4E2HIjdW9Gb3BZtx2IS9OvqufNm9ay5c3yoX7YyZtiExwtvNyKY6zO4IzSS5_hYD1H1mT82bnVU8GrzxlS_AzTvrzEsxkIBloXGJEeXVT03GQDPTy5-7VXeuYh0kU6fKN5Cf7WXnw8gIPYYITWQ/image8">https://f2gz7g.bay.livefilestore.com/y1mqUA4E2HIjdW9Gb3BZtx2IS9OvqufNm9ay5c3yoX7YyZtiExwtvNyKY6zO4IzSS5_hYD1H1mT82bnVU8GrzxlS_AzTvrzEsxkIBloXGJEeXVT03GQDPTy5-7VXeuYh0kU6fKN5Cf7WXnw8gIPYYITWQ/image8</a> 2D5308B1.png) </p>
-<p>3:Ctrl+I,按下图配置</p>
-<p><a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mTJsXhwFua2feHrRTHHidlP8UL_niDiOlgDLqXBogknVvLwNzcQLlDPnAj9Nd9eU-slt_5e4mpgKoMsZAIswHRF6d9eH2x-0u7mCNVuzKSd2K4VyE5RYrizBHaxPc6H5YnRiUspCSTyHZolbOHjRpMw/image12.png">![image](https://f2gz7g.bay.livefilestore.com/y1mWhcbcuZQz7gwaAOLMDXl0lxrADAEmDyvRlECQD82oaX6EZrXUYRrfHsVXGO5GeLIRwcnLZvKAYu-BD54k0csbzWE7BjJ2JoQWhEkENXymMMwr49aIlhjK48h_aaq6c4M4AbE7BrVuzcnTQsPSm0VWg&#x2F;image_thumb4 796A50DA.png “image”)</a> </p>
-<p>4:Ctrl+E,选择程序框图,将图标拖到程序框图</p>
-<p><a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mtg6ZXjelXoHmXA-xYApe6akbTKVKdtTBH_quMiSzKJndfpVbuYu7gLL-Sam_hY8rH9Icrm244_Qaw6dPLAScQj7ZbK8kxnE1jXgiKsLsGsYokS_LVM7UnagklPGUavrq6fYUsZCsgCP_K5VLYnHjqA/image16.png">![image](https://f2gz7g.bay.livefilestore.com/y1mcDpF6XgX1ChPJouSMEIE3qw8z_IizPqK5nXIwFlwPTl6ctx5Sw4BOgOf6XBGnJ66dpW_iJwhD3q6fWGya3VDTf5jr2lAylB_2U88qUcEnbUvEFn6OVw03NftdN2c39p1nxqkamVlrhq0EH9BIeRwEQ&#x2F;image_thumb6 708CFF2E.png “image”)</a> </p>
-<p>5:Ctrl+R，然后稍等5分钟：</p>
-<p><a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1m1yQuFE2PPchn6j3vH06VfbQjUhxybHx40VJLiaJvTh8Ug5ceO30uH-JkY3AW8fKT9SRvDTHf1WBG8f5DHqPiznrj_6UOcC3v6znY_IXbenCqaFABGdCOxuYloaJmHHVJIGZuG2CU3DqB4aC0LdfK4A/image23.png"><img src="https://f2gz7g.bay.livefilestore.com/y1mTROt_oCMYrqvSPJ04o_93I-BcT6v-wjgCSDCnM2r6e99wb8w2-XPcgd7vl2bYbHxGH8iHmbm6lA-3n86m8LBhbvZdsfTObYKgeBqQVIeSACqPrq_vyUkRFBWol7Q7nG1F97-kUeP9s4nd3XNOmDj-g/image_thumb9.png" alt="image" title="image"></a> </p>
-<p>恭喜你编写了第一个递归VI并且让他挂掉了。</p>
-<p>** Part II ： Basic I**</p>
-<p>好,我们来玩点实在的，先看看LabVIEW 的例程：</p>
-<p><a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mvWEYPjzRXVMmpiuO4xUqrOXFHdNFe0v_y1tVO63ZJGZWgSxL7H_y9eUjrF71FHSZPW7h5_NkO6Ncsz_VXhrbaIIVDLG6mFk6J8DKUHii9Hagg4fAAsx6O6huAsx2nLXGUVP7Pr2DTY6CDSwbboXFaw/image6.png"><img src="https://f2gz7g.bay.livefilestore.com/y1mm8KaiiUP0iV4jeZuGcGwDgHYgJPz8icKzsio12LxgM3wMzboQT03e5_5hSjVTQid9D00wpjamNWPQrSvLu67so_5EEkB_loAoqARIAbEZnlypl43vNLYAwX-ejCOE3_3RK3Ts2sFerIEN5_5dA-O0g/image_thumb2[1].png" alt="image" title="image"></a> </p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/08/demorecursion5.png?w=300" alt="Demo Recursion" title="Demo Recursion"> </p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/08/recursion5.png?w=300" alt="Recursion" title="Recursion"> </p>
-<p>在LabVIEW以前的版本只有类才能使用递归，不过现在已经比较成熟，普通的VI也可以递归了。</p>
-<p>注意事项正如图中注释，我就不多废话。</p>
-<p><strong>Part III ： Basic I</strong></p>
-<p>为了更详细的演示递归，我们请出教科书里的经典例程汉诺塔。</p>
-<p>首先附赠一个汉诺塔小游戏：</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/08/image5b105d.png?w=300" alt="image" title="image"> </p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/08/hanoitower5b55d.png?w=300" alt="hanoi tower" title="hanoi tower"> </p>
-<p>附赠小游戏汉诺塔下载：<br>  <div style="display:inline;float:none;margin:0;padding:0;"><div><a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1merIkYDIpelIzeY2GYQAQKA_dg4i8FbfdK8GaKiGoTUnlLXvcUNsixVC_kF4eKje1hkTltCHlbr3URvf3IbJRprYA5K2m3ioq8YP-5kcvqgqDIuJh4SpxX6Gu2Y6io3-54vvTfhsDJz7IiAT174ZuLg/hanoi.tower.7z">hanoi tower.7z</a></div></div>（LabVIEW2009）  </p>
-  <div style="display:inline;float:none;margin:0;padding:0;"><pre style="background-color:#FFFFFF;white-space:pre-wrap;word-wrap:break-word;overflow:auto;"><span style="color:#000000;">#include </span><span style="color:#000000;">&lt;</span><span style="color:#000000;">stdio.h</span><span style="color:#000000;">&gt;</span><span style="color:#000000;">
-</span><span style="color:#0000FF;">void</span><span style="color:#000000;"> hano(</span><span style="color:#0000FF;">int</span><span style="color:#000000;"> n,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> a,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> b,</span><span style="color:#0000FF;">char</span><span style="color:#000000;"> c)
-&#123;
-    </span><span style="color:#0000FF;">if</span><span style="color:#000000;">(n</span><span style="color:#000000;">==</span><span style="color:#800080;">1</span><span style="color:#000000;">) 
-        printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">t将%d个盘片从%c移动到%cn</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,n,a,c);
-    </span><span style="color:#0000FF;">else</span><span style="color:#000000;"> &#123;
-        hano(n</span><span style="color:#000000;">-</span><span style="color:#800080;">1</span><span style="color:#000000;">,a,c,b);
-        printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">t将第%d个盘片从%c移动到%cn</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,n,a,c);
-        hano(n</span><span style="color:#000000;">-</span><span style="color:#800080;">1</span><span style="color:#000000;">,b,a,c);
-    &#125;
-&#125;
-main()
-&#123;
-    </span><span style="color:#0000FF;">int</span><span style="color:#000000;"> n;
-    printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">输入将要移动多少个盘子n:</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">);
-    scanf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">%d</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">,</span><span style="color:#000000;">&amp;</span><span style="color:#000000;">n);
-    printf(</span><span style="color:#800000;">&quot;</span><span style="color:#800000;">递归结果：n</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">);
-    hano(n,</span><span style="color:#800000;">'</span><span style="color:#800000;">x</span><span style="color:#800000;">'</span><span style="color:#000000;">,</span><span style="color:#800000;">'</span><span style="color:#800000;">y</span><span style="color:#800000;">'</span><span style="color:#000000;">,</span><span style="color:#800000;">'</span><span style="color:#800000;">z</span><span style="color:#800000;">'</span><span style="color:#000000;">);
-&#125; </span></pre></div>
-
-<p>然后我们来看看LabVIEW里面如何实现这个算法：</p>
-<p>![auto hanoi tower](<a target="_blank" rel="noopener" href="https://f2gz7g.bay.livefilestore.com/y1mprygHzelJggiWKEkuwsSFY4M5mNbiguBIY5D7W2O9OD5HWZEsrxZuv2G5dv0Xm0gKLPXG60Tm1TqkTvBTIdvpxXoYjKlQG6JepC8a0f9Q4pOsO7iWMu1mKv7QYUrD0oWkuV2bYUM7tVMWd4Y0Wtbnw/auto">https://f2gz7g.bay.livefilestore.com/y1mprygHzelJggiWKEkuwsSFY4M5mNbiguBIY5D7W2O9OD5HWZEsrxZuv2G5dv0Xm0gKLPXG60Tm1TqkTvBTIdvpxXoYjKlQG6JepC8a0f9Q4pOsO7iWMu1mKv7QYUrD0oWkuV2bYUM7tVMWd4Y0Wtbnw/auto</a> hanoi tower[2].png “auto hanoi tower”) </p>
-<p>主程序调用算法，然后演示步骤。</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/08/autohanoitowerrecursion5b25d.png?w=300" alt="auto hanoi tower recursion" title="auto hanoi tower recursion"> </p>
-<p>递归调用算法。</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/08/quitrecursion5b25d.png?w=300" alt="Quit Recursion" title="Quit Recursion"> </p>
-<p>当然不要忘记设置退出递归的条件。</p>
-<p>源代码下载</p>
-<div style="display:inline;float:none;margin:0;padding:0;"><div>[auto hanoi tower demo.7z](https://f2gz7g.bay.livefilestore.com/y1mzRAxsj5doJkMoW9WmdSPEQ3iq-X2OaTxJbPM4puKlPm79rh8T6O4U2h3pG8ZBzN8D6gzvsqrP-Sga8PVoRgSpxoLS5mprGxbuzJ3iO-ta5ZzyiZVb0tZ8eG5p_fnTbMme4M5-aBWVFHDog-XemQRKg/auto.hanoi.tower.demo.7z)</div></div>（LabVIEW2009）
-
-<p><strong>Part IV ： Advance I</strong></p>
-<p>到底递归有什么用呢？我们来看一个实用一点的工具：VI图标提取器</p>
-<p><img src="https://f2gz7g.bay.livefilestore.com/y1mthsEtKyirJ5UgEwqu1Pd_SHiauSyudG9LPT5gSFTKp2tj6WRPWmHr9vA2gFltVAbHriMUMAvKkkGATycCxvYG5XOLYLV3PVxcx6vxw_9xqv0B3IZsOa4bdHZnp9aCZerIg1khZ9lhQeoZnevNjoU-Q/image[13].png" alt="image" title="image"> </p>
-<p>主程序：</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/08/outputviicon5b25d.png?w=203" alt="output vi icon" title="output vi icon"> </p>
-<p>递归代码</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/08/enumviicon5b25d.png?w=300" alt="enum vi icon" title="enum vi icon"> </p>
-<p>源目录</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/08/image5b195d37974858.png?w=300" alt="image" title="image"> </p>
-<p>输出目录</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/08/image5b165d72d9c6a2.png?w=300" alt="image" title="image"> </p>
-<p><strong>Part V ： Advance II</strong></p>
-<p>另外程序里附赠了一个利用LabVIEW自带的枚举函数写的同功能VI，大家可以看看，这个是可以枚举llb的。</p>
-<p><img src="http://lhb5883.files.wordpress.com/2009/08/labviewrecusionpath5b25d.png?w=300" alt="labview recusion path" title="labview recusion path"> </p>
-<div style="display:inline;float:none;margin:0;padding:0;"><div>[Recursion VI  Icon.7z](https://f2gz7g.bay.livefilestore.com/y1mnRGuf_j3Gb5TpKVjOD5CxZ8UBELgZPqY3gZOVgWHl5DBflI0ZjbDuo1EUl-risW3uaQ7wgUlVRHJIDQ_ypyOhRQddP40jPnRG5uEJ1q_4sGMc7lSHn84388p379VGkZgLTFRvZ--1OjwUlAVXTMCtA/Recursion.VI..Icon.7z)</div></div>
-
-<p>最后总结一下递归要注意的事项：</p>
-<p><font color="#ff0000"><strong>1：真的有必要用递归么？</strong></font></p>
-<p><font color="#ff0000"><strong>2：你的程序能否正常退出递归？</strong></font></p>
-<p><font color="#ff0000"><strong>3：递归的过程是无法直接调试的，有没有好的办法保证VI按照我们的预期执行？</strong></font></p>
-<p>如果这三个问题都能保证，恭喜你，你可以使用递归来提高你程序的效率了。<br>  </div></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2009/08/21/archived-labview-2009-recusion/" data-id="cl2eni85s001ercun8f140jo8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -803,7 +738,7 @@ main()
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -814,6 +749,10 @@ main()
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/05/20240305-labview-2024q1-released/">20240305-labview-2024q1-released</a>
+          </li>
         
           <li>
             <a href="/2023/08/11/20230811-labview-202023Q3-released/">20230811-labview-202023Q3-released</a>
@@ -831,10 +770,6 @@ main()
             <a href="/2022/08/02/20220802-labview-2022-released/">20220802-labview-2022-released</a>
           </li>
         
-          <li>
-            <a href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/">20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -847,7 +782,7 @@ main()
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2023 haobo.li<br>
+      &copy; 2024 haobo.li<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

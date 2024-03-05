@@ -66,6 +66,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-20180917-use-labview-with-git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/17/20180917-use-labview-with-git/" class="article-date">
+  <time datetime="2018-09-17T02:35:22.000Z" itemprop="datePublished">2018-09-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/17/20180917-use-labview-with-git/">配置LabVIEW和TortoiseGit工作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="配置LabVIEW和TortoiseGit工作"><a href="#配置LabVIEW和TortoiseGit工作" class="headerlink" title="配置LabVIEW和TortoiseGit工作"></a>配置LabVIEW和TortoiseGit工作</h1><p>首先安装git for windows和TortoiseGit,都使用默认安装即可.</p>
+<p>主要的工作量是在于设置TortoiseGitMerge和TortoiseGitDiff</p>
+<p><img src="/./20180917-use-labview-with-git%5C1537152789409.png" alt="Config git with labview"></p>
+<p><a target="_blank" rel="noopener" href="https://ispring-cloud-45.ispringcloud.com/acc/kc75hpYxMDM3NA/s/10374-N2ZHD-doaJL-kBQpK">https://ispring-cloud-45.ispringcloud.com/acc/kc75hpYxMDM3NA/s/10374-N2ZHD-doaJL-kBQpK</a></p>
+<p><a target="_blank" rel="noopener" href="https://forums.ni.com/t5/Example-Program-Drafts/Source-Code-Control-Using-TortoiseSVN-Subversion-with-LabVIEW/ta-p/3510829">https://forums.ni.com/t5/Example-Program-Drafts/Source-Code-Control-Using-TortoiseSVN-Subversion-with-LabVIEW/ta-p/3510829</a></p>
+<p>Configuring TortoiseGit for Graphical Diff<br>​	1. Right-click in Windows Explorer to expose the TortoiseGit options<br>​	2. Mouse-over ‘TortoiseGit&gt;&gt; Settings’<br>​	3. In the list of settings on the left, select ‘Diff Viewer’,On the right side of the dialog, select ‘Advanced’<br>​	4. When the ‘Advanced diff settings’ dialog appears, select ‘Add’<br>​	5. In the dialog that appears, type .vi as the extension<br>​	6. Where it prompts you for the path to the external program, type the following: “C:\Program Files\National Instruments\Shared\LabVIEW Compare\LVCompare.exe” %mine %base -nobdcosm -nobdpos<br>​	7. Repeat this operation for the file-type .ctl<br>Configuring TortoiseGit for Graphical Merge<br>​	1. Right-click in Windows Explorer to expose the TortoiseGit options<br>​	2. Mouse-over ‘TortoiseGit&gt;&gt; Settings’<br>​	3. In the list of settings on the left, select ‘Merge Tool’ under ‘Diff Viewer’<br>​	4. On the right side of the dialog, select ‘Advanced’<br>​	5. When the ‘Advanced merge settings’ dialog appears, select ‘Add’<br>​	6. In the dialog that appears, type .vi as the extension<br>​	7. Where it prompts you for the path to the external program, type the following: “C:\Program Files\National Instruments\Shared\LabVIEW Merge\LVMerge.exe” %base %mine %theirs %merged<br>​	8. Repeat this operation for the file-type .ctl</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2018/09/17/20180917-use-labview-with-git/" data-id="cl2eni8550002rcunh5n3b0ep" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-20180525-LabVIEW2018-released" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/25/20180525-LabVIEW2018-released/" class="article-date">
@@ -598,58 +640,6 @@
 
 
   
-    <article id="post-archived-blog-to-wordpress" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2010/10/11/archived-blog-to-wordpress/" class="article-date">
-  <time datetime="2010-10-11T09:08:02.000Z" itemprop="datePublished">2010-10-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Computers-and-Internet/">Computers and Internet</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2010/10/11/archived-blog-to-wordpress/">博客升级至Wordpress</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>微软的网络战略总是变来变去，而功能更新总是极其缓慢，和其他网站竞争总是处于不利地位，终于MSN Space就要被砍掉重练，M$要玩SNS了。</p>
-<p>前前后后也用了不少blog，基本上没有什么太好的选择，国内的说倒就倒了，不倒的隐私也是个问题，国外的不是被墙就是速度不理想，终于趁着MS脑抽升级到Wordpress.com了。还好YO2原来玩过一段时间WP，上手还算简单。</p>
-<p>看见这个帖子的大家可以测试一下留言，以前MSN的space留言经常被吃掉，希望这个能好一些。速度就不报什么希望了，只希望晚一点被墙吧。</p>
-<p>顺便骂一下Windows Live Messenger 2011的开发人员，每次升级干的两件事就是UI大变+功能缩水，不知道回头是不是要把聊天的功能也砍掉。</p>
-<p>记得8.5的时候有个共享文件夹的功能，局域网共享东西还是很给力的，结果2009的时候砍掉了。</p>
-<p>然后2009搜索联系人是可以搜索昵称中间的，比如ABC 搜索BC也能出来搜索AB也能出来，结果2011果断悲剧了。</p>
-<p>还有2009包括以前的所有版本双击主界面左上角是能滚到后台的，2011果断就关闭了。以前是阴魂不散，现在突然玩消失还真是谢谢啊！</p>
-<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/10/image.png"><img src="http://lhb5883.files.wordpress.com/2010/10/image_thumb.png" alt="image" title="image"></a></p>
-<p>唯一长进的地方就是能排排坐吃果果了</p>
-<p><a target="_blank" rel="noopener" href="http://lhb5883.files.wordpress.com/2010/10/image1.png"><img src="http://lhb5883.files.wordpress.com/2010/10/image_thumb1.png" alt="image" title="image"></a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2010/10/11/archived-blog-to-wordpress/" data-id="cl2eni85i000prcun7pl3fnr1" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -694,7 +684,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -705,6 +695,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/05/20240305-labview-2024q1-released/">20240305-labview-2024q1-released</a>
+          </li>
         
           <li>
             <a href="/2023/08/11/20230811-labview-202023Q3-released/">20230811-labview-202023Q3-released</a>
@@ -722,10 +716,6 @@
             <a href="/2022/08/02/20220802-labview-2022-released/">20220802-labview-2022-released</a>
           </li>
         
-          <li>
-            <a href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/">20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -738,7 +728,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2023 haobo.li<br>
+      &copy; 2024 haobo.li<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
