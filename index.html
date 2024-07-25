@@ -66,6 +66,79 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-20240725-LabVIEW-2024q3-Released" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/07/25/20240725-LabVIEW-2024q3-Released/" class="article-date">
+  <time datetime="2024-07-25T13:29:59.000Z" itemprop="datePublished">2024-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/07/25/20240725-LabVIEW-2024q3-Released/">20240725-LabVIEW-2024q3-Released</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>LabVIEW 2024Q1发布的时候我连博客都没写，因为基本上没什么更新，不过这次的Q3更新还是要稍微提一下<br>一个是对Dot NET 8.0的试验性适配，<br>另一个是协作性改进<br>支持项目设置成保存为某一旧版本方便和旧的LabVIEW协作<br>从源代码比较VI时自动归类相似差异</p>
+<p>还有一个NI放在路线图里面的就是NIGEL，一个精调的支持LabVIEW的ChatGPT，可以解释LabVIEW代码，理论上应该也能改进代码，不过看演示还是对话式的，希望以后能做成Office Copilot那种，可以直接操作软件。<br>目前这个功能似乎还在内测，估计要一段时间才能投入公测。</p>
+<p>突然发现labVIEW for Mac在登陆M1支持ARM后不再更新了，一个Mac起家的程序脱离了Mac，只能说世事难料。</p>
+<p>LabVIEW 2024 Q3 Features and Changes</p>
+<pre><code>Updated2024-07-16
+2 minute(s) read
+    LabVIEW
+    User Manual
+</code></pre>
+<p>Released July 2024<br>Preview Feature: .NET Core (8.0) Support in LabVIEW</p>
+<p>LabVIEW 2024 Q3 provides limited support for loading and running .NET Core (8.0) assemblies on Windows, including:<br>    Enabling constructor nodes, property nodes, and invoke nodes to work with .NET Core (8.0)<br>    Supporting the following four data types:<br>        int<br>        string<br>        bool<br>        char<br>To enable .NET Core (8.0) support in LabVIEW 2024 Q3, navigate to Tools» Options, select the Preview Featurescategory, and select the Enable .NET Core (8.0) Supportcheckbox.<br>Saving All VIs in a Project for a Previous Version of LabVIEW</p>
+<p>You can use the new Save Versionoption, available in the Propertiesdialog box of properties, libraries, and classes, to configure LabVIEW to save all VIs for a previous version of LabVIEW. If a VI contains features not compatible with the designated version, LabVIEW displays a warning and saves the VI for the earliest version that supports all features in that VI.<br>Improvements to Comparing VIs</p>
+<pre><code>You can now highlight an item in the differences list or details list with a single click.
+You can use the left and right arrow keys to move between the differences list and the details list, and you can use the up and down arrow keys to move through the differences and details.
+In the Differencesdialog box, a difference or detail appears italicized if it involves only front panel or block diagram cosmetic changes.
+The diagrams can automatically scale to fit an entire difference.
+You can swap the positions of the compared VIs by selecting More commands» Swap VI Positionsin the Differencesdialog box.
+</code></pre>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/docs/en-US/bundle/labview/page/labview-2024q3-changes.html">https://www.ni.com/docs/en-US/bundle/labview/page/labview-2024q3-changes.html</a> </p>
+<p>以下SPB大包的下载地址以及RF的下载地址</p>
+<p>Offline Installer 64bit<br>Software Platform Bundle 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) d2112118119e7a7b3e7716a40a53f745	46.58 GB<br>    (SHA256) 82126e006f09f5df52a4926a613abeb49b0d89419c75f3c69123f5777c8a1dbf</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521708">https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521708</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle/24.5/offline/ni-software-platform-bundle_24.5.0.49229-0+f77_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle/24.5/offline/ni-software-platform-bundle_24.5.0.49229-0+f77_offline.iso</a></p>
+<p>Offline Installer 32bit<br>Software Platform Bundle 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) 606cd0aaaef273f2b8a71c518e458cba	47.71 GB<br>    (SHA256) d346ace3b03d72ba3ea1a94a2db8c15a9def6c69ad8171eeb958ce6e053ac958</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521709">https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521709</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86/24.5/offline/ni-software-platform-bundle-x86_24.5.0.49229-0+f77_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86/24.5/offline/ni-software-platform-bundle-x86_24.5.0.49229-0+f77_offline.iso</a></p>
+<p>Offline Installer 32bit chs<br>Software Platform Bundle 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) f14299f5750ebd7b1f414e40ad3f01d7	48 GB<br>    (SHA256) 7e5d8aeb6aeb8d91b15e7d22f9e578fafc27337bda297a4651c3a21b52921836</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521579">https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521579</a> </p>
+<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86-zh-cn/24.5/offline/ni-software-platform-bundle-x86-zh-cn_24.5.0.49229-0+f77_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86-zh-cn/24.5/offline/ni-software-platform-bundle-x86-zh-cn_24.5.0.49229-0+f77_offline.iso</a></p>
+<p>NI Linux Real-Time Offline Installation Support 2024 Q3<br>Name	Checksum	File Size<br>2024 Q3	(MD5) 96f957d942133453d3a061ad8c05379e	8.92 GB<br>    (SHA256) b662f6c459ca85dce14f5339c7359ad6b42335d498888b7851d385acad541b64</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#544209">https://www.ni.com/en/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#544209</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-24.5/24.5/offline/ni-linux-rt-offline-installation-support-24.5_24.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-24.5/24.5/offline/ni-linux-rt-offline-installation-support-24.5_24.5.0_offline.iso</a></p>
+<p>Offline Installer<br>NI-USRP 2023 Q3<br>Name	Checksum	File Size<br>2023 Q3	(MD5) fb4f7a04b7f73ac34ce7257f32ba21f6	6.67 GB<br>    (SHA256) 0f6e0f91002ca19dc5919159e0d6d5b284900160ac53137703ce2970366e60d8</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/drivers/download.ni-usrp.html#484354">https://www.ni.com/en/support/downloads/drivers/download.ni-usrp.html#484354</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-u/ni-usrp/23.5/offline/ni-usrp_23.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-u/ni-usrp/23.5/offline/ni-usrp_23.5.0_offline.iso</a></p>
+<p>Offline Installer<br>NI-RFSA 2024 Q3<br>Name	Checksum	File Size<br>2024 Q3	(MD5) 9d99c650ae063fa319314a2ae4a6c360	4.28 GB<br>    (SHA256) f4c334b0e270901b7dc72e5eaca111414989ed6209138969580d434aa4a6f62f</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/drivers/download.ni-rfsa.html#544242">https://www.ni.com/en/support/downloads/drivers/download.ni-rfsa.html#544242</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-r/ni-rfsa/24.5/offline/ni-rfsa_24.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-r/ni-rfsa/24.5/offline/ni-rfsa_24.5.0_offline.iso</a></p>
+<p>Offline Installer<br>NI-RFSG 2024 Q3<br>Name	Checksum	File Size<br>2024 Q3	(MD5) 70f2d7eb866307bc755e8ec184cd1ea0	5.16 GB<br>    (SHA256) 1906e9e4576d490c88b0b9bee27b4de7ac940a548627c111476bb019c8860e91</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/drivers/download.ni-rfsg.html#544081">https://www.ni.com/en/support/downloads/drivers/download.ni-rfsg.html#544081</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-r/ni-rfsg/24.5/offline/ni-rfsg_24.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-r/ni-rfsg/24.5/offline/ni-rfsg_24.5.0_offline.iso</a></p>
+<p>Offline Installer<br>RFmx 2024 Q3<br>Name	Checksum	File Size<br>2024 Q3	(MD5) 7a3a5d0ac52b907cb85cd7430684303e	3.76 GB<br>    (SHA256) d5d01a93695b2eb2905b2fba47797daf4041cc65f8b2e0a7b352806cd8585c00</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.rfmx.html#544241">https://www.ni.com/en/support/downloads/software-products/download.rfmx.html#544241</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-r/ni-rfmx-suite/24.5/offline/ni-rfmx-suite_24.5.0.49290-0+f138_offline.iso">https://download.ni.com/support/nipkg/products/ni-r/ni-rfmx-suite/24.5/offline/ni-rfmx-suite_24.5.0.49290-0+f138_offline.iso</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2024/07/25/20240725-LabVIEW-2024q3-Released/" data-id="clz1bg7yk0000rgun11aiav1h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-20240305-labview-2024q1-released" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2024/03/05/20240305-labview-2024q1-released/" class="article-date">
@@ -748,54 +821,6 @@
 
 
   
-    <article id="post-20210818-labview-2021-released" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/04/02/20210818-labview-2021-released/" class="article-date">
-  <time datetime="2022-04-02T02:38:50.000Z" itemprop="datePublished">2022-04-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/02/20210818-labview-2021-released/">20210818-labview-2021-released</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="LabVIEW-2021-Released"><a href="#LabVIEW-2021-Released" class="headerlink" title="LabVIEW 2021 Released"></a>LabVIEW 2021 Released</h1><p>经过上周末的NI网站维护，LabVIEW 2021终于发布。</p>
-<p>从这个版本起,LabVIEW不再支持Win7,Win8等老操作系统,最低也要是Win 10起,以下是支持的操作系统:</p>
-<p>Windows 10</p>
-<p>Windows Server 2019</p>
-<p>Windows Server 2016</p>
-<p>除此之外虽然LabVIEW还有32bit版本,但是已经不再支持32bit的OS了，也就是说只能在Win 10 64bit上安装和使用。</p>
-<p>对于今年发布Win11，NI还没有作正式声明是否支持，不过理论上来说是可以靠向下兼容支持的，但是如果微软在权限上继续收紧，也许会有未知的bug。</p>
-<p>对于LabVIEW RT 从这个版本正式去掉了Pharlap ETS支持,也就是只支持Linux RT一个系统了,不过要注意的地方是NI的硬件板卡对Linux的支持和对NI Linux RT是有区别的:</p>
-<p>Linux支持的板卡较多但可能仅有板卡驱动和C接口，没有LabVIEW接口；</p>
-<p>NI Linux RT支持的板卡较少，目前NI还在不断地移植，除了板卡驱动，还有LabVIEW支持，能够直接用LabVIEW调用板卡。</p>
-<p>例如之前NI Switch一直说在20.5加上NI Linux RT支持，但是NI一直没有发布20.5，网站上能下载到的就是20.0。</p>
-<p>此外之前LabVIEW NXG Web Module现在变成了独立软件“G​网络​开发​软件”，不再依赖NXG</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2022/04/02/20210818-labview-2021-released/" data-id="cl2eni85g000hrcun2jzm9sg3" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -840,7 +865,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -851,6 +876,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/07/25/20240725-LabVIEW-2024q3-Released/">20240725-LabVIEW-2024q3-Released</a>
+          </li>
         
           <li>
             <a href="/2024/03/05/20240305-labview-2024q1-released/">20240305-labview-2024q1-released</a>
@@ -866,10 +895,6 @@
         
           <li>
             <a href="/2022/12/10/20221210-labview-fonts-fix/">20221210-labview-fonts-fix</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/02/20220802-labview-2022-released/">20220802-labview-2022-released</a>
           </li>
         
       </ul>

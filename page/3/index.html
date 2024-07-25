@@ -66,6 +66,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-20190103-labview-2018-call-python-return-error-1671" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/03/20190103-labview-2018-call-python-return-error-1671/" class="article-date">
+  <time datetime="2019-01-03T06:12:54.000Z" itemprop="datePublished">2019-01-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/03/20190103-labview-2018-call-python-return-error-1671/">20190103-labview-2018-call-python-return-error-1671</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabVIEW调用Python返回数组时报错1671"><a href="#LabVIEW调用Python返回数组时报错1671" class="headerlink" title="LabVIEW调用Python返回数组时报错1671"></a>LabVIEW调用Python返回数组时报错1671</h1><p>最近在测试用LabVIEW和Python实现算法时的可替换性,正好LabVIEW 2018可以调用Python代码就方便了不少,可以直接替换比对.但是发现调Python时返回单个值的时候正常,返回一个数组时报错.</p>
+<p>Error 1671 occurred at Python Node in PythonNode_PyIntegral.vi</p>
+<p>Possible reason(s):</p>
+<p>LabVIEW: (Hex 0x687) There was an error in executing the specified function.</p>
+<p>Python returned the following error: &lt;class ‘SystemError’&gt;</p>
+<p>..\Objects\listobject.c:186: bad argument to internal function</p>
+<p>查了一下LabVIEW帮助,返回值应该是支持数组才对的啊?</p>
+<p>仔细研究了一下发现了一条附注:</p>
+<p>Calling Conventions</p>
+<p>This node converts integers and strings to the corresponding data types in Python, converts arrays to lists, and converts clusters to tuples.</p>
+<p>输入参数的时候有类型转换,那么是不是返回值的时候没有转换?</p>
+<p>在python里打印了一下返回值的type,是np.ndarray,于是手动转换成list,果然就可以正常工作了.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2019/01/03/20190103-labview-2018-call-python-return-error-1671/" data-id="cl2eni8560003rcun0wk5210q" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-20180917-use-labview-with-git" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/17/20180917-use-labview-with-git/" class="article-date">
@@ -585,61 +633,6 @@
 
 
   
-    <article id="post-archived-code-share-get-cpu-freq" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2010/10/14/archived-code-share-get-cpu-freq/" class="article-date">
-  <time datetime="2010-10-14T03:23:06.000Z" itemprop="datePublished">2010-10-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/LabVIEW/">LabVIEW</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2010/10/14/archived-code-share-get-cpu-freq/">[Code Share]如何用LabVIEW取得计算机主频</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>大部分Windows下程序都是使用计算机计时器计算CPU主频，（当然也可以跑个算法自己算）最基础的就是这个了：</p>
-<ul>
-<li><strong>使用Win32API取频率</strong></li>
-</ul>
-<p>好处是功能简单速度快，下面代码没做返回值处理，如果计算机没有高精度计数器（这个可能性比较小）有可能出不来频率，详细可以去看MSDN：</p>
-<p><img src="http://lhb5883.files.wordpress.com/2010/10/winapi-queryperformancefrequency.png" alt="WINAPI QueryPerformanceFrequency" title="WINAPI QueryPerformanceFrequency"></p>
-<ul>
-<li><strong>.NET&amp;#160; 利用WMI获取系统信息</strong></li>
-</ul>
-<p>这个接口是使用系统信息（C:\Windows\System32\msinfo32.exe）能拿到的信息更多，不过方法复杂，速度也慢。</p>
-<p>&amp;#160;</p>
-<p><img src="http://lhb5883.files.wordpress.com/2010/10/system-management-managementobjectsearcher.png" alt="System.Management.ManagementObjectSearcher" title="System.Management.ManagementObjectSearcher"></p>
-<p>这两个算法都在Win7 32bit，LabVIEW2009SP1下测试通过。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2010/10/14/archived-code-share-get-cpu-freq/" data-id="cl2eni85m000vrcun284bcgkr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -684,7 +677,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -695,6 +688,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/07/25/20240725-LabVIEW-2024q3-Released/">20240725-LabVIEW-2024q3-Released</a>
+          </li>
         
           <li>
             <a href="/2024/03/05/20240305-labview-2024q1-released/">20240305-labview-2024q1-released</a>
@@ -710,10 +707,6 @@
         
           <li>
             <a href="/2022/12/10/20221210-labview-fonts-fix/">20221210-labview-fonts-fix</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/02/20220802-labview-2022-released/">20220802-labview-2022-released</a>
           </li>
         
       </ul>

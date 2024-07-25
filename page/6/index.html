@@ -66,6 +66,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-archived-tips-certified-labview-developer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/08/31/archived-tips-certified-labview-developer/" class="article-date">
+  <time datetime="2009-08-30T19:30:36.000Z" itemprop="datePublished">2009-08-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/08/31/archived-tips-certified-labview-developer/">Certified LabVIEW Developer 认证小结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="msgcns!866B8F96A2761BBE!1370" class="bvMsg"> 
+
+<p>LabVIEW中级认证考试的主要目的就是考察受试者的LabVIEW编程水平,程序风格,文档注释三个方面.详细可以查看下面的文档  </p>
+<p><a href="ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf" title="ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf">ftp://ftp.ni.com/pub/devzone/tut/cld_exam_preparation_guide.pdf</a></p>
+<p>下面这个链接已经列举了一些注意事项,我再补充几条:</p>
+<p><a target="_blank" rel="noopener" href="http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry" title="http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry">http://cygnus-wei.spaces.live.com/blog/cns!CD5F4D351CB23EC!1406.entry</a></p>
+<p>1. 善于利用LabVIEW自带的模板和VI,例如定时迅捷VI,读写电子表格文件VI,状态机模板,子VI模板几个都要熟练掌握.</p>
+<p>2. 最好使用LabVIEW英文版开发环境.这样无论是模板还是控件名字都是默认英文,可以减小工作量.</p>
+<p>3. 不要忘记在状态机模板里加上错误处理.</p>
+<p>4. 写完程序一定要留调试和注释的时间.</p>
+<p>5. 尽量将状态机Case结构里的代码封装为子VI.</p>
+<p>6. 能用TypeDefine控件的尽量都用TypeDefine控件,方便程序维护.</p>
+<p>7. 不需要用户交互的前面板控件最好隐藏掉.</p>
+<p>细节: </p>
+<p>1. 框图和前面板大小:根据考试要求最好限定为1024x768,要扩展尽量水平扩展.现在显示器以宽屏居多,方便观察整个程序.</p>
+<p>2. LabVIEW配置,如果你到手的机器配置修改太多,例如字体等要改回来很麻烦.最简单的办法就是删除LabVIEW的INI文件.然后在工具-&gt;属性里取消前面板控件:显示为图标.</p>
+<p>3. 状态机里面的等待函数一定要修改,设置为1是个不错的选择.</p>
+<p>4. 使用Ctrl+鼠标拖拽扩展程序框图时一定要慎重,避免程序连线错位.<br>  </div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2009/08/31/archived-tips-certified-labview-developer/" data-id="cl2eni86b003vrcun1fxf02zi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-archived-labview-2009-recusion" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2009/08/21/archived-labview-2009-recusion/" class="article-date">
@@ -591,51 +649,6 @@ main()
 
 
   
-    <article id="post-archived-labview-simulation-module-amesim" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2008/08/06/archived-labview-simulation-module-amesim/" class="article-date">
-  <time datetime="2008-08-05T18:09:05.000Z" itemprop="datePublished">2008-08-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2008/08/06/archived-labview-simulation-module-amesim/">LabVIEW Simulation module与第三方模型（AMESim）的互联性</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div id="msgcns!866B8F96A2761BBE!1101" class="bvMsg">
-
-<p>  <p><strong>安装要求</strong> <p>LabVIEW的版本为：8.2, 8.2.1, 8.5 （当前版本为8.5）并需要安装RT（实时）和CDS（控制设计和仿真）模块。 <p>需要支持LabVIEW Cosim Interface的license.dat（由LMS公司提供，放置在D:AMESimv800licensing目录下）。 <p>需要安装Microsoft Visual C++ 6.0以上版本（英文版）。 <p>操作系统必须为为Windows。 <p><strong>许可配置</strong> <p>AMESim的许可配置及编译器的选择（微软VC++编译器） <p>实时目标机许可配置： <p>将rttargetslicenses.h 文件（由LMS提供）放置于D:AMESimv800interfaceslabview目录下即可。 <p><strong>AMESim模型准备</strong> <p>1.新建一个AMESim模型，并创建接口如图所示： <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1po3tof4rFI5_mWWD5E8M6kNu-6x0rA38mpkznU7925hMUJSuHsHqFB5h6LloOQ_UQ?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pe4_ATVC0vfwOb-n8xzrOekFU91zrWu-iG_iCR0e8BTzIJINyhFP06kXOZH4Txlne_QqTe8nG4QY?PARTNER=WRITER" alt="clip_image002"></a> <p>然后，在接口对话框中的‘Type of Interface’下拉菜单中选择LabVIEW Simulation Module，设置input和output的个数，并逐一对每个input和output进行定义： <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1p9im7NkRoNrK7ojRpsQXLszygmKbC9kCE92qjfitskofSkEa17e-a9BjMbzH-VdfEKyW2LPC-mZk?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pEgQ_myF7DvTPrcQywP1zkv-yXIPlOTAAkVe6PpxZCjF7_XH6g7SeHccbbmMM_lF3OKNJmicTsio?PARTNER=WRITER" alt="clip_image004"></a> <p>点击‘OK’之后就会生成LabVIEW的接口模块。 <p>2．将接口模块与AMESim模型的其余部分相连接 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1p7pomi9UCf1O2dQCiOw6wlVCvpUFiW7Yu95dUwfonDtqkO7-as8JjppxgIfLyXbfiodpJh6ovbK0?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p5U1HgNuUqW1DOjZSFI8WsqTaUTVNhVubZiB3NpcQasVc4gbTPY4xximrvEwjykWTmwrH3691j14?PARTNER=WRITER" alt="clip_image006"></a> <p>点击‘parameter mode’（参数模式），AMESim会用VC编译器编译模型，并在工作目录下生成和模型相关的dll文件。假设该模型名为labviewAMERT.ame，则该dll文件名为labviewAMERT_.dll。 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pxNhi1Nj5dnDR42w5wVach215S4pUue7K8Tclth4hW3hhLa14Yll4Iqrvx2E9ZAoHX3PU87ssRLE?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pdFBgf1mj3FN5Fnj8sAKs5k4RQgLP6QpZH7glJf96ftnQupVH40_Wu7GOW3ZGUoOUnExIfQx73Os?PARTNER=WRITER" alt="clip_image008"></a> <p>这个dll文件可通过LabVIEW的External Model Interface模块加载到LabVIEW中，用于支持Windows环境下与LabVIEW的非实时偶合仿真。 <p><strong>准备LabVIEW 仿真VI</strong> <p>LabVIEW 环境配置：安装LabVIEW8.5和RealTime（实时）、Control Design and Simulation（控制设计仿真）模块，安装完成后应如下图所示： <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pQfuVKbeNuT5Bdjass2x17AwaKmcA578tbJHgtnt5kC6GW5tCbyLCOw10koF9dw0Djc-01PjG7IY?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p_BbXluwbeWGsZ8KJbGaMJaYh2Sn4OoYAf3-yT-3xL9KhXREgqGUeeSMdjB8JPSnKn54L9JabtmQ?PARTNER=WRITER" alt="clip_image010"></a> <p>找到并起动与LabVIEW的插件Simulation Module中的External Model Interface相关的模板vi。在版本8.5中，该例子为bouncingball.vi，位于C:Program FilesNational InstrumentsLabVIEW 8.5examplessimulationExternal Model InterfaceBouncingBall目录下， <p>注意： 要选择’indirect feedthough’的那个，而不是’direct feedthrough’的那个，否则无法正常运行。 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pkc49hweQmYJzbMeGS_C-eM_yG7BZKpU9k5Cfhce1Soy85qTfU6p2A7UFy48NLexoihA0I5s_ScA?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p3X7x4MTqwfSgL7VZsMWWtYq0g2XeJJZpkAo5jgEYZQb4yh3wvilTfx0PvldxdkeRTPWtrr4iaBM?PARTNER=WRITER" alt="clip_image012"></a> <p>根据模型的具体细节配置External Model Interface Node <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pAwYhbUgksRjByNHe49eD_iawqEzuMNJwdWGGzzKSbmfloX1Ja56cdhVkv5DL4FTWP10M0JvIjMI?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p4vcULDORJq8YU6JEtYKSi6rSSRjrZCSK3vjGUIqhdHmghxQTJds1H6C4ioitmwNc-KFINCOYQI8?PARTNER=WRITER" alt="clip_image014"></a> <p>的各个端口，主要包括输入<a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pX9onthMhUodW9OtcKXbwcqaHqwBRWJFK4_ZAEkZPmYjG0wtg87-l-Lqmtwm8q-ToEIi0S2X5PyQ?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p2uVSxCZdgnkpItXGTB9buPjqyu1RYdV77FmzqoHxMhVGnU1u_nIf25DuBtgd2V2delZWoLRx-7U?PARTNER=WRITER" alt="clip_image016"></a>输出<a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pmlDCQ58l1LGp2ZMsSwO3An-I9xGv8vwcTPkil8YrCldBDKm-PGvE5Y9LICkF0vDSn8EicwURuUs?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pbzMaWMsAzAY2Rlw1qa2_o5BlErjJuQoF2ThI8RzwJYS-yJyHlN9YSGTEu-Hje5ByJIxN8lBZZ1A?PARTNER=WRITER" alt="clip_image018"></a>端的配置， <p>指定AMESim生成的dll文件<a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1p-Xelmp5jhqkImJmq2PEi3_ralqJiKj9fDLWyCTG4oT0554W5ElDO0ynQl6I0pUnM8y-sQSu3eUU?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pobV1rPY4wIpWZWrMTZoueAZfWa79cPl29iQsnfSbflbfFwBkmySIYxQGpX1f9aMVVcZm8cZq0Bg?PARTNER=WRITER" alt="clip_image020"></a>。 <p>设置后得到完整的vi，及虚拟控制面板： <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1psDwgSaWlGIcmkqSAffhFL9PeCVwz8Ua0lpb-11HObHSQFCVWXiT8LLwy2whM-PBntmUgQIePLy8?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pnTlbfpiLipCWrKzmAjMX0WknenWKj7iHqz1xrpGXkNOdoVTfnbOYkLIxvuti4mrpYf7tZHdHrMU?PARTNER=WRITER" alt="clip_image022"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pqkklFy5C570FgPSrQUiOioIA9rg41vOL64R03Va2a3CLxXdXtMtv1pxOyO5cK4VU?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pBL5D-0xl4nYJalPnjTqRPMpdTu9X4Jz2qDd0poUhgjDwWHRRoLPCusHgeJf-fxxaiL94TcKG6qA?PARTNER=WRITER" alt="clip_image024"></a> <p>保存并关闭LabVIEW，在AMESim中重写文件，强制编译（确保被调用的dll文件能够反映模型的当前设置）并从AMESim中启动LabVIEW VI。 <p>注意：AMESim要处于参数模式下 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pqGeG4f-vnYjJKRgzqqPFZFj6H7q-Gtgv7Z7_nH7SXY2b55h6jDZBtOIRuERi85AVWKh5Iz6Zbe0?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pBdiRghfHV3ZlRKoYmvtQjNK0rbdA9XMWQN-ZSiaKdsnfiQsVqv-OZmzI8tBFLO7G3_hCilx_3LE?PARTNER=WRITER" alt="clip_image026"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pQ_3tS6awFFFSbTYEoBea1czuTG30zy_expMrP4woUE6rwgn91pcbdrkQnLmYMkT5EFXBLnI0ozo?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1poizNdLARcvkgjxFbxFG7vUxFzHbVCTMcKefnQ71-0A66KmFBLfTYv_ZnvJgUjiEgNYtVSysYSMA?PARTNER=WRITER" alt="clip_image028"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1p1dFuXXtcxQz4YrEaQK3qsA-tcFHy0F1_sR5VR2DLMJviRPBJAS_RE78Edfo2gzr89psSXBF6swI?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p_Ywr0lFNau_KyGAuhhC4-nGK13Mk2APzmZqEKeteCE0HNTvJtm5-b1-yMzcqF8aEBZxssaZ0dJs?PARTNER=WRITER" alt="clip_image030"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pPF6XLHJIY-hXXMslsb97CSNWl-1wxLwQMl8kdM7Gaet3IBXnKsqJicw58EAE8MtXV9k8F516joo?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pFqyNTzdQHS2PHbpBAbMZDtVvD6vrQ5cg4Bnn3O3FtAOoyLrMCGtPiitbKOe8-Ys8gnef5sj5OOY?PARTNER=WRITER" alt="clip_image032"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pMDSNp5IfNEsKs2CWI6aubS_Hglx7idFT-gnUXVfBnHPoXNjYZhkK92B4YL-LrRSCoOIe5llHMDk?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pJc88Dn-0d-HRSmgObjWjig3YOZ0ERf64ES5_CXjMXQW9avNL75E9t8UYKo3Zi76LhHuVQ4TmxTU?PARTNER=WRITER" alt="clip_image034"></a> <p>在虚拟控制面板中点击‘运行’，即可实现软件在环（Software-in-the-loop），即随意操作输入控制信号，可以看到输出响应的变化，该响应来自于AMESim生成的dll被调用后得到的结果（这个dll文件包含了物理模型的数学方程） <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pM8a38VY1XjHSJQ2XP9rZUjp1kejHK6w6IiP5h9BGMYD-y6c-_zG6MnMxOqmU4ms9XeBNiWGJjHw?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pMPPXajd04rLugrK734k8boOjJ14SNJjVlGC7L-LeOfSKVtbI4XmAQY4w1AhXAnG9cCVUl6xjGT4?PARTNER=WRITER" alt="clip_image036"></a> <p><strong>生成目标机需要的实时dll文件</strong> <p>当前四步正常完成后，即可在AMESim界面下生成目标机所需要的实时dll文件。 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pwiF5d_DB492-_Wbj5C9UI3zI336qjeolaOkaWTSPO3OxTYJ4N5oN48EAJX_lQ1ydtNppeKwe9RE?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pXUvPnakbZxhZ6eeVDoZzwZGQyIbbRIe8Ew-9KwFpvCYLi_6gZUESnuRjpO1nTpsW511D_B9hfSg?PARTNER=WRITER" alt="clip_image038"></a> <p>注意：实时平台的选择要选’LabVIEW SimModule x86:obj’，点击generate。</p>
-<p> <a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1p_h1CWcvJ2ROV5A16Rvkd7V9VdLamoUPVzXCVmzxa0ZWz7ekEKqZhQzyBOkYYF0LyqdIY8-hvFYs?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p2AMGuMw8HMqVzqJcQRWSQeLAeVVLebamrL20S0Pzg_BXuxMRPo3rNNfSPUS6BrIrCj1BB-rtV_I?PARTNER=WRITER" alt="clip_image040"></a></p>
-<p>此时，在工作目录下面，就会生成一个目标机所需要的实时dll文件。假设你的AMESim模型名为labviewAMERT.ame，则该dll文件名即为labviewAMERT.dll（不带下划线_）。 <p>注意：在目标加载的过程中不要关闭AMESim，并要保证其处于run模式下，等到上传dll文件完毕后再关闭。 <p><strong>在LabVIEW vi中加载实时的dll文件并生成实时目标代码</strong> <p>上传DLL：打开MAX，选择目标机——右键——文件传输，将labviewAMERT.dll上传到&#x2F;ni-rt&#x2F;startup&#x2F;目录下。 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pK-7Wwa6lBGWZJswpF3wIU2DqfdlOmJJ38HA_CmkPF-srNC_ImgZ0Z6290Thk_jTzslxbjcYtH9E?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1prbrzN7It5PZPhuc4UX6P2XWXNLKIo9iA0CeXBeqUWoRcb5b9VgTVhprs0fia3vnpqT1rs5VxLv8?PARTNER=WRITER" alt="clip_image042"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pncfRoOfWAfzj9Bo-CmOick40ejQwrrs0j6h9kZfnT5QNmIjsYKirIyNNPA09K3WKUi_trQjX8ws?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p9ZyDfMK1NsS-i0zFNmRFUfN3RVvhEmtzdDaE0f_rqFDs98JO3zGMux7pfqFPMgFbFLJy44rSL8k?PARTNER=WRITER" alt="clip_image044"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pFa6HlBdJxgjD1vej_t80vE8JiJeLUSdPqkse08VshOFUVsIpv4WKmG4-TlrgMFgp4GffvaYHVCI?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pFtaMuNPX4qXxaSADrq8nXGj0cqBYPMBEOYzqzthEmebTvdoEVlzK7fk5HSiWOqhUP7hcCiy5h7I?PARTNER=WRITER" alt="clip_image046"></a> <p>在LabVIEW中定义目标机，并将要生成实时代码的vi及dll文件拖放到该目标机的项目下 <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pGs6wXen0-rkkmhEVhXLqRMgQmZz3Lcd1UueOTyzoo4r3APW-NTfLODLAedJq5DkCbQQ0C0sAulA?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1p7_zhFF1DCos4hwKy3-pag7hcW_7rDf7787dWAH_9a8_DZg0UuYSZTLjVme-ip25pDH9c-1_kj0U?PARTNER=WRITER" alt="clip_image048"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1peVvefd9XwGBJfX1D7pK2rL0rqm_mR9h7kO0aHufSChjiJO_qBgTyBOyMq9tjRKmOfNNPgzFi6WU?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pBQcRcxNyWqeDJVt6XrwUdcbXRC1PkgJGtaqXFEdl52ckn62IQA8Jji6slt3SJlia8bVNzx4tXA4?PARTNER=WRITER" alt="clip_image050"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pKzFz5UNf-W_WmSx-1TMLe0fcmVczutAhOQYCCKiu1X8vd_QcApUQY2Tvk0Ch-77cXCMmQRJaym4?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pR_ReflRgWYBiuqfGcDpCWyW7nQb54tTwPGlyGbpHkv1g7ep3RCGAK142IEYDOZ0TkFNiU4ZyPyU?PARTNER=WRITER" alt="clip_image052"></a> <p>上图为对应的vi程序框图，上上图为程序界面。 <p>点击运行即可进行实时仿真。 <p><strong>发布RT程序</strong> <p>其操作如下：右键点击目标机project下的Build Specification，选择‘Create new real-time application’，并作如下设置： <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1punwzYsuELPRbi3wwgdZF5a96sC0QXaghgkUtgfgSGfp1gJnxEzNZT4PontgAcbmldpzF-Xk9ogs?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pjEafPH8VSJ3t1pUoZRYFieftI1cI5c866SrhSxVntu6LRq40BMdB_i05q1CkwWH_ff2BbYJrHsE?PARTNER=WRITER" alt="clip_image054"></a> <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pmsTngwCw4BUQSQRbkaCG0Rouk6LxjvG4bpUEtIknBEd2uUN6oCzxXgPNlXhnjes7LkagRTR9_xI?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pP-o2KKfCDqxrbJgvC4gfMq3I6o1jH5H_eKiWsvBa36IelMWEoOdKTHh2BrfYYXC-X_VnL7icHXE?PARTNER=WRITER" alt="clip_image056"></a> <p>点击Build <p><a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1pLB_TMfsmYRXtLtPKeVFLy7AcwUT9zVcxH4Yl0HA06zUPfvhsUoI9Vs6jUwUEv6fhiZga1M4c-c8?PARTNER=WRITER"><img src="http://byfiles.storage.msn.com/y1pDUmz2wqzrrRDlsafp7qCUO7n5rXDATdhkvcV5PfO-R-DqfGj38cufN2BF1qQDa_R6H0r8xG_vAA?PARTNER=WRITER" alt="clip_image058"></a> <p>通过右键点击My Real-time application，选择Deploy，即可将代码导入到目标机上。 <p>[<img src="http://byfiles.storage.msn.com/y1pJ3JMrJNCiQ0rkR37fCXW0bDLY8Mo0bRfE5ZKDVY6y2eSziqKU7V7VKI_u0Xt_EEZFDkOIAeJ9UQ?PARTNER=WRITER" alt="clip_image048[1]">](<a target="_blank" rel="noopener" href="http://byfiles.storage.msn.com/y1p_D3SqJR9TR3TTG8NyHNAFegWkwhCHAWYLfGVG7OOyGZ1IjC6OPpK53bFmvaxhs0nLfsJnUyXxt0?PARTNER=WRITER">http://byfiles.storage.msn.com/y1p_D3SqJR9TR3TTG8NyHNAFegWkwhCHAWYLfGVG7OOyGZ1IjC6OPpK53bFmvaxhs0nLfsJnUyXxt0?PARTNER=WRITER</a>) <p>最后，即可在虚拟控制面板中运行并控制目标了。</p>
-</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></div>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://haobo.li/2008/08/06/archived-labview-simulation-module-amesim/" data-id="cl2eni8600029rcundr5x2fet" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -680,7 +693,7 @@ main()
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
     </div>
   </div>
 
@@ -691,6 +704,10 @@ main()
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/07/25/20240725-LabVIEW-2024q3-Released/">20240725-LabVIEW-2024q3-Released</a>
+          </li>
         
           <li>
             <a href="/2024/03/05/20240305-labview-2024q1-released/">20240305-labview-2024q1-released</a>
@@ -706,10 +723,6 @@ main()
         
           <li>
             <a href="/2022/12/10/20221210-labview-fonts-fix/">20221210-labview-fonts-fix</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/02/20220802-labview-2022-released/">20220802-labview-2022-released</a>
           </li>
         
       </ul>

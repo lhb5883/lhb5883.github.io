@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>20240725-LabVIEW-2024q3-Released | haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LabVIEW 2024Q1发布的时候我连博客都没写，因为基本上没什么更新，不过这次的Q3更新还是要稍微提一下一个是对Dot NET 8.0的试验性适配，另一个是协作性改进支持项目设置成保存为某一旧版本方便和旧的LabVIEW协作从源代码比较VI时自动归类相似差异 还有一个NI放在路线图里面的就是NIGEL，一个精调的支持LabVIEW的ChatGPT，可以解释LabVIEW代码，理论上应该也能改">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20240725-LabVIEW-2024q3-Released">
+<meta property="og:url" content="http://haobo.li/2024/07/25/20240725-LabVIEW-2024q3-Released/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="LabVIEW 2024Q1发布的时候我连博客都没写，因为基本上没什么更新，不过这次的Q3更新还是要稍微提一下一个是对Dot NET 8.0的试验性适配，另一个是协作性改进支持项目设置成保存为某一旧版本方便和旧的LabVIEW协作从源代码比较VI时自动归类相似差异 还有一个NI放在路线图里面的就是NIGEL，一个精调的支持LabVIEW的ChatGPT，可以解释LabVIEW代码，理论上应该也能改">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-25T13:29:59.000Z">
+<meta property="article:modified_time" content="2024-07-25T13:35:15.232Z">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-20240725-LabVIEW-2024q3-Released" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/07/25/20240725-LabVIEW-2024q3-Released/" class="article-date">
+  <time datetime="2024-07-25T13:29:59.000Z" itemprop="datePublished">2024-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      20240725-LabVIEW-2024q3-Released
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>LabVIEW 2024Q1发布的时候我连博客都没写，因为基本上没什么更新，不过这次的Q3更新还是要稍微提一下<br>一个是对Dot NET 8.0的试验性适配，<br>另一个是协作性改进<br>支持项目设置成保存为某一旧版本方便和旧的LabVIEW协作<br>从源代码比较VI时自动归类相似差异</p>
+<p>还有一个NI放在路线图里面的就是NIGEL，一个精调的支持LabVIEW的ChatGPT，可以解释LabVIEW代码，理论上应该也能改进代码，不过看演示还是对话式的，希望以后能做成Office Copilot那种，可以直接操作软件。<br>目前这个功能似乎还在内测，估计要一段时间才能投入公测。</p>
+<p>突然发现labVIEW for Mac在登陆M1支持ARM后不再更新了，一个Mac起家的程序脱离了Mac，只能说世事难料。</p>
+<p>LabVIEW 2024 Q3 Features and Changes</p>
+<pre><code>Updated2024-07-16
+2 minute(s) read
+    LabVIEW
+    User Manual
+</code></pre>
+<p>Released July 2024<br>Preview Feature: .NET Core (8.0) Support in LabVIEW</p>
+<p>LabVIEW 2024 Q3 provides limited support for loading and running .NET Core (8.0) assemblies on Windows, including:<br>    Enabling constructor nodes, property nodes, and invoke nodes to work with .NET Core (8.0)<br>    Supporting the following four data types:<br>        int<br>        string<br>        bool<br>        char<br>To enable .NET Core (8.0) support in LabVIEW 2024 Q3, navigate to Tools» Options, select the Preview Featurescategory, and select the Enable .NET Core (8.0) Supportcheckbox.<br>Saving All VIs in a Project for a Previous Version of LabVIEW</p>
+<p>You can use the new Save Versionoption, available in the Propertiesdialog box of properties, libraries, and classes, to configure LabVIEW to save all VIs for a previous version of LabVIEW. If a VI contains features not compatible with the designated version, LabVIEW displays a warning and saves the VI for the earliest version that supports all features in that VI.<br>Improvements to Comparing VIs</p>
+<pre><code>You can now highlight an item in the differences list or details list with a single click.
+You can use the left and right arrow keys to move between the differences list and the details list, and you can use the up and down arrow keys to move through the differences and details.
+In the Differencesdialog box, a difference or detail appears italicized if it involves only front panel or block diagram cosmetic changes.
+The diagrams can automatically scale to fit an entire difference.
+You can swap the positions of the compared VIs by selecting More commands» Swap VI Positionsin the Differencesdialog box.
+</code></pre>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/docs/en-US/bundle/labview/page/labview-2024q3-changes.html">https://www.ni.com/docs/en-US/bundle/labview/page/labview-2024q3-changes.html</a> </p>
+<p>以下SPB大包的下载地址以及RF的下载地址</p>
+<p>Offline Installer 64bit<br>Software Platform Bundle 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) d2112118119e7a7b3e7716a40a53f745	46.58 GB<br>    (SHA256) 82126e006f09f5df52a4926a613abeb49b0d89419c75f3c69123f5777c8a1dbf</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521708">https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521708</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle/24.5/offline/ni-software-platform-bundle_24.5.0.49229-0+f77_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle/24.5/offline/ni-software-platform-bundle_24.5.0.49229-0+f77_offline.iso</a></p>
+<p>Offline Installer 32bit<br>Software Platform Bundle 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) 606cd0aaaef273f2b8a71c518e458cba	47.71 GB<br>    (SHA256) d346ace3b03d72ba3ea1a94a2db8c15a9def6c69ad8171eeb958ce6e053ac958</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521709">https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521709</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86/24.5/offline/ni-software-platform-bundle-x86_24.5.0.49229-0+f77_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86/24.5/offline/ni-software-platform-bundle-x86_24.5.0.49229-0+f77_offline.iso</a></p>
+<p>Offline Installer 32bit chs<br>Software Platform Bundle 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) f14299f5750ebd7b1f414e40ad3f01d7	48 GB<br>    (SHA256) 7e5d8aeb6aeb8d91b15e7d22f9e578fafc27337bda297a4651c3a21b52921836</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521579">https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521579</a> </p>
+<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86-zh-cn/24.5/offline/ni-software-platform-bundle-x86-zh-cn_24.5.0.49229-0+f77_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86-zh-cn/24.5/offline/ni-software-platform-bundle-x86-zh-cn_24.5.0.49229-0+f77_offline.iso</a></p>
+<p>NI Linux Real-Time Offline Installation Support 2024 Q3<br>Name	Checksum	File Size<br>2024 Q3	(MD5) 96f957d942133453d3a061ad8c05379e	8.92 GB<br>    (SHA256) b662f6c459ca85dce14f5339c7359ad6b42335d498888b7851d385acad541b64</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#544209">https://www.ni.com/en/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#544209</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-24.5/24.5/offline/ni-linux-rt-offline-installation-support-24.5_24.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-24.5/24.5/offline/ni-linux-rt-offline-installation-support-24.5_24.5.0_offline.iso</a></p>
+<p>Offline Installer<br>NI-USRP 2023 Q3<br>Name	Checksum	File Size<br>2023 Q3	(MD5) fb4f7a04b7f73ac34ce7257f32ba21f6	6.67 GB<br>    (SHA256) 0f6e0f91002ca19dc5919159e0d6d5b284900160ac53137703ce2970366e60d8</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/drivers/download.ni-usrp.html#484354">https://www.ni.com/en/support/downloads/drivers/download.ni-usrp.html#484354</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-u/ni-usrp/23.5/offline/ni-usrp_23.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-u/ni-usrp/23.5/offline/ni-usrp_23.5.0_offline.iso</a></p>
+<p>Offline Installer<br>NI-RFSA 2024 Q3<br>Name	Checksum	File Size<br>2024 Q3	(MD5) 9d99c650ae063fa319314a2ae4a6c360	4.28 GB<br>    (SHA256) f4c334b0e270901b7dc72e5eaca111414989ed6209138969580d434aa4a6f62f</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/drivers/download.ni-rfsa.html#544242">https://www.ni.com/en/support/downloads/drivers/download.ni-rfsa.html#544242</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-r/ni-rfsa/24.5/offline/ni-rfsa_24.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-r/ni-rfsa/24.5/offline/ni-rfsa_24.5.0_offline.iso</a></p>
+<p>Offline Installer<br>NI-RFSG 2024 Q3<br>Name	Checksum	File Size<br>2024 Q3	(MD5) 70f2d7eb866307bc755e8ec184cd1ea0	5.16 GB<br>    (SHA256) 1906e9e4576d490c88b0b9bee27b4de7ac940a548627c111476bb019c8860e91</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/drivers/download.ni-rfsg.html#544081">https://www.ni.com/en/support/downloads/drivers/download.ni-rfsg.html#544081</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-r/ni-rfsg/24.5/offline/ni-rfsg_24.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-r/ni-rfsg/24.5/offline/ni-rfsg_24.5.0_offline.iso</a></p>
+<p>Offline Installer<br>RFmx 2024 Q3<br>Name	Checksum	File Size<br>2024 Q3	(MD5) 7a3a5d0ac52b907cb85cd7430684303e	3.76 GB<br>    (SHA256) d5d01a93695b2eb2905b2fba47797daf4041cc65f8b2e0a7b352806cd8585c00</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.rfmx.html#544241">https://www.ni.com/en/support/downloads/software-products/download.rfmx.html#544241</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-r/ni-rfmx-suite/24.5/offline/ni-rfmx-suite_24.5.0.49290-0+f138_offline.iso">https://download.ni.com/support/nipkg/products/ni-r/ni-rfmx-suite/24.5/offline/ni-rfmx-suite_24.5.0.49290-0+f138_offline.iso</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2024/07/25/20240725-LabVIEW-2024q3-Released/" data-id="clz1bg7yk0000rgun11aiav1h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/05/20240305-labview-2024q1-released/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">20240305-labview-2024q1-released</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/07/25/20240725-LabVIEW-2024q3-Released/">20240725-LabVIEW-2024q3-Released</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/05/20240305-labview-2024q1-released/">20240305-labview-2024q1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/11/20230811-labview-202023Q3-released/">20230811-labview-202023Q3-released</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/21/20230221-labview-cross-platform-interoperate/">20230221-labview-cross-platform-interoperate</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/10/20221210-labview-fonts-fix/">20221210-labview-fonts-fix</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
