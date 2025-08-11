@@ -39,4 +39,8 @@ npm install hexo
 
 npm install
 
+npm install -g hexo-cli
+
 npm install hexo-deployer-git
+
+hexo -v
