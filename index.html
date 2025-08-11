@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>haobo.li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on">
+<meta property="og:type" content="website">
+<meta property="og:title" content="haobo.li">
+<meta property="og:url" content="http://haobo.li/index.html">
+<meta property="og:site_name" content="haobo.li">
+<meta property="og:description" content="A Blog about Measurement Instrument and Automation Software, LabVIEW, Python and so on">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="haobo.li">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="haobo.li" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">haobo.li</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://haobo.li"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-20250811-ai-for-3rd-party-labview-driver-warpper-generate" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025/08/11/20250811-ai-for-3rd-party-labview-driver-warpper-generate/" class="article-date">
+  <time datetime="2025-08-11T01:48:13.000Z" itemprop="datePublished">2025-08-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/08/11/20250811-ai-for-3rd-party-labview-driver-warpper-generate/">20250811-ai-for-3rd-party-labview-driver-warpper-generate</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>请阅读当前工程目录下的文件并分析其功能，生成Readme.txt.</p>
+<p>当前目录下demo.cpp和demo.h通过1394.h实现了对1394.dll的调用，演示了1394板卡的调用方法，请更新到Readme.txt</p>
+<h1 id="生成项目"><a href="#生成项目" class="headerlink" title="生成项目"></a>生成项目</h1><p>请阅读 ReadMe.txt 并理解本项目软件架构,参考demo.cpp的调用方法。生成一个封装dll的项目，以实现其他编程环境的调用，我使用的编程环境不支持结构体内的指针，请做适当的设配。</p>
+<h1 id="封装技巧"><a href="#封装技巧" class="headerlink" title="封装技巧"></a>封装技巧</h1><h2 id="内存处理技巧1"><a href="#内存处理技巧1" class="headerlink" title="内存处理技巧1"></a>内存处理技巧1</h2><p>我在使用重新封装的Fcwarpper.dll时，出现了内存损坏错误，我怀疑是没有使用正确的buf_length信息.</p>
+<p>并且调用原始APi的部分请参考以下代码，尤其是分配内存的部分。</p>
+<p>demo\fc_demo.c</p>
+<p>UINT CALLBACK FH_190_DemoStartLoop(PVOID context)</p>
+<h2 id="内存处理技巧2"><a href="#内存处理技巧2" class="headerlink" title="内存处理技巧2"></a>内存处理技巧2</h2><p>原始的API函数应该用buf_length指示(char*)buf的长度，但是我使用的语言不支持动态分配内存，我需要将该代码重构为以下两个函数，第一部分的函数调用申请足够的内存大小，并调用原始API，返回所有其他参数，对buf特殊处理，每次固定返回8192的buf大小以及有效数据长度，并有一个布尔返回参数指示数据是否返回了全部数据，如果未返回全部数据，需要使用另一个函数每次返回剩余的固定的8192缓冲区大小及有效数据长度，我的程序会如此反复调用第二个函数直到返回所有的数据。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2025/08/11/20250811-ai-for-3rd-party-labview-driver-warpper-generate/" data-id="cme6h4nje000xzcl03ujv77j3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20240725-LabVIEW-2024q3-Released" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/07/25/20240725-LabVIEW-2024q3-Released/" class="article-date">
+  <time datetime="2024-07-25T13:29:59.000Z" itemprop="datePublished">2024-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/07/25/20240725-LabVIEW-2024q3-Released/">20240725-LabVIEW-2024q3-Released</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>LabVIEW 2024Q1发布的时候我连博客都没写，因为基本上没什么更新，不过这次的Q3更新还是要稍微提一下<br>一个是对Dot NET 8.0的试验性适配，<br>另一个是协作性改进<br>支持项目设置成保存为某一旧版本方便和旧的LabVIEW协作<br>从源代码比较VI时自动归类相似差异</p>
+<p>还有一个NI放在路线图里面的就是NIGEL，一个精调的支持LabVIEW的ChatGPT，可以解释LabVIEW代码，理论上应该也能改进代码，不过看演示还是对话式的，希望以后能做成Office Copilot那种，可以直接操作软件。<br>目前这个功能似乎还在内测，估计要一段时间才能投入公测。</p>
+<p>突然发现labVIEW for Mac在登陆M1支持ARM后不再更新了，一个Mac起家的程序脱离了Mac，只能说世事难料。</p>
+<p>LabVIEW 2024 Q3 Features and Changes</p>
+<pre><code>Updated2024-07-16
+2 minute(s) read
+	LabVIEW
+	User Manual
+</code></pre>
+<p>Released July 2024<br>Preview Feature: .NET Core (8.0) Support in LabVIEW</p>
+<p>LabVIEW 2024 Q3 provides limited support for loading and running .NET Core (8.0) assemblies on Windows, including:<br>	Enabling constructor nodes, property nodes, and invoke nodes to work with .NET Core (8.0)<br>	Supporting the following four data types:<br>		int<br>		string<br>		bool<br>		char<br>To enable .NET Core (8.0) support in LabVIEW 2024 Q3, navigate to Tools» Options, select the Preview Featurescategory, and select the Enable .NET Core (8.0) Supportcheckbox.<br>Saving All VIs in a Project for a Previous Version of LabVIEW</p>
+<p>You can use the new Save Versionoption, available in the Propertiesdialog box of properties, libraries, and classes, to configure LabVIEW to save all VIs for a previous version of LabVIEW. If a VI contains features not compatible with the designated version, LabVIEW displays a warning and saves the VI for the earliest version that supports all features in that VI.<br>Improvements to Comparing VIs</p>
+<pre><code>You can now highlight an item in the differences list or details list with a single click.
+You can use the left and right arrow keys to move between the differences list and the details list, and you can use the up and down arrow keys to move through the differences and details.
+In the Differencesdialog box, a difference or detail appears italicized if it involves only front panel or block diagram cosmetic changes.
+The diagrams can automatically scale to fit an entire difference.
+You can swap the positions of the compared VIs by selecting More commands» Swap VI Positionsin the Differencesdialog box.
+</code></pre>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/docs/en-US/bundle/labview/page/labview-2024q3-changes.html">https://www.ni.com/docs/en-US/bundle/labview/page/labview-2024q3-changes.html</a> </p>
+<p>以下SPB大包的下载地址以及RF的下载地址</p>
+<p>Offline Installer 64bit<br>Software Platform Bundle 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) d2112118119e7a7b3e7716a40a53f745	46.58 GB<br>	(SHA256) 82126e006f09f5df52a4926a613abeb49b0d89419c75f3c69123f5777c8a1dbf</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521708">https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521708</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle/24.5/offline/ni-software-platform-bundle_24.5.0.49229-0+f77_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle/24.5/offline/ni-software-platform-bundle_24.5.0.49229-0+f77_offline.iso</a></p>
+<p>Offline Installer 32bit<br>Software Platform Bundle 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) 606cd0aaaef273f2b8a71c518e458cba	47.71 GB<br>	(SHA256) d346ace3b03d72ba3ea1a94a2db8c15a9def6c69ad8171eeb958ce6e053ac958</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521709">https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521709</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86/24.5/offline/ni-software-platform-bundle-x86_24.5.0.49229-0+f77_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86/24.5/offline/ni-software-platform-bundle-x86_24.5.0.49229-0+f77_offline.iso</a></p>
+<p>Offline Installer 32bit chs<br>Software Platform Bundle 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) f14299f5750ebd7b1f414e40ad3f01d7	48 GB<br>	(SHA256) 7e5d8aeb6aeb8d91b15e7d22f9e578fafc27337bda297a4651c3a21b52921836</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521579">https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521579</a> </p>
+<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86-zh-cn/24.5/offline/ni-software-platform-bundle-x86-zh-cn_24.5.0.49229-0+f77_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86-zh-cn/24.5/offline/ni-software-platform-bundle-x86-zh-cn_24.5.0.49229-0+f77_offline.iso</a></p>
+<p>NI Linux Real-Time Offline Installation Support 2024 Q3<br>Name	Checksum	File Size<br>2024 Q3	(MD5) 96f957d942133453d3a061ad8c05379e	8.92 GB<br>	(SHA256) b662f6c459ca85dce14f5339c7359ad6b42335d498888b7851d385acad541b64</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#544209">https://www.ni.com/en/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#544209</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-24.5/24.5/offline/ni-linux-rt-offline-installation-support-24.5_24.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-24.5/24.5/offline/ni-linux-rt-offline-installation-support-24.5_24.5.0_offline.iso</a></p>
+<p>Offline Installer<br>NI-USRP 2023 Q3<br>Name	Checksum	File Size<br>2023 Q3	(MD5) fb4f7a04b7f73ac34ce7257f32ba21f6	6.67 GB<br>	(SHA256) 0f6e0f91002ca19dc5919159e0d6d5b284900160ac53137703ce2970366e60d8</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/drivers/download.ni-usrp.html#484354">https://www.ni.com/en/support/downloads/drivers/download.ni-usrp.html#484354</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-u/ni-usrp/23.5/offline/ni-usrp_23.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-u/ni-usrp/23.5/offline/ni-usrp_23.5.0_offline.iso</a></p>
+<p>Offline Installer<br>NI-RFSA 2024 Q3<br>Name	Checksum	File Size<br>2024 Q3	(MD5) 9d99c650ae063fa319314a2ae4a6c360	4.28 GB<br>	(SHA256) f4c334b0e270901b7dc72e5eaca111414989ed6209138969580d434aa4a6f62f</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/drivers/download.ni-rfsa.html#544242">https://www.ni.com/en/support/downloads/drivers/download.ni-rfsa.html#544242</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-r/ni-rfsa/24.5/offline/ni-rfsa_24.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-r/ni-rfsa/24.5/offline/ni-rfsa_24.5.0_offline.iso</a></p>
+<p>Offline Installer<br>NI-RFSG 2024 Q3<br>Name	Checksum	File Size<br>2024 Q3	(MD5) 70f2d7eb866307bc755e8ec184cd1ea0	5.16 GB<br>	(SHA256) 1906e9e4576d490c88b0b9bee27b4de7ac940a548627c111476bb019c8860e91</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/drivers/download.ni-rfsg.html#544081">https://www.ni.com/en/support/downloads/drivers/download.ni-rfsg.html#544081</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-r/ni-rfsg/24.5/offline/ni-rfsg_24.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-r/ni-rfsg/24.5/offline/ni-rfsg_24.5.0_offline.iso</a></p>
+<p>Offline Installer<br>RFmx 2024 Q3<br>Name	Checksum	File Size<br>2024 Q3	(MD5) 7a3a5d0ac52b907cb85cd7430684303e	3.76 GB<br>	(SHA256) d5d01a93695b2eb2905b2fba47797daf4041cc65f8b2e0a7b352806cd8585c00</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.rfmx.html#544241">https://www.ni.com/en/support/downloads/software-products/download.rfmx.html#544241</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-r/ni-rfmx-suite/24.5/offline/ni-rfmx-suite_24.5.0.49290-0+f138_offline.iso">https://download.ni.com/support/nipkg/products/ni-r/ni-rfmx-suite/24.5/offline/ni-rfmx-suite_24.5.0.49290-0+f138_offline.iso</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2024/07/25/20240725-LabVIEW-2024q3-Released/" data-id="cme6h4nje000wzcl085vn7lhq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20240305-labview-2024q1-released" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/03/05/20240305-labview-2024q1-released/" class="article-date">
+  <time datetime="2024-03-05T11:11:55.000Z" itemprop="datePublished">2024-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/03/05/20240305-labview-2024q1-released/">20240305-labview-2024q1-released</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabVIEW-2024-Q1已发布"><a href="#LabVIEW-2024-Q1已发布" class="headerlink" title="LabVIEW 2024 Q1已发布"></a>LabVIEW 2024 Q1已发布</h1><h2 id="LabVIEW新特性"><a href="#LabVIEW新特性" class="headerlink" title="LabVIEW新特性"></a>LabVIEW新特性</h2><p>LabVIEW 2024Q1已经发布，没有什么太明显的改变，主要是增加了LVClass路径支持，可以动态载入类了。<br>除了大包，还有Linux RT和RF相关没有在大包里面可以自行下载有备无患。</p>
+<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><h3 id="64bit-Offline-Installer"><a href="#64bit-Offline-Installer" class="headerlink" title="64bit Offline Installer"></a>64bit Offline Installer</h3><p>Software Platform Bundle 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) d2112118119e7a7b3e7716a40a53f745	46.58 GB<br>	(SHA256) 82126e006f09f5df52a4926a613abeb49b0d89419c75f3c69123f5777c8a1dbf</p>
+<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521708">https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521708</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle/24.0/offline/ni-software-platform-bundle_24.0.0.49239-0+f87_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle/24.0/offline/ni-software-platform-bundle_24.0.0.49239-0+f87_offline.iso</a></p>
+<h3 id="32bit-eng-Offline-Installer"><a href="#32bit-eng-Offline-Installer" class="headerlink" title="32bit eng Offline Installer"></a>32bit eng Offline Installer</h3><p>Software Platform Bundle 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) 606cd0aaaef273f2b8a71c518e458cba	47.71 GB<br>	(SHA256) d346ace3b03d72ba3ea1a94a2db8c15a9def6c69ad8171eeb958ce6e053ac958</p>
+<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521709">https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521709</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86/24.0/offline/ni-software-platform-bundle-x86_24.0.0.49238-0+f86_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86/24.0/offline/ni-software-platform-bundle-x86_24.0.0.49238-0+f86_offline.iso</a></p>
+<h3 id="32bit-chs-Offline-Installer"><a href="#32bit-chs-Offline-Installer" class="headerlink" title="32bit chs Offline Installer"></a>32bit chs Offline Installer</h3><p>Software Platform Bundle 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) f14299f5750ebd7b1f414e40ad3f01d7	48 GB<br>	(SHA256) 7e5d8aeb6aeb8d91b15e7d22f9e578fafc27337bda297a4651c3a21b52921836</p>
+<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521579">https://www.ni.com/en/support/downloads/software-products/download.software-platform-bundle.html#521579</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86-zh-cn/24.0/offline/ni-software-platform-bundle-x86-zh-cn_24.0.0.49238-0+f86_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86-zh-cn/24.0/offline/ni-software-platform-bundle-x86-zh-cn_24.0.0.49238-0+f86_offline.iso</a></p>
+<h3 id="Offline-Installer"><a href="#Offline-Installer" class="headerlink" title="Offline Installer"></a>Offline Installer</h3><p>NI Linux Real-Time Offline Installation Support 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) 0f638edc2102f474ed7bf8d4f87787b4	8.71 GB<br>	(SHA256) 4895c78a1020b2a44272bb4bd13d3ea444bdd206a9ae62ac8083d30fd228e6fa</p>
+<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#521675">https://www.ni.com/en/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#521675</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-24.0/24.0/offline/ni-linux-rt-offline-installation-support-24.0_24.0.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-24.0/24.0/offline/ni-linux-rt-offline-installation-support-24.0_24.0.0_offline.iso</a></p>
+<h3 id="Offline-Installer-1"><a href="#Offline-Installer-1" class="headerlink" title="Offline Installer"></a>Offline Installer</h3><p>RFmx 2024 Q1<br>Name	Checksum	File Size<br>2024 Q1	(MD5) 260dcd916070a285be516766edc05bb7	2.86 GB<br>	(SHA256) 9b439f81fc108e13e90e2889828bf39d5f2b6c28dd9079c77231e22058033e01</p>
+<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/software-products/download.rfmx.html#521553">https://www.ni.com/en/support/downloads/software-products/download.rfmx.html#521553</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-r/ni-rfmx-suite/24.0/offline/ni-rfmx-suite_24.0.0.49308-0+f156_offline.iso">https://download.ni.com/support/nipkg/products/ni-r/ni-rfmx-suite/24.0/offline/ni-rfmx-suite_24.0.0.49308-0+f156_offline.iso</a></p>
+<h3 id="NI-RFSA-2024-Q1"><a href="#NI-RFSA-2024-Q1" class="headerlink" title="NI-RFSA 2024 Q1"></a>NI-RFSA 2024 Q1</h3><p>Name	Checksum	File Size<br>2024 Q1	(MD5) c1e6cda2a94fba81c6615a3f17034cb2	4.12 GB<br>	(SHA256) fccf95a10b0a6d9f50751905092397a05d44f2b1890380191f8b7983c359d0b1</p>
+<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/drivers/download.ni-rfsa.html#521697">https://www.ni.com/en/support/downloads/drivers/download.ni-rfsa.html#521697</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-r/ni-rfsa/24.0/offline/ni-rfsa_24.0.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-r/ni-rfsa/24.0/offline/ni-rfsa_24.0.0_offline.iso</a></p>
+<h3 id="NI-RFSG-2024-Q1"><a href="#NI-RFSG-2024-Q1" class="headerlink" title="NI-RFSG 2024 Q1"></a>NI-RFSG 2024 Q1</h3><p>Name	Checksum	File Size<br>2024 Q1	(MD5) 9c1c1283ff4c77f12d60feecada2a7ee	4.39 GB<br>	(SHA256) 401ad25266e775de26ad0852fc433194938013626fb3cfaff6e7cf78b071aa33</p>
+<p>From <a target="_blank" rel="noopener" href="https://www.ni.com/en/support/downloads/drivers/download.ni-rfsg.html#521569">https://www.ni.com/en/support/downloads/drivers/download.ni-rfsg.html#521569</a><br><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-r/ni-rfsg/24.0/offline/ni-rfsg_24.0.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-r/ni-rfsg/24.0/offline/ni-rfsg_24.0.0_offline.iso</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2024/03/05/20240305-labview-2024q1-released/" data-id="cme6h4nje000vzcl09o4kdofl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20230811-labview-202023Q3-released" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/08/11/20230811-labview-202023Q3-released/" class="article-date">
+  <time datetime="2023-08-11T10:34:46.000Z" itemprop="datePublished">2023-08-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/08/11/20230811-labview-202023Q3-released/">20230811-labview-202023Q3-released</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabVIEW-2023Q3新特性"><a href="#LabVIEW-2023Q3新特性" class="headerlink" title="LabVIEW 2023Q3新特性"></a>LabVIEW 2023Q3新特性</h1><p>NI发布了LabVIEW 2023Q3，主要的新特性就是以下几点<br>第一个是等了很久的程序框图支持缩放，不过对字体的处理感觉不是很好<br>第二个是正在连出的连线左键双击快速创建控件，右键弹出快捷菜单，之前从右键移到二级菜单，如今终于回归了。<br>第三个是选中快速替换。<br>第四个是高亮执行可以选择速度了，长按高亮执行按钮可以在四种速度之间选择。</p>
+<h2 id="macOS下原生支持ARM-CPU"><a href="#macOS下原生支持ARM-CPU" class="headerlink" title="macOS下原生支持ARM CPU"></a>macOS下原生支持ARM CPU</h2><p>不过这些新特性不是我最想聊的，我最感兴趣的是在Apple的macOS平台上终于原生支持M系列ARM CPU了，无需x86转译，并且驱动也已经移植了NI VISA，也可以原生支持ARM CPU了。这个时候可以畅想一下未来的Apple生产线测试设备可能是什么样的。</p>
+<p>之前查到Apple要求所有生产测试环节一定要运行在MacOS平台之上。<br>Ref<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/545108671/answer/2720242493">https://www.zhihu.com/question/545108671/answer/2720242493</a><br>LabVIEW在这方面确实会有一定的优势，毕竟1.0的时候就是诞生在Macintosh平台上，后续的LabVIEW也一直有macOS平台的对应软件。</p>
+<h2 id="首先我们回顾一下Intel-Mac时代，我们的选择有哪些？"><a href="#首先我们回顾一下Intel-Mac时代，我们的选择有哪些？" class="headerlink" title="首先我们回顾一下Intel Mac时代，我们的选择有哪些？"></a>首先我们回顾一下Intel Mac时代，我们的选择有哪些？</h2><p>对于需要硬件参与的测试设备，很重要的一点就是驱动支持，mac下主要就是DAQmx Base和NI Visa，可以使用M系列或者E系列的数据采集卡以及传统的台式仪器来开发测试系统。</p>
+<p>DAQmx base最新版本是15.0，最高支持到OS X 10.14，所以最新的刨丝器Mac Pro 2019是用不了的，老款的Mac Pro垃圾桶是没什么扩展性的，显卡都是专门定制过的，更老的Mac Pro基本上是电子古董了。</p>
+<p>用iMac或者Mac Mini的雷电接口连接NI的雷电 MXI机箱PXIe 1090就更不用想了，NI PXI Platform Service是没有OS X版的。</p>
+<p>综合下来能用USB M系列数据采集卡（DAQmx Base）+LXI的台式仪器（NI VISA）就是这个测试系统基本构成了，上位机可以选择能装OS X 10.14以下的Intel iMac或者Mac Mini，性能需求特别高的也可以选Mac Pro，不过也就是垃圾桶，不见得就比iMac强。</p>
+<p>如果稍微放松一点，允许使用双系统，那么上位机装Windows，就可以使用MXI连接PXI机箱，那么基本上所有的PXI板卡都可以选型和传统的测试设备其实区别不大。</p>
+<h2 id="如果未来Apple强行要求所有测试设备使用M1设备来开发，又有什么选择呢？"><a href="#如果未来Apple强行要求所有测试设备使用M1设备来开发，又有什么选择呢？" class="headerlink" title="如果未来Apple强行要求所有测试设备使用M1设备来开发，又有什么选择呢？"></a>如果未来Apple强行要求所有测试设备使用M1设备来开发，又有什么选择呢？</h2><p>目前来看只能使用传统的台式仪器来搭建测试系统，梦回八十年代LabVIEW刚刚诞生的年代。</p>
+<p>不过我要说不过了，台式仪器的操作系统Apple可没法限制，例如示波器的操作系统，有些是定制的Linux，有些是Windows For Embeded，那么我配一个下位机，装个WES的Windows是不是也可以擦边呢？</p>
+<p>哪怕不用Windows，就用Linux RT，开发好RTEXE之后，定一个通讯协议或者就用VI Server，在上位机的Mac上用LabVIEW开发一个测试软件似乎也是可行的？</p>
+<h2 id="稍微展望一下未来，Apple生态下的测试系统可能会是什么样的？"><a href="#稍微展望一下未来，Apple生态下的测试系统可能会是什么样的？" class="headerlink" title="稍微展望一下未来，Apple生态下的测试系统可能会是什么样的？"></a>稍微展望一下未来，Apple生态下的测试系统可能会是什么样的？</h2><p>展望未来，一种可能是NI出了适配macOS的DAQmx，这样就可以在M2的Mac Pro上使用PCIe的数采卡了，不过以NI停产绝大部分非PXIe的趋势，应该是不太可能了。</p>
+<p>另一种是NI的驱动完善gRPC接口，LabVIEW通过gRPC接口从M系列ARM CPU的MAC上远程调用Linux RT下位机的板卡，这样板卡的选型也能更丰富一些</p>
+<h2 id="小小的总结"><a href="#小小的总结" class="headerlink" title="小小的总结"></a>小小的总结</h2><p>其实从操作系统的演进历史来看，硬件驱动的开发也是越来越复杂，并且限制越来越多的，DOS时代只要有中断和内存映射的地址就可以直接操作硬件，NT时代就有了WDDM，区分了Kernel驱动和User驱动，Vista时代更是有了驱动强制签名认证，Windows 10有了UWP驱动，系统封装的越来越完善。对于OS X也是类似，Kext内核扩展驱动也是增加了签名认证，并且现在系统有了SIP系统完整性保护System Integrity Protection。</p>
+<p>未来如何达成系统方便性和安全性以及扩展性的平衡，只能等待厂家，开发商，用户三者达成新的博弈平衡了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2023/08/11/20230811-labview-202023Q3-released/" data-id="cme6h4njd000uzcl0cp8g1dea" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20230221-labview-cross-platform-interoperate" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/02/21/20230221-labview-cross-platform-interoperate/" class="article-date">
+  <time datetime="2023-02-21T04:35:21.000Z" itemprop="datePublished">2023-02-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/21/20230221-labview-cross-platform-interoperate/">20230221-labview-cross-platform-interoperate</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Windows和Linux下LabVIEW的VI互操作"><a href="#Windows和Linux下LabVIEW的VI互操作" class="headerlink" title="Windows和Linux下LabVIEW的VI互操作"></a>Windows和Linux下LabVIEW的VI互操作</h1><p>LabVIEW 的一些问题</p>
+<p>From <a target="_blank" rel="noopener" href="https://lv.qizhen.xyz/appendix_problem">https://lv.qizhen.xyz/appendix_problem</a> </p>
+<p>看到阮奇帧写的一个关于labVIEW Unicode支持的话题，这其实也是一个LabVIEW的顽疾了，实际上LabVIEW中文环境下的bug很可能就和这个有关。<br>Linux和macOS下，LabVIEW不仅早早完成了UTF-8支持和64位化甚至已经开始适配原生M1的ARM支持，但是Windows下仍然还是ASCII编码，导致LabVIEW RT不支持中文，Linux RT还是Pharlap下都会乱码导致VI断线。</p>
+<p>现在Windows10和Windows11为了改善和WLS的互操作性，在控制面板的区域语言选项已经有了测试版的UTF-8支持，在Control Panel\Clock and Region\Region\Administrative\Language for non-Unicode programs\Change System Locale\Beta:Use Unicode UTF-8 for worldwide language support.可以尝试看看能不能生效，缺点是这个副作用是全局的，会影响所有非Unicode程序。如果生效，可以考虑用NTLEA或者其他第三方工具单独设置LabVIEW。</p>
+<p><img src="/20230221-labview-cross-platform-interoperate.assets/1676954407979.png" alt="1676954407979"></p>
+<p>However there’s a “Beta: Use Unicode UTF-8 for worldwide language support” checkbox since Windows 10 insider build 17035 for setting the locale code page to UTF-8</p>
+<p>From <a target="_blank" rel="noopener" href="https://superuser.com/questions/1033088/is-it-possible-to-set-locale-of-a-windows-application-to-utf-8">https://superuser.com/questions/1033088/is-it-possible-to-set-locale-of-a-windows-application-to-utf-8</a> </p>
+<p>可以利用微软官方的Windows SDK给LabVIEW签名，测试是可以单独给LabVIEW启用UTF-8支持的具体方法参考<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows/apps/design/globalizing/use-utf8-code-page">https://learn.microsoft.com/en-us/windows/apps/design/globalizing/use-utf8-code-page</a><br>用的是LabVIEW 2023Q3 64bit。</p>
+<p>Fusion manifest for an unpackaged Win32 app:</p>
+<p>From <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows/apps/design/globalizing/use-utf8-code-page">https://learn.microsoft.com/en-us/windows/apps/design/globalizing/use-utf8-code-page</a> </p>
+<p>gb2312</p>
+<p>From <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows/win32/intl/code-page-identifiers?source=recommendations">https://learn.microsoft.com/en-us/windows/win32/intl/code-page-identifiers?source=recommendations</a> </p>
+<p>首先备份一个LabVIEW.exe以备不时之需，<br>编写一个以下内容的LabVIEW.manidest文件：<br><?xml version="1.0" encoding="UTF-8" standalone="yes"?><br><assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1"><br>  <assemblyIdentity type="win32" name="..." version="6.0.0.0"/><br>  <application><br>    <windowsSettings><br>      <activeCodePage xmlns="http://schemas.microsoft.com/SMI/2019/WindowsSettings">UTF-8</activeCodePage><br>    </windowsSettings><br>  </application><br></assembly><br>然后安装Windows SDK，利用MT.exe对labVIEW.exe进行签名，如果都安装在默认路径，在命令行里面运行以下命令<br>“C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\mt.exe” -manifest “C:\Program Files\National Instruments\LabVIEW 2022\LabVIEW.manifest” -outputresource:”C:\Program Files\National Instruments\LabVIEW 2022\LabVIEW.exe”;#1<br>用Linux的LabVIEW编写一个Test.VI</p>
+<p><img src="/20230221-labview-cross-platform-interoperate.assets/1676954492996.png" alt="1676954492996"></p>
+<p>用普通的Windows下的LabVIEW打开，中文是乱码</p>
+<p><img src="/20230221-labview-cross-platform-interoperate.assets/1676954512158.png" alt="1676954512158"></p>
+<p>用签过名的LabVIEW打开，中文可以显示</p>
+<p><img src="/20230221-labview-cross-platform-interoperate.assets/1676954528197.png" alt="1676954528197"></p>
+<p>但是字体列表里面的中文乱码了</p>
+<p><img src="/20230221-labview-cross-platform-interoperate.assets/1676954542172.png" alt="1676954542172"></p>
+<p>可以把签名和没有签名的LabVIEW.exe都保留，测试都可以打开使用</p>
+<p><img src="/20230221-labview-cross-platform-interoperate.assets/1676954554389.png" alt="1676954554389"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2023/02/21/20230221-labview-cross-platform-interoperate/" data-id="cme6h4njd000tzcl05p1xhldz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20221210-labview-fonts-fix" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/12/10/20221210-labview-fonts-fix/" class="article-date">
+  <time datetime="2022-12-10T05:21:17.000Z" itemprop="datePublished">2022-12-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/12/10/20221210-labview-fonts-fix/">20221210-labview-fonts-fix</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabVIEW字体bug终极修正"><a href="#LabVIEW字体bug终极修正" class="headerlink" title="LabVIEW字体bug终极修正"></a>LabVIEW字体bug终极修正</h1><h2 id="图标编辑器中的文本变得模糊"><a href="#图标编辑器中的文本变得模糊" class="headerlink" title="图标编辑器中的文本变得模糊"></a>图标编辑器中的文本变得模糊</h2><p>来自 <a target="_blank" rel="noopener" href="https://knowledge.ni.com/KnowledgeArticleDetails?id=kA00Z0000019ZTFSA2&l=zh-CN">https://knowledge.ni.com/KnowledgeArticleDetails?id=kA00Z0000019ZTFSA2&amp;l=zh-CN</a> </p>
+<p>除了设置控制面板为英文环境，也可以用改INI的方式修正</p>
+<p>FontCodePageList&#x3D;Small Fonts,1252<br>设置为中文显示</p>
+<p>设置为英文字体显示</p>
+<h2 id="安全字体"><a href="#安全字体" class="headerlink" title="安全字体:"></a>安全字体:</h2><p>所有中文字体和英文界面字体:FixedSys,Terminal,SegoeUI,tahoma<br>不能显示的字体:Arial,Calibri,CourierNew,NI7SEG,consolas,Times New Roman,Small Fonts;</p>
+<h2 id="多字体修复"><a href="#多字体修复" class="headerlink" title="多字体修复"></a>多字体修复</h2><p>经过尝试，<br>可以添加多个字体<br>对EXE也有效<br>FontCodePageList&#x3D;Small Fonts,1252;NI7SEG,1252</p>
+<p>用注册表查询系统所有字体，然后追加到LabVIEW的INI文件</p>
+<h2 id="程序修复"><a href="#程序修复" class="headerlink" title="程序修复"></a>程序修复</h2><p>发现LabVIEW读取注册表键值时没法确认键的数量，所以动态增加NumValues的数量直到超过后报错，然后再从大向小尝试直到不报错，就可以刚好把所有键值读取出来。</p>
+<p>经过多次整理之后再把字体名称重复的去掉，最后添加配置项到搜索出来的LabVIEW.INI</p>
+<h2 id="常见Windows字体修复"><a href="#常见Windows字体修复" class="headerlink" title="常见Windows字体修复"></a>常见Windows字体修复</h2><p>如果没有其他特殊字体也可以直接给INI添加这一句<br>FontCodePageList&#x3D;”Andalus,1252;Angsana New,1252;AngsanaUPC,1252;Aparajita,1252;Arabic Typesetting,1252;Arial,1252;Browallia New,1252;BrowalliaUPC,1252;Calibri,1252;Candara,1252;Comic Sans MS,1252;Consolas,1252;Constantia,1252;Corbel,1252;Cordia New,1252;CordiaUPC,1252;Courier New,1252;DFKai-SB,1252;DaunPenh,1252;David,1252;DilleniaUPC,1252;DokChampa,1252;Ebrima,1252;Estrangelo Edessa,1252;EucrosiaUPC,1252;Euphemia,1252;FZShuTi,1252;FZYaoTi,1252;FangSong,1252;FrankRuehl,1252;Franklin Gothic Medium,1252;FreesiaUPC,1252;Gabriola,1252;Gautami,1252;Georgia,1252;Gisha,1252;Impact,1252;IrisUPC,1252;Iskoola Pota,1252;JasmineUPC,1252;KaiTi,1252;Kalinga,1252;Kartika,1252;Khmer UI,1252;KodchiangUPC,1252;Kokila,1252;Lao UI,1252;Latha,1252;Leelawadee,1252;Levenim MT,1252;LiSu,1252;LilyUPC,1252;Lucida Console,1252;Lucida Sans Unicode,1252;MV Boli,1252;Malgun Gothic,1252;Mangal,1252;Microsoft Himalaya,1252;Microsoft JhengHei,1252;Microsoft New Tai Lue,1252;Microsoft PhagsPa,1252;Microsoft Sans Serif,1252;Microsoft Tai Le,1252;Microsoft Uighur,1252;Microsoft YaHei,1252;Microsoft Yi Baiti,1252;Miriam,1252;Miriam Fixed,1252;Modern,1252;Mongolian Baiti,1252;MoolBoran,1252;Narkisim,1252;Nyala,1252;Palatino Linotype,1252;Plantagenet Cherokee,1252;Raavi,1252;Rod,1252;Roman,1252;STCaiyun,1252;STFangsong,1252;STHupo,1252;STKaiti,1252;Sakkal Majalla,1252;Script,1252;Segoe Print,1252;Segoe Script,1252;Segoe UI,1252;Shonar Bangla,1252;Shruti,1252;SimHei,1252;SimSun-ExtB,1252;Simplified Arabic,1252;Simplified Arabic Fixed,1252;Small Fonts,1252;Small Fonts,1252;Sylfaen,1252;Tahoma,1252;Times New Roman,1252;Traditional Arabic,1252;Trebuchet MS,1252;Tunga,1252;Utsaah,1252;Vani,1252;Verdana,1252;Vijaya,1252;Vrinda,1252;Webdings,1252;Wingdings,1252”</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>修正程序的源代码已提交github<br><a target="_blank" rel="noopener" href="https://github.com/lhb5883/LabVIEWFontsFix">https://github.com/lhb5883/LabVIEWFontsFix</a></p>
+<p>可以在VIPM中搜索font找到LabVIEW Fonts fix 安装<br>安装好以后重启labVIEW，在LabVIEW的Tools菜单选择Fix Fonts…再重启LabVIEW就可以正常调用字体了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2022/12/10/20221210-labview-fonts-fix/" data-id="cme6h4njc000rzcl042ej0ajx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20220802-labview-2022-released" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/08/02/20220802-labview-2022-released/" class="article-date">
+  <time datetime="2022-08-02T14:27:10.000Z" itemprop="datePublished">2022-08-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/02/20220802-labview-2022-released/">20220802-labview-2022-released</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabVIEW-2022-Q3已发布"><a href="#LabVIEW-2022-Q3已发布" class="headerlink" title="LabVIEW 2022 Q3已发布"></a>LabVIEW 2022 Q3已发布</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>NI在7月底发布了新版的LabVIEW和套件供下载，版本号为2022Q3，22.5，从这个版本开始，软件改为订阅模型，但是不知道以后会不会改成滚动发布，从LabVIEW的另存为低版本来看，还是有独立的版本号以解决兼容性问题。</p>
+<p>值得关注的一个大变动是驱动和LabVIEW版本分离，详情可以看新特性中的具体说明。如果用高版本的labview打开和保存了公共VI，低版本打开估计会有问题，默认分离已编译代码应该只是规避了一部分，之前LabVIEW的打包EXE后可以用更高版本Runtime支持应该也是为了这个特性做的准备，怀疑公共库里面不少关键VI应该是封装成了打包库。但是对于需要修改的范例，不知道能不能做到未来2023修改后低版本的2022可以打开，我猜测应该是不行的，毕竟NI现在应该是希望客户一直升级的，现在就是不知道2023版会是原位升级还是会新装一个目录。</p>
+<p>目前NI的这种订阅服务模式对需要维护客户固定版本的应用不太友好，除非都用SystemLink进行托管，要不然维护多个不同版本LabVIEW Runtime的工作量其实也不小，如果是工厂等没有公网环境下维护代码就更加麻烦。好在NI现在的订阅制是允许使用低版本LabVIEW的，可以规避这个问题，但是对于希望项目开发环境能够保持在一个稳定版本的LabVIEW上，就只能用非订阅制的旧版了。希望NI能把软件的授权改成JetBrains的半订阅制，订购一定时间长度的软件可以保留最初版本的软件激活，NI之前的口风是有一个专门的调试版的授权是永久的。（更新）查看了一下NI官网，调试版授权比LabVIEW一年订阅要略便宜，不过不提供安装媒体，而且看描述需要先购买一个订阅版的服务才行。</p>
+<p>NI软件订阅计划</p>
+<p>From &lt;<a target="_blank" rel="noopener" href="https://www.ni.com/zh-cn/landing/subscription-software.html">https://www.ni.com/zh-cn/landing/subscription-software.html</a>&gt; </p>
+<p>其他小的变化有支持M1的Mac和支持Windows 11，不过对于目前的Windows 11还不算稳定，Bug还是不少，微软自己官方的Windows Server 2022还是基于Windows 10的，并且企业版的LTSC目前也是Windows10，并没有Windows 11的LTSC，我个人还是建议等到Windows 11稳定发布LTSC之后再配合LabVIEW使用。</p>
+<p>除此之外需要验证LabVIEW 2022 64bit对cRIO的支持是已经做好了还是鸽掉了，不过这一点需要时间安装之后测试，从文档来看，暂时没有官方宣布。（更新根据实际安装测试，64bit下不支持cRIO,支持RT cDAQ）</p>
+<p>另外一个缺点是2022默认使用NI网站的在线帮助了，不过好在本地帮助的CHM文件还在，32bit的帮助位于”C:\Program Files (x86)\National Instruments\LabVIEW 2022\help\lvhelp.chm”，64bit的也类似。</p>
+<p>经过测试，NI在大包里面集成的版本号低于22.0的驱动都不支持LabVIEW 2022，包括Veristand也是，要等后续的更新了。估计和21版一样等到SP1的时候才能基本补齐。</p>
+<p>目前看起来在RoadMap里鸽掉的我期待很久的特性有以下几个,希望未来能开发出来：</p>
+<p>gRPC驱动远程调用协议支持</p>
+<p>LabVIEW 64bit的cRIO支持</p>
+<p>Uincode支持</p>
+<p>LabVIEW在运行时中动态创建控件</p>
+<p>高分屏支持</p>
+<p>我个人比较期待的是Unicode支持，毕竟从2011之后，字体BUG就一直没修，LabVIEW如果把区域和语言选项如果设置成中文，很多字体是加载不出来的，而设置成英文的话，有可能会删除半个汉字，如果能借着这个机会把这个问题修正了，可以让人舒服不少，不用当2011钉子户了。</p>
+<p>高分屏支持也是一样，如果有多显示器并且缩放比例不一致的话，LabVIEW鼠标和菜单经常错位，希望能好好修复一下。</p>
+<p>长期来看比较重要的的特性其实是gRPC的调用，彻底实现了驱动层的解耦和分布式系统的底层支持，还有一个是运行时动态创建控件，不过这个需要一个NI官方实现数据和控件动态绑定的方法，不知道Data Grid Control是不是就是干这个的</p>
+<p>另外补充一点，NI把InsightCM卖给了CutForth，其他大规模使用cRIO的场景就不太多了，感觉cRIO有点像Intel的凌动平台，很多搞物联网的都是用Intel的开发板搭出来原型，然后用ARM的板子量产。尤其是Intel收购赛灵思以后，cRIO也换了集成x86核的FPGA，虽然支持了DAQmx，但是成本也变高了，适合走量的场景不多。</p>
+<p>CUTSFORTH ACQUIRES INSIGHTCM™ FROM NI</p>
+<p>From &lt;<a target="_blank" rel="noopener" href="https://cutsforth.com/insightcm-acquisition-annoucement/">https://cutsforth.com/insightcm-acquisition-annoucement/</a>&gt; </p>
+<h2 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h2><p>已剪辑自: <a target="_blank" rel="noopener" href="https://www.ni.com/docs/zh-CN/bundle/upgrading-labview/page/labview-2022q3-changes.html">https://www.ni.com/docs/zh-CN/bundle/upgrading-labview/page/labview-2022q3-changes.html</a></p>
+<h3 id="在LabVIEW中比较VI"><a href="#在LabVIEW中比较VI" class="headerlink" title="在LabVIEW中比较VI"></a>在LabVIEW中比较VI</h3><p>LabVIEW 2022 Q3（基础版、完整版和专业版）的所有版本现在都提供了比较VI的功能，并且不仅限于专业版许可证。</p>
+<h3 id="Python支持"><a href="#Python支持" class="headerlink" title="Python支持"></a>Python支持</h3><p>LabVIEW 2022 Q3支持通过Python对象引用句柄使用Python节点。该引用句柄可用于传递Python对象，作为Python节点输入参数或返回类型。</p>
+<h3 id="选项默认值的改动"><a href="#选项默认值的改动" class="headerlink" title="选项默认值的改动"></a>选项默认值的改动</h3><p>在LabVIEW 2022 Q3中，从新文件中分离已编译代码选项的默认值为启用。</p>
+<h3 id="调用MATLAB函数"><a href="#调用MATLAB函数" class="headerlink" title="调用MATLAB函数"></a>调用MATLAB函数</h3><p>可在调用MATLAB函数上设置断点，然后使用步入调试打开MATLAB(R)编辑器执行脚本。如安装了多个版本MATLAB，可右键单击函数并在快捷菜单中选择在MATLAB中打开，指定LabVIEW调用的MATLAB版本。</p>
+<h3 id="Actor-lvclass的uninit方法"><a href="#Actor-lvclass的uninit方法" class="headerlink" title="Actor.lvclass的uninit方法"></a>Actor.lvclass的uninit方法</h3><p>在操作者框架中，Actor类新增了Uninit方法（取消初始化）。Actor可重写该方法，释放在执行Pre Launch Init.vi or Actor.vi时获取的资源。即使之前有错误发生，该方法仍然会执行。</p>
+<h3 id="支持独立于LabVIEW版本的驱动程序-工具包"><a href="#支持独立于LabVIEW版本的驱动程序-工具包" class="headerlink" title="支持独立于LabVIEW版本的驱动程序&#x2F;工具包"></a>支持独立于LabVIEW版本的驱动程序&#x2F;工具包</h3><p>LabVIEW早期版本的模块、工具包等附加内容都位于LabVIEW目录之下。从LabVIEW 2022 Q3开始，LabVIEW将从LVaddons共享目录加载这些内容。在Windows操作系统上，LVAddons的默认位置是C:\Program Files\NI\LVAddons。请注意，只有一部分NI驱动程序和工具包会随2022 Q3版本安装到此位置。驱动程序或工具包转到LVAddons目录后，无需升级或重新安装即可与新版本的LabVIEW一起使用。</p>
+<p>贴上路径图作为参考</p>
+<p>LabVIEW Roadmap (2022) - NI Community</p>
+<p><a target="_blank" rel="noopener" href="https://forums.ni.com/t5/LabVIEW/LabVIEW-Roadmap-2022/td-p/4218319">https://forums.ni.com/t5/LabVIEW/LabVIEW-Roadmap-2022/td-p/4218319</a></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Capability</th>
+<th>Upcoming   1-2 Releases</th>
+<th>Future   Development</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>项目管理</td>
+<td>Improvements to   workflows with source code control tools</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>LabVIEW VI compare   tool included in all editions   (Base, Full, Pro)</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Driver version   independence from LabVIEW   (no need to update   drivers for every new LabVIEW release)</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Improved LabVIEW   Project Dependency Management</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>互操作</td>
+<td>Call Python code   running in virtual environments</td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>Deploy Python   scripts to NI Linux RT devices</td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>Native gRPC   server&#x2F;client interfaces in LabVIEW</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>Better integration   with MATLAB® for debugging between environments</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Support for   calling .NET Core Assemblies (.NET 5 or later)</td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>系统支持</td>
+<td>Support for   Windows 11</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Support for MacOS   on Apple M1 devices</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LabVIEW RT&#x2F;FPGA   64-bit module support for CompactRIO</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Data Communication   additions (SSH API, IPv6 support)</td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>改进</td>
+<td>Support for   Unicode in the IDE</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>Introducing Data   Grid Control</td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>Dynamically create   controls at runtime</td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td></td>
+<td>Improve LabVIEW   IDE experience on high resolution monitors   (e.g. 2560 x 1440)</td>
+<td>✓</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="大包下载"><a href="#大包下载" class="headerlink" title="大包下载"></a>大包下载</h2><p>Windows 2022 Q3 Professional 64-bit English</p>
+<p>Software Platform Bundle 2022 Q3</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2022 Q3</td>
+<td>(MD5) ce06c4ca6d95ff99a334d0ba6aa2927d   (SHA256) 990fcd6f52a8b57cb7f1d31cee356e99406a047d6e82f87f9e20756a6e2f48c0</td>
+<td>58.29 GB</td>
+</tr>
+</tbody></table>
+<p>From &lt;<a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#460282">https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#460282</a>&gt; </p>
+<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle/22.5/offline/ni-software-platform-bundle_22.5.0.49199-0+f47_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle/22.5/offline/ni-software-platform-bundle_22.5.0.49199-0+f47_offline.iso</a></p>
+<p>Windows 2022 Q3 Professional 32-bit English</p>
+<p>Software Platform Bundle 2022 Q3</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2022 Q3</td>
+<td>(MD5) c7c80ad9cd6f436a6d38a79ca05ebb3d   (SHA256) 27869760ad84a02ecc0bed4cb8150152aa296b2a30fcbdacd55f18c441df767f</td>
+<td>58.14 GB</td>
+</tr>
+</tbody></table>
+<p>From &lt;<a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#460698">https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#460698</a>&gt; </p>
+<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86/22.5/offline/ni-software-platform-bundle-x86_22.5.0.49199-0+f47_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86/22.5/offline/ni-software-platform-bundle-x86_22.5.0.49199-0+f47_offline.iso</a></p>
+<p>Windows 2022 Q3 Professional 32-bit Simplified Chinese</p>
+<p>Software Platform Bundle 2022 Q3</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2022 Q3</td>
+<td>(MD5) 0bd962fce7a18c0e71f347aa3c9ee1b7   (SHA256) 09402c7abfaccd7e174d0307339eb35897a082d99775fd61dcd7a7a46302a4b6</td>
+<td>58.36 GB</td>
+</tr>
+</tbody></table>
+<p>From &lt;<a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#460299">https://www.ni.com/en-us/support/downloads/software-products/download.software-platform-bundle.html#460299</a>&gt; </p>
+<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86-zh-cn/22.5/offline/ni-software-platform-bundle-x86-zh-cn_22.5.0.49199-0+f47_offline.iso">https://download.ni.com/support/nipkg/products/ni-s/ni-software-platform-bundle-x86-zh-cn/22.5/offline/ni-software-platform-bundle-x86-zh-cn_22.5.0.49199-0+f47_offline.iso</a></p>
+<p>LabVIEW 2022 Q3 Professional Mac OS English</p>
+<p>Checksum(MD5)b474aa15fd54508dfaa05561ab83055b</p>
+<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/softlib/labview/labview_development_system/2022%20Q3/502141BB-01M_2022Q3LV-LMPro.iso">https://download.ni.com/support/softlib/labview/labview_development_system/2022%20Q3/502141BB-01M_2022Q3LV-LMPro.iso</a></p>
+<p>NI Linux Real-Time Offline Installation Support 2022 Q3</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Checksum</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2022 Q3</td>
+<td>(MD5) 39f7aef09d49123ec0ff221b1a0395a2   (SHA256) 142f11ca1c144c93f437733d92e7ab41ed9adf9a79ed2d65a628b0dd3b4a40c7</td>
+<td>6.78 GB</td>
+</tr>
+</tbody></table>
+<p>From &lt;<a target="_blank" rel="noopener" href="https://www.ni.com/en-us/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#460621">https://www.ni.com/en-us/support/downloads/software-products/download.ni-linux-real-time-offline-installation-support.html#460621</a>&gt; </p>
+<p><a target="_blank" rel="noopener" href="https://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-22.5/22.5/offline/ni-linux-rt-offline-installation-support-22.5_22.5.0_offline.iso">https://download.ni.com/support/nipkg/products/ni-l/ni-linux-rt-offline-installation-support-22.5/22.5/offline/ni-linux-rt-offline-installation-support-22.5_22.5.0_offline.iso</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2022/08/02/20220802-labview-2022-released/" data-id="cme6h4njd000szcl047xwdom3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/" class="article-date">
+  <time datetime="2022-07-11T12:12:18.000Z" itemprop="datePublished">2022-07-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/">20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NI-Windows-10-系统恢复优盘复制"><a href="#NI-Windows-10-系统恢复优盘复制" class="headerlink" title="NI Windows 10 系统恢复优盘复制"></a>NI Windows 10 系统恢复优盘复制</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>NI PXIe-8861控制器出场安装的是Windows 10 IOT Enterprise 1809 SAC(The Semi-Annual Channel)版本,会自动更新到次新版本的Win10，对应的是企业版的Current Business Branch.<br>必须使用U盘进行安装才能识别为正版系统，IOT版本的特殊之处是不连接公网是不需要激活的，有一个延迟激活状态（Windows 10 IoT offers a third option, allowing devices not connected to the Internet to remain in a deferred activation state）而普通的企业版系统是必须要180天激活一次的。</p>
+<h2 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h2><p>预装的Windows 10 IOT Enterprise 1809并非是LTSC版本而是SAC，是有商店和预装程序的，也会滚动升级；<br>官方的优盘虽然是16G的插进电脑是识别成一个8G的空优盘和8G的光盘镜像,使用UltraISO抓取镜像只有2.7G，无法完整抓取,经过刻盘测试无法正常安装系统。<br>使用复制的方法提取出来的安装包大概有8G,直接复制到优盘时会报错，经测试UEFI启动必须是FAT32分区，镜像的WIM文件有4.5GB，超过了上限。而使用exFAT分区得U盘是无法在NI控制器上正常启动的（按照标准UEFI启动只支持Fat32分区启动，有些第三方主板做了特殊处理支持其他格式的分区如NTFS或者exFAT启动到UEFI）.<br>解决的办法是利用DISM命令或者第三方工具将Install.wim拆分为一系列Install.swm文件，使用工具拆分WIM镜像后要注意修改应答XML文件中的对应路径。第三方拆分工具gimagex可以图形化的拆分镜像文件。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>和之前尝试过的利用Acronis True Image提取一键恢复备份文件的方法相比，这种方式安装的Windows可以确保和硬件无关，不会因为网卡Mac地址不同而触发延迟激活失效。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2022/07/11/20220711-create-a-usb-reinstall-disk-from-a-ni-offical-pxi-controller-reinstall-usb-disk/" data-id="cme6h4njc000qzcl03tsifn8l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20220427-what-is-the-relation-between-lean-6s-and-close-loop-management" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/" class="article-date">
+  <time datetime="2022-04-27T04:19:22.000Z" itemprop="datePublished">2022-04-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/">20220427-what-is-the-relation-between-lean-6s-and-close-loop-management</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="精益生产-6s管理-归零管理的逻辑关系"><a href="#精益生产-6s管理-归零管理的逻辑关系" class="headerlink" title="精益生产 6s管理 归零管理的逻辑关系"></a>精益生产 6s管理 归零管理的逻辑关系</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先精益生产 6s管理 归零管理都是指导生产领域,对于研发领域,MBSE的V模型和双V模型才是更适合的方法论.</p>
+<h2 id="精益生产"><a href="#精益生产" class="headerlink" title="精益生产"></a>精益生产</h2><p>精益生产结合了小批量和流水线的优势,提高了生产效率和资金效率：<br>小批量生产灵活性高，但是不容易标准化，成本高，航天是典型的小批量生产，并且研发和生产是二合一的。<br>福特的大批量流水线生产效率高,但是不灵活,库存和备料多，市场竞争下过度生产是常态，造成浪费。<br>人机料法环中机器必然过剩，减小料的耗费可以控制成本。<br>例如精益生产中十大工具中很多就是为了控制材料和元件的耗费<br>安灯系统：及时发现和处理异常，及时停线避免原料浪费。<br>看板管理：需求拉动控制库存。</p>
+<h2 id="6S管理"><a href="#6S管理" class="headerlink" title="6S管理"></a>6S管理</h2><p>6s管理是为了实施精益生产的管理手段<br>6S即整理（SEIRI）、整顿（SEITON）、清扫（SEISO）、清洁（SEIKETSU）、素养（SHITSUKE）、安全（SECURITY）<br>目的其实是充分调动人的因素，在小批量的生产中控制复杂度，排除无效因素干扰。</p>
+<h2 id="归零管理"><a href="#归零管理" class="headerlink" title="归零管理"></a>归零管理</h2><p>归零对应着精益生产的持续改进<br>技术归零指的是“定位准确、机理清楚、问题复现、措施有效、举一反三”；管理归零指的是“过程清楚、责任明确、措施落实、严肃处理、完善规章”。<br>归零法：这个方法的本质就是放大已经发现的任何微小异常，通过反复的追问，找到问题背后的本质原因，从而彻底解决问题。借鉴PDCA的方法论，所有问题都尽量解决在前，预防在前，是风险防控的理念，而质量管理归零就是风险防控措施的最有效手段，风险防控最精华的部分就是零缺陷管理。<br>用于极端小批量生产中控制风险，缺点成本较高。<br>1、对产品供应链完全掌控：指标、参数、性能、材料、工艺等等。甚至包含供应商的供应商。这样的控制程度无疑要付出巨大代价。产品成本会高出民用市场几倍以上。<br>2、零部件和产品总成必须有很好的跟踪机制。这样的回溯机制要付出巨大代价：每一个零件、工艺、批次、供应商、生产人员、日期等信息都是可回溯的。就像是古代盖城墙，每块砖上都有工匠的名字。用做菜举例：你知道你吃的午饭是什么品种、哪块地、什么时候收割、哪个厂家去壳、在哪装箱、谁来运输、谁做成米饭、谁给你端上来的？<br>3、全体人员都认可这一游戏规则，认为归零是必要的、必需的。这是企业文化层次的认同，最难形成。十年树木，百年树人。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2022/04/27/20220427-what-is-the-relation-between-lean-6s-and-close-loop-management/" data-id="cme6h4njb000pzcl06mpxayl0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20220425-how-to-choose-a-labview-version" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/25/20220425-how-to-choose-a-labview-version/" class="article-date">
+  <time datetime="2022-04-25T07:21:05.000Z" itemprop="datePublished">2022-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/25/20220425-how-to-choose-a-labview-version/">20220425-how-to-choose-a-labview-version</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="如何选择LabVIEW版本"><a href="#如何选择LabVIEW版本" class="headerlink" title="如何选择LabVIEW版本?"></a>如何选择LabVIEW版本?</h1><h2 id="LabVIEW-常见的BUG"><a href="#LabVIEW-常见的BUG" class="headerlink" title="LabVIEW 常见的BUG"></a>LabVIEW 常见的BUG</h2><ul>
+<li>LabVIEW 2010的Dll导入功能有问题,支持目录选择cINTools目录后无法继续.</li>
+<li>LabVIEW 2009字体和语言处理有bug,并且无法绕过.LabVIEW 2009本身容易闪退.</li>
+<li>LabVIEW 2012+字体和语言处理BUG可以通过语言格式设置绕过,但是可能会删半个字,或者计算字符串显示区域出错.</li>
+<li>LabVIEW 2019+中文版安装其他软件时会报RabbitMQ错误.</li>
+<li>DAQMX中文版建立任务时文字描述出错,可能会把输出搞成输入.</li>
+<li>中文版LabVIEW在计数器任务生成范例和代码是出错,只能生成空VI.</li>
+<li>中文版RT模块打包RTEXE之后断线</li>
+</ul>
+<h3 id="LabVIEW建议跳过的几个版本"><a href="#LabVIEW建议跳过的几个版本" class="headerlink" title="LabVIEW建议跳过的几个版本"></a>LabVIEW建议跳过的几个版本</h3><p>LabVIEW 2009：出了64bit</p>
+<p>LabVIEW 2010：换了LLVM编译器</p>
+<p>LabVIEW 2016：放弃32bit XP，开始NXG的开发</p>
+<p>LabVIEW 2019：开始更换NI Package Manager 支持Linux RT</p>
+<p>LabVIEW 2021：放弃Pharlap ETS</p>
+<h3 id="LabVIEW-值得关注的几个版本"><a href="#LabVIEW-值得关注的几个版本" class="headerlink" title="LabVIEW 值得关注的几个版本"></a>LabVIEW 值得关注的几个版本</h3><p>LabVIEW 7.1本体无需激活的最后一版</p>
+<p>LabVIEW 8.5模块和工具包无需激活的最后一版</p>
+<p>LabVIEW 2011个人使用Bug最少的一版</p>
+<p>LabVIEW 2015支持XP系统的最后一版</p>
+<p>LabVIEW 2018传统安装包的最后一版</p>
+<p>LabVIEW 2020支持Pharlap的最后一版</p>
+<h2 id="LabVIEW的VI兼容策略"><a href="#LabVIEW的VI兼容策略" class="headerlink" title="LabVIEW的VI兼容策略"></a>LabVIEW的VI兼容策略</h2><p>LabVIEW高版本可以打开低版本VI,目前来说打开VI可以向下兼容到LabVIEW 6,</p>
+<p>LabVIEW无法打开高版本的VI</p>
+<p>加密VI可以升级版本,但是没有密码的情况下无法降级</p>
+<p>另存为前期版本最多可以保存到LabVIEW 8.</p>
+<h2 id="LabVIEW的模块和工具包兼容策略"><a href="#LabVIEW的模块和工具包兼容策略" class="headerlink" title="LabVIEW的模块和工具包兼容策略"></a>LabVIEW的模块和工具包兼容策略</h2><p>LabVIEW模块必须和LabVIEW版本一一对应,模块一般对应的是不同的运行目标和对应的编译工具链,所以图像,控制设计仿真,状态图和RT还有FPGA一样都归属于模块.简单的来说能给LabVIEW增加交叉编译功能都属于模块</p>
+<p>LabVIEW官方工具包分为两种情况,新版也是一一对应,LabVIEW,旧版有的可以兼容三个版本,有的自动安装到最新版本的LabVIEW里。</p>
+<p>VIPM安装的工具包理论上如果没有依赖特定版本的官方模块或者工具包，一般都是可以被高版本的LabVIEW支持的，只是不能被低于编写工具包版本的LabVIEW使用。</p>
+<h2 id="LabVIEW的驱动策略"><a href="#LabVIEW的驱动策略" class="headerlink" title="LabVIEW的驱动策略"></a>LabVIEW的驱动策略</h2><p>一般驱动是向下兼容三个版本的LabVIEW，但是依赖特定版本模块的除外。</p>
+<p>另外NI的驱动是可以并行选装的，所以安装的驱动越多，后台服务越多，占用的资源也越多。</p>
+<h2 id="LabVIEW的语言和Bit兼容策略"><a href="#LabVIEW的语言和Bit兼容策略" class="headerlink" title="LabVIEW的语言和Bit兼容策略"></a>LabVIEW的语言和Bit兼容策略</h2><p>LabVIEW的32bit有六国语言，但同版本只能安装一种语言。</p>
+<p>LabVIEW的64bit版只有英文，不过64bit的可以和32bit的同时安装，z共用同一个License</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><h3 id="简单用户"><a href="#简单用户" class="headerlink" title="简单用户"></a>简单用户</h3><p>对于英语不好只使用DAQ板卡，不使用RT或者FPGA的用户，可以用LabVIEW2011中文版（或其他值得关注版本）加对应DAQmx。</p>
+<h3 id="进阶用户"><a href="#进阶用户" class="headerlink" title="进阶用户"></a>进阶用户</h3><p>如果必须要使用RT和FPGA，但RT和FPGA部分较为简单，可以确认自身编写的代码没有问题，可以考虑装最新的中文版LabVIEW和RT+FPGA，出现BUG之后再替换为英文版的。</p>
+<h3 id="学习者"><a href="#学习者" class="headerlink" title="学习者"></a>学习者</h3><p>在学习阶段，装一个次新版本的中文版LabVIEW及对应模块，装一个最新英文版和64bit版的LabVIEW及对应模块，驱动安装最新版的，利用向下兼容支持次新版的LabVIEW。</p>
+<h3 id="资深开发人员"><a href="#资深开发人员" class="headerlink" title="资深开发人员"></a>资深开发人员</h3><p>建议全套英文版开发环境，如果有多版本的项目同时开发，可以通过虚拟机分离，一个虚拟机里面最好只装一个对应版本的全套开发软件和驱动。<br>本机上编写代码装一个LabVIEW 2011，查看代码安装一个最新版的LabVIEW，避免从别的地方接收到的VI无法打开。但是不建议装驱动，因为具体开发还是要在对应版本的环境中比较好。</p>
+<h2 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h2><p>另外多说一句LabVIEW 2021开始64bit官方功能完全和32bit对齐的一版，具备了RT和FPGA模块，不用在64bit中写下位机，32bit中写上位机，等迭代上几年后解决了安装包冲突的问题，以后初学者就可以装一个32bit的中文环境用来学习，同时64bit的英文环境用来开发，入门可能会更方便一些。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://haobo.li/2022/04/25/20220425-how-to-choose-a-labview-version/" data-id="cme6h4njb000nzcl01zqr1914" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-and-Internet/">Computers and Internet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LabVIEW/">LabVIEW</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-Internet/">计算机与 Internet</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Ferquency/" rel="tag">CPU Ferquency</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DCD/" rel="tag">DCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drivers/" rel="tag">Drivers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW/" rel="tag">LabVIEW</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2009/" rel="tag">LabVIEW 2009</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2010/" rel="tag">LabVIEW 2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LabVIEW-2011/" rel="tag">LabVIEW 2011</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MSN-Windows-live/" rel="tag">MSN.Windows live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/" rel="tag">Microsoft</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WMI/" rel="tag">WMI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32API/" rel="tag">Win32API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/" rel="tag">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/labview/" rel="tag">labview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 10px;">.NET</a> <a href="/tags/CPU-Ferquency/" style="font-size: 10px;">CPU Ferquency</a> <a href="/tags/DCD/" style="font-size: 10px;">DCD</a> <a href="/tags/Drivers/" style="font-size: 10px;">Drivers</a> <a href="/tags/LabVIEW/" style="font-size: 10px;">LabVIEW</a> <a href="/tags/LabVIEW-2009/" style="font-size: 10px;">LabVIEW 2009</a> <a href="/tags/LabVIEW-2010/" style="font-size: 10px;">LabVIEW 2010</a> <a href="/tags/LabVIEW-2011/" style="font-size: 10px;">LabVIEW 2011</a> <a href="/tags/MSN-Windows-live/" style="font-size: 10px;">MSN.Windows live</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/WMI/" style="font-size: 10px;">WMI</a> <a href="/tags/Win32API/" style="font-size: 10px;">Win32API</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/labview/" style="font-size: 20px;">labview</a> <a href="/tags/network/" style="font-size: 10px;">network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">八月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">十一月 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">八月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">十月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">二月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">九月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">七月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">三月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/08/">八月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/07/">七月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">五月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/02/">二月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">一月 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/11/20250811-ai-for-3rd-party-labview-driver-warpper-generate/">20250811-ai-for-3rd-party-labview-driver-warpper-generate</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/25/20240725-LabVIEW-2024q3-Released/">20240725-LabVIEW-2024q3-Released</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/05/20240305-labview-2024q1-released/">20240305-labview-2024q1-released</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/11/20230811-labview-202023Q3-released/">20230811-labview-202023Q3-released</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/21/20230221-labview-cross-platform-interoperate/">20230221-labview-cross-platform-interoperate</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 haobo.li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
