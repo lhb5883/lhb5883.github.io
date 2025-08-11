@@ -44,3 +44,11 @@ npm install -g hexo-cli
 npm install hexo-deployer-git
 
 hexo -v
+
+
+ls -al ~/.ssh
+ssh-keygen -t ed25519 -C "lhb5883@gmail.com"
+
+cat ~/.ssh/id_ed25519.pub | clip
+
+ssh -T git@github.com
